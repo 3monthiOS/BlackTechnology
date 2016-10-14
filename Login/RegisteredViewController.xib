@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisteredViewController" customModule="App" customModuleProvider="target">
+            <connections>
+                <outlet property="imageBG" destination="h5M-rO-bwk" id="cgy-wc-nQC"/>
+                <outlet property="phoneNumber" destination="OtU-NK-xan" id="EZg-tN-rIe"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" alpha="0.0" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h5M-rO-bwk">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uJd-v7-9Tp">
+                    <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入正确的手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OtU-NK-xan">
+                            <rect key="frame" x="76" y="7" width="512" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnM-fD-ikb">
+                            <rect key="frame" x="8" y="11.5" width="68" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="OtU-NK-xan" secondAttribute="trailing" constant="12" id="K16-3y-2zg"/>
+                        <constraint firstItem="cnM-fD-ikb" firstAttribute="centerY" secondItem="uJd-v7-9Tp" secondAttribute="centerY" id="Wv8-da-aEr"/>
+                        <constraint firstItem="OtU-NK-xan" firstAttribute="centerY" secondItem="cnM-fD-ikb" secondAttribute="centerY" id="fBn-O7-8XY"/>
+                        <constraint firstItem="OtU-NK-xan" firstAttribute="leading" secondItem="cnM-fD-ikb" secondAttribute="trailing" id="gax-zu-xRW"/>
+                        <constraint firstAttribute="height" constant="44" id="j1C-vC-j4X"/>
+                        <constraint firstItem="cnM-fD-ikb" firstAttribute="leading" secondItem="uJd-v7-9Tp" secondAttribute="leading" constant="8" id="kNm-6v-OG5"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="h5M-rO-bwk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="C8e-hb-MFH"/>
+                <constraint firstItem="uJd-v7-9Tp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Mhd-tu-aQR"/>
+                <constraint firstAttribute="trailing" secondItem="uJd-v7-9Tp" secondAttribute="trailing" id="gwV-V3-FFW"/>
+                <constraint firstAttribute="trailing" secondItem="h5M-rO-bwk" secondAttribute="trailing" id="h2F-eW-tjK"/>
+                <constraint firstAttribute="bottom" secondItem="h5M-rO-bwk" secondAttribute="bottom" id="qLf-od-Ti7"/>
+                <constraint firstAttribute="bottom" secondItem="uJd-v7-9Tp" secondAttribute="bottom" id="uSX-da-3XN"/>
+                <constraint firstItem="h5M-rO-bwk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ypr-kX-wZe"/>
+            </constraints>
+            <point key="canvasLocation" x="255" y="267"/>
+        </view>
+    </objects>
+</document>
