@@ -21,7 +21,7 @@ public struct Log {
 
     private static func printMessage<T>(level: String, message: T, column: Int, line: Int, function: String, file: String) {
         if dateFormatter == nil {
-            dateFormatter = NSDateFormatter(coder: "HH:mm:ss.SSS")
+            dateFormatter = NSDateFormatter(dateFormat:"HH:mm:ss.SSS")
         }
 
         let time = dateFormatter.stringFromDate(NSDate())

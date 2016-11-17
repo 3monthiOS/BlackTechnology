@@ -141,8 +141,8 @@ typealias LDApiRequestOptions = [String: Any]
                 "openid": openid,
                 "passport": passport,
                 "action": action,
-                "requestParam": params,
-                "xxx": ar() % 10000
+                "requestParam": params
+//                "xxx": arc4random()%10000
         ]
         if let vericode = options["vericode"] as? String {
             j["vericode"].string = vericode

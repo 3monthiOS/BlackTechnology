@@ -8,7 +8,7 @@
 
 import Foundation
 
-class JumpAnimationcontroller: NSObject,UIViewControllerAnimatedTransitioning {
+class JumpAnimationcontroller: NSObject,UIViewControllerAnimatedTransitioning,CAAnimationDelegate {
     let animationDuration = 2.0
     weak var storedContext: UIViewControllerContextTransitioning?
     var operation:UINavigationControllerOperation = .Push
@@ -114,13 +114,26 @@ class JumpAnimationcontroller: NSObject,UIViewControllerAnimatedTransitioning {
 //        }
         storedContext = nil
     }
-    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+//    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
 //        if let context = storedContext{
 //            context.completeTransition(!context.transitionWasCancelled())
 //            //重置logo
 ////            let fromVC = context.viewControllerForKey(UITransitionContextFromViewControllerKey) as! LoginviewController
 ////            fromVC.logo.removeAllAnimations()
 //        }
+//    }
+    func animationDidStart(anim: CAAnimation) {
+        
     }
-    
+    func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+        
+    }
+//    - (void)animationDidStart:(CAAnimation *)anim;
+//    
+//    /* Called when the animation either completes its active duration or
+//     * is removed from the object it is attached to (i.e. the layer). 'flag'
+//     * is true if the animation reached the end of its active duration
+//     * without being removed. */
+//    
+//    - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag;
 }

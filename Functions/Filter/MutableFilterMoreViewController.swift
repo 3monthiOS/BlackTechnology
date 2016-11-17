@@ -32,37 +32,40 @@ class MutableFilterMoreViewController: UIViewController {
   }
   @IBAction func useFilterClick(sender: UIButton) {
     
-    
-    let cubeMap = createCubeMap(60,90)
-    
-    let data = NSData(bytesNoCopy: cubeMap.data, length: Int(cubeMap.length), freeWhenDone: true)
-    
-    let colorCubeFilter = CIFilter(name: "CIColorCube")
-    
-    
-    
-    colorCubeFilter.setValue(cubeMap.dimension, forKey: "inputCubeDimension")
-    
-    colorCubeFilter.setValue(data, forKey: "inputCubeData")
-    
-    colorCubeFilter!.setValue(CIImage(image: upImgView.image!), forKey: kCIInputImageKey)
-    
-    var outputImage = colorCubeFilter!.outputImage
-    
-    
-    
-    let sourceOverCompositingFilter = CIFilter(name: "CISourceOverCompositing")
-    
-    sourceOverCompositingFilter!.setValue(outputImage, forKey: kCIInputImageKey)
-    
-    sourceOverCompositingFilter!.setValue(CIImage(image: UIImage(named: "background")!), forKey: kCIInputBackgroundImageKey)
-    
-    
-    outputImage = sourceOverCompositingFilter!.outputImage
-    
-    let cgImage = context.createCGImage(outputImage!, fromRect: outputImage!.extent)
-    
-    downImgView.image = UIImage(CGImage: cgImage!)
+//    let cubeMap = creat(UnsafePointer(bitPattern: 60), 90)
+
+////    let cubeMap = createCubeMap(60,90)
+//    let data = NSData(bytes: UnsafePointer(nilLiteral:(cubeMap)), length:Int(cubeMap.length))
+//    let data = NSData(bytes: UnsafePointer(cubeMap), length: Int(cubeMap.length),free(UnsafeMutablePointer())
+//
+//    let data = NSData(bytesNoCopy: cubeMap.data, length: Int(cubeMap.length), freeWhenDone: true)
+//    
+//    let colorCubeFilter = CIFilter(name: "CIColorCube")
+//    
+//    
+//    
+//    colorCubeFilter.setValue(cubeMap.dimension, forKey: "inputCubeDimension")
+//    
+//    colorCubeFilter.setValue(data, forKey: "inputCubeData")
+//    
+//    colorCubeFilter!.setValue(CIImage(image: upImgView.image!), forKey: kCIInputImageKey)
+//    
+//    var outputImage = colorCubeFilter!.outputImage
+//    
+//    
+//    
+//    let sourceOverCompositingFilter = CIFilter(name: "CISourceOverCompositing")
+//    
+//    sourceOverCompositingFilter!.setValue(outputImage, forKey: kCIInputImageKey)
+//    
+//    sourceOverCompositingFilter!.setValue(CIImage(image: UIImage(named: "background")!), forKey: kCIInputBackgroundImageKey)
+//    
+//    
+//    outputImage = sourceOverCompositingFilter!.outputImage
+//    
+//    let cgImage = context.createCGImage(outputImage!, fromRect: outputImage!.extent)
+//    
+//    downImgView.image = UIImage(CGImage: cgImage!)
   }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

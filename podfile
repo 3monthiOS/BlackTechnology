@@ -2,29 +2,25 @@ platform :ios, '8.0'
 use_frameworks!
 
 target :App do
-    #Alamofire 网络库
-    #pod 'Alamofire', '~> 4.0.1'
-    #swift解析json库
-    #pod 'SwiftyJSON', :git => 'https://github.com/IBM-Swift/SwiftyJSON.git'
-    #pod 'IQKeyboardManagerSwift', '~> 4.0.6'   
-    #pod 'Swiften', :git => 'https://github.com/catorv/swiften'
-    #pod 'IQKeyboardManagerSwift'
-    #pod 'RealmSwift', :git => 'https://github.com/realm/realm-cocoa.git'
-    #pod 'SnapKit', '0.30.0.beta2'
-    #pod 'RongCloudIMLib', '~> 2.6.3'
-    #pod 'RongCloudIMKit', '~> 2.7.0'
-    #pod 'MJRefresh', '~> 3.1.9'
-    #pod 'BaiduMapKit'
-
-    pod 'Swiften', :git => 'https://github.com/catorv/swiften'
-     pod 'IQKeyboardManagerSwift','4.0.5'
-     pod 'UMengSocialCOM', '~> 5.2.1'
-     pod 'UMengAnalytics'
-     pod 'SnapKit', '0.30.0.beta2'
-     pod 'SwiftyJSON', '~> 2.3.2'
-     #pod 'RongCloudIMLib', '~> 2.6.3'
-     pod 'RongCloudIMKit', '~> 2.7.0'
-     pod 'MJRefresh', '~> 3.1.9'
-     pod 'BaiduMapKit'
+	pod 'Swiften', :git => 'https://github.com/catorv/swiften'
+	pod 'Alamofire'
+	pod 'IQKeyboardManagerSwift','4.0.5'
+	pod 'AlamofireImage'
+	pod 'KeychainSwift', '3.0.16'	
+        pod 'SnapKit', '0.30.0.beta2'
+        pod 'SwiftyJSON', '~> 2.3.2'
+        #pod 'RongCloudIMLib', '~> 2.6.3'
+        pod 'RongCloudIMKit', '~> 2.7.0'
+        pod 'MJRefresh'
+        pod 'ObjectMapper'
+	pod 'BaiduMapKit'
+	pod 'AlamofireObjectMapper'
 end
 
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['SWIFT_VERSION'] = '2.3'
+        end
+    end
+end
