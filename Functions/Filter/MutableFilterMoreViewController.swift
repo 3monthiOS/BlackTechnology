@@ -31,7 +31,7 @@ class MutableFilterMoreViewController: UIViewController {
     
   }
   @IBAction func useFilterClick(sender: UIButton) {
-    
+    debugPrint("test git push without ssh")
 //    let cubeMap = creat(UnsafePointer(bitPattern: 60), 90)
 
 ////    let cubeMap = createCubeMap(60,90)
