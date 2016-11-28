@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         launchView.frame = view.frame
         mainWindow?.addSubview(launchView)//将自定义的View加载在主屏上
         
-        let filePath = NSBundle.mainBundle().pathForResource("b05启动", ofType: "gif")
+        let filePath = NSBundle.mainBundle().pathForResource("gif131", ofType: "gif")
         let gif = NSData(contentsOfFile: filePath!)
         let webViewBG = UIWebView(frame: self.view.frame)
         webViewBG.loadData(gif!, MIMEType: "image/gif", textEncodingName: String(), baseURL: NSURL())

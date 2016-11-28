@@ -8,6 +8,9 @@
 
 import Foundation
 import UIKit
+import Alamofire
+import Swiften
+
 //MARK: ----- UIcolor 颜色 rgb
 func rgba(red: UInt32, _ green: UInt32, _ blue: UInt32, _ alpha: CGFloat) -> UIColor {
     return UIColor(red: CGFloat(red) / 255, green: CGFloat(green) / 255, blue: CGFloat(blue) / 255, alpha: alpha)
@@ -98,3 +101,86 @@ func toast(message: String, duration: Double = HRToastDefaultDuration, position:
         view.showToast(toastView!)
     }
 }
+func locationfileiscache(fileName: String, complate:(callback: String)->Void){
+    guard let cachePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).first else {
+        complate(callback: "")
+        return
+    }
+    // 打印路径,需要测试的可以往这个路径下放东西
+//    Log.debug("Clear Cache: \(cachePath)")
+    var path = ""
+    // 取出文件夹下所有文件数组
+    if let files = try? NSFileManager.defaultManager().subpathsOfDirectoryAtPath(cachePath){
+        // 快速枚举取出所有文件名
+        for p in files {
+            if p == fileName{
+                Log.info("____找到的文件名字:\(p)")
+                path = cachePath.stringByAppendingFormat("/\(p)")
+                complate(callback: path)
+                return
+            }
+        }
+    }
+    complate(callback: "")
+}
+func fileDownload(urlArray: [String],complate:((isok: Bool,callbackData: [NSData])->Void)){
+    if Reachability.networkStatus == .notReachable {return}
+    var dataArray = [NSData]()
+    //  方法一 自定义下载文件的保存目录 同名文件竟被覆盖
+//    Alamofire.download(.GET, "http://www.hangge.com/blog/images/logo.png") {
+//        temporaryURL, response in
+//        let fileManager = NSFileManager.defaultManager()
+//        let directoryURL = fileManager.URLsForDirectory(.DocumentDirectory,
+//                                                        inDomains: .UserDomainMask)[0]
+//        let pathComponent = response.suggestedFilename
+//        
+//        return directoryURL.URLByAppendingPathComponent(pathComponent!)!
+//    }
+    
+    // 方式二
+    let destination = Alamofire.Request.suggestedDownloadDestination(
+        directory: .DocumentDirectory, domain: .UserDomainMask)
+    
+    for url in urlArray {
+        if url.hasPrefix("http://") || url.hasPrefix("https://") {
+            Alamofire.download(.GET, url, destination: destination)
+                .progress { (bytesRead, totalBytesRead, totalBytesExpectedToRead) in
+                    let percent = totalBytesRead*100/totalBytesExpectedToRead
+                    print("已下载：\(totalBytesRead)  总共：\(totalBytesExpectedToRead) 当前进度：\(percent)%")
+                }
+                .response { (request, response, _, error) in
+                    if let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first {
+                        let fileName = response?.suggestedFilename!
+                        if let fileName = fileName{
+                            let newPath = NSURL(fileURLWithPath: "\(path)/\(fileName)")
+                            print("下载路径：\(newPath)____名称：\(response?.suggestedFilename)")
+//                            print(response)
+                            let fileManager = NSFileManager.defaultManager()
+                            print(fileManager.fileExistsAtPath(newPath.path!))
+                            if ( fileManager.fileExistsAtPath(newPath.path!) ) {
+//                                print(newPath)
+                                let data = NSData(contentsOfURL: newPath)
+                                dataArray.append(data!)
+                            }else{
+                                dataArray.append(NSData())
+                                toast("没找到文件")
+                                print("创建文件")
+                                //                            try {
+                                //                                fileManager.removeItemAtURL(newPath)
+                                //                                fileManager.moveItemAtURL(NSURL(string: url)!, toURL: newPath)
+                                //                            }
+                                
+                            }
+                        }
+                    }
+                    if dataArray.count == urlArray.count{
+                        complate(isok: true, callbackData: dataArray)
+                    }else{
+                        complate(isok: false, callbackData: dataArray)
+                    }
+            }
+        }
+    }
+    
+}
+
