@@ -183,4 +183,10 @@ func fileDownload(urlArray: [String],complate:((isok: Bool,callbackData: [NSData
     }
     
 }
-
+func RemoveSpecialCharacter(str: String) -> String {
+    let range = str.rangeOfCharacterFromSet(NSCharacterSet(charactersInString: "-,.？、% ~￥#&<>《》()[]{}【】^@/￡¤|§¨「」『』￠￢￣~@#&*（）——+|《》$_€"))
+    if range != nil {
+        return RemoveSpecialCharacter(str.stringByReplacingCharactersInRange(range!, withString: ""))
+    }
+    return str
+}

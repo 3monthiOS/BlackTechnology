@@ -147,7 +147,7 @@ typealias LDApiRequestOptions = [String: Any]
         if let vericode = options["vericode"] as? String {
             j["vericode"].string = vericode
         }
-        let jString = j.jsonString
+        let jString = j.jsonString 
         let sign = jString.md5
 
         var parameters: [String: AnyObject] = [ "_t": tid, "j": jString, "sign": sign ]

@@ -17,13 +17,13 @@ class FunctionsViewController: APPviewcontroller {
     weak var collectionView: CollectionMjResh!
     var collectionfoot: CollectionReusableViewFooter!
     var collectionHeader: UICollectionReusableView!
-    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","六","⑦","八","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
-    var imageData = ["http://ohc2uub90.bkt.clouddn.com/public/16-11-28/33057531.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/63784464.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/31166475.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/63869882.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/15652085.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/90098440.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/38827152.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/6871283.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/53000671.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/33057531.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/70368103.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/50374131.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/12350847.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/49087415.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/12596867.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/39233610.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/61336725.jpg"]
+    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","六","上传图片","八","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+//        let ss = LocalStorage.reset()
         self.title = "功能列表"
       self.navigationController?.navigationBar.translucent = false
         initcollectionMjrefresh()
@@ -62,12 +62,12 @@ class FunctionsViewController: APPviewcontroller {
 extension FunctionsViewController: UICollectionViewDataSource{
   
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageData.count
+        return imageUrlArray.count
     }
 
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! QdanCollectionViewCell
-    cell.bindData(imageData,functionTitle: functionTitleData,atIndex :indexPath)
+    cell.bindData(imageUrlArray,functionTitle: functionTitleData,atIndex :indexPath)
     return cell
   }
 }
@@ -103,6 +103,10 @@ extension FunctionsViewController: UICollectionViewDelegate{
         let baidu = BaiduMapViewController()
         baidu.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(baidu, animated: true)
+    case 10:
+        let upload = uploadPicturesView()
+        upload.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(upload, animated: true)
     case 7:
         photobrowserAction(indexPath)
     case 8:
@@ -153,21 +157,31 @@ extension FunctionsViewController: SystemPhotoAlbumDelegate,PhotoBrowserDelegate
     
     func photoBrowser(photoBrowser: PhotoBrowser.PreviewController, photoModelAtIndex index: Int) -> PhotoBrowser.Model {
         let url = imageUrlArray[index]
-        if url.hasPrefix("http://") || url.hasPrefix("https://") {
-            if Reachability.networkStatus == .notReachable {
-                let image = UIImage(named: "chat_image_load_failed")
-                return PhotoBrowser.Model.Image(image: image!)
-            }else{
-                return PhotoBrowser.Model.Urls(url: url, preview:"https://pan.baidu.com/s/1pL51xUj")
+        var img : UIImage?
+        // 网络图片
+        if !url.isEmpty{
+            if let str = url.componentsSeparatedByString("/").last{
+                locationfileiscache(str, complate: { (callback) in
+                    if !callback.isEmpty{
+                        guard let imageData = NSData(contentsOfFile: callback) else {return}
+                        img = UIImage.gifWithData(imageData)!
+                    }else{
+//                        Log.info("我没有找到：————————\(str)")
+                        img = UIImage(named: "chat_image_load_failed")!
+                    }
+                })
             }
         }
-        
+        // 本地图片
         var image = UIImage()
         let data = NSData(contentsOfFile: url)
         if data == nil {
             image = UIImage(named: "chat_image_load_failed")!
         }else{
             image = UIImage(data: data!)!
+        }
+        if let img = img {
+         return PhotoBrowser.Model.Image(image: img)
         }
         return PhotoBrowser.Model.Image(image: image)
     }

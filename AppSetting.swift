@@ -15,13 +15,17 @@ let SCREEN_SCALE = UIScreen.mainScreen().scale
 /// 1个像素
 let SIZE_1PX = 1 / SCREEN_SCALE
 //网络GIF图片
-let imageUrlArray = ["https://pan.baidu.com/s/1i5ocH2t","https://pan.baidu.com/s/1nvxxZ65","https://pan.baidu.com/s/1o8TPYD8","https://pan.baidu.com/s/1cgP2J8","https://pan.baidu.com/s/1hsAzvDE","https://pan.baidu.com/s/1skUP72X","https://pan.baidu.com/s/1sliwFq1","https://pan.baidu.com/s/1pLIY9RX","https://pan.baidu.com/s/1jIHMP5G","https://pan.baidu.com/s/1nvM01V7","https://pan.baidu.com/s/1ge6N0Jp","https://pan.baidu.com/s/1gfv8r1x","https://pan.baidu.com/s/1o7WX9VG"]
+var imageUrlArray = ["http://ohc2uub90.bkt.clouddn.com/public/16-11-28/33057531.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/63784464.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/31166475.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/63869882.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/15652085.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/90098440.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/38827152.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/6871283.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/53000671.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/70368103.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/50374131.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/12350847.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/49087415.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/12596867.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/39233610.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/61336725.jpg"]
 
 /// App
 let API_PROTOCOL = "http:"
 let API_VERSION = 1.0
 let APP_CHANNEL_CODE = ""
 let APP_VERSION_NAME = ""
+
+// 七牛
+let QINIU_URL_STATIC = "http://ohc2uub90.bkt.clouddn.com/"
+let QINIU_URL_MEDIA = "http://pili-media.huacehuaban.com/"
 
 #if DEBUG
 //融云Token

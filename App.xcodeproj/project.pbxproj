@@ -14,7 +14,6 @@
 		65529C351D9E66CE00ED3E1C /* MutableFilterMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65529C341D9E66CE00ED3E1C /* MutableFilterMoreViewController.swift */; };
 		65529C3A1D9E722A00ED3E1C /* CubeMap.c in Sources */ = {isa = PBXBuildFile; fileRef = 65529C391D9E722A00ED3E1C /* CubeMap.c */; };
 		6598A7331D93EB3D00A22338 /* UIView+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6598A7321D93EB3D00A22338 /* UIView+Gradient.swift */; };
-		F20CA5B21DEC43480066FF73 /* gif131.gif in Resources */ = {isa = PBXBuildFile; fileRef = F20CA5B11DEC43480066FF73 /* gif131.gif */; };
 		F21437AC1D98D403000E0CBF /* BaiduMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21437AB1D98D403000E0CBF /* BaiduMapViewController.swift */; };
 		F21437B91D98EE27000E0CBF /* AlamofireSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21437AE1D98EE27000E0CBF /* AlamofireSetting.swift */; };
 		F21437BA1D98EE27000E0CBF /* LDCachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21437B01D98EE27000E0CBF /* LDCachable.swift */; };
@@ -30,6 +29,13 @@
 		F21437C71D98EF21000E0CBF /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21437C61D98EF21000E0CBF /* LoginUser.swift */; };
 		F217F2091D842B74000E3A0D /* RegisteredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F217F2071D842B74000E3A0D /* RegisteredViewController.swift */; };
 		F217F20A1D842B74000E3A0D /* RegisteredViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F217F2081D842B74000E3A0D /* RegisteredViewController.xib */; };
+		F24E9A321DEEA77B00A45EB8 /* QNUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E9A311DEEA77B00A45EB8 /* QNUtils.swift */; };
+		F24E9A341DEEB07600A45EB8 /* MappableBaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E9A331DEEB07600A45EB8 /* MappableBaseType.swift */; };
+		F24E9A381DEEB18A00A45EB8 /* uploadPicturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E9A361DEEB18A00A45EB8 /* uploadPicturesView.swift */; };
+		F24E9A391DEEB18A00A45EB8 /* uploadPicturesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24E9A371DEEB18A00A45EB8 /* uploadPicturesView.xib */; };
+		F24E9A3C1DEEBA0800A45EB8 /* gif131.gif in Resources */ = {isa = PBXBuildFile; fileRef = F24E9A3B1DEEBA0800A45EB8 /* gif131.gif */; };
+		F24E9A3E1DEEBA5E00A45EB8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E9A3D1DEEBA5E00A45EB8 /* User.swift */; };
+		F24E9A411DEED00E00A45EB8 /* uploadGetToken.m in Sources */ = {isa = PBXBuildFile; fileRef = F24E9A401DEED00E00A45EB8 /* uploadGetToken.m */; };
 		F25E22E91D9B9A1D00A0F0DA /* AppChatScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25E22E81D9B9A1D00A0F0DA /* AppChatScreenViewController.swift */; };
 		F2666A8F1D879CCD00B2029E /* Myviewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2666A8E1D879CCD00B2029E /* Myviewcontroller.swift */; };
 		F2666A911D879CEE00B2029E /* FunctionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2666A901D879CEE00B2029E /* FunctionsViewController.swift */; };
@@ -78,6 +84,7 @@
 		F29401DA1D94FD0A00CF582F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29401D91D94FD0A00CF582F /* Log.swift */; };
 		F29401DD1D94FF2C00CF582F /* BaiduLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29401DC1D94FF2C00CF582F /* BaiduLocationManager.swift */; };
 		F29401DF1D94FF6300CF582F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29401DE1D94FF6300CF582F /* Location.swift */; };
+		F2AC1E411DF02BEE00F77860 /* commonlyEncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AC1E401DF02BEE00F77860 /* commonlyEncryption.swift */; };
 		F2D289AB1D856C420059D289 /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D289AA1D856C420059D289 /* AppSetting.swift */; };
 		F2D54B251D93A692006DE294 /* TableViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D54B231D93A692006DE294 /* TableViewHeaderCell.swift */; };
 		F2D54B261D93A692006DE294 /* TableViewHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D54B241D93A692006DE294 /* TableViewHeaderCell.xib */; };
@@ -126,7 +133,6 @@
 		6598A7321D93EB3D00A22338 /* UIView+Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Gradient.swift"; sourceTree = "<group>"; };
 		7FEFAF43BC70671EDF9716E6 /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5A6087CE1A63B4E2D426C9 /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
-		F20CA5B11DEC43480066FF73 /* gif131.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = gif131.gif; path = "../../Gif图/gif131.gif"; sourceTree = "<group>"; };
 		F21437AB1D98D403000E0CBF /* BaiduMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaiduMapViewController.swift; sourceTree = "<group>"; };
 		F21437AE1D98EE27000E0CBF /* AlamofireSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireSetting.swift; sourceTree = "<group>"; };
 		F21437B01D98EE27000E0CBF /* LDCachable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDCachable.swift; sourceTree = "<group>"; };
@@ -142,6 +148,14 @@
 		F21437C61D98EF21000E0CBF /* LoginUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUser.swift; sourceTree = "<group>"; };
 		F217F2071D842B74000E3A0D /* RegisteredViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredViewController.swift; sourceTree = "<group>"; };
 		F217F2081D842B74000E3A0D /* RegisteredViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisteredViewController.xib; sourceTree = "<group>"; };
+		F24E9A311DEEA77B00A45EB8 /* QNUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNUtils.swift; sourceTree = "<group>"; };
+		F24E9A331DEEB07600A45EB8 /* MappableBaseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappableBaseType.swift; sourceTree = "<group>"; };
+		F24E9A361DEEB18A00A45EB8 /* uploadPicturesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = uploadPicturesView.swift; sourceTree = "<group>"; };
+		F24E9A371DEEB18A00A45EB8 /* uploadPicturesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = uploadPicturesView.xib; sourceTree = "<group>"; };
+		F24E9A3B1DEEBA0800A45EB8 /* gif131.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gif131.gif; sourceTree = "<group>"; };
+		F24E9A3D1DEEBA5E00A45EB8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F24E9A3F1DEED00E00A45EB8 /* uploadGetToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uploadGetToken.h; sourceTree = "<group>"; };
+		F24E9A401DEED00E00A45EB8 /* uploadGetToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = uploadGetToken.m; sourceTree = "<group>"; };
 		F25E22E81D9B9A1D00A0F0DA /* AppChatScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppChatScreenViewController.swift; sourceTree = "<group>"; };
 		F2666A8E1D879CCD00B2029E /* Myviewcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Myviewcontroller.swift; sourceTree = "<group>"; };
 		F2666A901D879CEE00B2029E /* FunctionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionsViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +213,7 @@
 		F29401D91D94FD0A00CF582F /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		F29401DC1D94FF2C00CF582F /* BaiduLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaiduLocationManager.swift; sourceTree = "<group>"; };
 		F29401DE1D94FF6300CF582F /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		F2AC1E401DF02BEE00F77860 /* commonlyEncryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = commonlyEncryption.swift; sourceTree = "<group>"; };
 		F2D289AA1D856C420059D289 /* AppSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSetting.swift; sourceTree = SOURCE_ROOT; };
 		F2D54B231D93A692006DE294 /* TableViewHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeaderCell.swift; sourceTree = "<group>"; };
 		F2D54B241D93A692006DE294 /* TableViewHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewHeaderCell.xib; sourceTree = "<group>"; };
@@ -325,9 +340,30 @@
 		F21437C51D98EF16000E0CBF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F24E9A3D1DEEBA5E00A45EB8 /* User.swift */,
+				F24E9A331DEEB07600A45EB8 /* MappableBaseType.swift */,
 				F21437C61D98EF21000E0CBF /* LoginUser.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		F24E9A351DEEB16800A45EB8 /* uploadPictures */ = {
+			isa = PBXGroup;
+			children = (
+				F24E9A361DEEB18A00A45EB8 /* uploadPicturesView.swift */,
+				F24E9A371DEEB18A00A45EB8 /* uploadPicturesView.xib */,
+				F24E9A3F1DEED00E00A45EB8 /* uploadGetToken.h */,
+				F24E9A401DEED00E00A45EB8 /* uploadGetToken.m */,
+			);
+			path = uploadPictures;
+			sourceTree = "<group>";
+		};
+		F24E9A3A1DEEBA0800A45EB8 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				F24E9A3B1DEEBA0800A45EB8 /* gif131.gif */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 		F25E22E71D9B99ED00A0F0DA /* RC */ = {
@@ -351,6 +387,7 @@
 		F2666A8D1D879C6F00B2029E /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				F24E9A351DEEB16800A45EB8 /* uploadPictures */,
 				F2FA2D9D1DE808D000CE0A3C /* DownloadfileView */,
 				F26A6A661DE6981F00D26107 /* Photographic */,
 				654B6AD41D9D25DA00B46F6F /* Filter */,
@@ -445,14 +482,6 @@
 			path = PhotoBrowserThirdParty;
 			sourceTree = "<group>";
 		};
-		F27AE1F31D927353000E0509 /* image */ = {
-			isa = PBXGroup;
-			children = (
-				F20CA5B11DEC43480066FF73 /* gif131.gif */,
-			);
-			path = image;
-			sourceTree = "<group>";
-		};
 		F27AE1F61D928E09000E0509 /* collectionCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -469,6 +498,7 @@
 		F27F5E3E1D8641EE00336915 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				F24E9A311DEEA77B00A45EB8 /* QNUtils.swift */,
 				F21437C31D98EEA9000E0CBF /* Session.swift */,
 				F29401D91D94FD0A00CF582F /* Log.swift */,
 				F27F5E421D8641EE00336915 /* CommonFuntion.swift */,
@@ -485,6 +515,7 @@
 				F27F5E4D1D8641EE00336915 /* UIimage */,
 				F27F5E4F1D8641EE00336915 /* Uiview */,
 				F27F5E531D8641EE00336915 /* UIviewcontrol */,
+				F2AC1E401DF02BEE00F77860 /* commonlyEncryption.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -583,7 +614,7 @@
 		F2D652BD1D7E94A90005824D = {
 			isa = PBXGroup;
 			children = (
-				F27AE1F31D927353000E0509 /* image */,
+				F24E9A3A1DEEBA0800A45EB8 /* images */,
 				F27F5E3E1D8641EE00336915 /* common */,
 				F2D652C81D7E94A90005824D /* App */,
 				F2D652E01D7E94A90005824D /* AppTests */,
@@ -797,7 +828,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F27AE2021D928E09000E0509 /* QdanCollectionViewzeroCell.xib in Resources */,
-				F20CA5B21DEC43480066FF73 /* gif131.gif in Resources */,
+				F24E9A391DEEB18A00A45EB8 /* uploadPicturesView.xib in Resources */,
 				F27AE1FE1D928E09000E0509 /* CollectionReusableViewHeadre.xib in Resources */,
 				F2D652D71D7E94A90005824D /* LaunchScreen.storyboard in Resources */,
 				F2DFE7DA1D82B45900E5DC71 /* Login.storyboard in Resources */,
@@ -805,6 +836,7 @@
 				F217F20A1D842B74000E3A0D /* RegisteredViewController.xib in Resources */,
 				F27AE2001D928E09000E0509 /* QdanCollectionViewCell.xib in Resources */,
 				F2FA2DA11DE808D000CE0A3C /* DownloadfileView.xib in Resources */,
+				F24E9A3C1DEEBA0800A45EB8 /* gif131.gif in Resources */,
 				F26871F51D9236D800611136 /* LDNoDataNoticeView.xib in Resources */,
 				F2D652D41D7E94A90005824D /* Assets.xcassets in Resources */,
 				F2D652CF1D7E94A90005824D /* Main.storyboard in Resources */,
@@ -901,11 +933,14 @@
 				F29401DD1D94FF2C00CF582F /* BaiduLocationManager.swift in Sources */,
 				F26871F31D9236D800611136 /* MJrefreshCollectionview.swift in Sources */,
 				F2D652CC1D7E94A90005824D /* ViewController.swift in Sources */,
+				F24E9A381DEEB18A00A45EB8 /* uploadPicturesView.swift in Sources */,
 				F26A6A821DE6990F00D26107 /* PhotoBrowser+TakerViewController.swift in Sources */,
 				F2666A911D879CEE00B2029E /* FunctionsViewController.swift in Sources */,
 				F26871F61D9236D800611136 /* MJrefreshTableview.swift in Sources */,
+				F24E9A411DEED00E00A45EB8 /* uploadGetToken.m in Sources */,
 				F26871F71D9236D800611136 /* UIScrollView+TopRefresh.m in Sources */,
 				F27F5E5B1D8641EE00336915 /* Theme.swift in Sources */,
+				F24E9A3E1DEEBA5E00A45EB8 /* User.swift in Sources */,
 				F2ED94611D86AF8E000C2E59 /* ChatListviewcontroller.swift in Sources */,
 				F27F5E5D1D8641EE00336915 /* UIButton+Swift.m in Sources */,
 				F25E22E91D9B9A1D00A0F0DA /* AppChatScreenViewController.swift in Sources */,
@@ -919,6 +954,7 @@
 				F29401DF1D94FF6300CF582F /* Location.swift in Sources */,
 				F26A6A841DE6990F00D26107 /* PhotoBrowserExtensions.swift in Sources */,
 				F27F5E691D8643D000336915 /* SwiftLogoLayer.swift in Sources */,
+				F24E9A321DEEA77B00A45EB8 /* QNUtils.swift in Sources */,
 				F21437BB1D98EE27000E0CBF /* LDCacheItem.swift in Sources */,
 				F27AE2011D928E09000E0509 /* QdanCollectionViewzeroCell.swift in Sources */,
 				F27F5E621D8641EE00336915 /* UIViewController+TopViewController.swift in Sources */,
@@ -928,6 +964,7 @@
 				F26A6A7D1DE6990F00D26107 /* AlbumTableViewController.swift in Sources */,
 				F27F5E611D8641EE00336915 /* Uiviewcontroller+storyboard.swift in Sources */,
 				F26A6A8E1DE6BA0F00D26107 /* SystemPhotoAlbum.swift in Sources */,
+				F24E9A341DEEB07600A45EB8 /* MappableBaseType.swift in Sources */,
 				F2DFE7D51D82A20D00E5DC71 /* HomeTabBarController.swift in Sources */,
 				F217F2091D842B74000E3A0D /* RegisteredViewController.swift in Sources */,
 				F2D289AB1D856C420059D289 /* AppSetting.swift in Sources */,
@@ -936,6 +973,7 @@
 				F2666A8F1D879CCD00B2029E /* Myviewcontroller.swift in Sources */,
 				F27F5E5F1D8641EE00336915 /* UIView+Swift.m in Sources */,
 				F26A6A881DE6990F00D26107 /* PECropViewController.m in Sources */,
+				F2AC1E411DF02BEE00F77860 /* commonlyEncryption.swift in Sources */,
 				F2D652D21D7E94A90005824D /* App.xcdatamodeld in Sources */,
 				F2ED94641D86B010000C2E59 /* APPviewcontroller.swift in Sources */,
 				F21437C41D98EEA9000E0CBF /* Session.swift in Sources */,

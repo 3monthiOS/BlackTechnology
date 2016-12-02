@@ -40,7 +40,7 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
 //        view.layer.mask = maskLayer
         navigationController?.delegate = self
         self.title = "注册"
-        imageBG.image = UIImage.gifWithURL("http://ohc2uub90.bkt.clouddn.com/public/16-11-28/42718130.jpg")
+        imageBG.image = UIImage.gifWithName("gif131")
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         phoneNumber.returnKeyType = UIReturnKeyType.Done
         createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.Right, Title: "完成", normalImage: nil, highlightImage: nil, action: #selector(registerClick))

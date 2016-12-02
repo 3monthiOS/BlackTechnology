@@ -38,26 +38,28 @@ class QdanCollectionViewCell: UICollectionViewCell {
         let imagename = imageName[(index?.row)!]
         btn.contentMode = .ScaleAspectFill
         titleLabel.text = functionTitle[(index?.row)!]
-        if !imagename.isEmpty{
-            if let str = imagename.componentsSeparatedByString("/").last{
-                locationfileiscache(str, complate: { (callback) in
-                    if !callback.isEmpty{
-                        guard let imageData = NSData(contentsOfFile: callback) else {return}
-                        self.btn.image = UIImage.gifWithData(imageData)
-                    }else{
-                        Log.info("我没有找到：————————\(str)")
-                        //网络获取
-                        if imagename.hasPrefix("http://") || imagename.hasPrefix("https://") {
-                            if Reachability.networkStatus != .notReachable {
-                                fileDownload([imagename], complate: { (isok, callbackData) in
-                                    if isok{
-                                        self.btn.image = UIImage.gifWithData(callbackData[0])
-                                    }
-                                })
+        async { 
+            if !imagename.isEmpty{
+                if let str = imagename.componentsSeparatedByString("/").last{
+                    locationfileiscache(str, complate: { (callback) in
+                        if !callback.isEmpty{
+                            guard let imageData = NSData(contentsOfFile: callback) else {return}
+                            self.btn.image = UIImage.gifWithData(imageData)
+                        }else{
+                            Log.info("我没有找到：————————\(str)")
+                            //网络获取
+                            if imagename.hasPrefix("http://") || imagename.hasPrefix("https://") {
+                                if Reachability.networkStatus != .notReachable {
+                                    fileDownload([imagename], complate: { (isok, callbackData) in
+                                        if isok{
+                                            self.btn.image = UIImage.gifWithData(callbackData[0])
+                                        }
+                                    })
+                                }
                             }
                         }
-                    }
-                })
+                    })
+                }
             }
         }
     }

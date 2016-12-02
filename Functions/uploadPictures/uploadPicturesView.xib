@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="uploadPicturesView" customModule="App" customModuleProvider="target">
+            <connections>
+                <outlet property="showImageview" destination="8da-xP-p5r" id="xOG-OC-vDp"/>
+                <outlet property="text" destination="7aH-iw-1qt" id="MEz-kc-ccy"/>
+                <outlet property="uploadBtn" destination="U5Z-vK-jnk" id="PQ1-sZ-3nC"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SeE-0m-Lna">
+                    <rect key="frame" x="36" y="497.5" width="31" height="30"/>
+                    <state key="normal" title="相册"/>
+                    <connections>
+                        <action selector="chouse:" destination="-1" eventType="touchUpInside" id="eIi-oW-Cl5"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U5Z-vK-jnk">
+                    <rect key="frame" x="308" y="497.5" width="31" height="30"/>
+                    <state key="normal" title="上传"/>
+                    <connections>
+                        <action selector="uploadimage:" destination="-1" eventType="touchUpInside" id="tlo-xA-GpS"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="上传成功后返回的链接" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7aH-iw-1qt">
+                    <rect key="frame" x="12" y="451.5" width="351" height="30"/>
+                    <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xba-IY-CNh">
+                    <rect key="frame" x="171.5" y="497.5" width="31" height="30"/>
+                    <state key="normal" title="相机"/>
+                    <connections>
+                        <action selector="camera:" destination="-1" eventType="touchUpInside" id="eY1-BS-nno"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Placeholder Image" translatesAutoresizingMaskIntoConstraints="NO" id="8da-xP-p5r">
+                    <rect key="frame" x="32" y="82" width="311" height="353.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="8da-xP-p5r" secondAttribute="height" multiplier="343:390" id="pMY-iA-bWN"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="xba-IY-CNh" firstAttribute="top" secondItem="7aH-iw-1qt" secondAttribute="bottom" constant="16" id="9DD-3g-tpm"/>
+                <constraint firstItem="U5Z-vK-jnk" firstAttribute="centerY" secondItem="SeE-0m-Lna" secondAttribute="centerY" id="D8i-m5-ZMY"/>
+                <constraint firstItem="7aH-iw-1qt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="HTL-TB-uTh"/>
+                <constraint firstItem="7aH-iw-1qt" firstAttribute="top" secondItem="8da-xP-p5r" secondAttribute="bottom" constant="16" id="NSQ-WG-5Us"/>
+                <constraint firstItem="8da-xP-p5r" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-75" id="QBe-lP-z3a"/>
+                <constraint firstAttribute="trailing" secondItem="U5Z-vK-jnk" secondAttribute="trailing" constant="36" id="QwW-yT-HP9"/>
+                <constraint firstItem="7aH-iw-1qt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SIc-Ov-BPk"/>
+                <constraint firstItem="8da-xP-p5r" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="32" id="TYr-v3-IR0"/>
+                <constraint firstItem="SeE-0m-Lna" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="36" id="bx0-3A-1OC"/>
+                <constraint firstItem="8da-xP-p5r" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="j2N-hj-B2X"/>
+                <constraint firstItem="xba-IY-CNh" firstAttribute="centerY" secondItem="SeE-0m-Lna" secondAttribute="centerY" id="pwu-Nt-TeY"/>
+                <constraint firstItem="xba-IY-CNh" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xKE-P4-ktU"/>
+            </constraints>
+            <point key="canvasLocation" x="32.5" y="124.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Placeholder Image" width="120" height="120"/>
+    </resources>
+</document>
