@@ -216,11 +216,6 @@ typealias LDApiRequestOptions = [String: Any]
         }
         stopLoading()
     }
-
-    // 生成URL字符串
-    func buildUrlString() -> String {
-        return settings.baseURL
-    }
 }
 
 // MARK: - 载入动画
@@ -359,5 +354,60 @@ extension LDApiRequest {
         }
         Log.info("api[\(self.tid)]: \(r.debugDescription)")
     }
+    // 生成URL字符串
+    func buildUrlString() -> String {
+        return settings.baseURL
+    }
+    //	生成URL字符串
+//    func buildUrlString(method: Alamofire.Method) -> String {
+//        var result = path
+//        if result.rangeOfString("{") != nil {
+//            for (key, value) in params {
+//                if let range = result.rangeOfString("{\(key)}") {
+//                    result = result.stringByReplacingCharactersInRange(range, withString: "\(value)")
+//                    params[key] = nil
+//                }
+//            }
+//        }
+//        
+//        result = "\(settings.baseURL)\(result)?_t=\(self.tid)"
+//        
+//        if !session.uid.isEmpty {
+//            result += "&uid=\(session.uid)"
+//        }
+//        if !session.token.isEmpty {
+//            result += "&token=\(session.token)"
+//        }
+//        if !session.deviceId.isEmpty {
+//            result += "&device=\(session.deviceId)"
+//        }
+//        if !session.imei.isEmpty {
+//            result += "&imei=\(session.imei)"
+//        }
+//        if !session.city.isEmpty {
+//            let city = session.city.apiCityInterception(session.city)
+//            result += "&city=\(city.urlEncode)"
+//            //            let city = "北京"
+//            //            result += "&city=\(city.urlEncode)"
+//        }
+//        if !session.theme.isEmpty {
+//            result += "&theme=\(session.theme)"
+//        }
+//        
+//        if (method == .GET || method == .DELETE) {
+//            for (key, value) in params {
+//                if let array = value as? [String] {
+//                    for item in array {
+//                        result += "&\(key)=\(item.urlEncode)"
+//                    }
+//                    params[key] = nil
+//                }
+//            }
+//        }
+//        //        return "\(result)&apiversion=\(session.apiVersion)&latitude=\(39.914582)&longitude=\(116.382081)"
+//        
+//        return "\(result)&apiversion=\(session.apiVersion)&latitude=\(session.location.coordinate.latitude)&longitude=\(session.location.coordinate.longitude)"
+//    }
+
 
 }

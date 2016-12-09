@@ -17,7 +17,11 @@ extension UIImage {
             print("SwiftGif: Source for the image does not exist")
             return nil
         }
-
+        // 判断是不是 gif 图片
+        let count = CGImageSourceGetCount(source)
+        if count == 1 {
+            return UIImage(data: data)
+        }
         return UIImage.animatedImageWithSource(source)
     }
 
@@ -137,7 +141,6 @@ extension UIImage {
         let count = CGImageSourceGetCount(source)
         var images = [CGImageRef]()
         var delays = [Int]()
-
         // Fill arrays
         for i in 0..<count {
             // Add image

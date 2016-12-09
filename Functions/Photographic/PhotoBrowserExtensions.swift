@@ -160,7 +160,7 @@ extension PhotoBrowser {
                         toast("请在设置中打开访问相片的权限")
                     } else {
                         let albumTableViewController = AlbumTableViewController(delegate: self)
-                        albumTableViewController.title = NSLocalizedString("albumTitle", comment: "相册")
+                        albumTableViewController.title = NSLocalizedString("相册列表", comment: "相册")
                         let gridViewController = GridViewController.getInstance(self)
                         self.viewControllers = [albumTableViewController, gridViewController]
                     }

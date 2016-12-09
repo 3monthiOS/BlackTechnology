@@ -95,7 +95,7 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
         
         txtUser = UITextField(frame: CGRect(x: 30, y: 30, width: vLogin.frame.size.width - 60, height: 44))
         txtUser!.delegate = self
-        txtUser?.placeholder = "连峰去天不盈尺好男人就是我"
+        txtUser?.placeholder = "好男人就是我"
         txtUser!.layer.cornerRadius = 5
         txtUser!.layer.borderColor = UIColor.lightGrayColor().CGColor
         txtUser!.layer.borderWidth = 0.5;
@@ -109,7 +109,7 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
         
         txtPwd = UITextField(frame: CGRect(x: 30, y: 90, width: vLogin.frame.size.width - 60, height: 44))
         txtPwd!.delegate = self
-        txtPwd?.placeholder = "枯松倒挂倚绝壁我就是小军"
+        txtPwd?.placeholder = "我就是小军"
         txtPwd!.layer.cornerRadius = 5;
         txtPwd!.layer.borderColor = UIColor.lightGrayColor().CGColor
         txtPwd!.layer.borderWidth = 0.5;

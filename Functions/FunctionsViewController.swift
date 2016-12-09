@@ -17,13 +17,30 @@ class FunctionsViewController: APPviewcontroller {
     weak var collectionView: CollectionMjResh!
     var collectionfoot: CollectionReusableViewFooter!
     var collectionHeader: UICollectionReusableView!
-    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","六","上传图片","八","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
+    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","六","上传图片","云相册","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        let box = QNUtils.getaccesskey()
+        let headers = [
+            "Authorization": "QBox \(box)",
+            "Content-Type": "application/x-www-form-urlencoded",
+        ]
+        Log.info("+++++++++++++____________\(headers["Authorization"])")
+        //http://rsf.qbox.me/list?bucket=zhj1214
+        let bucket = "zhj1214"
+        Alamofire.request(.POST, "http://rsf.qbox.me/list?", parameters: ["bucket":bucket], encoding: .URL, headers: headers).responseJSON { (response) in
+            if response.result.isSuccess{
+                Log.info("成功----------\(response.response)----\(response.response?.allHeaderFields)-\(response.data)-\(response.result)-\(response.debugDescription)-\(response.description)")
+            }else{
+                Log.info("失败------\(response.result.error)")
+            }
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let ss = LocalStorage.reset()
+        
+       
+        
         self.title = "功能列表"
       self.navigationController?.navigationBar.translucent = false
         initcollectionMjrefresh()
@@ -105,6 +122,10 @@ extension FunctionsViewController: UICollectionViewDelegate{
         self.navigationController?.pushViewController(baidu, animated: true)
     case 10:
         let upload = uploadPicturesView()
+        upload.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(upload, animated: true)
+    case 11:
+        let upload = photoAlbumViewController()
         upload.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(upload, animated: true)
     case 7:
@@ -201,106 +222,3 @@ extension FunctionsViewController: SystemPhotoAlbumDelegate,PhotoBrowserDelegate
     }
 }
 
-
-
-
-extension FunctionsViewController{
-//        
-//        var request = HTTPTask()
-//        let downloadTask = request.download('http://www.test.com/pages_icon_large.png', parameters: nil, progress: {(complete: Double) in
-//            println(complete)
-//            }, success: {(response: HTTPResponse) in
-//                self.downFile(response)
-//            }, failure: {(error: NSError, response: HTTPResponse?) in
-//                println("failure")
-//        })
-//        
-//        var fileManager = NSFileManager.defaultManager()
-//        var bundleURL = NSBundle.mainBundle().bundleURL
-//        var contents: NSArray = fileManager.contentsOfDirectoryAtURL(bundleURL, includingPropertiesForKeys: nil, options: .SkipsPackageDescendants, error: nil)!
-//        for URL in contents {
-//            //println(URL)
-//        }
-//        if let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first as? String {
-//            var enumerator = fileManager.enumeratorAtPath(path)
-//            println("enumrator: \(path) \(enumerator)")
-//            while let file: AnyObject = enumerator?.nextObject() {
-//                println(file)
-//                if let newPath = NSURL(fileURLWithPath: "\(path)/\(file)") {
-//                    var image = UIImageView(image: UIImage(contentsOfFile: newPath.path!))
-//                    self.view.addSubview(image)
-//                }
-//            }
-//        }
-    
-        
-    
-    
-//    func downFile(response: NSHTTPURLResponse) {
-//        if response.responseObject != nil {
-//            //we MUST copy the file from its temp location to a permanent location.
-//            if let url = response.responseObject as? NSURL {
-//                if let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first {
-//                    if let fileName = response.suggestedFilename {
-//                        if let newPath = NSURL(fileURLWithPath: "\(path)/\(fileName)") {
-//                            let fileManager = NSFileManager.defaultManager()
-//                            println(fileManager.fileExistsAtPath(newPath.path!))
-//                            if ( fileManager.fileExistsAtPath(newPath.path!) ) {
-//                                println(newPath)
-//                                dispatch_async(dispatch_get_main_queue()) {
-//                                    var image = UIImageView(image: UIImage(contentsOfFile: newPath.path!))
-//                                    self.view.addSubview(image)
-//                                    println(image.frame)
-//                                }
-//                            }else{
-//                                fileManager.removeItemAtURL(newPath, error: nil)
-//                                fileManager.moveItemAtURL(url, toURL: newPath, error: nil)
-//                                println("创建文件")
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-    
-    
-    
-    
-//    - (void)downloadFile {
-//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-//    
-//    NSURL *URL = [NSURL URLWithString:@"https://consumeprod.alipay.com/record/download.resource"];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-//    [request setHTTPBody:self.useData];
-//    [request setHTTPMethod:@"POST"];
-//    
-//    NSDictionary *dictCookies = [NSHTTPCookie requestHeaderFieldsWithCookies:self.cookies];
-//    [request setValue: [dictCookies objectForKey:@"Cookie"] forHTTPHeaderField: @"Cookie"];
-//    
-//    [request setValue:@"https://consumeprod.alipay.com/record/download.htm?_input_charset=utf-8&suffix=csv&dateRange=sevenDays&tradeType=ALL&status=all&fundFlow=all&beginTime=00%3A00&endDate=2016.11.24&endTime=24%3A00&beginDate=2016.11.18&dateType=createDate&pageNum=1&t=1479955283251&_xbox=true" forHTTPHeaderField:@"Referer"];
-//    
-//    [request setValue:@"https://consumeprod.alipay.com" forHTTPHeaderField:@"Origin"];
-//    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-//    [request setValue:@"keep-alive" forHTTPHeaderField:@"Connection"];
-//    [request setValue:@"max-age=0" forHTTPHeaderField:@"Cache-Control"];
-//    [request setValue:@"gzip, deflate" forHTTPHeaderField:@"Accept-Encoding"];
-//    [request setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
-//    [request setValue:@"Mozilla/5.0 (iPhone 6; CPU iPhone OS 10_1_1 like Mac OS X) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0 MQQBrowser/7.1 Mobile/14B100 Safari/8536.25 MttCustomUA/2 QBWebViewType/1" forHTTPHeaderField:@"User-Agent"];
-//    [request setValue:@"1" forHTTPHeaderField:@"Upgrade-Insecure-Requests"];
-//    [request setValue:@"en-US" forHTTPHeaderField:@"Accept-Language"];
-//    
-//    NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-//    NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-//    return [documentsDirectoryURL URLByAppendingPathComponent:@"Alipay.zip"];
-//    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-//    NSLog(@"errorvv: %@", error);
-//    NSLog(@"File downloaded to: %@", filePath);
-//    if (!error) {
-//    [self toast:@"Download  Success !"];
-//    }
-//    }];
-//    [downloadTask resume];
-//    }
-}

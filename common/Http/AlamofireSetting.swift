@@ -22,7 +22,7 @@ class NetworkManager {
         headers["Cache-Control"] = "private"
         
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuration.timeoutIntervalForRequest = 30 // 网络超时时间
+        configuration.timeoutIntervalForRequest = 15 // 网络超时时间
         configuration.HTTPAdditionalHeaders = headers
         configuration.HTTPAdditionalHeaders!["User-Agent"] = WebView.userAgent
         configuration.HTTPCookieStorage = cookieStorage

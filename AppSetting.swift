@@ -27,29 +27,16 @@ let APP_VERSION_NAME = ""
 let QINIU_URL_STATIC = "http://ohc2uub90.bkt.clouddn.com/"
 let QINIU_URL_MEDIA = "http://pili-media.huacehuaban.com/"
 
-#if DEBUG
 //融云Token
 let RY_APPKEY = "pwe86ga5epot6"                             //开发环境
-    
-// 百度地图KEY
-let BAIDU_KEY = "bSURSrC2l6a3i3C2RhifHmph9OiFAIdB"
-    
-//Host
-let API_HOST = "http://mfgjxc.ownhante.com"
-let API_PATH = "/qc-webapp/qcapi.do"
-    
-#else
-    
-//融云Token pwe86ga5epot6
-let RY_APPKEY = "pwe86ga5epot6"                             //开发环境
+
 // 百度地图KEY
 let BAIDU_KEY = "bSURSrC2l6a3i3C2RhifHmph9OiFAIdB"
 
 //Host地址
-let API_HOST = "qqac.cq.onlyhante.com"
-let API_PATH = "/qc-webapp/qcapi.do"
+let API_HOST = "rsf.qbox.me"
+let API_PATH = "application/x-www-form-urlencoded"
     
-#endif
 
 /// 正则表达式：手机号
 let REGEXP_MOBILES = "^((13[0-9])|(14[4-7])|(15[0-9])|(17[0-9])|(18[0-9]))\\d{8}|(1705)\\d{7}|(1709)\\d{7}$"

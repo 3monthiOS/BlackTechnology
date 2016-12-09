@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Swiften
 
 class uploadPicturesView: UIViewController {
 
@@ -19,6 +20,15 @@ class uploadPicturesView: UIViewController {
     private var avatarKey = "key"
     private var avatarData : NSData?
     var user: User?
+    var imageUrlData: [String] = []{
+        willSet{
+            if session.object(forKey: "funcationupdateimageUrlData") != nil{
+                imageUrlData = session.object(forKey: "funcationupdateimageUrlData") as! [String]
+            }else{
+                imageUrlData = session.setObject([""], forKey: "funcationupdateimageUrlData") as! [String]
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         showImageview.contentMode = .ScaleAspectFill
@@ -43,13 +53,25 @@ class uploadPicturesView: UIViewController {
                     //更新用户表
                     Log.error("上传成功\(url)")
                     self.text.text = url
+                    self.imageUrlData.append(url)
+                    self.saveUpdata("funcationupdateimageUrlData", value: self.imageUrlData)
                 case .Failure( _):
                     Log.error("上传头像失败")
                 }
             }
         }
     }
-    
+    func saveUpdata(key: String,value: [String]){
+        if !key.isEmpty{
+            if !value.isEmpty{
+                if session.object(forKey: key) != nil{
+                    session.setObject(value, forKey: key)
+                }else{
+                    session.setObject(value, forKey: key)
+                }
+            }
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

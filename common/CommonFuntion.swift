@@ -114,7 +114,7 @@ func locationfileiscache(fileName: String, complate:(callback: String)->Void){
         // 快速枚举取出所有文件名
         for p in files {
             if p == fileName{
-                Log.info("____找到的文件名字:\(p)")
+//                Log.info("____找到的文件名字:\(p)")
                 path = cachePath.stringByAppendingFormat("/\(p)")
                 complate(callback: path)
                 return
@@ -153,7 +153,7 @@ func fileDownload(urlArray: [String],complate:((isok: Bool,callbackData: [NSData
                         let fileName = response?.suggestedFilename!
                         if let fileName = fileName{
                             let newPath = NSURL(fileURLWithPath: "\(path)/\(fileName)")
-                            print("下载路径：\(newPath)____名称：\(response?.suggestedFilename)")
+//                            print("下载路径：\(newPath)____名称：\(response?.suggestedFilename)")
 //                            print(response)
                             let fileManager = NSFileManager.defaultManager()
                             print(fileManager.fileExistsAtPath(newPath.path!))

@@ -19,7 +19,8 @@ class LDApiSettings {
     var qiniuUploadToken: LDApiRequest { return getRequest("upload/{resourceType}/gettoken") }
     /// 修改用户信息 [POST]
     var updateUserInfo: LDApiRequest {return getRequest("user/modify")}
-    
+    /// 列举七牛历史上传资料
+    var getQNlistdata: LDApiRequest {return getRequest("user/modify")}
 //    var getAppId: LDApiRequest { return getRequest("/global/App/getAppid") }
 //    /// 城市列表
 //    var cityList: LDApiRequest { return getRequest("/global/App/queryAppCity") }

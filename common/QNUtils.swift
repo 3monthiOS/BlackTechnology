@@ -46,7 +46,29 @@ struct QNUtils {
         return "\(uid)\(String(Int(NSDate().timeIntervalSince1970))).mp4"
     }
     
+    static func getlistdata(){
+        //        bucket=<UrlEncodedBucket>&marker=<Marker>&limit=<Limit>&prefix=<UrlEncodedPrefix>&delimiter=<UrlEncodedDelimiter>
+//        zhj1214=
+//        api.updateLiveTrailer.post(["id": curLiveNotice!.id!, "startTime": self.liveTime!]){
+//            (response: LDApiResponse<LiveNotice>) in
+//            self.submitBtn.userInteractionEnabled = true
+//            response.failureDefault().success { msg in
+//                msg.status = -1//更新
+//                self.submitBtn.enabled = true
+//                Notifications.liveNotice.post(msg)
+//                self.navigationController?.popViewControllerAnimated(true)
+//                //
+//                UMHelper.postEvent("mine_update_live_pre-broadcast")
+//            }
+//        }
+        let bucket = "zhj1214"
+        let url = "http://rsf.qbox.me/list?bucket=\(bucket.urlEncoded)"
     
+        Log.info(url)
+//        api.getQNlistdata.post(<#T##params: [String : AnyObject]?##[String : AnyObject]?#>, start: <#T##Int?#>, limit: <#T##Int?#>) { (response) in
+//            <#code#>
+//        }
+    }
     static func putData(data: NSData, withKey key: String, token: String,resourceType: ResourceType, isQuiet: Bool = false,completion: (UploadResult) -> Void) {
         let config = QNConfiguration.build { (builder: QNConfigurationBuilder!) in
             builder.setZone(QNZone.zone0())
@@ -76,14 +98,45 @@ struct QNUtils {
             
             }, option: nil)
     }
+    
+    static func getaccesskey()-> String{
+        //http://rsf.qbox.me/list?bucket=zhj1214
+        let accessKey = "faXFztmwdVEgWAVRM4Q7KQJYh85yBX3MjliJt6YJ", secretKey = "76tJyg9XLZ1p1z62eAgxyjifh4_kW8Rr_kPleKQo"
+        let signingStr = "/list?\nbucket=zhj1214&limit=20"
+        let sign = signingStr.hmacData(.SHA1, key: secretKey)
+        let encodedSigned = QN_GTM_Base64.stringByWebSafeEncodingData(sign, padded: true)
+        let accesstoken = "\(accessKey):\(encodedSigned)"
+        Log.info("最后的key___      \(accesstoken)")
+        return accesstoken
+    }
+    /*
+    # 假设有如下的管理请求：
+    AccessKey = "MY_ACCESS_KEY"
+    SecretKey = "MY_SECRET_KEY"
+    url = "http://rs.qiniu.com/move/bmV3ZG9jczpmaW5kX21hbi50eHQ=/bmV3ZG9jczpmaW5kLm1hbi50eHQ="
+    
+    #则待签名的原始字符串是：
+    signingStr = "/move/bmV3ZG9jczpmaW5kX21hbi50eHQ=/bmV3ZG9jczpmaW5kLm1hbi50eHQ=\n"
+    
+    #签名字符串是：
+    sign = "157b18874c0a1d83c4b0802074f0fd39f8e47843"
+    注意：签名结果是二进制数据，此处输出的是每个字节的十六进制表示，以便核对检查。
+    
+    #编码后的签名字符串是：
+    encodedSign = "FXsYh0wKHYPEsIAgdPD9OfjkeEM="
+    
+    #最终的管理凭证是：
+    accessToken = "MY_ACCESS_KEY:FXsYh0wKHYPEsIAgdPD9OfjkeEM="
+     */
     static func generateToken(overdue: Bool = false) -> String{
         let accessKey = "faXFztmwdVEgWAVRM4Q7KQJYh85yBX3MjliJt6YJ", secretKey = "76tJyg9XLZ1p1z62eAgxyjifh4_kW8Rr_kPleKQo" , bucketName = "zhj1214"
-        let userdefaults = NSUserDefaults.standardUserDefaults()
+        
+//        let userdefaults = NSUserDefaults.standardUserDefaults()
         if overdue {
             let deadline = NSDate().timeIntervalSince1970
             print(deadline)
             print(Int(deadline))
-            let json = "{\"scope\":\"\(bucketName)\",\"deadline\":\(Int(deadline) + 3600)}"
+            let json = "{\"scope\":\"\(bucketName)\",\"deadline\":\(Int(deadline) + 36000)}"
             // MARK: - 过滤指定字符串   里面的指定字符根据自己的需要添加
                     print("将上传策略序列化成为json格式:\(json)")
             let policyData = json.dataUsingEncoding(NSUTF8StringEncoding)
@@ -92,14 +145,15 @@ struct QNUtils {
             
             let hmacData = encodedPolicy.hmacData(.SHA1, key: secretKey)
             let encodedSigned = QN_GTM_Base64.stringByWebSafeEncodingData(hmacData, padded: true)
-            //        print("秘钥再次加密：\(encodedSigned)-------")
             let token = "\(accessKey):\(encodedSigned!):\(encodedPolicy)"
-            userdefaults.setObject(token, forKey: "QNtoken")
+//            userdefaults.setObject(token, forKey: "QNtoken")
+            session.setObject(token, forKey: "QNtoken")
             return token
         }else{
-            let token = userdefaults.objectForKey("QNtoken") as? String
+            let token = session.object(forKey: "QNtoken")
+//            let token = userdefaults.objectForKey("QNtoken") as? String
             if let token = token{
-                return token
+                return token as! String
             }else{
                 return generateToken(true)
             }
