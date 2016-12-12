@@ -207,7 +207,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="oRm-qo-WBQ">
-                                <rect key="frame" x="85.5" y="270" width="204" height="31"/>
+                                <rect key="frame" x="86" y="270" width="204" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Tr7-u6-APK"/>
                                 </constraints>
@@ -216,7 +216,7 @@
                                 </connections>
                             </slider>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RLz-vr-5ZC">
-                                <rect key="frame" x="87.5" y="50" width="200" height="200"/>
+                                <rect key="frame" x="88" y="50" width="200" height="200"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="7aV-GR-8Vb"/>
@@ -224,7 +224,7 @@
                                 </constraints>
                             </view>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="xuw-XP-ubG">
-                                <rect key="frame" x="85.5" y="320" width="204" height="31"/>
+                                <rect key="frame" x="86" y="320" width="204" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="RKs-zh-6cs"/>
                                 </constraints>
@@ -266,7 +266,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ms9-9i-6cS">
-                                <rect key="frame" x="67.5" y="20" width="240" height="320"/>
+                                <rect key="frame" x="68" y="20" width="240" height="320"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="94a-8w-5en"/>
                                     <constraint firstAttribute="height" constant="320" id="tpF-su-CiQ"/>
@@ -312,7 +312,7 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RUM-yA-AJw">
-                                <rect key="frame" x="67.5" y="350" width="30" height="30"/>
+                                <rect key="frame" x="68" y="350" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="X91-z6-KwM"/>
                                     <constraint firstAttribute="height" constant="30" id="Yv8-bh-1rW"/>
@@ -323,7 +323,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xHt-LU-azN">
-                                <rect key="frame" x="247.5" y="350" width="60" height="30"/>
+                                <rect key="frame" x="248" y="350" width="60" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="Re0-qC-dyO"/>
                                     <constraint firstAttribute="height" constant="30" id="rTh-Vk-HbN"/>
@@ -370,14 +370,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xYA-1L-hOn">
-                                <rect key="frame" x="67.5" y="20" width="240" height="320"/>
+                                <rect key="frame" x="68" y="20" width="240" height="320"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="320" id="5lA-yK-TR6"/>
                                     <constraint firstAttribute="width" constant="240" id="DC8-7c-M6B"/>
                                 </constraints>
                             </imageView>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="fFH-Ci-30Z">
-                                <rect key="frame" x="65.5" y="360" width="244" height="31"/>
+                                <rect key="frame" x="66" y="360" width="244" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="vp2-ig-tZM"/>
                                 </constraints>
@@ -386,7 +386,7 @@
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ii3-DT-EgJ">
-                                <rect key="frame" x="67.5" y="410" width="46" height="30"/>
+                                <rect key="frame" x="68" y="410" width="46" height="30"/>
                                 <state key="normal" title="老电影"/>
                                 <connections>
                                     <action selector="oldFilmStyleClick:" destination="zup-iZ-mMf" eventType="touchUpInside" id="JkQ-51-yIM"/>
@@ -400,7 +400,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gBw-Rq-nkP">
-                                <rect key="frame" x="261.5" y="410" width="46" height="30"/>
+                                <rect key="frame" x="262" y="410" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                             </button>
                         </subviews>
@@ -441,28 +441,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bmX-Z9-8Ly">
-                                <rect key="frame" x="67.5" y="20" width="240" height="128"/>
+                                <rect key="frame" x="68" y="20" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="4BP-81-XX4"/>
                                     <constraint firstAttribute="width" constant="240" id="8tp-yJ-poL"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IcI-36-nb1">
-                                <rect key="frame" x="67.5" y="158" width="240" height="128"/>
+                                <rect key="frame" x="68" y="158" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="S0A-Bn-mJP"/>
                                     <constraint firstAttribute="width" constant="240" id="h06-ol-ohd"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTz-ZF-cat">
-                                <rect key="frame" x="67.5" y="306" width="31" height="30"/>
+                                <rect key="frame" x="68" y="306" width="31" height="30"/>
                                 <state key="normal" title="原图"/>
                                 <connections>
                                     <action selector="originalImgClick:" destination="bBU-Vg-P0M" eventType="touchUpInside" id="DeS-hq-6oz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bq8-8n-Jsb">
-                                <rect key="frame" x="245.5" y="306" width="62" height="30"/>
+                                <rect key="frame" x="246" y="306" width="62" height="30"/>
                                 <state key="normal" title="更换背景"/>
                                 <connections>
                                     <action selector="useFilterClick:" destination="bBU-Vg-P0M" eventType="touchUpInside" id="wlB-Nc-7Xi"/>
@@ -497,6 +497,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Y2b-2u-OJc"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="lPr-IW-25k">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>

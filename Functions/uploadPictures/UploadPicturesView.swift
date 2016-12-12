@@ -25,6 +25,7 @@ class uploadPicturesView: UIViewController {
             if session.object(forKey: "funcationupdateimageUrlData") != nil{
                 imageUrlData = session.object(forKey: "funcationupdateimageUrlData") as! [String]
             }else{
+                imageUrlData = [""]
                 imageUrlData = session.setObject([""], forKey: "funcationupdateimageUrlData") as! [String]
             }
         }

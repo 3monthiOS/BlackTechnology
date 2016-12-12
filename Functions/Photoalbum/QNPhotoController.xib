@@ -9,9 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="photoAlbumViewController" customModule="App" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QNPhotoController" customModule="App" customModuleProvider="target">
             <connections>
-                <outlet property="photocollectionview" destination="kBc-N7-nHe" id="6sg-O7-tbk"/>
+                <outlet property="photocollectionview" destination="yU6-dG-4J0" id="mkO-iV-ebw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,25 +20,29 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kBc-N7-nHe">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="yU6-dG-4J0" customClass="CollectionMjResh" customModule="App" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BvK-kM-7lf">
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nDl-Rf-URf">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="fp8-rN-4lA"/>
+                        <outlet property="delegate" destination="-1" id="vGQ-us-sIe"/>
+                    </connections>
                 </collectionView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="kBc-N7-nHe" secondAttribute="bottom" id="0U8-fO-A2V"/>
-                <constraint firstItem="kBc-N7-nHe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="20J-p5-tPb"/>
-                <constraint firstAttribute="trailing" secondItem="kBc-N7-nHe" secondAttribute="trailing" id="DJ9-0X-9cu"/>
-                <constraint firstItem="kBc-N7-nHe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="YjE-o0-Yiq"/>
+                <constraint firstItem="yU6-dG-4J0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="41u-uz-u2N"/>
+                <constraint firstAttribute="bottom" secondItem="yU6-dG-4J0" secondAttribute="bottom" id="5Lh-jI-nIs"/>
+                <constraint firstItem="yU6-dG-4J0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="V1r-zD-jHE"/>
+                <constraint firstAttribute="trailing" secondItem="yU6-dG-4J0" secondAttribute="trailing" id="ZAF-6o-zDs"/>
             </constraints>
-            <point key="canvasLocation" x="-36.5" y="-16.5"/>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
         </view>
     </objects>
 </document>

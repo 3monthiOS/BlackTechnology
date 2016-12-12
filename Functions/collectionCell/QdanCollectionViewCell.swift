@@ -17,6 +17,7 @@ class QdanCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var right: NSLayoutConstraint!
     @IBOutlet weak var btn: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    
     var index: NSIndexPath?
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,10 +38,10 @@ class QdanCollectionViewCell: UICollectionViewCell {
         index = indexPath
         let imagename = imageName[(index?.row)!]
         btn.contentMode = .ScaleAspectFill
+        self.titleLabel.text = functionTitle[(self.index?.row)!]
         async {
             if !imagename.isEmpty{
                 if let str = imagename.componentsSeparatedByString("/").last{
-                    self.titleLabel.text = imagename
                     locationfileiscache(str, complate: { (callback) in
                         if !callback.isEmpty{
                             guard let imageData = NSData(contentsOfFile: callback) else {return}

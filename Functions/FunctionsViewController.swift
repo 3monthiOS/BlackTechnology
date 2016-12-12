@@ -17,32 +17,31 @@ class FunctionsViewController: APPviewcontroller {
     weak var collectionView: CollectionMjResh!
     var collectionfoot: CollectionReusableViewFooter!
     var collectionHeader: UICollectionReusableView!
+    
     var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","六","上传图片","云相册","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        let box = QNUtils.getaccesskey()
-        let headers = [
-            "Authorization": "QBox \(box)",
-            "Content-Type": "application/x-www-form-urlencoded",
-        ]
-        Log.info("+++++++++++++____________\(headers["Authorization"])")
-        //http://rsf.qbox.me/list?bucket=zhj1214
-        let bucket = "zhj1214"
-        Alamofire.request(.POST, "http://rsf.qbox.me/list?", parameters: ["bucket":bucket], encoding: .URL, headers: headers).responseJSON { (response) in
-            if response.result.isSuccess{
-                Log.info("成功----------\(response.response)----\(response.response?.allHeaderFields)-\(response.data)-\(response.result)-\(response.debugDescription)-\(response.description)")
-            }else{
-                Log.info("失败------\(response.result.error)")
-            }
-        }
+//        let box = QNUtils.getaccesskey()
+//        let headers = [
+//            "Authorization": "QBox \(box)",
+//            "Content-Type": "application/x-www-form-urlencoded",
+//        ]
+//        Log.info("+++++++++++++____________\(headers["Authorization"])")
+//        //http://rsf.qbox.me/list?bucket=zhj1214
+//        let bucket = "zhj1214"
+//        Alamofire.request(.POST, "http://rsf.qbox.me/list?", parameters: ["bucket":bucket], encoding: .URL, headers: headers).responseJSON { (response) in
+//            if response.result.isSuccess{
+//                Log.info("成功----------\(response.response)----\(response.response?.allHeaderFields)-\(response.data)-\(response.result)-\(response.debugDescription)-\(response.description)")
+//            }else{
+//                Log.info("失败------\(response.result.error)")
+//            }
+//        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
-        
         self.title = "功能列表"
-      self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.translucent = false
         initcollectionMjrefresh()
         initCollectionview()
         initData()
@@ -62,7 +61,7 @@ class FunctionsViewController: APPviewcontroller {
         
         //注册一个headView
         collectionView!.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind:UICollectionElementKindSectionHeader, withReuseIdentifier: "headView")
-        collectionView.registerNib(UINib(nibName: "CollectionReusableViewHeadre",bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footerView")
+        collectionView.registerNib(UINib(nibName: "CollectionReusableHeadre",bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footerView")
 
 //        layout.headerReferenceSize = CGSizeZero //CGSizeMake(App_width,44)
 //        layout.footerReferenceSize = CGSizeZero //CGSizeMake(App_width,80)
@@ -125,7 +124,7 @@ extension FunctionsViewController: UICollectionViewDelegate{
         upload.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(upload, animated: true)
     case 11:
-        let upload = photoAlbumViewController()
+        let upload = QNPhotoController()
         upload.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(upload, animated: true)
     case 7:
