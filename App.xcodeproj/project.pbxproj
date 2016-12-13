@@ -89,7 +89,6 @@
 		F294B3451DFFDDB70055C8CB /* MObileFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F294B3391DFFDDB70055C8CB /* MObileFunction.swift */; };
 		F294B3461DFFDDB70055C8CB /* MObileFunction.xib in Resources */ = {isa = PBXBuildFile; fileRef = F294B33A1DFFDDB70055C8CB /* MObileFunction.xib */; };
 		F294B3471DFFDDB70055C8CB /* MobileAddres.swift in Sources */ = {isa = PBXBuildFile; fileRef = F294B33C1DFFDDB70055C8CB /* MobileAddres.swift */; };
-		F294B3481DFFDDB70055C8CB /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = F294B33D1DFFDDB70055C8CB /* pinyin.c */; };
 		F294B3491DFFDDB70055C8CB /* RetrieveMobileAddressbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F294B3401DFFDDB70055C8CB /* RetrieveMobileAddressbook.swift */; };
 		F294B34A1DFFDDB70055C8CB /* UserIphoneNumbercell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F294B3411DFFDDB70055C8CB /* UserIphoneNumbercell.swift */; };
 		F294B34B1DFFDDB70055C8CB /* UserIphoneNumbercell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F294B3421DFFDDB70055C8CB /* UserIphoneNumbercell.xib */; };
@@ -234,8 +233,6 @@
 		F294B3391DFFDDB70055C8CB /* MObileFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MObileFunction.swift; sourceTree = "<group>"; };
 		F294B33A1DFFDDB70055C8CB /* MObileFunction.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MObileFunction.xib; sourceTree = "<group>"; };
 		F294B33C1DFFDDB70055C8CB /* MobileAddres.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileAddres.swift; sourceTree = "<group>"; };
-		F294B33D1DFFDDB70055C8CB /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
-		F294B33E1DFFDDB70055C8CB /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		F294B3401DFFDDB70055C8CB /* RetrieveMobileAddressbook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrieveMobileAddressbook.swift; sourceTree = "<group>"; };
 		F294B3411DFFDDB70055C8CB /* UserIphoneNumbercell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserIphoneNumbercell.swift; sourceTree = "<group>"; };
 		F294B3421DFFDDB70055C8CB /* UserIphoneNumbercell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserIphoneNumbercell.xib; sourceTree = "<group>"; };
@@ -651,14 +648,12 @@
 		F294B3361DFFDDB70055C8CB /* MobileAddressBook */ = {
 			isa = PBXGroup;
 			children = (
+				F294B33B1DFFDDB70055C8CB /* model */,
+				F294B33F1DFFDDB70055C8CB /* retrieve */,
 				F294B3371DFFDDB70055C8CB /* MobileAddressBooks.swift */,
 				F294B3381DFFDDB70055C8CB /* MobileAddressBooks.xib */,
 				F294B3391DFFDDB70055C8CB /* MObileFunction.swift */,
 				F294B33A1DFFDDB70055C8CB /* MObileFunction.xib */,
-				F294B33B1DFFDDB70055C8CB /* model */,
-				F294B33D1DFFDDB70055C8CB /* pinyin.c */,
-				F294B33E1DFFDDB70055C8CB /* pinyin.h */,
-				F294B33F1DFFDDB70055C8CB /* retrieve */,
 				F294B3411DFFDDB70055C8CB /* UserIphoneNumbercell.swift */,
 				F294B3421DFFDDB70055C8CB /* UserIphoneNumbercell.xib */,
 			);
@@ -1065,7 +1060,6 @@
 				F26A6A8E1DE6BA0F00D26107 /* SystemPhotoAlbum.swift in Sources */,
 				F24E9A341DEEB07600A45EB8 /* MappableBaseType.swift in Sources */,
 				F2DFE7D51D82A20D00E5DC71 /* HomeTabBarController.swift in Sources */,
-				F294B3481DFFDDB70055C8CB /* pinyin.c in Sources */,
 				F217F2091D842B74000E3A0D /* RegisteredViewController.swift in Sources */,
 				F2D289AB1D856C420059D289 /* AppSetting.swift in Sources */,
 				F2D54B251D93A692006DE294 /* TableViewHeaderCell.swift in Sources */,

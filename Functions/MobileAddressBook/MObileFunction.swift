@@ -64,7 +64,7 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 	@IBAction func IphoneCall(sender: AnyObject) {
 		if isempty() { alert("联系人信息不完整"); return }
 		self.phoneCall(userNumber!)
-		self.dismissActionSheetController()
+//		self.dismissActionSheetController()
 	}
 	func phoneCall(phoneStr: String) {
 		let phoneNum = "tel:\(phoneStr)"
@@ -75,18 +75,10 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 	}
 	// Mark:- -------推荐
 	@IBAction func recommended(sender: AnyObject) {
-		dismissViewControllerAnimated(false) { [userNumber, userName] in
-			guard let _ = userNumber, _ = userName else {
-				alert("该联系人信息不全")
-				return
-			}
-//			HFZWebViewController.openRecommendUser(name: name, mobile: mobile)
-		}
 	}
 	// Mark:- -------发短信
 	@IBAction func texting(sender: AnyObject) {
 		self.sendMessage(self,MessageContent: "")
-
 	}
     func sendMessage(controller: UIViewController, MessageContent: String) {
         self.messageBoy = MessageContent

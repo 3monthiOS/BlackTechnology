@@ -69,39 +69,12 @@ class FunctionsViewController: APPviewcontroller {
     func initData(){
         
     }
-    
-    //Mark: ------ 打开通讯录
-//    func MobileAddressBookbuttonclick(Index: Int){
-//        let MobObject =  MobileAddressBooks()
-//        if Index == 100{
-//            MobObject.MobileType = "MObile"
-//        }else{
-//            MobObject.MobileType = "dfsdf"
-//        }
-//        self.navigationController?.pushViewController(MobObject, animated: true)
-//    }
-    
+
     //- openContact
     func call_openContact() {
         let controller = MobileAddressBooks()
-        controller.mobileType = "MObile"
         controller.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(controller, animated: true)
-    }
-    // MARK: selectContact
-    func call_selectContact() {
-        // TODO:
-        // MobileAddressBooks.selectContact { (success, name, mobile) in
-        //    self.callback(success, msg: ["name": name, "mobile": mobile], options: options)
-        //}
-        let controller = MobileAddressBooks()
-        controller.mobileType = "MObile"
-        controller.isRecommend = true
-        controller.hidesBottomBarWhenPushed = true
-        controller.showViewControllerAnimated(true)
-        controller.selectContact = {(success:Bool, name:String?, mobile:String?) in
-//            self.callback(success, msg: ["name": name!, "mobile": mobile!], options: options)
-        }
     }
     
     override func didReceiveMemoryWarning() {
