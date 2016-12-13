@@ -18,7 +18,7 @@ class FunctionsViewController: APPviewcontroller {
     var collectionfoot: CollectionReusableViewFooter!
     var collectionHeader: UICollectionReusableView!
     
-    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","六","上传图片","云相册","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
+    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","通讯录","上传图片","云相册","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 //        let box = QNUtils.getaccesskey()
@@ -69,6 +69,41 @@ class FunctionsViewController: APPviewcontroller {
     func initData(){
         
     }
+    
+    //Mark: ------ 打开通讯录
+//    func MobileAddressBookbuttonclick(Index: Int){
+//        let MobObject =  MobileAddressBooks()
+//        if Index == 100{
+//            MobObject.MobileType = "MObile"
+//        }else{
+//            MobObject.MobileType = "dfsdf"
+//        }
+//        self.navigationController?.pushViewController(MobObject, animated: true)
+//    }
+    
+    //- openContact
+    func call_openContact() {
+        let controller = MobileAddressBooks()
+        controller.mobileType = "MObile"
+        controller.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    // MARK: selectContact
+    func call_selectContact() {
+        // TODO:
+        // MobileAddressBooks.selectContact { (success, name, mobile) in
+        //    self.callback(success, msg: ["name": name, "mobile": mobile], options: options)
+        //}
+        let controller = MobileAddressBooks()
+        controller.mobileType = "MObile"
+        controller.isRecommend = true
+        controller.hidesBottomBarWhenPushed = true
+        controller.showViewControllerAnimated(true)
+        controller.selectContact = {(success:Bool, name:String?, mobile:String?) in
+//            self.callback(success, msg: ["name": name!, "mobile": mobile!], options: options)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
       
@@ -131,11 +166,15 @@ extension FunctionsViewController: UICollectionViewDelegate{
         photobrowserAction(indexPath)
     case 8:
         photobrowserAction(indexPath)
+    case 9:
+//        MobileAddressBookbuttonclick(100)
+        call_openContact()
     default:
       break
         }
     }
 }
+
  //Mark: ------ UICollectionViewDelegateFlowLayout
 extension FunctionsViewController: UICollectionViewDelegateFlowLayout{
   //返回cell 上下左右的间距

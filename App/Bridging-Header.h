@@ -35,3 +35,6 @@
 //#import <RongIMLib/RongIMLib.h>
 #import <RongIMKit/RongIMKit.h>
 #endif /* Bridging_Header_h */
+//通讯录
+//#import "pinyin.h"
+//#import "ChineseString.h"
