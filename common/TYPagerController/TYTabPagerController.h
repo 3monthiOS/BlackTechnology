@@ -50,7 +50,7 @@ typedef NS_ENUM(NSUInteger, TYPagerBarStyle) {
 @property (nonatomic, weak, readonly) UIView *pagerBarView; // pagerBarView height is contentTopEdging
 @property (nonatomic, weak, readonly) UICollectionView *collectionViewBar;
 @property (nonatomic, weak, readonly) UIView *progressView;
-@property (nonatomic,weak,readonly) UIButton* moreButton;
+//@property (nonatomic,weak,readonly) UIButton* moreButton;
 @property (nonatomic, assign) TYPagerBarStyle barStyle; // you can set or ovrride barStyle
 
 @property (nonatomic, assign) CGFloat collectionLayoutEdging; // collectionLayout left right edging

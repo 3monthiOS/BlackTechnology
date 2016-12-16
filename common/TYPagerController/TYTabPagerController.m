@@ -121,7 +121,7 @@
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
-    UICollectionView *collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame)-50, self.contentTopEdging) collectionViewLayout:layout];
+    UICollectionView *collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), self.contentTopEdging) collectionViewLayout:layout];
     collectionView.showsHorizontalScrollIndicator = NO;
     collectionView.showsVerticalScrollIndicator = NO;
     collectionView.delegate = self;
@@ -156,16 +156,16 @@
 /**********************************************************/
 - (void)addMoreButton{
     
-    UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)-50, [self statusBarHeight], 50, self.contentTopEdging)];
-    [button setImage:[UIImage imageNamed:@"button_more_n"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"button_more_h"] forState:UIControlStateHighlighted];
-    [button setBackgroundColor:[UIColor clearColor]];
-    
-    [_pagerBarView addSubview:button];
-    
-    _moreButton = button;
-    
-    [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+//    UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.frame)-50, [self statusBarHeight], 50, self.contentTopEdging)];
+//    [button setImage:[UIImage imageNamed:@"button_more_n"] forState:UIControlStateNormal];
+//    [button setImage:[UIImage imageNamed:@"button_more_h"] forState:UIControlStateHighlighted];
+//    [button setBackgroundColor:[UIColor clearColor]];
+//    
+//    [_pagerBarView addSubview:button];
+//    
+//    _moreButton = button;
+//    
+//    [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
 //    _moreButton.translatesAutoresizingMaskIntoConstraints = NO;
 //    NSLayoutConstraint* right = [NSLayoutConstraint constraintWithItem:_moreButton attribute:NSLayoutAttributeRightMargin relatedBy:NSLayoutRelationEqual toItem:_pagerBarView attribute:NSLayoutAttributeRightMargin multiplier:1.0 constant:0];
@@ -291,8 +291,8 @@
     
     _pagerBarView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), self.contentTopEdging+[self statusBarHeight]);
     
-    _collectionViewBar.frame = CGRectMake(0, [self statusBarHeight], CGRectGetWidth(self.view.frame)-50, self.contentTopEdging);
-    _moreButton.frame = CGRectMake(CGRectGetWidth(self.view.frame)-50, [self statusBarHeight], 50, self.contentTopEdging);
+    _collectionViewBar.frame = CGRectMake(0, [self statusBarHeight], CGRectGetWidth(self.view.frame), self.contentTopEdging);
+//    _moreButton.frame = CGRectMake(CGRectGetWidth(self.view.frame)-50, [self statusBarHeight], 50, self.contentTopEdging);
 }
 
 // set up progress view frame
@@ -420,7 +420,7 @@
         [self.delegate pagerController:self didSelectAtIndexPath:indexPath];
     }
 }
-
+// zhj 计算上面那一菜单栏 的宽度 和高度
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (_cellWidth > 0) {

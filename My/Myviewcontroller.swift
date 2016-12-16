@@ -11,11 +11,11 @@ import Swiften
 
 class Myviewcontroller: APPviewcontroller{
     
-    let conreollerName = ["MyinfoControllerView","MyinfoControllerView","MyinfoControllerView","MyinfoControllerView"]
+    let conreollerName = ["MyinfoControllerView","MyinfoControllerView","MyinfoControllerView","MyinfoControllerView","MyinfoControllerView","MyinfoControllerView","MyinfoControllerView","MyinfoControllerView","MyinfoControllerView","MyinfoControllerView"]
     var controllers = [UIViewController]()
     var pagerController:TYTabButtonPagerController?
     
-    @IBOutlet weak var contentview: UIView!
+//    @IBOutlet weak var contentview: UIView!
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -27,6 +27,8 @@ class Myviewcontroller: APPviewcontroller{
         self.navigationItem.title = "我"
         loadTabs()
         addPagerController()
+        self.pagerController!.reloadData()
+        self.pagerController?.moveToControllerAtIndex(0, animated: false)
     }
     
     func addPagerController(){
@@ -51,10 +53,8 @@ class Myviewcontroller: APPviewcontroller{
         pager.cellEdging = 10
         pager.cellSpacing = 10
         
-        
-        //        pager.view.frame = CGRectMake(0, 44+SIZE_1PX, CGRectGetWidth(self.contentView.frame), CGRectGetHeight(self.contentView.frame)-44-SIZE_1PX)
         self.addChildViewController(pager)
-        self.contentview.addSubview(pager.view)
+        self.view.addSubview(pager.view)
         
         self.pagerController = pager
         self.pagerController?.view.backgroundColor = UIColor.groupTableViewBackgroundColor()
@@ -66,14 +66,13 @@ class Myviewcontroller: APPviewcontroller{
             make.bottom.equalTo(self.view)
         }
         self.view.updateConstraints()
-        self.pagerController!.reloadData()
-        self.pagerController?.moveToControllerAtIndex(0, animated: false)
+        
     }
     // 加载不同的页面到 viewcontrollers
     func  loadTabs(){
         for _ in conreollerName {
-            
-            let controller = Myviewcontroller(nibName: "FirstViewController", bundle: nil)
+        let controller = FirstViewController(nibName: "FirstViewController", bundle: nil)
+//            let controller = SecondViewController(nibName: "SecondViewController", bundle: nil)
             self.controllers.append(controller)
         }
     }
@@ -119,10 +118,11 @@ extension Myviewcontroller: TYPagerControllerDataSource{
     // MARK: TYPagerControllerDataSource
     func numberOfControllersInPagerController() -> Int {
         return self.conreollerName.count
+//        return 1
     }
     
     func pagerController(pagerController: TYPagerController!, titleForIndex index: Int) -> String! {
-        let name = ["0","1","2","3","4","5","5","5","5","5","5","5"]
+        let name = ["第一个","第二个","第三个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个"]
         let titlename = name[index]
         return titlename
     }

@@ -102,6 +102,8 @@
 		F2D289AB1D856C420059D289 /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D289AA1D856C420059D289 /* AppSetting.swift */; };
 		F2D3A3E11E038E0D007DE758 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D3A3DF1E038E0D007DE758 /* FirstViewController.swift */; };
 		F2D3A3E21E038E0D007DE758 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D3A3E01E038E0D007DE758 /* FirstViewController.xib */; };
+		F2D3A3E51E03A788007DE758 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D3A3E31E03A788007DE758 /* SecondViewController.swift */; };
+		F2D3A3E61E03A788007DE758 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D3A3E41E03A788007DE758 /* SecondViewController.xib */; };
 		F2D54B251D93A692006DE294 /* TableViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D54B231D93A692006DE294 /* TableViewHeaderCell.swift */; };
 		F2D54B261D93A692006DE294 /* TableViewHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D54B241D93A692006DE294 /* TableViewHeaderCell.xib */; };
 		F2D652CA1D7E94A90005824D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D652C91D7E94A90005824D /* AppDelegate.swift */; };
@@ -258,6 +260,8 @@
 		F2D289AA1D856C420059D289 /* AppSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSetting.swift; sourceTree = SOURCE_ROOT; };
 		F2D3A3DF1E038E0D007DE758 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		F2D3A3E01E038E0D007DE758 /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
+		F2D3A3E31E03A788007DE758 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		F2D3A3E41E03A788007DE758 /* SecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
 		F2D54B231D93A692006DE294 /* TableViewHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeaderCell.swift; sourceTree = "<group>"; };
 		F2D54B241D93A692006DE294 /* TableViewHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewHeaderCell.xib; sourceTree = "<group>"; };
 		F2D652C61D7E94A90005824D /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -426,6 +430,8 @@
 			children = (
 				F2D3A3DF1E038E0D007DE758 /* FirstViewController.swift */,
 				F2D3A3E01E038E0D007DE758 /* FirstViewController.xib */,
+				F2D3A3E31E03A788007DE758 /* SecondViewController.swift */,
+				F2D3A3E41E03A788007DE758 /* SecondViewController.xib */,
 			);
 			path = viewcontrollers;
 			sourceTree = "<group>";
@@ -975,6 +981,7 @@
 				F2D652D71D7E94A90005824D /* LaunchScreen.storyboard in Resources */,
 				F2D6904E1DFE7A200087328B /* QNCollectionViewCell.xib in Resources */,
 				F2DFE7DA1D82B45900E5DC71 /* Login.storyboard in Resources */,
+				F2D3A3E61E03A788007DE758 /* SecondViewController.xib in Resources */,
 				F2D6904C1DFE7A200087328B /* CollectionReusableHeadre.xib in Resources */,
 				F2D54B261D93A692006DE294 /* TableViewHeaderCell.xib in Resources */,
 				F217F20A1D842B74000E3A0D /* RegisteredViewController.xib in Resources */,
@@ -1108,6 +1115,7 @@
 				F24E9A321DEEA77B00A45EB8 /* QNUtils.swift in Sources */,
 				F21437BB1D98EE27000E0CBF /* LDCacheItem.swift in Sources */,
 				F27AE2011D928E09000E0509 /* QdanCollectionViewzeroCell.swift in Sources */,
+				F2D3A3E51E03A788007DE758 /* SecondViewController.swift in Sources */,
 				F27F5E621D8641EE00336915 /* UIViewController+TopViewController.swift in Sources */,
 				F26A6A801DE6990F00D26107 /* PhotoBrowser+GridViewController.swift in Sources */,
 				F26A6A7E1DE6990F00D26107 /* PhotoBrowser.swift in Sources */,

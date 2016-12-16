@@ -45,7 +45,6 @@ class ZHJtableview: TableViewMjResh {
     func initMjrefresh(isok: [Bool]){
         self.noDataNotice = "无数据可加载"
         self.configRefreshable(headerEnabled: isok[0], footerEnabled: isok[1])
-        self.refreshData()
     }
     func UnpackData(){
         if let tableveiwData = tableveiwData {
@@ -82,7 +81,7 @@ extension ZHJtableview: UITableViewDelegate{
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let heagerview = dataSources?.bindHeaderView!(tableView, viewForHeaderInSection: section){
+        if let heagerview = dataSources?.bindHeaderView?(tableView, viewForHeaderInSection: section){
             return heagerview
         }else{
             let view =  UIView()
@@ -94,7 +93,7 @@ extension ZHJtableview: UITableViewDelegate{
         return heraerViewheight
     }
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if let footerview = dataSources?.bindFooterView!(tableView, viewForFooterInSection: section){
+        if let footerview = dataSources?.bindFooterView?(tableView, viewForFooterInSection: section){
             return footerview
         }else{
             let view =  UIView()
