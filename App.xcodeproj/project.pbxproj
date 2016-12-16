@@ -29,6 +29,11 @@
 		F21437C71D98EF21000E0CBF /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21437C61D98EF21000E0CBF /* LoginUser.swift */; };
 		F217F2091D842B74000E3A0D /* RegisteredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F217F2071D842B74000E3A0D /* RegisteredViewController.swift */; };
 		F217F20A1D842B74000E3A0D /* RegisteredViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F217F2081D842B74000E3A0D /* RegisteredViewController.xib */; };
+		F23096801E0238C4001ACE00 /* TYPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23096781E0238C4001ACE00 /* TYPagerController.m */; };
+		F23096811E0238C4001ACE00 /* TYTabButtonPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F230967A1E0238C4001ACE00 /* TYTabButtonPagerController.m */; };
+		F23096821E0238C4001ACE00 /* TYTabPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F230967C1E0238C4001ACE00 /* TYTabPagerController.m */; };
+		F23096831E0238C4001ACE00 /* TYTabTitleViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F230967F1E0238C4001ACE00 /* TYTabTitleViewCell.m */; };
+		F23096911E027A59001ACE00 /* ZHJtableview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23096901E027A59001ACE00 /* ZHJtableview.swift */; };
 		F24E9A321DEEA77B00A45EB8 /* QNUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E9A311DEEA77B00A45EB8 /* QNUtils.swift */; };
 		F24E9A341DEEB07600A45EB8 /* MappableBaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E9A331DEEB07600A45EB8 /* MappableBaseType.swift */; };
 		F24E9A381DEEB18A00A45EB8 /* UploadPicturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E9A361DEEB18A00A45EB8 /* UploadPicturesView.swift */; };
@@ -95,6 +100,8 @@
 		F2AC1E411DF02BEE00F77860 /* commonlyEncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AC1E401DF02BEE00F77860 /* commonlyEncryption.swift */; };
 		F2B2CB9F1DF29CFF002028D1 /* QNlistData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B2CB9E1DF29CFF002028D1 /* QNlistData.swift */; };
 		F2D289AB1D856C420059D289 /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D289AA1D856C420059D289 /* AppSetting.swift */; };
+		F2D3A3E11E038E0D007DE758 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D3A3DF1E038E0D007DE758 /* FirstViewController.swift */; };
+		F2D3A3E21E038E0D007DE758 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D3A3E01E038E0D007DE758 /* FirstViewController.xib */; };
 		F2D54B251D93A692006DE294 /* TableViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D54B231D93A692006DE294 /* TableViewHeaderCell.swift */; };
 		F2D54B261D93A692006DE294 /* TableViewHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D54B241D93A692006DE294 /* TableViewHeaderCell.xib */; };
 		F2D652CA1D7E94A90005824D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D652C91D7E94A90005824D /* AppDelegate.swift */; };
@@ -163,6 +170,16 @@
 		F21437C61D98EF21000E0CBF /* LoginUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUser.swift; sourceTree = "<group>"; };
 		F217F2071D842B74000E3A0D /* RegisteredViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredViewController.swift; sourceTree = "<group>"; };
 		F217F2081D842B74000E3A0D /* RegisteredViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisteredViewController.xib; sourceTree = "<group>"; };
+		F23096771E0238C4001ACE00 /* TYPagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYPagerController.h; sourceTree = "<group>"; };
+		F23096781E0238C4001ACE00 /* TYPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYPagerController.m; sourceTree = "<group>"; };
+		F23096791E0238C4001ACE00 /* TYTabButtonPagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYTabButtonPagerController.h; sourceTree = "<group>"; };
+		F230967A1E0238C4001ACE00 /* TYTabButtonPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYTabButtonPagerController.m; sourceTree = "<group>"; };
+		F230967B1E0238C4001ACE00 /* TYTabPagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYTabPagerController.h; sourceTree = "<group>"; };
+		F230967C1E0238C4001ACE00 /* TYTabPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYTabPagerController.m; sourceTree = "<group>"; };
+		F230967D1E0238C4001ACE00 /* TYTabTitleCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYTabTitleCellProtocol.h; sourceTree = "<group>"; };
+		F230967E1E0238C4001ACE00 /* TYTabTitleViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYTabTitleViewCell.h; sourceTree = "<group>"; };
+		F230967F1E0238C4001ACE00 /* TYTabTitleViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYTabTitleViewCell.m; sourceTree = "<group>"; };
+		F23096901E027A59001ACE00 /* ZHJtableview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZHJtableview.swift; sourceTree = "<group>"; };
 		F24E9A311DEEA77B00A45EB8 /* QNUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNUtils.swift; sourceTree = "<group>"; };
 		F24E9A331DEEB07600A45EB8 /* MappableBaseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappableBaseType.swift; sourceTree = "<group>"; };
 		F24E9A361DEEB18A00A45EB8 /* UploadPicturesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadPicturesView.swift; sourceTree = "<group>"; };
@@ -239,6 +256,8 @@
 		F2AC1E401DF02BEE00F77860 /* commonlyEncryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = commonlyEncryption.swift; sourceTree = "<group>"; };
 		F2B2CB9E1DF29CFF002028D1 /* QNlistData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNlistData.swift; sourceTree = "<group>"; };
 		F2D289AA1D856C420059D289 /* AppSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSetting.swift; sourceTree = SOURCE_ROOT; };
+		F2D3A3DF1E038E0D007DE758 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		F2D3A3E01E038E0D007DE758 /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
 		F2D54B231D93A692006DE294 /* TableViewHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeaderCell.swift; sourceTree = "<group>"; };
 		F2D54B241D93A692006DE294 /* TableViewHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewHeaderCell.xib; sourceTree = "<group>"; };
 		F2D652C61D7E94A90005824D /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -378,6 +397,39 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		F23096761E0238C4001ACE00 /* TYPagerController */ = {
+			isa = PBXGroup;
+			children = (
+				F23096771E0238C4001ACE00 /* TYPagerController.h */,
+				F23096781E0238C4001ACE00 /* TYPagerController.m */,
+				F23096791E0238C4001ACE00 /* TYTabButtonPagerController.h */,
+				F230967A1E0238C4001ACE00 /* TYTabButtonPagerController.m */,
+				F230967B1E0238C4001ACE00 /* TYTabPagerController.h */,
+				F230967C1E0238C4001ACE00 /* TYTabPagerController.m */,
+				F230967D1E0238C4001ACE00 /* TYTabTitleCellProtocol.h */,
+				F230967E1E0238C4001ACE00 /* TYTabTitleViewCell.h */,
+				F230967F1E0238C4001ACE00 /* TYTabTitleViewCell.m */,
+			);
+			path = TYPagerController;
+			sourceTree = "<group>";
+		};
+		F230968F1E0279EA001ACE00 /* UItableview */ = {
+			isa = PBXGroup;
+			children = (
+				F23096901E027A59001ACE00 /* ZHJtableview.swift */,
+			);
+			path = UItableview;
+			sourceTree = "<group>";
+		};
+		F23096921E0298CE001ACE00 /* viewcontrollers */ = {
+			isa = PBXGroup;
+			children = (
+				F2D3A3DF1E038E0D007DE758 /* FirstViewController.swift */,
+				F2D3A3E01E038E0D007DE758 /* FirstViewController.xib */,
+			);
+			path = viewcontrollers;
+			sourceTree = "<group>";
+		};
 		F24E9A351DEEB16800A45EB8 /* uploadPictures */ = {
 			isa = PBXGroup;
 			children = (
@@ -418,6 +470,7 @@
 		F2666A8C1D879C6100B2029E /* My */ = {
 			isa = PBXGroup;
 			children = (
+				F23096921E0298CE001ACE00 /* viewcontrollers */,
 				F2D54B221D93A672006DE294 /* tableview */,
 				F2666A8E1D879CCD00B2029E /* Myviewcontroller.swift */,
 			);
@@ -546,6 +599,8 @@
 				F29401D91D94FD0A00CF582F /* Log.swift */,
 				F27F5E421D8641EE00336915 /* CommonFuntion.swift */,
 				F27F5E461D8641EE00336915 /* Theme.swift */,
+				F23096761E0238C4001ACE00 /* TYPagerController */,
+				F230968F1E0279EA001ACE00 /* UItableview */,
 				F21437AD1D98EE27000E0CBF /* Http */,
 				F29401DB1D94FF2C00CF582F /* baiduMap */,
 				F26871E91D9236D800611136 /* BaeseMjfresh */,
@@ -913,6 +968,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F27AE2021D928E09000E0509 /* QdanCollectionViewzeroCell.xib in Resources */,
+				F2D3A3E21E038E0D007DE758 /* FirstViewController.xib in Resources */,
 				F294B3441DFFDDB70055C8CB /* MobileAddressBooks.xib in Resources */,
 				F24E9A391DEEB18A00A45EB8 /* uploadPicturesView.xib in Resources */,
 				F27AE1FE1D928E09000E0509 /* CollectionReusableViewHeadre.xib in Resources */,
@@ -1031,6 +1087,7 @@
 				F294B3451DFFDDB70055C8CB /* MObileFunction.swift in Sources */,
 				F26871F61D9236D800611136 /* MJrefreshTableview.swift in Sources */,
 				F24E9A411DEED00E00A45EB8 /* uploadGetToken.m in Sources */,
+				F2D3A3E11E038E0D007DE758 /* FirstViewController.swift in Sources */,
 				F26871F71D9236D800611136 /* UIScrollView+TopRefresh.m in Sources */,
 				F27F5E5B1D8641EE00336915 /* Theme.swift in Sources */,
 				F24E9A3E1DEEBA5E00A45EB8 /* User.swift in Sources */,
@@ -1044,6 +1101,7 @@
 				F27AE1FF1D928E09000E0509 /* QdanCollectionViewCell.swift in Sources */,
 				F21437AC1D98D403000E0CBF /* BaiduMapViewController.swift in Sources */,
 				F21437BD1D98EE27000E0CBF /* LDApiDataTypes.swift in Sources */,
+				F23096811E0238C4001ACE00 /* TYTabButtonPagerController.m in Sources */,
 				F29401DF1D94FF6300CF582F /* Location.swift in Sources */,
 				F26A6A841DE6990F00D26107 /* PhotoBrowserExtensions.swift in Sources */,
 				F27F5E691D8643D000336915 /* SwiftLogoLayer.swift in Sources */,
@@ -1053,6 +1111,7 @@
 				F27F5E621D8641EE00336915 /* UIViewController+TopViewController.swift in Sources */,
 				F26A6A801DE6990F00D26107 /* PhotoBrowser+GridViewController.swift in Sources */,
 				F26A6A7E1DE6990F00D26107 /* PhotoBrowser.swift in Sources */,
+				F23096831E0238C4001ACE00 /* TYTabTitleViewCell.m in Sources */,
 				F26A6A861DE6990F00D26107 /* PECropRectView.m in Sources */,
 				F26A6A7D1DE6990F00D26107 /* AlbumTableViewController.swift in Sources */,
 				F27F5E611D8641EE00336915 /* Uiviewcontroller+storyboard.swift in Sources */,
@@ -1078,6 +1137,8 @@
 				F2B2CB9F1DF29CFF002028D1 /* QNlistData.swift in Sources */,
 				F26A6A871DE6990F00D26107 /* PECropView.m in Sources */,
 				F2DFE7D21D82A1B300E5DC71 /* LoginviewController.swift in Sources */,
+				F23096801E0238C4001ACE00 /* TYPagerController.m in Sources */,
+				F23096821E0238C4001ACE00 /* TYTabPagerController.m in Sources */,
 				F294B3491DFFDDB70055C8CB /* RetrieveMobileAddressbook.swift in Sources */,
 				F2D6904D1DFE7A200087328B /* QNCollectionViewCell.swift in Sources */,
 				F294B3431DFFDDB70055C8CB /* MobileAddressBooks.swift in Sources */,
@@ -1087,6 +1148,7 @@
 				F2D652CA1D7E94A90005824D /* AppDelegate.swift in Sources */,
 				654B6ADB1D9D25DA00B46F6F /* GradientViewController.swift in Sources */,
 				65529C351D9E66CE00ED3E1C /* MutableFilterMoreViewController.swift in Sources */,
+				F23096911E027A59001ACE00 /* ZHJtableview.swift in Sources */,
 				F26871F41D9236D800611136 /* LDNoDataNoticeView.swift in Sources */,
 				F26A6A831DE6990F00D26107 /* PhotoBrowserDelegate.swift in Sources */,
 				F26A6A811DE6990F00D26107 /* PhotoBrowser+PreviewController.swift in Sources */,

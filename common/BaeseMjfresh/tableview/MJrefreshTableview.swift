@@ -9,10 +9,10 @@
 import MJRefresh
 
 protocol MJTableViewRefreshDelegate: NSObjectProtocol {
-	func tableView(tableView: LDTableView, refreshDataWithType refreshType: LDTableView.RefreshType)
+	func tableView(tableView: TableViewMjResh, refreshDataWithType refreshType: TableViewMjResh.RefreshType)
 }
 
-class LDTableView: UITableView {
+class TableViewMjResh: UITableView {
 
 	enum RefreshType {
 		case Header
@@ -31,6 +31,7 @@ class LDTableView: UITableView {
 	private var noDataNoticeView: LDNoDataNoticeView?
 
 	func configRefreshable(headerEnabled headerEnabled: Bool, footerEnabled: Bool) {
+        
 		if headerEnabled {
             let header = MJRefreshNormalHeader(refreshingBlock: {
                 self.refreshTableDelegate?.tableView(self, refreshDataWithType: .Header)

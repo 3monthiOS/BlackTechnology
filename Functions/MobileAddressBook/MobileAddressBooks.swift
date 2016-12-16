@@ -34,7 +34,7 @@ class MobileAddressBooks: UIViewController {
     
     var searchBar: UISearchBar?
     
-    @IBOutlet weak var tableView: LDTableView!
+    @IBOutlet weak var tableView: TableViewMjResh!
     
     override func viewWillAppear(animated: Bool) {
         self.getMObileData()
@@ -122,7 +122,7 @@ extension MobileAddressBooks: MJTableViewRefreshDelegate {
         tableView.refreshTableDelegate = self
         tableView.configRefreshable(headerEnabled: true, footerEnabled: true)
     }
-    func tableView(tableView: LDTableView, refreshDataWithType refreshType: LDTableView.RefreshType){
+    func tableView(tableView: TableViewMjResh, refreshDataWithType refreshType: TableViewMjResh.RefreshType){
         if self.searchStatus == "UNsearch" { // 通讯录
             self.mobileObjectArray = [MobileAddress]()
             self.userNmaearrays = [String]()
