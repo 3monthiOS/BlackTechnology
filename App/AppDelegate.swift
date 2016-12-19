@@ -19,7 +19,7 @@ let api = LDApiSettings()
 let cache = LDCacheSettings(manager: LDRealmCache(realm: Realm.sharedRealm))
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,AppLoginSucessDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var Home: HomeTabBarController?
@@ -36,17 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,AppLoginSucessDelegate {
         //友盟初始化
 //        UMHelper.initSdkWithAppKey(UMENG_APPKEY, channelId: "", launchOptions: launchOptions)
         // 初始化融云
-        RCIM.sharedRCIM().initWithAppKey(RY_APPKEY)
-        //设置监听连接状态
-        RCIM.sharedRCIM().connectionStatusDelegate = self
-        //设置消息接收的监听
-        RCIM.sharedRCIM().receiveMessageDelegate = self
-        
-        //设置用户信息提供者，需要提供正确的用户信息，否则SDK无法显示用户头像、用户名和本地通知
-        RCIM.sharedRCIM().userInfoDataSource = self
-        //设置群组信息提供者，需要提供正确的群组信息，否则SDK无法显示群组头像、群名称和本地通知
-        RCIM.sharedRCIM().groupInfoDataSource = self
-        
+        initRCIM()
         //推送处理1
         if #available(iOS 8.0, *) {
             //注册推送,用于iOS8以上系统
@@ -64,37 +54,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,AppLoginSucessDelegate {
             Log.error("BMK: baidu map manager start failed!")
         }
         Notifications.locationUpdated.addObserver(self, selector: #selector(locationUpdatedNotification(_:)), sender: nil)
-        
+        // IQ 键盘
         IQKeyboardManager.sharedManager().enable = true
-        
+        // 跳转
         gotoMainViewController()
         return true
     }
-    func loginSucess(Viewcontroller: LoginviewController) {
-        self.isok = true
-        gotoMainViewController()
-    }
-    func gotoMainViewController(){
-        if isok {
-            if self.Login != nil{
-                self.Login = nil
-            }
-            let homeTabar = UIViewController.loadViewControllerFromStoryboard("Main", storyboardID: "HomeTabBarController")
-            if let _ = homeTabar{
-                self.window?.rootViewController = homeTabar
-                self.window?.makeKeyWindow()
-            }
-        }else{
-            if Home != nil {
-                Home = nil
-            }
-            let tabvc = UIViewController.loadViewControllerFromStoryboard("Login", storyboardID: "LoginviewController") as! UINavigationController
-            let login = tabvc.viewControllers[0] as! LoginviewController
-            login.loginDelegate = self
-            window?.rootViewController = tabvc
-            window?.makeKeyWindow()
-        }
-    }
+    
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -217,6 +184,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate,AppLoginSucessDelegate {
     //
 }
 extension AppDelegate: RCIMConnectionStatusDelegate, RCIMUserInfoDataSource, RCIMGroupInfoDataSource, RCIMReceiveMessageDelegate{
+    func initRCIM(){
+        RCIM.sharedRCIM().initWithAppKey(RY_APPKEY)
+        //设置监听连接状态
+        RCIM.sharedRCIM().connectionStatusDelegate = self
+        //设置消息接收的监听
+        RCIM.sharedRCIM().receiveMessageDelegate = self
+        //设置用户信息提供者，需要提供正确的用户信息，否则SDK无法显示用户头像、用户名和本地通知
+        RCIM.sharedRCIM().userInfoDataSource = self
+        //设置群组信息提供者，需要提供正确的群组信息，否则SDK无法显示群组头像、群名称和本地通知
+        RCIM.sharedRCIM().groupInfoDataSource = self
+    }
     //推送处理2
     @available(iOS 8.0, *)
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
@@ -393,7 +371,35 @@ extension AppDelegate: BMKGeneralDelegate, BMKGeoCodeSearchDelegate {
     }
     
 }
-
+extension AppDelegate: AppLoginSucessDelegate{
+    func loginSucess(Viewcontroller: LoginviewController) {
+        self.isok = true
+        gotoMainViewController()
+    }
+}
+extension AppDelegate {
+    func gotoMainViewController(){
+        if isok {
+            if self.Login != nil{
+                self.Login = nil
+            }
+            let homeTabar = UIViewController.loadViewControllerFromStoryboard("Main", storyboardID: "HomeTabBarController")
+            if let _ = homeTabar{
+                self.window?.rootViewController = homeTabar
+                self.window?.makeKeyWindow()
+            }
+        }else{
+            if Home != nil {
+                Home = nil
+            }
+            let tabvc = UIViewController.loadViewControllerFromStoryboard("Login", storyboardID: "LoginviewController") as! UINavigationController
+            let login = tabvc.viewControllers[0] as! LoginviewController
+            login.loginDelegate = self
+            window?.rootViewController = tabvc
+            window?.makeKeyWindow()
+        }
+    }
+}
 /*
  //        let launchView = UIViewController.viewControllerWithIdentifier("LaunchScreen", storyboardName: "LaunchScreen").view
  //        let mainWindow = UIApplication.sharedApplication().keyWindow//获取到app的主屏幕
