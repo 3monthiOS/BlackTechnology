@@ -190,3 +190,12 @@ func RemoveSpecialCharacter(str: String) -> String {
     }
     return str
 }
+// Mark: -------- 手机号正则表达式
+func checkMobileReg(mobile: String) -> Bool {
+    let regex = try! NSRegularExpression(pattern: REGEXP_MOBILES,
+                                         options: [.CaseInsensitive])
+    
+    return regex.firstMatchInString(mobile, options: [],
+                                    range: NSRange(location: 0, length: mobile.utf16.count))?.range.length != nil
+    
+}

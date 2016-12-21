@@ -8,6 +8,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import Swiften
 //
 class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
 
@@ -18,6 +19,8 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
     let maskLayer: CAShapeLayer = SwiftLogoLayer.logoLayer()
     
     var phoneNumbertext = ""
+    let user = User()
+    var userkeyArray = [Dictionary<String,String>]()
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -43,16 +46,36 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
         imageBG.image = UIImage.gifWithName("gif131")
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         phoneNumber.returnKeyType = UIReturnKeyType.Done
+        getDBuser()
         createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.Right, Title: "完成", normalImage: nil, highlightImage: nil, action: #selector(registerClick))
     }
-    
+    func getDBuser(){
+        if let userkeyArray = session.object(forKey: "userkeyArray") as? [Dictionary<String,String>] {
+            self.userkeyArray = userkeyArray
+        }
+    }
     func registerClick(){
         guard let text = phoneNumber.text where !text.isEmpty else{toast("请输入手机号");return}
+        
         if checkMobileReg(text){
-            alert("谢谢您留下手机号，小军一定好好保管。摸摸头即可登录")
+            for dic in userkeyArray {
+                if dic["phone"] == text{
+                    alert("手机号已被注册，请更换");return
+                }
+            }
+            // 新用户注册
+            user.userphone = text
+            user.password = text.substring(3, 11)
+            let userKey = "user" + String(userkeyArray) + "key"
+            let userdic = ["primaryKey":userKey,"phone":text]
+            userkeyArray.append(userdic)
+            session.setObject(userkeyArray, forKey: "userkeyArray")
+            cache.setObject(user, forKey: userKey)
         }else{
-            alert("坏淫，手机号不对")
+            alert("坏淫，手机号不对");return
         }
+        alert("谢谢您留下手机号，小军一定好好保管，密码为手机号后8位。")
+        Log.info("这个手机里面的用户数量：\(userkeyArray.count) \(userkeyArray.last!["phone"])")
         self.navigationController?.popViewControllerAnimated(true)
 //        let VC = UIViewController.loadViewControllerFromStoryboard("Login", storyboardID: "Loginview") as! LoginviewController
 //        JumpAnimation(Animations.SuckEffect, Direction: "top", CurrentVc: self, ForVc:VC , isJump: true)
@@ -71,15 +94,7 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
         transition.Direction = "left"
         return transition
     }
-    // Mark: -------- 手机号正则表达式
-    func checkMobileReg(mobile: String) -> Bool {
-        let regex = try! NSRegularExpression(pattern: REGEXP_MOBILES,
-                                             options: [.CaseInsensitive])
-        
-        return regex.firstMatchInString(mobile, options: [],
-                                        range: NSRange(location: 0, length: mobile.utf16.count))?.range.length != nil
-        
-    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

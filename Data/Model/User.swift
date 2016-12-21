@@ -10,62 +10,42 @@ import Foundation
 import ObjectMapper
 
 class User: Mappable {
-    /*过期无用*/
-    var id: Int!
-
-    var avatar = ""
-    var city = ""
-    var birthday = ""
-    var age = 0
-    var department = ""
-    var firstLoginTime = ""
-    var geohash = ""
-    var gmtCreate = ""
-    var gmtModify = ""
-    var isAuth = 0
-    var lastLoginTime = ""
-    var latitude = 0
-    var isRegister = 0
-    var longitude = 0
-    var mobile = ""
-    var msid = ""
-    var nickname = ""
-    var occupation = ""
-    var personintro = ""
-    var province = ""
-    var realName = ""
-    var goldCoins = 0
-    var school = ""
-    var sex = 1
-    var userType = ""
-    var comment = ""
-    var trendNum: Int = 0
-    var photoImg: UIImage?
-
-    /// 0=彼此都没有拉黑；1=主动拉黑对方；2=被对方拉黑了
-    var defriendStatus: Int?
-    /// 0(无惩罚),1(惩罚中)
-    var punishStatus: Int?
-    /// 0(无),1(冻结),2(禁言)
-    var punishLevel: Int?
-    /// 惩罚结束时间
-    var punishEndTime: Double?
     
-    /// 用户信息完成度
-    var completion: String = "0%"
-    /// 粉丝
-    var fansNum: Int = 0
-    /// 关注
-    var followNum: Int = 0
-    /// 是否被当前用户关注
-    var isFollow: Int = 0
-    /// user detail好像并没下发
-    var relationship: Int?
-    /// 是否加V (1已加,0未加)
-    var vSign = 0
-
-    var hasV: Bool { return self.vSign == 1 }
-
+    // 用户ID
+    var id: Int?
+    //
+    var appid: String?
+    //
+    var uuid: String?
+    // 用户状态码
+    var state: Int?
+    // 国籍
+    var country: String?
+    // 护照
+    var passport: String?
+    // 性别
+    var sex: String?
+    // 年龄
+    var age = 0
+    // 省份
+    var province: String?
+    // 所在城市
+    var city: String?
+    // 用户图标
+    var headImgURL: String?
+    // 账户
+    var accountid: String?
+    // 手机号
+    var userphone: String?
+    // 密码
+    var password: String?
+    // 昵称
+    var nickname: String?
+    // 注册时间
+    var createTime: Double?
+    
+    // 融云 组 id
+    var groupid: Int?
 
     init() {
 
@@ -76,49 +56,25 @@ class User: Mappable {
     }
 
     func mapping(map: Map) {
-        id <- map["id"]
-        nickname <- map["nickname"]
-        mobile <- map["mobile"]
-        city <- map["city"]
-        birthday <- map["birthday"]
-        goldCoins <- map["goldCoins"]
-        avatar <- map["avatar"]
-        department <- map["department"]
-        firstLoginTime <- map["firstLoginTime"]
-        geohash <- map["geohash"]
-        gmtCreate <- map["gmtCreate"]
-        gmtModify <- map["gmtModify"]
-        isAuth <- map["isAuth"]
-        isRegister <- map["isRegister"]
-        lastLoginTime <- map["lastLoginTime"]
-        latitude <- map["latitude"]
-        longitude <- map["longitude"]
-        msid <- map["msid"]
-        occupation <- map["occupation"]
-        personintro <- map["personintro"]
-        province <- map["province"]
-        realName <- map["realName"]
-        school <- map["school"]
-        sex <- map["sex"]
-        userType <- map["userType"]
-
-        completion <- map["completion"]
-        fansNum <- map["fansNum"]
-        followNum <- map["followNum"]
-
-        isFollow <- map["isFollow"]
-        trendNum <- map["trendNum"]
-        relationship <- map["relationship"]
-        comment <- map["comment"]
-
-        /// 是否加V (1已加,0未加)
-        vSign <- map["vSign"]
-
         
-        defriendStatus <- map["defriendStatus"]
-        punishStatus <- map["punishStatus"]
-        punishLevel <- map["punishLevel"]
-        punishEndTime <- map["punishEndTime"]
+        id <- map["id"]
+        appid <- map["appid"]
+        uuid <- map["uuid"]
+        state <- map["state"]
+        country <- map["country"]
+        passport <- map["passport"]
+        sex <- map["sex"]
+        age <- map["age"]
+        province <- map["province"]
+        city <- map["city"]
+        headImgURL <- map["headImgURL"]
+        accountid <- map["accountid"]
+        userphone <- map["userphone"]
+        nickname <- map["nickname"]
+        password <- map["password"]
+        createTime <- map["createTime"]
+        groupid <- map["groupid"]
+        
     }
 
     /**

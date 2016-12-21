@@ -90,12 +90,17 @@ extension FirstViewController : ZHJtableviewDelgate{
             cell = UITableViewCell(style: UITableViewCellStyle.Value2,reuseIdentifier: identifier)
         }
         cell?.textLabel?.text = dataArray[indexPath.row]
-        
-        
+        if indexPath.row == 6{
+            cell?.textLabel?.text = "退出登录"
+        }
         return cell
     }
     func didSelectRowAtIndexPath(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        if indexPath.row == 6{
+            user.state = 0
+            cache.setObject(user, forKey: .User)
+            alert("您以退出登录")
+        }
     }
 }
 //MARK:------- UITableViewDataSource

@@ -86,9 +86,7 @@
 		F28C98591E07D7BC00DACB18 /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C98541E07D7BC00DACB18 /* LoginUser.swift */; };
 		F28C985A1E07D7BC00DACB18 /* MappableBaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C98551E07D7BC00DACB18 /* MappableBaseType.swift */; };
 		F28C985B1E07D7BC00DACB18 /* QNlistData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C98561E07D7BC00DACB18 /* QNlistData.swift */; };
-		F28C985C1E07D7BC00DACB18 /* QNlistItms.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C98571E07D7BC00DACB18 /* QNlistItms.swift */; };
 		F28C985D1E07D7BC00DACB18 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C98581E07D7BC00DACB18 /* User.swift */; };
-		F28C98601E07D81000DACB18 /* UserDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C985F1E07D81000DACB18 /* UserDB.swift */; };
 		F29401DA1D94FD0A00CF582F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29401D91D94FD0A00CF582F /* Log.swift */; };
 		F29401DD1D94FF2C00CF582F /* BaiduLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29401DC1D94FF2C00CF582F /* BaiduLocationManager.swift */; };
 		F29401DF1D94FF6300CF582F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29401DE1D94FF6300CF582F /* Location.swift */; };
@@ -246,9 +244,7 @@
 		F28C98541E07D7BC00DACB18 /* LoginUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUser.swift; sourceTree = "<group>"; };
 		F28C98551E07D7BC00DACB18 /* MappableBaseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappableBaseType.swift; sourceTree = "<group>"; };
 		F28C98561E07D7BC00DACB18 /* QNlistData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNlistData.swift; sourceTree = "<group>"; };
-		F28C98571E07D7BC00DACB18 /* QNlistItms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNlistItms.swift; sourceTree = "<group>"; };
 		F28C98581E07D7BC00DACB18 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		F28C985F1E07D81000DACB18 /* UserDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDB.swift; sourceTree = "<group>"; };
 		F29401D91D94FD0A00CF582F /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		F29401DC1D94FF2C00CF582F /* BaiduLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaiduLocationManager.swift; sourceTree = "<group>"; };
 		F29401DE1D94FF6300CF582F /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -705,7 +701,6 @@
 				F28C98541E07D7BC00DACB18 /* LoginUser.swift */,
 				F28C98551E07D7BC00DACB18 /* MappableBaseType.swift */,
 				F28C98561E07D7BC00DACB18 /* QNlistData.swift */,
-				F28C98571E07D7BC00DACB18 /* QNlistItms.swift */,
 				F28C98581E07D7BC00DACB18 /* User.swift */,
 			);
 			path = Model;
@@ -714,7 +709,6 @@
 		F28C985E1E07D7D800DACB18 /* DB */ = {
 			isa = PBXGroup;
 			children = (
-				F28C985F1E07D81000DACB18 /* UserDB.swift */,
 			);
 			path = DB;
 			sourceTree = "<group>";
@@ -1099,7 +1093,6 @@
 				F26A6A8B1DE6990F00D26107 /* PhotoBrowser+View.swift in Sources */,
 				F21437C21D98EE27000E0CBF /* LDCacheSettings.swift in Sources */,
 				F27F5E581D8641EE00336915 /* CommonFuntion.swift in Sources */,
-				F28C98601E07D81000DACB18 /* UserDB.swift in Sources */,
 				F21437BA1D98EE27000E0CBF /* LDCachable.swift in Sources */,
 				F26A6A7F1DE6990F00D26107 /* PhotoBrowser+CropperViewController.swift in Sources */,
 				F27F5E5A1D8641EE00336915 /* String+Size.swift in Sources */,
@@ -1125,7 +1118,6 @@
 				F25E22E91D9B9A1D00A0F0DA /* AppChatScreenViewController.swift in Sources */,
 				F28C985B1E07D7BC00DACB18 /* QNlistData.swift in Sources */,
 				F27F5E601D8641EE00336915 /* UIView+Toast.swift in Sources */,
-				F28C985C1E07D7BC00DACB18 /* QNlistItms.swift in Sources */,
 				F27F5E5C1D8641EE00336915 /* UIBarItem+Swift.m in Sources */,
 				F21437BC1D98EE27000E0CBF /* LDRealmCache.swift in Sources */,
 				F27AE1FF1D928E09000E0509 /* QdanCollectionViewCell.swift in Sources */,

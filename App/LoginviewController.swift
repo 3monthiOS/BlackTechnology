@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Swiften
 
 enum JxbLoginShowType: Int {
     case JxbLoginShowType_NONE = 0
@@ -32,10 +33,12 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
     
     let transition = JumpAnimationcontroller()
     let logo = SwiftLogoLayer.logoLayer()
+    var userkeyArray = [Dictionary<String,String>]()
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = true
+        getDBuser()
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -121,14 +124,25 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
         txtPwd!.leftView?.addSubview(imgPwd)
         vLogin.addSubview(txtPwd!)
         
-        let registed = UIButton(frame:CGRect(x: 100, y: 145, width: vLogin.frame.size.width - 200, height: 35))
-        registed.addTarget(self, action: #selector(registeredClick), forControlEvents: .TouchUpInside)
+        let registed = UIButton(frame:CGRect(x: 60 + (vLogin.frame.size.width - 120)/5 * 3, y: 145, width:(vLogin.frame.size.width - 120)/5 * 2, height: 35))
+        registed.addTarget(self, action: #selector(registeredClick(_:)), forControlEvents: .TouchUpInside)
         registed.setTitle("注册", forState: .Normal)
         registed.layer.cornerRadius = 5
+        registed.tag = 11
         registed.setTitleColor(UIColor.brownColor(), forState: .Normal)
         registed.layer.borderColor = UIColor.blackColor().CGColor
         registed.layer.borderWidth = SIZE_1PX
         vLogin.addSubview(registed)
+        
+        let loginBtn = UIButton(frame:CGRect(x: 60, y: 145, width: (vLogin.frame.size.width - 120)/5 * 2, height: 35))
+        loginBtn.addTarget(self, action: #selector(registeredClick(_:)), forControlEvents: .TouchUpInside)
+        loginBtn.setTitle("登录", forState: .Normal)
+        loginBtn.layer.cornerRadius = 5
+        loginBtn.tag = 10
+        loginBtn.setTitleColor(UIColor.brownColor(), forState: .Normal)
+        loginBtn.layer.borderColor = UIColor.blackColor().CGColor
+        loginBtn.layer.borderWidth = SIZE_1PX
+        vLogin.addSubview(loginBtn)
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
@@ -171,8 +185,38 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
         self.loginDelegate?.loginSucess(self)
     }
     
-    func registeredClick(){
-        self.navigationController?.pushViewController(RegisteredViewController(), animated: true)
+    func registeredClick(btn: UIButton){
+        if btn.tag == 11{// 注册
+            self.navigationController?.pushViewController(RegisteredViewController(), animated: true)
+        }else{// 登录
+            if !checkMobileReg((txtUser?.text)!){alert("请输入正确的手机号");return}
+            if userkeyArray.count == 0 {
+                alert("新装应用请先注册，才可以使用");return
+            }
+            for item in userkeyArray {
+                if let primaryKey = item["primaryKey"]{
+                    if let user: User = cache.objectForKey(primaryKey){
+                        if user.userphone == txtUser!.text{
+                            if txtPwd?.text == user.password {
+                                user.state = 1
+                                cache.setObject(user, forKey: LDCacheSettings.Key.User)
+                                cache.setObject(user, forKey: primaryKey)
+                                self.loginDelegate?.loginSucess(self)
+                                return
+                            }else{
+                                alert("密码错误");return
+                            }
+                        }
+                    }
+                }
+            }
+            alert("用户不存在")
+        }
+    }
+    func getDBuser(){
+        if let userkeyArray = session.object(forKey: "userkeyArray") as? [Dictionary<String,String>] {
+            self.userkeyArray = userkeyArray
+        }
     }
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)

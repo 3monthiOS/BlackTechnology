@@ -17,6 +17,7 @@ import ObjectMapper
 
 let api = LDApiSettings()
 let cache = LDCacheSettings(manager: LDRealmCache(realm: Realm.sharedRealm))
+var user = User()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -314,7 +315,7 @@ extension AppDelegate: BMKGeneralDelegate, BMKGeoCodeSearchDelegate {
             Log.info("城市：\(locObj.city)")
             // Zip code
             
-            Log.info("BMK ReverseGeoCodeResult: \(result.addressDetail.province) \(result.addressDetail.city) \(result.addressDetail.district) \(result.addressDetail.streetName) \(result.addressDetail.streetNumber)")
+            Log.info("BMK ReverseGeoCodeResult: \(result.addressDetail.province) \(result.addressDetail.city) \(result.addressDetail.district) \(result.addressDetail.streetName) \(result.addressDetail.streetNumber) 商业圈： \(result.businessCircle) 经度：\(result.location.longitude) 维度：\(result.location.latitude) 地址周边POI信息，成员类型为BMKPoiInfo \(result.poiList)")
             
             Log.info("place update: \(locObj.locName ?? "") in \(locObj.city ?? "")")
             locObj.lasttime = NSDate().timestamp
@@ -379,6 +380,12 @@ extension AppDelegate: AppLoginSucessDelegate{
 }
 extension AppDelegate {
     func gotoMainViewController(){
+        user = cache.objectForKey(.User)!
+        if user.state == 1{
+            isok = true
+        }else{
+            isok = false
+        }
         if isok {
             if self.Login != nil{
                 self.Login = nil
