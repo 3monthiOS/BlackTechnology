@@ -106,6 +106,8 @@ class PhotoBrowser {
 		switch (authStatus) {
 		case .NotDetermined:
 			AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo) { (granted) -> Void in
+                
+        
 				async {
 					if granted {
 						completion?()

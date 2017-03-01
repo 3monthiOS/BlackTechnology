@@ -57,6 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Notifications.locationUpdated.addObserver(self, selector: #selector(locationUpdatedNotification(_:)), sender: nil)
         // IQ 键盘
         IQKeyboardManager.sharedManager().enable = true
+        // 运行手机的信息
+        Checktheequipmentinformation()
         // 跳转
         gotoMainViewController()
         return true
@@ -380,12 +382,23 @@ extension AppDelegate: AppLoginSucessDelegate{
 }
 extension AppDelegate {
     func gotoMainViewController(){
-        user = cache.objectForKey(.User)!
-        if user.state == 1{
-            isok = true
+        
+        if let userinfos: LoginUser = cache.objectForKey(.User) {
+            if let number = userinfos.state{
+                if number == 1 {
+                    isok = true
+                }else{
+                    isok = false
+                }
+            }
         }else{
-            isok = false
+            if user.state == 1 {
+                isok = true
+            }else{
+                isok = false
+            }
         }
+        
         if isok {
             if self.Login != nil{
                 self.Login = nil
