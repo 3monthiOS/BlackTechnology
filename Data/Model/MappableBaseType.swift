@@ -19,7 +19,7 @@ class MappableBaseType<T> : Mappable {
         }
     }
     
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         // nothing
     }
 }

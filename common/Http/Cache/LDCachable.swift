@@ -12,13 +12,13 @@ import Foundation
 
 protocol LDCachable {
     
-    func get(key: String) -> LDCacheItem?
-    func set(value: LDCacheItem)
+    func get(_ key: String) -> LDCacheItem?
+    func set(_ value: LDCacheItem)
     
-    func getValue(key: String) -> String?
-    func setValue(value: String, forKey key: String, expires: Double?)
+    func getValue(_ key: String) -> String?
+    func setValue(_ value: String, forKey key: String, expires: Double?)
     
-    func remove(key: String)
+    func remove(_ key: String)
     func clear()
     
 }

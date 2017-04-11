@@ -11,7 +11,7 @@ import Swiften
 
 class BaiduLocationManager {
     
-    private struct Singleton {
+    fileprivate struct Singleton {
         static var running = true
         static var inited = false
         static var allowed = false
@@ -21,24 +21,24 @@ class BaiduLocationManager {
     
     class LocationServiceDelegate: NSObject, BMKLocationServiceDelegate {
         
-        func didUpdateUserHeading(userLocation: BMKUserLocation!) {
+        func didUpdateUserHeading(_ userLocation: BMKUserLocation!) {
             Log.info("BMK: heading is \(userLocation.heading)")
         }
         
-        func didUpdateBMKUserLocation(userLocation: BMKUserLocation!) {
+        func didUpdate(_ userLocation: BMKUserLocation!) {
             let location = userLocation.location
             Log.info("location update: \(location)")
             session.location = location
             Notifications.locationUpdated.post(location)
         }
         
-        func didFailToLocateUserWithError(error: NSError!) {
+        func didFailToLocateUserWithError(_ error: NSError!) {
             Log.error("BMK: \(error)")
         }
     }
     
     class func locationServiceIsEnabledAndAuthorized() -> Bool {
-        return CLLocationManager.locationServicesEnabled() && CLLocationManager.authorizationStatus() != CLAuthorizationStatus.Denied
+        return CLLocationManager.locationServicesEnabled() && CLLocationManager.authorizationStatus() != CLAuthorizationStatus.denied
     }
     
     class func startLocationService(){

@@ -37,7 +37,7 @@ class QNlistData: Mappable {
 
     }
 
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         id <- map["id"]
         marker <- map["marker"]
         commonPrefixes <- map["commonPrefixes"]
@@ -64,7 +64,7 @@ class QNlistItms: Mappable{
         
     }
     
-     func mapping(map: Map) {
+     func mapping(_ map: Map) {
         
         key <- map["key"]
         

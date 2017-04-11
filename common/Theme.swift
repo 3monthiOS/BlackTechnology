@@ -9,39 +9,39 @@
 import UIKit
 
 enum Theme: Int {
-    case Default, Dark, Graphical,whiteColor
+    case `default`, dark, graphical,whiteColor
     
     var mainColor: UIColor {
         switch self {
-        case .Default:
+        case .default:
             return UIColor(red: 210.0/255.0, green: 23.0/255.0, blue: 38.0/255.0, alpha: 1.0)
-        case .Dark:
+        case .dark:
             return UIColor(red: 242.0/255.0, green: 101.0/255.0, blue: 34.0/255.0, alpha: 1.0)
         case .whiteColor:
-            return UIColor.whiteColor()
-        case .Graphical:
+            return UIColor.white
+        case .graphical:
             return UIColor(red: 10.0/255.0, green: 10.0/255.0, blue: 10.0/255.0, alpha: 1.0)
         }
     }
     var controlBarTintColor : UIColor{
         switch self {
-        case .Default:
+        case .default:
             return UIColor(red: 210.0/255.0, green: 23.0/255.0, blue: 38.0/255.0, alpha: 1.0)
-        case .Dark:
+        case .dark:
             return rgb(0xcecece)
-        case .Graphical:
+        case .graphical:
             return rgb(0xcecece)
         case .whiteColor:
-            return UIColor.whiteColor()
+            return UIColor.white
         }
     }
     var controlTintColor : UIColor{
         switch self {
-        case .Default:
-            return UIColor.whiteColor()
-        case .Dark:
+        case .default:
+            return UIColor.white
+        case .dark:
             return rgb(0xcecece)
-        case .Graphical:
+        case .graphical:
             return rgb(0xcecece)
         case .whiteColor:
             return UIColor(red: 210.0/255.0, green: 23.0/255.0, blue: 38.0/255.0, alpha: 1.0)
@@ -49,11 +49,11 @@ enum Theme: Int {
     }
     var controlTitleTextAttributes: UIColor{
         switch self {
-        case .Default:
-            return UIColor.whiteColor()
-        case .Dark:
+        case .default:
+            return UIColor.white
+        case .dark:
             return rgb(0xcecece)
-        case .Graphical:
+        case .graphical:
             return rgb(0xcecece)
         case .whiteColor:
             return UIColor(red: 210.0/255.0, green: 23.0/255.0, blue: 38.0/255.0, alpha: 1.0)
@@ -61,11 +61,11 @@ enum Theme: Int {
     }
     var controlButtonItem: UIColor{
         switch self {
-        case .Default:
-            return UIColor.whiteColor()
-        case .Dark:
+        case .default:
+            return UIColor.white
+        case .dark:
             return rgb(0xcecece)
-        case .Graphical:
+        case .graphical:
             return rgb(0xcecece)
         case .whiteColor:
             return UIColor(red: 210.0/255.0, green: 23.0/255.0, blue: 38.0/255.0, alpha: 1.0)
@@ -74,11 +74,11 @@ enum Theme: Int {
 
     var greyColor : UIColor {
         switch self {
-        case .Default:
+        case .default:
             return rgb(0xcecece)
-        case .Dark:
+        case .dark:
             return rgb(0xcecece)
-        case .Graphical:
+        case .graphical:
             return rgb(0xcecece)
         case .whiteColor:
             return rgb(0xcecece)
@@ -88,11 +88,11 @@ enum Theme: Int {
     
     var inputBgColor : UIColor {
         switch self {
-        case .Default:
+        case .default:
             return rgb(0xe6e6e6)
-        case .Dark:
+        case .dark:
             return rgb(0xe6e6e6)
-        case .Graphical:
+        case .graphical:
             return rgb(0xe6e6e6)
         case .whiteColor:
             return rgb(0xcecece)
@@ -115,23 +115,23 @@ let SelectedThemeKey = "SelectedTheme"
 struct ThemeManager {
     
     static func currentTheme() -> Theme {
-        if let storedTheme = NSUserDefaults.standardUserDefaults().valueForKey(SelectedThemeKey)?.integerValue {
+        if let storedTheme = UserDefaults.standard.value(forKey: SelectedThemeKey)?.intValue {
             return Theme(rawValue: storedTheme)!
         } else {
             return .whiteColor
         }
     }
     
-    static func overrideApplyTheme(theme: Theme) {
+    static func overrideApplyTheme(_ theme: Theme) {
         //        guard let control = UIViewController.topViewController?.navigationController?.navigationBar else{return} 修改某个当前controller的导航样式
-        NSUserDefaults.standardUserDefaults().setValue(theme.rawValue, forKey: SelectedThemeKey)
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.setValue(theme.rawValue, forKey: SelectedThemeKey)
+        UserDefaults.standard.synchronize()
         // global tintColor
-        let sharedApplication = UIApplication.sharedApplication()
-        if theme == .Default{
-            sharedApplication.setStatusBarStyle(.LightContent, animated: true)
+        let sharedApplication = UIApplication.shared
+        if theme == .default{
+            sharedApplication.setStatusBarStyle(.lightContent, animated: true)
         }else{
-            sharedApplication.setStatusBarStyle(.Default, animated: true)
+            sharedApplication.setStatusBarStyle(.default, animated: true)
         }
         sharedApplication.delegate?.window??.tintColor = UIColor(red: 210.0/255.0, green: 23.0/255.0, blue: 38.0/255.0, alpha: 1.0)
         // navbar backgound
@@ -146,31 +146,31 @@ struct ThemeManager {
         //button
         //    UIButton.appearance().tintColor = theme.mainColor
         if #available(iOS 9.0, *) {
-            UIBarButtonItem.appearanceWhenContainedInInstancesOfClasses([UINavigationBar.self]).tintColor = theme.controlButtonItem
+            UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).tintColor = theme.controlButtonItem
             
 //                    UIButton.appearanceWhenContainedInInstancesOfClasses([UIBarButtonItem.self]).tintColor = UIColor.grayColor()
         } else {
             // Fallback on earlier versions
-            UIBarButtonItem.appearanceWhenContainedWithin(UINavigationBar.self).tintColor = theme.controlButtonItem
+            UIBarButtonItem.appearanceWhenContained(within: UINavigationBar.self).tintColor = theme.controlButtonItem
             
             //        UIButton.appearanceWhenContainedWithin(UIBarButtonItem.self).tintColor = UIColor.grayColor()
         }
     //tabar 下边框
-        let rect = CGRectMake(0, 0, App_width, SIZE_1PX);
-        UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.mainScreen().scale)
+        let rect = CGRect(x: 0, y: 0, width: App_width, height: SIZE_1PX);
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.main.scale)
         let context:CGContextRef = UIGraphicsGetCurrentContext()!
-        CGContextSetFillColorWithColor(context, rgb(0xFF5148).CGColor);
-        CGContextFillRect(context, rect);
+        context.setFillColor(rgb(0xFF5148).cgColor);
+        context.fill(rect);
         let img = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         UITabBar.appearance().backgroundImage = UIImage()
         UITabBar.appearance().shadowImage = img
-        UITabBar.appearance().backgroundColor = UIColor.whiteColor()
+        UITabBar.appearance().backgroundColor = UIColor.white
         //导航 下边框
         let nav = UINavigationBar.appearance()
         nav.shadowImage = img
-        nav.setBackgroundImage(UIImage(named: "bar"), forBarMetrics: UIBarMetrics.Default)
-        nav.backgroundColor = UIColor.whiteColor()
+        nav.setBackgroundImage(UIImage(named: "bar"), for: UIBarMetrics.default)
+        nav.backgroundColor = UIColor.white
 
     }
 }

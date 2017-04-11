@@ -14,7 +14,7 @@ import Foundation
 extension UIViewController {
     /// 获取当前显示的 View Controller
     public static var topViewController: UIViewController? {
-        var vc = UIApplication.sharedApplication().keyWindow?.rootViewController
+        var vc = UIApplication.shared.keyWindow?.rootViewController
         
         while true {
             if let nc = vc as? UINavigationController {
@@ -40,33 +40,33 @@ extension UIViewController {
 
 extension UIViewController {
     /// 显示 view controller（根据当前上下文，自动选择 push 或 present 方式）
-    public static func showViewController(controller: UIViewController, animated flag: Bool) {
+    public static func showViewController(_ controller: UIViewController, animated flag: Bool) {
         let topViewController = UIViewController.topViewController
         if let navigationController = topViewController as? UINavigationController {
             navigationController.pushViewController(controller, animated: flag)
         } else if let navigationController = topViewController?.navigationController {
             navigationController.pushViewController(controller, animated: flag)
         } else {
-            topViewController?.presentViewController(controller, animated: flag, completion: nil)
+            topViewController?.present(controller, animated: flag, completion: nil)
         }
     }
     
     /// 显示 view controller（根据当前上下文，自动选择 push 或 present 方式）
-    public func showViewControllerAnimated(animated: Bool) {
+    public func showViewControllerAnimated(_ animated: Bool) {
         UIViewController.showViewController(self, animated: animated)
     }
     
     /// 关闭 view controller（根据当前上下文，自动选择 pop 或 dismiss 方式）
-    public static func closeViewControllerAnimated(animated: Bool) {
+    public static func closeViewControllerAnimated(_ animated: Bool) {
         UIViewController.topViewController?.closeViewControllerAnimated(animated)
     }
     
     /// 关闭 view controller（根据当前上下文，自动选择 pop 或 dismiss 方式）
-    public func closeViewControllerAnimated(animated: Bool) {
+    public func closeViewControllerAnimated(_ animated: Bool) {
         if let controller = navigationController where controller.viewControllers.count > 1 {
-            controller.popViewControllerAnimated(animated)
+            controller.popViewController(animated: animated)
         } else {
-            dismissViewControllerAnimated(animated, completion: nil)
+            dismiss(animated: animated, completion: nil)
         }
     }
 }
@@ -75,7 +75,7 @@ extension UIViewController {
 
 extension UIViewController {
     
-    private struct AssociatedKey {
+    fileprivate struct AssociatedKey {
         static var navigationBarAlpha: CGFloat = 0
     }
     
@@ -85,13 +85,13 @@ extension UIViewController {
     }
     
     /// 设置内容透明度
-    func setNavigationBarAlpha(alpha: CGFloat, animated: Bool) {
+    func setNavigationBarAlpha(_ alpha: CGFloat, animated: Bool) {
         objc_setAssociatedObject(self, &AssociatedKey.navigationBarAlpha, alpha, .OBJC_ASSOCIATION_RETAIN)
         self.updateNavigationBarAlpha(alpha, animated: animated)
     }
     
     /// 根据内容透明度更新UI效果
-    func updateNavigationBarAlpha(alpha: CGFloat? = nil, animated: Bool) {
+    func updateNavigationBarAlpha(_ alpha: CGFloat? = nil, animated: Bool) {
         guard let navigationBar = self.navigationController?.navigationBar else {return}
         
         if animated == true {
@@ -113,18 +113,18 @@ extension UIViewController {
     }
     //MARK:---------导航按钮
     enum BarButtonItemPosition {
-        case Left, Right,Back
+        case left, right,back
     }
-    func createBarButtonItemAtPosition(position: BarButtonItemPosition,Title: String,normalImage: UIImage?, highlightImage: UIImage?, action: Selector?) -> UIBarButtonItem {
-        let button = UIButton(type: .Custom)
+    func createBarButtonItemAtPosition(_ position: BarButtonItemPosition,Title: String,normalImage: UIImage?, highlightImage: UIImage?, action: Selector?) -> UIBarButtonItem {
+        let button = UIButton(type: .custom)
         var buttonImageEDG: UIEdgeInsets
         var buttonTitleEDG: UIEdgeInsets
         switch position {
-        case .Left:
+        case .left:
             buttonImageEDG = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 20)
-        case .Right:
+        case .right:
             buttonImageEDG = UIEdgeInsets(top: 0, left: 13, bottom: 0, right: -13)
-        case .Back:
+        case .back:
             buttonImageEDG = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 60)
             buttonTitleEDG = UIEdgeInsets(top: 0, left: -45, bottom: 0, right: -15)
             button.titleEdgeInsets = buttonTitleEDG
@@ -132,23 +132,23 @@ extension UIViewController {
         button.imageEdgeInsets = buttonImageEDG
         button.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
         if let selector = action {
-            button.addTarget(self, action: selector, forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: selector, for: .touchUpInside)
         }
         if let image = normalImage {
-            button.setImage(image, forState: .Normal)
+            button.setImage(image, for: UIControlState())
         }
         if let image = highlightImage {
-            button.setImage(image, forState: .Highlighted)
+            button.setImage(image, for: .highlighted)
         }
-        button.setTitle(Title, forState: .Normal)
-        button.setTitleColor(ThemeManager.currentTheme().controlButtonItem, forState: .Normal)
+        button.setTitle(Title, for: UIControlState())
+        button.setTitleColor(ThemeManager.currentTheme().controlButtonItem, for: UIControlState())
         let barButtonItem = UIBarButtonItem(customView: button)
         switch position {
-        case .Left:
+        case .left:
             navigationItem.leftBarButtonItem = barButtonItem
-        case .Right:
+        case .right:
             navigationItem.rightBarButtonItem = barButtonItem
-        case .Back:
+        case .back:
             navigationItem.backBarButtonItem = barButtonItem
         }
         return barButtonItem

@@ -15,35 +15,35 @@ import SwiftyJSON
  */
 struct QNUtils {
     enum ResourceType : Int {
-        case Image = 1
-        case Video = 2
-        case LiveVideo = 3
+        case image = 1
+        case video = 2
+        case liveVideo = 3
     }
     
     enum UploadResult {
-        case Success(url: String, response: [NSObject: AnyObject]?, info: QNResponseInfo!)
-        case Failure(error: NSError?)
+        case success(url: String, response: [AnyHashable: Any]?, info: QNResponseInfo!)
+        case failure(error: NSError?)
     }
     
     static let qiniuTokenFormator = "{ \"key\":$(key), \"mimeType\":$(mimeType), \"bucket\":$(bucket), \"name\":$(fname),\"size\":$(fsize),\"w\":$(imageInfo.width),\"h\":$(imageInfo.height),\"hash\":$(etag)}"
     
-    static func getHost(resourceType: ResourceType) -> String {
+    static func getHost(_ resourceType: ResourceType) -> String {
         switch resourceType {
-        case .Image:
+        case .image:
             return QINIU_URL_STATIC
-        case .Video, .LiveVideo:
+        case .video, .liveVideo:
             return QINIU_URL_MEDIA
         }
     }
     
-    static func keyForImage(image: UIImage) -> String? {
+    static func keyForImage(_ image: UIImage) -> String? {
         let uid = "sangexiaoheshang"
-        return "\(uid)\(String(Int(NSDate().timeIntervalSince1970)))\(image.contentType.extendName)"
+        return "\(uid)\(String(Int(Date().timeIntervalSince1970)))\(image.contentType.extendName)"
     }
     
     static func keyForVideo() -> String? {
          let uid = "sangexiaoheshang"
-        return "\(uid)\(String(Int(NSDate().timeIntervalSince1970))).mp4"
+        return "\(uid)\(String(Int(Date().timeIntervalSince1970))).mp4"
     }
     
     static func getlistdata(){
@@ -69,14 +69,14 @@ struct QNUtils {
 //            <#code#>
 //        }
     }
-    static func putData(data: NSData, withKey key: String, token: String,resourceType: ResourceType, isQuiet: Bool = false,completion: (UploadResult) -> Void) {
+    static func putData(_ data: Data, withKey key: String, token: String,resourceType: ResourceType, isQuiet: Bool = false,completion: (UploadResult) -> Void) {
         let config = QNConfiguration.build { (builder: QNConfigurationBuilder!) in
             builder.setZone(QNZone.zone0())
         }
         let uploadManager = QNUploadManager(configuration: config)
         
         Log.info("QiNiu: put data (token=\(token), key=\(key), type=\(resourceType.rawValue))")
-        uploadManager.putData(data, key: key, token: token, complete: {
+        uploadManager.put(data, key: key, token: token, complete: {
             (info, key, resp) in
             if info.statusCode == 200 {
                 //上传完毕
@@ -84,7 +84,7 @@ struct QNUtils {
                     let qiniuUrl = getHost(resourceType)
                     let url = "\(qiniuUrl)\(respKey)"
                     Log.info("QiNiu: put data success (\(url))")
-                    completion(.Success(url: url, response: resp, info: info))
+                    completion(.success(url: url, response: resp, info: info))
                     return
                 }
             }else if info.statusCode == 401{
@@ -94,7 +94,7 @@ struct QNUtils {
                 alert("token错误,请检查你的证书秘钥")
             }
             Log.error("QiNiu: put data failure (\(info.error))")
-            completion(.Failure(error: info.error))
+            completion(.failure(error: info.error))
             
             }, option: nil)
     }
@@ -103,8 +103,8 @@ struct QNUtils {
         //http://rsf.qbox.me/list?bucket=zhj1214
         let accessKey = "faXFztmwdVEgWAVRM4Q7KQJYh85yBX3MjliJt6YJ", secretKey = "76tJyg9XLZ1p1z62eAgxyjifh4_kW8Rr_kPleKQo"
         let signingStr = "/list?\nbucket=zhj1214&limit=20"
-        let sign = signingStr.hmacData(.SHA1, key: secretKey)
-        let encodedSigned = QN_GTM_Base64.stringByWebSafeEncodingData(sign, padded: true)
+        let sign = signingStr.hmacData(.sha1, key: secretKey)
+        let encodedSigned = QN_GTM_Base64.string(byWebSafeEncoding: sign, padded: true)
         let accesstoken = "\(accessKey):\(encodedSigned)"
         Log.info("最后的key___      \(accesstoken)")
         return accesstoken
@@ -128,23 +128,23 @@ struct QNUtils {
     #最终的管理凭证是：
     accessToken = "MY_ACCESS_KEY:FXsYh0wKHYPEsIAgdPD9OfjkeEM="
      */
-    static func generateToken(overdue: Bool = false) -> String{
+    static func generateToken(_ overdue: Bool = false) -> String{
         let accessKey = "faXFztmwdVEgWAVRM4Q7KQJYh85yBX3MjliJt6YJ", secretKey = "76tJyg9XLZ1p1z62eAgxyjifh4_kW8Rr_kPleKQo" , bucketName = "zhj1214"
         
 //        let userdefaults = NSUserDefaults.standardUserDefaults()
         if overdue {
-            let deadline = NSDate().timeIntervalSince1970
+            let deadline = Date().timeIntervalSince1970
             print(deadline)
             print(Int(deadline))
             let json = "{\"scope\":\"\(bucketName)\",\"deadline\":\(Int(deadline) + 36000)}"
             // MARK: - 过滤指定字符串   里面的指定字符根据自己的需要添加
                     print("将上传策略序列化成为json格式:\(json)")
-            let policyData = json.dataUsingEncoding(NSUTF8StringEncoding)
-            let encodedPolicy = QN_GTM_Base64.stringByWebSafeEncodingData(policyData, padded: true)
+            let policyData = json.data(using: String.Encoding.utf8)
+            let encodedPolicy = QN_GTM_Base64.string(byWebSafeEncoding: policyData, padded: true)
                     print("对json序列化后的上传策略进行URL安全的Base64编码,得到如下encoded:\(encodedPolicy)")
             
-            let hmacData = encodedPolicy.hmacData(.SHA1, key: secretKey)
-            let encodedSigned = QN_GTM_Base64.stringByWebSafeEncodingData(hmacData, padded: true)
+            let hmacData = encodedPolicy.hmacData(.sha1, key: secretKey)
+            let encodedSigned = QN_GTM_Base64.string(byWebSafeEncoding: hmacData, padded: true)
             let token = "\(accessKey):\(encodedSigned!):\(encodedPolicy)"
 //            userdefaults.setObject(token, forKey: "QNtoken")
             session.setObject(token, forKey: "QNtoken")

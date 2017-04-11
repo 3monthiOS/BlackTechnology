@@ -9,13 +9,13 @@
 import UIKit
 
 protocol ZHJtableviewDelgate {
-    func bindCellData(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell?
-    func didSelectRowAtIndexPath(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
-    func bindtableViewRefresh(tableView: TableViewMjResh, refreshDataWithType refreshType: TableViewMjResh.RefreshType)
+    func bindCellData(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell?
+    func didSelectRowAtIndexPath(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath)
+    func bindtableViewRefresh(_ tableView: TableViewMjResh, refreshDataWithType refreshType: TableViewMjResh.RefreshType)
 }
 @objc protocol ZHJtableviewDataSource {
-    optional func bindHeaderView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
-    optional func bindFooterView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView?
+    optional func bindHeaderView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
+    optional func bindFooterView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView?
 }
 class ZHJtableview: TableViewMjResh {
 
@@ -42,7 +42,7 @@ class ZHJtableview: TableViewMjResh {
         self.delegate = self
         self.refreshTableDelegate = self
     }
-    func initMjrefresh(isok: [Bool]){
+    func initMjrefresh(_ isok: [Bool]){
         self.noDataNotice = "无数据可加载"
         self.configRefreshable(headerEnabled: isok[0], footerEnabled: isok[1])
     }
@@ -56,7 +56,7 @@ class ZHJtableview: TableViewMjResh {
 }
 //MARK:------- MJ
 extension ZHJtableview : MJTableViewRefreshDelegate{
-    func tableView(tableView: TableViewMjResh, refreshDataWithType refreshType: TableViewMjResh.RefreshType) {
+    func tableView(_ tableView: TableViewMjResh, refreshDataWithType refreshType: TableViewMjResh.RefreshType) {
         delgate?.bindtableViewRefresh(tableView, refreshDataWithType: refreshType)
     }
 }
@@ -64,23 +64,23 @@ extension ZHJtableview : MJTableViewRefreshDelegate{
 //MARK:------- UITableViewDataSource
 extension ZHJtableview: UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableveiwData!.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return (delgate?.bindCellData(tableView, cellForRowAtIndexPath: indexPath))!
     }
 }
 //MARK:------- UITableViewDelegate
 extension ZHJtableview: UITableViewDelegate{
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {//选中哪一行
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {//选中哪一行
+        tableView.deselectRow(at: indexPath, animated: false)
         delgate?.didSelectRowAtIndexPath(tableView, didSelectRowAtIndexPath: indexPath)
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let heagerview = dataSources?.bindHeaderView?(tableView, viewForHeaderInSection: section){
             return heagerview
         }else{
@@ -89,22 +89,22 @@ extension ZHJtableview: UITableViewDelegate{
             return view
         }
     }
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return heraerViewheight
     }
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if let footerview = dataSources?.bindFooterView?(tableView, viewForFooterInSection: section){
             return footerview
         }else{
             let view =  UIView()
-            view.backgroundColor? = UIColor.redColor()
+            view.backgroundColor? = UIColor.red
             return view
         }
     }
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return footerViewheight
     }
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return canEditRow
     }
     //    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {

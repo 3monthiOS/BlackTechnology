@@ -10,25 +10,25 @@ import Foundation
 import UIKit
 
 enum Animations: Int {
-    case Fade = 0                               //淡入淡出
-    case Push = 1                               //推挤
-    case Reveal = 2                             //揭开
-    case MoveIn = 3                             //覆盖
-    case Cube = 4                               //立方体
-    case SuckEffect = 5                         //吮吸
-    case OglFlip = 6                            //翻转
-    case RippleEffect = 7                       //波纹
-    case PageCurl = 8                           //翻页
-    case PageUnCurl = 9                         //反翻页
-    case CameraIrisHollowOpen = 10              //开镜头
-    case CameraIrisHollowClose = 11             //关镜头
-    case CurlDown = 12                          //上翻页
-    case CurlUp = 13                            //下翻页
-    case FlipFromLeft = 14                      //左翻转
-    case FlipFromRight = 15                     //右翻转
+    case fade = 0                               //淡入淡出
+    case push = 1                               //推挤
+    case reveal = 2                             //揭开
+    case moveIn = 3                             //覆盖
+    case cube = 4                               //立方体
+    case suckEffect = 5                         //吮吸
+    case oglFlip = 6                            //翻转
+    case rippleEffect = 7                       //波纹
+    case pageCurl = 8                           //翻页
+    case pageUnCurl = 9                         //反翻页
+    case cameraIrisHollowOpen = 10              //开镜头
+    case cameraIrisHollowClose = 11             //关镜头
+    case curlDown = 12                          //上翻页
+    case curlUp = 13                            //下翻页
+    case flipFromLeft = 14                      //左翻转
+    case flipFromRight = 15                     //右翻转
 }
 
-func specialAnimation(AnimationType: Animations,Direction: String,CurrentVc: UIViewController,ForVc: UIViewController,isJump: Bool) {
+func specialAnimation(_ AnimationType: Animations,Direction: String,CurrentVc: UIViewController,ForVc: UIViewController,isJump: Bool) {
     var direction = ""
     switch Direction {
     case "left":
@@ -43,43 +43,43 @@ func specialAnimation(AnimationType: Animations,Direction: String,CurrentVc: UIV
         direction = kCATransitionFromLeft
     }
     switch AnimationType {
-    case .Fade:
+    case .fade:
         transitionWithType(kCATransitionFade, WithSubtype: direction,CurrentVC: CurrentVc.view, ForVC: ForVc,isjump: isJump)
-    case .Push:
+    case .push:
         transitionWithType(kCATransitionPush, WithSubtype: direction, CurrentVC: CurrentVc.view, ForVC: ForVc,isjump: isJump)
-    case .Reveal:
+    case .reveal:
         transitionWithType(kCATransitionReveal, WithSubtype: direction, CurrentVC: CurrentVc.view, ForVC: ForVc,isjump: isJump)
-    case .MoveIn:
+    case .moveIn:
         transitionWithType(kCATransitionMoveIn, WithSubtype: direction, CurrentVC: CurrentVc.view, ForVC: ForVc,isjump: isJump)
-    case .Cube:
+    case .cube:
         transitionWithType("cube", WithSubtype: direction, CurrentVC: CurrentVc.view, ForVC: ForVc,isjump: isJump)
-    case .SuckEffect:
+    case .suckEffect:
         transitionWithType("suckEffect", WithSubtype: direction, CurrentVC: CurrentVc.view, ForVC: ForVc,isjump: isJump)
-    case .OglFlip:
+    case .oglFlip:
         transitionWithType("oglFlip", WithSubtype: direction,CurrentVC: CurrentVc.view, ForVC: ForVc,isjump: isJump)
-    case .RippleEffect:
+    case .rippleEffect:
         transitionWithType("rippleEffect", WithSubtype: direction,CurrentVC: CurrentVc.view, ForVC: ForVc,isjump: isJump)
-    case .PageCurl:
+    case .pageCurl:
         transitionWithType("pageCurl", WithSubtype: direction, CurrentVC: CurrentVc.view, ForVC: ForVc,isjump: isJump)
-    case .PageUnCurl:
+    case .pageUnCurl:
         transitionWithType("pageUnCurl", WithSubtype: direction,CurrentVC: CurrentVc.view, ForVC: ForVc,isjump: isJump)
-    case .CameraIrisHollowOpen:
+    case .cameraIrisHollowOpen:
         transitionWithType("cameraIrisHollowOpen", WithSubtype:direction, CurrentVC: CurrentVc.view, ForVC: ForVc,isjump: isJump)
-    case .CameraIrisHollowClose:
+    case .cameraIrisHollowClose:
         transitionWithType("cameraIrisHollowClose", WithSubtype: direction, CurrentVC: CurrentVc.view, ForVC: ForVc,isjump: isJump)
-    case .CurlDown:
-        animationWithView(CurrentVc.view, transition: UIViewAnimationTransition.CurlDown,Forview: ForVc,isjump: isJump)
-    case .CurlUp:
-        animationWithView(CurrentVc.view, transition: UIViewAnimationTransition.CurlUp,Forview: ForVc,isjump: isJump)
-    case .FlipFromLeft:
-        animationWithView(CurrentVc.view, transition: UIViewAnimationTransition.FlipFromLeft,Forview: ForVc,isjump: isJump)
-    case .FlipFromRight:
-        animationWithView(CurrentVc.view, transition: UIViewAnimationTransition.FlipFromRight,Forview: ForVc,isjump: isJump)
+    case .curlDown:
+        animationWithView(CurrentVc.view, transition: UIViewAnimationTransition.curlDown,Forview: ForVc,isjump: isJump)
+    case .curlUp:
+        animationWithView(CurrentVc.view, transition: UIViewAnimationTransition.curlUp,Forview: ForVc,isjump: isJump)
+    case .flipFromLeft:
+        animationWithView(CurrentVc.view, transition: UIViewAnimationTransition.flipFromLeft,Forview: ForVc,isjump: isJump)
+    case .flipFromRight:
+        animationWithView(CurrentVc.view, transition: UIViewAnimationTransition.flipFromRight,Forview: ForVc,isjump: isJump)
     }
 }
 
 //MARK:--------CATransition动画实现
-func transitionWithType(Jumptype: String,WithSubtype: String,CurrentVC: UIView,ForVC: UIViewController,isjump:Bool) {
+func transitionWithType(_ Jumptype: String,WithSubtype: String,CurrentVC: UIView,ForVC: UIViewController,isjump:Bool) {
     //创建CATransition对象
     let animation = CATransition()
     //设置运动时间
@@ -94,21 +94,21 @@ func transitionWithType(Jumptype: String,WithSubtype: String,CurrentVC: UIView,F
     //设置运动速度 默认就是线性运动
     animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
     //添加动画
-    CurrentVC.layer.addAnimation(animation, forKey: "animation\(arc4random()%100)")
+    CurrentVC.layer.add(animation, forKey: "animation\(arc4random()%100)")
     if isjump {
         UIViewController.showViewController(ForVC, animated: false)
     }
 }
 //MARK:--------UIView实现动画
-func animationWithView(view: UIView,transition: UIViewAnimationTransition,Forview: UIViewController,isjump:Bool) {
-    UIView.animateWithDuration(0.7, animations: {
-        UIView.setAnimationCurve(UIViewAnimationCurve.EaseOut)
-        UIView.setAnimationTransition(transition, forView: view, cache: true)
-    }) { (isOK) in
+func animationWithView(_ view: UIView,transition: UIViewAnimationTransition,Forview: UIViewController,isjump:Bool) {
+    UIView.animate(withDuration: 0.7, animations: {
+        UIView.setAnimationCurve(UIViewAnimationCurve.easeOut)
+        UIView.setAnimationTransition(transition, for: view, cache: true)
+    }, completion: { (isOK) in
         if isjump {
             UIViewController.showViewController(Forview, animated: false)
         }
-    }
+    }) 
 }
 
 

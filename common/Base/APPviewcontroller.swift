@@ -13,10 +13,10 @@ class APPviewcontroller: UIViewController {
         super.viewDidLoad()
         self.setupSubviews()
         self.loadData()
-        self.edgesForExtendedLayout = .Top      //向上延伸
+        self.edgesForExtendedLayout = .top      //向上延伸
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
 //        self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -26,7 +26,7 @@ class APPviewcontroller: UIViewController {
 //        MobClick.beginLogPageView(pageId)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         let pageId = String(self.classForCoder)

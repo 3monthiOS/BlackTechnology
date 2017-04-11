@@ -13,7 +13,7 @@ import Swiften
 class NetworkManager {
     static let sharedInstace = NetworkManager()
     
-    static let cookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+    static let cookieStorage = HTTPCookieStorage.shared
     
     static func initNetworkManager() {
         URLCache.activate()
@@ -21,13 +21,13 @@ class NetworkManager {
         var headers = Alamofire.Manager.defaultHTTPHeaders
         headers["Cache-Control"] = "private"
         
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 15 // 网络超时时间
         configuration.HTTPAdditionalHeaders = headers
         configuration.HTTPAdditionalHeaders!["User-Agent"] = WebView.userAgent
-        configuration.HTTPCookieStorage = cookieStorage
+        configuration.httpCookieStorage = cookieStorage
         configuration.URLCache = URLCache.sharedURLCache()
-        configuration.requestCachePolicy = .ReturnCacheDataElseLoad
+        configuration.requestCachePolicy = .returnCacheDataElseLoad
         
         let manager = Alamofire.Manager(configuration: configuration)
         

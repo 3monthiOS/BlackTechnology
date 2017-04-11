@@ -24,7 +24,7 @@ class DownloadfileView: UIViewController {
         directory: .DocumentDirectory, domain: .UserDomainMask)
     
     //用于停止下载时，保存已下载的部分
-    var cancelledData: NSData?
+    var cancelledData: Data?
     
     //下载请求对象
     var downloadRequest: Request!
@@ -43,20 +43,20 @@ class DownloadfileView: UIViewController {
     }
     
     //下载过程中改变进度条
-    func downloadProgress(bytesRead: Int64, totalBytesRead: Int64,
+    func downloadProgress(_ bytesRead: Int64, totalBytesRead: Int64,
                           totalBytesExpectedToRead: Int64) {
         let percent = Float(totalBytesRead)/Float(totalBytesExpectedToRead)
         
         //进度条更新
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             self.progress.setProgress(percent,animated:true)
         })
         print("当前进度：\(percent*100)%")
     }
     
     //下载停止响应（不管成功或者失败）
-    func downloadResponse(request: NSURLRequest?, response: NSHTTPURLResponse?,
-                          data: NSData?, error:NSError?) {
+    func downloadResponse(_ request: URLRequest?, response: HTTPURLResponse?,
+                          data: Data?, error:NSError?) {
         if let error = error {
             if error.code == NSURLErrorCancelled {
                 self.cancelledData = data //意外终止的话，把已下载的数据储存起来
@@ -69,14 +69,14 @@ class DownloadfileView: UIViewController {
     }
     
     //停止按钮点击
-    @IBAction func stopBtnClick(sender: AnyObject) {
+    @IBAction func stopBtnClick(_ sender: AnyObject) {
         self.downloadRequest?.cancel()
-        self.stopBtn.enabled = false
-        self.continueBtn.enabled = true
+        self.stopBtn.isEnabled = false
+        self.continueBtn.isEnabled = true
     }
     
     //继续按钮点击
-    @IBAction func continueBtnClick(sender: AnyObject) {
+    @IBAction func continueBtnClick(_ sender: AnyObject) {
         if let cancelledData = self.cancelledData {
             self.downloadRequest = Alamofire.download(resumeData: cancelledData,
                                                       destination: destination)
@@ -85,8 +85,8 @@ class DownloadfileView: UIViewController {
             
             self.downloadRequest.response(completionHandler: downloadResponse) //下载停止响应
             
-            self.stopBtn.enabled = true
-            self.continueBtn.enabled = false
+            self.stopBtn.isEnabled = true
+            self.continueBtn.isEnabled = false
         }
     }
 

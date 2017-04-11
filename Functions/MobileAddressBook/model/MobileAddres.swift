@@ -40,7 +40,7 @@ class MobileAddress: Mappable {
 
 	}
 
-	func mapping(map: Map) {
+	func mapping(_ map: Map) {
 
 		Email <- map["Email"]
 
@@ -79,7 +79,7 @@ class MobileRecommend: Mappable {
 
 	}
 
-	func mapping(map: Map) {
+	func mapping(_ map: Map) {
         
         total <- map["total"]
         list <- map["list"]
@@ -113,7 +113,7 @@ class MobileAddresObject: Mappable {
         
     }
     
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         
         Email <- map["Email"]
         

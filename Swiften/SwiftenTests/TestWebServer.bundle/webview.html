@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<meta name=apple-mobile-web-app-capable content=yes>
+	<meta name=format-detection content="telephone=no, email=no">
+	<meta name=viewport content="width=device-width,user-scalable=no">
+	<title>WebView Test</title>
+	<style type=text/css>
+		.field {
+			margin-bottom: 1em;
+			line-height: 1.5em;
+		}
+		.field > label {
+			font-weight: bold;
+			padding: 0 0.5em;
+			color: #fff;
+			background-color: green;
+			border-radius: 0.25em
+		}
+		.result {
+			display: block;
+			background-color: #ddd;
+			border-radius: 0.25em;
+			padding: 0.25em 0.5em;
+			overflow: auto;
+  		-webkit-overflow-scrolling: touch;
+  		max-height: 100px;
+		}
+		.hide {
+			display: none;
+		}
+		button {
+			line-height: 2em;
+			background-color: #bbbbff;
+			color: #333;
+			border: 0.0625em solid #333;
+			border-radius: 0.25em;
+		}
+		button:active {
+			background-color: #9999ff;
+		}
+	</style>
+<body>
+	<div class="field">
+		<label>User Agent</label>
+		<span id="user-agent"></span>
+	</div>
+	<div>
+		<button id="btn-get-app-version">Get App Version</button>
+		<pre id="get-app-version" class="result hide"></pre>
+	</div>
+
+	<script type="text/javascript">
+	var $ = function(id) { return document.getElementById(id) }
+	$('user-agent').textContent = navigator.userAgent
+	$('btn-get-app-version').addEventListener('click', function(event) {
+		clearResult('get-app-version')
+		call('getAppVersion', {
+			complete: function(result) {
+				setResult('get-app-version', result)
+			}
+		})
+	})
+	
+	
+	var sdk = window.webkit && webkit.messageHandlers && webkit.messageHandlers.WEBVIEWSERVICE
+	function clearResult(name) {
+		var el = $(name)
+		el.textContent = ""
+		el.className = el.className.replace(/\bhide\b/, '') + ' hide'
+	}
+	function setResult(name, text) {
+		var el = $(name)
+		el.textContent = JSON.stringify(text, null, 2)
+		el.className = el.className.replace(/\bhide\b/, '')
+	}
+	function call(name, options) {
+		for (var key in options) {
+			var value = options[key]
+			if (typeof value == 'function') {
+				options[key] = createCallback(value)
+			}
+		}
+		options['@NAME'] = name
+		sdk.postMessage(JSON.stringify(options))
+	}
+	var counter = 0
+	function createCallback(fn) {
+    var name = 'CB' + (counter++)
+    window[name] = fn
+    return name
+  }
+	</script>

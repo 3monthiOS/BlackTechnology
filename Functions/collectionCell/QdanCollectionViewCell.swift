@@ -18,33 +18,33 @@ class QdanCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var btn: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    var index: NSIndexPath?
+    var index: IndexPath?
     override func awakeFromNib() {
         super.awakeFromNib()
       self.clipsToBounds = false
       self.layer.cornerRadius = 5
-      self.layer.shadowOffset = CGSizeMake(0, SIZE_1PX)
-      self.layer.shadowColor = rgb(0,0,0).colorWithAlphaComponent(0.25).CGColor
+      self.layer.shadowOffset = CGSize(width: 0, height: SIZE_1PX)
+      self.layer.shadowColor = rgb(0,0,0).withAlphaComponent(0.25).cgColor
       self.layer.shadowRadius = SIZE_1PX
       self.layer.shadowOpacity = 1
-      self.backgroundColor = UIColor.whiteColor()
+      self.backgroundColor = UIColor.white
       
         initButtonUI(btn)
-        btn.contentMode = .ScaleAspectFill
+        btn.contentMode = .scaleAspectFill
     }
     
-    func bindData(imageName: [String],functionTitle: [String], atIndex indexPath: NSIndexPath) {
+    func bindData(_ imageName: [String],functionTitle: [String], atIndex indexPath: IndexPath) {
         btn.image = UIImage(named:"加载失败")
         index = indexPath
         let imagename = imageName[(index?.row)!]
-        btn.contentMode = .ScaleAspectFill
+        btn.contentMode = .scaleAspectFill
         self.titleLabel.text = functionTitle[(self.index?.row)!]
         async {
             if !imagename.isEmpty{
-                if let str = imagename.componentsSeparatedByString("/").last{
+                if let str = imagename.components(separatedBy: "/").last{
                     locationfileiscache(str, complate: { (callback) in
                         if !callback.isEmpty{
-                            guard let imageData = NSData(contentsOfFile: callback) else {return}
+                            guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}
                             self.btn.image = UIImage.gifWithData(imageData)
                         }else{
                             Log.info("我没有找到：————————\(str)")
@@ -64,7 +64,7 @@ class QdanCollectionViewCell: UICollectionViewCell {
             }
         }
     }
-    func initButtonUI(btn: UIImageView) {
+    func initButtonUI(_ btn: UIImageView) {
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 3
     }

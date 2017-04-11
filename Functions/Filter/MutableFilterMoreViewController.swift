@@ -26,11 +26,11 @@ class MutableFilterMoreViewController: UIViewController {
       
     }
 
-  @IBAction func originalImgClick(sender: UIButton) {
+  @IBAction func originalImgClick(_ sender: UIButton) {
     upImgView.image = originalImage
     
   }
-  @IBAction func useFilterClick(sender: UIButton) {
+  @IBAction func useFilterClick(_ sender: UIButton) {
     debugPrint("test git push without ssh")
 //    let cubeMap = creat(UnsafePointer(bitPattern: 60), 90)
 

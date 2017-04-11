@@ -17,8 +17,8 @@ class uploadPicturesView: UIViewController {
     @IBOutlet weak var uploadBtn: UIButton!
     
     //
-    private var avatarKey = "key"
-    private var avatarData : NSData?
+    fileprivate var avatarKey = "key"
+    fileprivate var avatarData : Data?
     var user: User?
     var imageUrlData: [String] = []{
         willSet{
@@ -32,37 +32,37 @@ class uploadPicturesView: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        showImageview.contentMode = .ScaleAspectFill
+        showImageview.contentMode = .scaleAspectFill
         showImageview.layer.masksToBounds = true
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func chouse(sender: AnyObject) {
+    @IBAction func chouse(_ sender: AnyObject) {
         self.photobrowserAction(8)
     }
-    @IBAction func camera(sender: AnyObject) {
+    @IBAction func camera(_ sender: AnyObject) {
         self.photobrowserAction(7)
     }
     
-    @IBAction func uploadimage(sender: AnyObject) {
+    @IBAction func uploadimage(_ sender: AnyObject) {
         let token = QNUtils.generateToken()
         if let data = avatarData {
             let key = avatarKey
-            QNUtils.putData(data, withKey: key, token: token, resourceType: .Image) { (result) in
+            QNUtils.putData(data, withKey: key, token: token, resourceType: .image) { (result) in
                 switch result {
-                case .Success(let url, _, _):
+                case .success(let url, _, _):
                     //更新用户表
                     Log.error("上传成功\(url)")
                     self.text.text = url
                     self.imageUrlData.append(url)
                     self.saveUpdata("funcationupdateimageUrlData", value: self.imageUrlData)
-                case .Failure( _):
+                case .failure( _):
                     Log.error("上传头像失败")
                 }
             }
         }
     }
-    func saveUpdata(key: String,value: [String]){
+    func saveUpdata(_ key: String,value: [String]){
         if !key.isEmpty{
             if !value.isEmpty{
                 if session.object(forKey: key) != nil{
@@ -80,7 +80,7 @@ class uploadPicturesView: UIViewController {
 }
 
 extension uploadPicturesView: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,PhotoBrowserDataSource{
-    func photobrowserAction(index: Int) {
+    func photobrowserAction(_ index: Int) {
         let photo = SystemPhotoAlbum()
         photo.albumDeleagte = self
         switch index {
@@ -94,7 +94,7 @@ extension uploadPicturesView: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,Phot
         }
     }
     
-    func getImageSucessful(image: UIImage) {
+    func getImageSucessful(_ image: UIImage) {
         Log.info("有——图片")
         let imageSize = CGSize(width: image.size.width,height: image.size.height)
         let iamgeData = image.af_imageScaledToSize(imageSize)
@@ -109,15 +109,15 @@ extension uploadPicturesView: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,Phot
         showImageview.image = image
     }
     
-    func photoBrowser(photoBrowser: PhotoBrowser.PreviewController, photoModelAtIndex index: Int) -> PhotoBrowser.Model {
+    func photoBrowser(_ photoBrowser: PhotoBrowser.PreviewController, photoModelAtIndex index: Int) -> PhotoBrowser.Model {
         let url = imageUrlArray[index]
         var img : UIImage?
         // 网络图片
         if !url.isEmpty{
-            if let str = url.componentsSeparatedByString("/").last{
+            if let str = url.components(separatedBy: "/").last{
                 locationfileiscache(str, complate: { (callback) in
                     if !callback.isEmpty{
-                        guard let imageData = NSData(contentsOfFile: callback) else {return}
+                        guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}
                         img = UIImage.gifWithData(imageData)!
                     }else{
                         //                        Log.info("我没有找到：————————\(str)")
@@ -128,23 +128,23 @@ extension uploadPicturesView: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,Phot
         }
         // 本地图片
         var image = UIImage()
-        let data = NSData(contentsOfFile: url)
+        let data = try? Data(contentsOf: URL(fileURLWithPath: url))
         if data == nil {
             image = UIImage(named: "chat_image_load_failed")!
         }else{
             image = UIImage(data: data!)!
         }
         if let img = img {
-            return PhotoBrowser.Model.Image(image: img)
+            return PhotoBrowser.Model.image(image: img)
         }
-        return PhotoBrowser.Model.Image(image: image)
+        return PhotoBrowser.Model.image(image: image)
     }
     
-    func numberOfPhotosInPhotoBrowser(photoBrowser: PhotoBrowser.PreviewController) -> Int {
+    func numberOfPhotosInPhotoBrowser(_ photoBrowser: PhotoBrowser.PreviewController) -> Int {
         return imageUrlArray.count ?? 0
     }
     
-    func photoBrowser(viewController: UIViewController, didSelect selection: PhotoBrowser.Selection) {
+    func photoBrowser(_ viewController: UIViewController, didSelect selection: PhotoBrowser.Selection) {
         selection.getImage { (image) in
             if image != nil {
                 Log.info("有——图片")

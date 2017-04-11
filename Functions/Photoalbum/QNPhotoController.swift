@@ -17,7 +17,7 @@ class QNPhotoController: UIViewController {
     @IBOutlet weak var photocollectionview: CollectionMjResh!
     
     var imageUrldt: [String]?
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         //        viewWillAppear(animated)
         if let url = session.object(forKey: "funcationupdateimageUrlData"){
             imageUrldt = url as? [String]
@@ -42,10 +42,10 @@ class QNPhotoController: UIViewController {
         self.view.backgroundColor = rgb(242,245,249)
         
         //注册一个cell
-        photocollectionview.registerNib(UINib(nibName: "QNCollectionViewCell",bundle: nil), forCellWithReuseIdentifier: "cell")
+        photocollectionview.register(UINib(nibName: "QNCollectionViewCell",bundle: nil), forCellWithReuseIdentifier: "cell")
         //注册一个headView
-        photocollectionview.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind:UICollectionElementKindSectionHeader, withReuseIdentifier: "headView")
-        photocollectionview.registerNib(UINib(nibName: "CollectionReusableHeadre",bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footerView")
+        photocollectionview.register(UICollectionReusableView.self, forSupplementaryViewOfKind:UICollectionElementKindSectionHeader, withReuseIdentifier: "headView")
+        photocollectionview.register(UINib(nibName: "CollectionReusableHeadre",bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footerView")
         
         //        layout.headerReferenceSize = CGSizeZero //CGSizeMake(App_width,44)
         //        layout.footerReferenceSize = CGSizeZero //CGSizeMake(App_width,80)
@@ -65,15 +65,15 @@ class QNPhotoController: UIViewController {
 //Mark: ------ UICollectionViewDataSource
 extension QNPhotoController: UICollectionViewDataSource{
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let imageUrldt = imageUrldt{
             return imageUrldt.count
         }
         return 0
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! QNCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! QNCollectionViewCell
         if let imageUrldt = imageUrldt{
             cell.bindData(imageUrldt,functionTitle: [""],atIndex :indexPath)
         }
@@ -84,22 +84,22 @@ extension QNPhotoController: UICollectionViewDataSource{
 //Mark: ------ UICollectionViewDelegate
 extension QNPhotoController: UICollectionViewDelegate{
     //返回自定义HeadView或者FootView，我这里以headview为例
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView{
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView{
         if kind == UICollectionElementKindSectionHeader {
-            collectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "headView", forIndexPath: indexPath)
-            collectionHeader.backgroundColor = UIColor.clearColor()
+            collectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headView", for: indexPath)
+            collectionHeader.backgroundColor = UIColor.clear
             return collectionHeader
         }else if kind == UICollectionElementKindSectionFooter{
-            collectionfoot = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "footerView", forIndexPath: indexPath) as? CollectionReusableHeadre
+            collectionfoot = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "footerView", for: indexPath) as? CollectionReusableHeadre
             if collectionfoot == nil{
-                collectionfoot = NSBundle.mainBundle().loadNibNamed("CollectionReusableViewFooter", owner: nil, options: nil)!.first as? CollectionReusableHeadre
+                collectionfoot = Bundle.main.loadNibNamed("CollectionReusableViewFooter", owner: nil, options: nil)!.first as? CollectionReusableHeadre
             }
-            collectionfoot.backgroundColor = UIColor.clearColor()
+            collectionfoot.backgroundColor = UIColor.clear
         }
         return collectionfoot
     }
     //点击
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         //        switch indexPath.item {
         //        case 0:
@@ -124,11 +124,11 @@ extension QNPhotoController: UICollectionViewDelegate{
 //Mark: ------ UICollectionViewDelegateFlowLayout
 extension QNPhotoController: UICollectionViewDelegateFlowLayout{
     //返回cell 上下左右的间距
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets{
         return UIEdgeInsetsMake(8, 12, 8, 12)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         let cellwidth = (App_width - 24 - 24)/4
         let cellHight = (App_width - 24 - 24)/4 * 33/28 - 2
         return CGSize(width: cellwidth,height: cellHight)
@@ -136,7 +136,7 @@ extension QNPhotoController: UICollectionViewDelegateFlowLayout{
 }
 //Mark: ------ 刷新代理
 extension QNPhotoController: MJCollectionViewRefreshDelegate{
-    func Collection(Collection: CollectionMjResh, refreshDataWithType refreshType: CollectionMjResh.RefreshType) {
+    func Collection(_ Collection: CollectionMjResh, refreshDataWithType refreshType: CollectionMjResh.RefreshType) {
         Collection.endRefreshing(num: 11, count: 3, NoDataNoticeViewKinds: 0)
     }
 }

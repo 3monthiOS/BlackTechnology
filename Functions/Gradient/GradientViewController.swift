@@ -14,7 +14,7 @@ class GradientViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-      baseView.addGradientBackgroundColorWith(UIColor.whiteColor(), middleColor: UIColor.blackColor())
+      baseView.addGradientBackgroundColorWith(UIColor.white, middleColor: UIColor.black)
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,17 +22,17 @@ class GradientViewController: UIViewController {
       
     }
     
-  @IBAction func positionChangeClick(sender: UISlider) {
+  @IBAction func positionChangeClick(_ sender: UISlider) {
      let gradient = baseView.layer.sublayers?.first as? CAGradientLayer
     gradient?.locations = [0,sender.value ,1]
   }
 
-  @IBAction func colorChangeClick(sender: UISlider) {
+  @IBAction func colorChangeClick(_ sender: UISlider) {
     let gradient = baseView.layer.sublayers?.first as? CAGradientLayer
     let value = UInt32(sender.value)
     let color = rgb(value, value * value,value)
 //    UIColor(red: CGFloat(sender.value), green: CGFloat(sender.value * sender.value), blue: CGFloat(sender.value), alpha: 1.0)
-    gradient?.colors = [UIColor.whiteColor().CGColor,color.CGColor,UIColor.whiteColor().CGColor]
+    gradient?.colors = [UIColor.white.cgColor,color.cgColor,UIColor.white.cgColor]
   }
     /*
     // MARK: - Navigation

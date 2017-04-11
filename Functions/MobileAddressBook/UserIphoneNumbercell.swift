@@ -16,7 +16,7 @@ class UserIphoneNumbercell: UITableViewCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 	}
-	func getData(MOB: MobileAddress) {
+	func getData(_ MOB: MobileAddress) {
 		self.username.text = MOB.name
 
 		self.usernumber.text = MOB.mobile
@@ -28,7 +28,7 @@ class UserIphoneNumbercell: UITableViewCell {
         avatars.layer.cornerRadius = 3
 	}
 
-	override func setSelected(selected: Bool, animated: Bool) {
+	override func setSelected(_ selected: Bool, animated: Bool) {
 		super.setSelected(selected, animated: animated)
 
 		// Configure the view for the selected state

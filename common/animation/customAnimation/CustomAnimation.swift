@@ -11,32 +11,32 @@ import Foundation
 class JumpAnimationcontroller: NSObject,UIViewControllerAnimatedTransitioning,CAAnimationDelegate {
     let animationDuration = 2.0
     weak var storedContext: UIViewControllerContextTransitioning?
-    var operation:UINavigationControllerOperation = .Push
+    var operation:UINavigationControllerOperation = .push
     
     var isCustom = false
     var fromeVC = UIViewController()
     var ToVC = UIViewController()
     var Direction = "left"
-    var AnimationsOBJ = Animations.Push //默认是push
+    var AnimationsOBJ = Animations.push //默认是push
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return animationDuration
     }
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        if operation == .Push {
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        if operation == .push {
             if isCustom{
                 customAnimationPush(transitionContext)
             }else{
                 storedContext = transitionContext
-                let zhuceVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
+                let zhuceVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)
                 zhuceVC?.view.frame = CGRect(x: 0,y: 0,width: App_width,height: App_height)
-                transitionContext.containerView().addSubview(zhuceVC!.view)
+                transitionContext.containerView.addSubview(zhuceVC!.view)
                 specialAnimation(AnimationsOBJ, Direction: Direction, CurrentVc: fromeVC, ForVc: ToVC,isJump: false)
                 //        逐渐显现 目的图层动画
-                UIView.animateWithDuration(1.0, animations: {
+                UIView.animate(withDuration: 1.0, animations: {
                     zhuceVC?.view.alpha = 1.0
                     }, completion: { (isOK) in
-                        transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                        transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
                 })
             }
         }else{
@@ -45,29 +45,29 @@ class JumpAnimationcontroller: NSObject,UIViewControllerAnimatedTransitioning,CA
             }else{
                 storedContext = transitionContext
                 ToVC.view.alpha = 0
-                transitionContext.containerView().addSubview(ToVC.view)
+                transitionContext.containerView.addSubview(ToVC.view)
                 specialAnimation(AnimationsOBJ, Direction: Direction, CurrentVc: fromeVC, ForVc: ToVC,isJump: false)
-                UIView.animateWithDuration(1.0, animations: {
+                UIView.animate(withDuration: 1.0, animations: {
                     self.ToVC.view.alpha = 1.0
                     }, completion: { (isOK) in
-                        transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                        transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
                 })
             }
         }
     }
     // 自定义的动画 push  和 pop
-    func customAnimationPush(transitionContext: UIViewControllerContextTransitioning){
+    func customAnimationPush(_ transitionContext: UIViewControllerContextTransitioning){
         storedContext = transitionContext
-        let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! LoginviewController
-        let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! RegisteredViewController
+        let fromVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) as! LoginviewController
+        let toVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) as! RegisteredViewController
         //        将跳转目的视图控制器的主视图添加到跳转上下文的容器视图中
-        transitionContext.containerView().addSubview(toVC.view)
+        transitionContext.containerView.addSubview(toVC.view)
         //        配置变形的图层动画,将logo上移一段距离并放大到150倍
         let animation = CABasicAnimation(keyPath: "transform")
         
-        animation.fromValue = NSValue(CATransform3D: CATransform3DIdentity)
+        animation.fromValue = NSValue(caTransform3D: CATransform3DIdentity)
         
-        animation.toValue = NSValue(CATransform3D:
+        animation.toValue = NSValue(caTransform3D:
             CATransform3DConcat(//用来合成3D变形动画
                 //向上移动10点
                 CATransform3DMakeTranslation(0.0, -10.0, 0.0),
@@ -78,13 +78,13 @@ class JumpAnimationcontroller: NSObject,UIViewControllerAnimatedTransitioning,CA
         animation.duration = animationDuration
         animation.delegate = self
         animation.fillMode = kCAFillModeForwards
-        animation.removedOnCompletion = false
+        animation.isRemovedOnCompletion = false
         animation.timingFunction = CAMediaTimingFunction(name:
             kCAMediaTimingFunctionEaseIn)
         
         //        同时给遮罩和logo添加变形动画
-        toVC.maskLayer.addAnimation(animation, forKey: nil)
-        fromVC.logo.addAnimation(animation, forKey: nil)
+        toVC.maskLayer.add(animation, forKey: nil)
+        fromVC.logo.add(animation, forKey: nil)
         //        配置逐渐显现的图层动画
         
         let fadeInAnimation = CABasicAnimation(keyPath: "opacity")
@@ -92,22 +92,22 @@ class JumpAnimationcontroller: NSObject,UIViewControllerAnimatedTransitioning,CA
         fadeInAnimation.toValue   =  1.0
         fadeInAnimation.duration = animationDuration
         //        给目的视图控制器的视图添加fade-in动画
-        toVC.view.layer.addAnimation(fadeInAnimation, forKey: nil)
+        toVC.view.layer.add(fadeInAnimation, forKey: nil)
     }
-    func customAnimationPop(transitionContext: UIViewControllerContextTransitioning){
-        let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)! as UIView
-        let toView = transitionContext.viewForKey(UITransitionContextToViewKey)! as UIView
+    func customAnimationPop(_ transitionContext: UIViewControllerContextTransitioning){
+        let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from)! as UIView
+        let toView = transitionContext.view(forKey: UITransitionContextViewKey.to)! as UIView
         
-        transitionContext.containerView().insertSubview(toView, belowSubview: fromView)
-        UIView.animateWithDuration(animationDuration, animations: { () -> Void in
-            fromView.transform = CGAffineTransformMakeScale(0.1, 0.1)
+        transitionContext.containerView.insertSubview(toView, belowSubview: fromView)
+        UIView.animate(withDuration: animationDuration, animations: { () -> Void in
+            fromView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
             fromView.alpha = 0.0
             }, completion: { (finish) -> Void in
                 transitionContext.completeTransition(true)
         })
     }
     //    重写animationDidStop()方法，进行动画的结束操作
-     func animationEnded(transitionCompleted: Bool) {
+     func animationEnded(_ transitionCompleted: Bool) {
 //        if let context = storedContext{
 //            let zhuceVC = context.viewControllerForKey(UITransitionContextToViewControllerKey)
 //            context.containerView()!.addSubview(zhuceVC!.view)
@@ -122,10 +122,10 @@ class JumpAnimationcontroller: NSObject,UIViewControllerAnimatedTransitioning,CA
 ////            fromVC.logo.removeAllAnimations()
 //        }
 //    }
-    func animationDidStart(anim: CAAnimation) {
+    func animationDidStart(_ anim: CAAnimation) {
         
     }
-    func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         
     }
 //    - (void)animationDidStart:(CAAnimation *)anim;

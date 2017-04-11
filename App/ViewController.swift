@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
     }
@@ -21,19 +21,19 @@ class ViewController: UIViewController {
 
     func lauchscreenLoadingGIF(){
         let launchView = UIViewController.loadViewControllerFromStoryboard("LaunchScreen", storyboardID: "LaunchScreen")!.view
-        let mainWindow = UIApplication.sharedApplication().keyWindow//获取到app的主屏幕
+        let mainWindow = UIApplication.shared.keyWindow//获取到app的主屏幕
         launchView.frame = view.frame
         mainWindow?.addSubview(launchView)//将自定义的View加载在主屏上
         
-        let filePath = NSBundle.mainBundle().pathForResource("gif131", ofType: "gif")
-        let gif = NSData(contentsOfFile: filePath!)
+        let filePath = Bundle.main.path(forResource: "gif131", ofType: "gif")
+        let gif = try? Data(contentsOf: URL(fileURLWithPath: filePath!))
         let webViewBG = UIWebView(frame: self.view.frame)
-        webViewBG.loadData(gif!, MIMEType: "image/gif", textEncodingName: String(), baseURL: NSURL())
-        webViewBG.userInteractionEnabled = false;
+        webViewBG.load(gif!, mimeType: "image/gif", textEncodingName: String(), baseURL: URL())
+        webViewBG.isUserInteractionEnabled = false;
         self.view.addSubview(webViewBG)
         let filter = UIView()
         filter.frame = self.view.frame
-        filter.backgroundColor = UIColor.blackColor()
+        filter.backgroundColor = UIColor.black
         filter.alpha = 0.05
         self.view.addSubview(filter)
 

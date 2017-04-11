@@ -22,16 +22,16 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
     let user = User()
     var userkeyArray = [Dictionary<String,String>]()
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.phoneNumber.resignFirstResponder()
         IQKeyboardManager.sharedManager().enableAutoToolbar = true
     }
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-         self.navigationController?.navigationBarHidden = false
+         self.navigationController?.isNavigationBarHidden = false
     }
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //移除 遮罩图
 //        view.layer.mask = nil
@@ -45,9 +45,9 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
         self.title = "注册"
         imageBG.image = UIImage.gifWithName("gif131")
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
-        phoneNumber.returnKeyType = UIReturnKeyType.Done
+        phoneNumber.returnKeyType = UIReturnKeyType.done
         getDBuser()
-        createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.Right, Title: "完成", normalImage: nil, highlightImage: nil, action: #selector(registerClick))
+        createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.right, Title: "完成", normalImage: nil, highlightImage: nil, action: #selector(registerClick))
     }
     func getDBuser(){
         if let userkeyArray = session.object(forKey: "userkeyArray") as? [Dictionary<String,String>] {
@@ -76,21 +76,21 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
         }
         alert("谢谢您留下手机号，小军一定好好保管，密码为手机号后8位。")
         Log.info("这个手机里面的用户数量：\(userkeyArray.count) \(userkeyArray.last!["phone"])")
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
 //        let VC = UIViewController.loadViewControllerFromStoryboard("Login", storyboardID: "Loginview") as! LoginviewController
 //        JumpAnimation(Animations.SuckEffect, Direction: "top", CurrentVc: self, ForVc:VC , isJump: true)
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     // Mark: -------- UINavigationControllerDelegate
-    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.operation = operation
         transition.isCustom = false
         transition.fromeVC = fromVC
         transition.ToVC = toVC
-        transition.AnimationsOBJ = Animations.Cube
+        transition.AnimationsOBJ = Animations.cube
         transition.Direction = "left"
         return transition
     }

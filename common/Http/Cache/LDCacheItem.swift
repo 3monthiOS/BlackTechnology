@@ -20,7 +20,7 @@ class LDCacheItem: Object {
     dynamic var expires: Double = 0.0
     
     var isValid: Bool {
-        return self.expires > NSDate().timeIntervalSince1970
+        return self.expires > Date().timeIntervalSince1970
     }
     
     // 主键

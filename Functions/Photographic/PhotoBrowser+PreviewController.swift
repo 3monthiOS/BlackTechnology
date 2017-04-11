@@ -15,23 +15,23 @@ extension PhotoBrowser {
 	class PreviewController: APPviewcontroller, UIScrollViewDelegate, PhotoCropperDelegate, PhotoBrowserViewDelegate {
 
 		var options: PhotoBrowserOptions!
-		var backgroundColor = UIColor.blackColor()
+		var backgroundColor = UIColor.black
 		var gap: CGFloat = 20.0
 
 		var currentIndex = 0
 		weak var delegate: protocol<PhotoBrowserDelegate, PhotoBrowserDataSource>!
 
-		private var scrollView: UIScrollView!
+		fileprivate var scrollView: UIScrollView!
         
 		var isphotoAlbum = true
         
-		private var previousView: View!
-		private var currentView: View!
-		private var nextView: View!
+		fileprivate var previousView: View!
+		fileprivate var currentView: View!
+		fileprivate var nextView: View!
 
-		private var copyButton: UIBarButtonItem! // 选取
+		fileprivate var copyButton: UIBarButtonItem! // 选取
 //		private var originButton: UIBarButtonItem! // 原图
-		private var cropButton: UIBarButtonItem! // 裁剪
+		fileprivate var cropButton: UIBarButtonItem! // 裁剪
 
 		// MARK: - Init
 
@@ -58,7 +58,7 @@ extension PhotoBrowser {
 		// self.view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
 		// }
         
-        override func prefersStatusBarHidden()->Bool{
+        override var prefersStatusBarHidden:Bool{
             
             return true
             
@@ -75,7 +75,7 @@ extension PhotoBrowser {
 			scrollView.delegate = self
 			scrollView.showsHorizontalScrollIndicator = false
 			scrollView.showsVerticalScrollIndicator = false
-			scrollView.pagingEnabled = true
+			scrollView.isPagingEnabled = true
 			view.addSubview(scrollView)
 
 			// Init Views
@@ -87,21 +87,21 @@ extension PhotoBrowser {
 			scrollView.addSubview(nextView)
 
 			switch options.style {
-			case .Preview: break
-			case .SingleSelection:
+			case .preview: break
+			case .singleSelection:
 				initToolBArs()
-			case .MultiSelection:
+			case .multiSelection:
 				initToolBArs()
 			}
 			setupImageViewForIndex(currentIndex, force: true)
 		}
-		override func viewWillAppear(animated: Bool) {
+		override func viewWillAppear(_ animated: Bool) {
 			switch options.style {
-			case .Preview:
+			case .preview:
 				setFullscreen(false, animated: false)
-			case .SingleSelection:
+			case .singleSelection:
 				setFullscreen(true, animated: true)
-			case .MultiSelection:
+			case .multiSelection:
 				setFullscreen(false, animated: true)
 			}
             if isphotoAlbum {
@@ -109,19 +109,19 @@ extension PhotoBrowser {
             }
 		}
 
-		override func viewWillDisappear(animated: Bool) {
+		override func viewWillDisappear(_ animated: Bool) {
             super.viewWillDisappear(animated)
 			setFullscreen(true, animated: false)
             self.navigationController?.setNavigationBarHidden(false, animated: false)
         }
 
-		override func shouldAutorotate() -> Bool {
+		override var shouldAutorotate : Bool {
             super.shouldAutorotate()
 			return options.shouldSupportLandscape
 		}
 
-		override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-			return options.shouldSupportLandscape ? .All : .Portrait
+		override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+			return options.shouldSupportLandscape ? .all : .portrait
 		}
 
 		// MARK: - Layout
@@ -153,10 +153,10 @@ extension PhotoBrowser {
 			}
 		}
 
-		func adjustView(view: View, count: Int, width: CGFloat, height: CGFloat) {
+		func adjustView(_ view: View, count: Int, width: CGFloat, height: CGFloat) {
 			let index = view.tag
-			view.hidden = (index < 0 || index >= count)
-			if !view.hidden {
+			view.isHidden = (index < 0 || index >= count)
+			if !view.isHidden {
 				view.frame = CGRect(x: CGFloat(index) * (width + gap), y: 0, width: width, height: height)
 
 				if view.needsSetup {
@@ -167,7 +167,7 @@ extension PhotoBrowser {
 			}
 		}
 
-		func setupImageViewForIndex(index: Int, force: Bool = false) {
+		func setupImageViewForIndex(_ index: Int, force: Bool = false) {
 			if index > currentIndex {
 				let view = previousView
 				previousView = currentView
@@ -196,7 +196,7 @@ extension PhotoBrowser {
 
 		// MARK: - LDPhotoBrowserViewDelegate
 
-		func photoViewDidSingleTap(view: PhotoBrowser.View) {
+		func photoViewDidSingleTap(_ view: PhotoBrowser.View) {
 //			switch options.style {
 //			case .Preview:
 //				close()
@@ -213,35 +213,35 @@ extension PhotoBrowser {
             
 		}
 
-		func photoViewDidUpdate(view: PhotoBrowser.View) {
+		func photoViewDidUpdate(_ view: PhotoBrowser.View) {
 			// self.adjustViews()
 		}
 
 		// MARK: Navbar Button Handler
 
-		func handleCancelButtonTap(sender: UIButton) {
+		func handleCancelButtonTap(_ sender: UIButton) {
 			closeViewControllerAnimated(true)
 		}
 		// MARK: TOOLBAR Inti
 		func initToolBArs() {
-            createBarButtonItemAtPosition(.Right, Title: "取消", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(PreviewController.handleCancelButtonTap(_:)))
+            createBarButtonItemAtPosition(.right, Title: "取消", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(PreviewController.handleCancelButtonTap(_:)))
             // Init Toolbar
-            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-            copyButton = UIBarButtonItem(title: "发送原图", style: .Plain, target: self, action: #selector(PreviewController.handleConfirmButtonTap(_:)))
-            cropButton = UIBarButtonItem(title: "裁剪", style: .Plain, target: self, action: #selector(PreviewController.handleCropButtonTap(_:)))
+            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            copyButton = UIBarButtonItem(title: "发送原图", style: .plain, target: self, action: #selector(PreviewController.handleConfirmButtonTap(_:)))
+            cropButton = UIBarButtonItem(title: "裁剪", style: .plain, target: self, action: #selector(PreviewController.handleCropButtonTap(_:)))
             toolbarItems = [flexibleSpace,cropButton, flexibleSpace, flexibleSpace,flexibleSpace,copyButton,flexibleSpace]
 		}
 		// MARK: Toolbar Button Handler
-		func handleConfirmButtonTap(sender: UIButton) {
+		func handleConfirmButtonTap(_ sender: UIButton) {
 				close()
 		}
 
-		func handleOriginButtonTap(sender: UIButton) {
+		func handleOriginButtonTap(_ sender: UIButton) {
 			currentView.loadOriginImage()
             currentView.originImageLoaded = !currentView.originImageLoaded
 		}
 
-		func handleCropButtonTap(sender: UIButton) {
+		func handleCropButtonTap(_ sender: UIButton) {
 			currentView.loadOriginImage {
 				guard let image = $0 else { return }
 				// LDPhotoBrowser.showPhotoCropper(self, image: image)
@@ -250,7 +250,7 @@ extension PhotoBrowser {
 				controller.options = self.options
 				controller.image = image
                 controller.isTakerview = self.isphotoAlbum
-				self.navigationController?.showViewController(controller, sender: nil)
+				self.navigationController?.show(controller, sender: nil)
 			}
 		}
 
@@ -289,19 +289,19 @@ extension PhotoBrowser {
 
 				let model: Model = currentView.model
 				switch model {
-				case .Urls(_, _):
+				case .urls(_, _):
 					currentView.loadOriginImage { image in
 						if let image = image {
-							delegate.photoBrowser(self, didSelect: .Single(self.currentIndex, .Image(image: image)))
+							delegate.photoBrowser(self, didSelect: .single(self.currentIndex, .image(image: image)))
 						} else {
-							delegate.photoBrowser(self, didSelect: .None)
+							delegate.photoBrowser(self, didSelect: .none)
 						}
 					}
 				default:
-					delegate.photoBrowser(self, didSelect: .Single(currentIndex, currentView.model))
+					delegate.photoBrowser(self, didSelect: .single(currentIndex, currentView.model))
 				}
             if isphotoAlbum {
-                dismissViewControllerAnimated(true, completion: nil)
+                dismiss(animated: true, completion: nil)
             }else{
                 closeViewControllerAnimated(true)
             }
@@ -313,7 +313,7 @@ extension PhotoBrowser {
 
 		// MARK: - UIScrollViewDelegate
 
-		func scrollViewDidScroll(scrollView: UIScrollView) {
+		func scrollViewDidScroll(_ scrollView: UIScrollView) {
 			let width = scrollView.bounds.size.width
 			if width > 0 {
 				let index = Int((scrollView.contentOffset.x + width * 0.5) / width)
@@ -321,16 +321,16 @@ extension PhotoBrowser {
 			}
 		}
 
-		func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+		func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
 			let index = Int(scrollView.contentOffset.x / scrollView.bounds.size.width)
 			setupImageViewForIndex(index)
 		}
 
 		// MARK: - LDPhotoCropperDelegate
 
-		func photoCropper(photoCropper: PhotoBrowser.CropperViewController, didFinishCroppingImage croppedImage: UIImage, transform: CGAffineTransform, cropRect: CGRect) {
+		func photoCropper(_ photoCropper: PhotoBrowser.CropperViewController, didFinishCroppingImage croppedImage: UIImage, transform: CGAffineTransform, cropRect: CGRect) {
 			guard let delegate = delegate else { return }
-			delegate.photoBrowser(self, didSelect: .Single(currentIndex, Model.Image(image: croppedImage)))
+			delegate.photoBrowser(self, didSelect: .single(currentIndex, Model.image(image: croppedImage)))
 		}
 	}
 

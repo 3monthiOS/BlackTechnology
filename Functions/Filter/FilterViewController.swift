@@ -27,44 +27,44 @@ class FilterViewController: UIViewController {
       showFiltersInConsole()
     }
 
-  private func configureImgView(){
+  fileprivate func configureImgView(){
     baseImgView.layer.shadowOpacity = 0.8
-    baseImgView.layer.shadowColor = UIColor.blackColor().CGColor
+    baseImgView.layer.shadowColor = UIColor.black.cgColor
     baseImgView.layer.shadowOffset = CGSize(width: 1, height: 1)
     baseImgView.image = originalImage
   }
-  private func autoAdjust(){
+  fileprivate func autoAdjust(){
     var inputImage = CIImage(image: originalImage)
-    let filters = inputImage!.autoAdjustmentFiltersWithOptions(nil)
+    let filters = inputImage!.autoAdjustmentFilters(options: nil)
     for filter: CIFilter in filters {
       filter.setValue(inputImage, forKey: kCIInputImageKey)
       inputImage = filter.outputImage
     }
-    let cgImage = context.createCGImage(inputImage!, fromRect: inputImage!.extent)
-    baseImgView.image = UIImage(CGImage: cgImage!)
+    let cgImage = context.createCGImage(inputImage!, from: inputImage!.extent)
+    baseImgView.image = UIImage(cgImage: cgImage!)
   }
-    private func  outputImg(filter: CIFilter){
+    fileprivate func  outputImg(_ filter: CIFilter){
         let inputImg = CIImage(image: originalImage)
         filter.setValue(inputImg, forKey: kCIInputImageKey)
         let outputImg = filter.outputImage
         guard let _ = outputImg else{ alert("这个滤镜可能需要参数") ;return }
-        let outputCGImg = context.createCGImage(outputImg!, fromRect: outputImg!.extent)
-        baseImgView.image = UIImage(CGImage: outputCGImg!)
+        let outputCGImg = context.createCGImage(outputImg!, from: outputImg!.extent)
+        baseImgView.image = UIImage(cgImage: outputCGImg!)
     }
   func showFiltersInConsole() {
     
-    let filterNames = CIFilter.filterNamesInCategory(kCICategoryBuiltIn)
-    filters = filterNames.filter({$0.containsString("Photo") || $0.containsString("Color") })
+    let filterNames = CIFilter.filterNames(inCategory: kCICategoryBuiltIn)
+    filters = filterNames.filter({$0.contains("Photo") || $0.contains("Color") })
     filters.append("CIGaussianBlur")
     print(filterNames.count)
     
     print(filterNames)
     
   }
-  @IBAction func autoAdjustClick(sender: UIButton) {
+  @IBAction func autoAdjustClick(_ sender: UIButton) {
     autoAdjust()
   }
-  @IBAction func originalClick(sender: UIButton) {
+  @IBAction func originalClick(_ sender: UIButton) {
     baseImgView.image = originalImage
   }
     override func didReceiveMemoryWarning() {
@@ -86,11 +86,11 @@ class FilterViewController: UIViewController {
 }
  // MARK: - UICollectionViewDataSource
 extension FilterViewController: UICollectionViewDataSource{
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filters.count
     }
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("filter", forIndexPath: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "filter", for: indexPath)
         let  filterName = cell.contentView.viewWithTag(10)as! UILabel
         let name = ["CIPhotoEffectInstant":"怀旧",
                     "CIPhotoEffectNoir":"黑白",
@@ -113,7 +113,7 @@ extension FilterViewController: UICollectionViewDataSource{
 }
  // MARK: - UICollectionViewDelegate
 extension FilterViewController: UICollectionViewDelegate{
-    func  collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func  collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let name = filters[indexPath.item]
         outputImg(CIFilter(name: name)!)
     }

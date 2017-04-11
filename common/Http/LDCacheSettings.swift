@@ -20,7 +20,7 @@ class LDCacheSettings {
         case RongCloudToken = "_RongCloudToken"
         case GetGraphicPushTime = "_GetGraphicPushTime"
         
-        func suffixWith(suffix: AnyObject) -> String {
+        func suffixWith(_ suffix: AnyObject) -> String {
             return "\(self.rawValue)_\(suffix)"
         }
         
@@ -34,33 +34,33 @@ class LDCacheSettings {
     
     // MARK: - Methods
     
-    func setValue(value: String, forKey key: String, expires: Double) {
+    func setValue(_ value: String, forKey key: String, expires: Double) {
         self.manager.setValue(value, forKey: key, expires: expires)
     }
     
-    func setValue(value: String, forKey key: Key, expires: Double) {
+    func setValue(_ value: String, forKey key: Key, expires: Double) {
         self.setValue(value, forKey: key.rawValue, expires: expires)
     }
     
-    func setObject<T: Mappable>(object: T, forKey key: Key, expires: Double? = nil) {
+    func setObject<T: Mappable>(_ object: T, forKey key: Key, expires: Double? = nil) {
         self.setObject(object, forKey: key.rawValue, expires: expires)
     }
     
-    func setObject<T: Mappable>(object: T, forKey key: String, expires: Double? = nil) {
+    func setObject<T: Mappable>(_ object: T, forKey key: String, expires: Double? = nil) {
         guard let jsonString = Mapper<T>().toJSONString(object) else {return}
         cache[key] = jsonString
     }
     
-    func objectForKey<T: Mappable>(key: Key) -> T? {
+    func objectForKey<T: Mappable>(_ key: Key) -> T? {
         return self.objectForKey(key.rawValue)
     }
     
-    func objectForKey<T: Mappable>(key: String) -> T? {
+    func objectForKey<T: Mappable>(_ key: String) -> T? {
         guard let content: String = cache[key] else {return nil}
         return Mapper<T>().map(content)
     }
     
-    func remove(key: Key) {
+    func remove(_ key: Key) {
         self.manager.remove(key.rawValue)
     }
     

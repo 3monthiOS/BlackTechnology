@@ -11,26 +11,26 @@ import Foundation
 
 protocol PhotoBrowserDataSource : NSObjectProtocol {
     // 数据源
-    func photoBrowser(photoBrowser: PhotoBrowser.PreviewController, photoModelAtIndex index: Int) -> PhotoBrowser.Model
-    func numberOfPhotosInPhotoBrowser(photoBrowser: PhotoBrowser.PreviewController) -> Int
+    func photoBrowser(_ photoBrowser: PhotoBrowser.PreviewController, photoModelAtIndex index: Int) -> PhotoBrowser.Model
+    func numberOfPhotosInPhotoBrowser(_ photoBrowser: PhotoBrowser.PreviewController) -> Int
     
 }
 
 protocol PhotoBrowserDelegate : NSObjectProtocol {
     //
-    func photoBrowser(viewController: UIViewController, didSelect selection: PhotoBrowser.Selection)
+    func photoBrowser(_ viewController: UIViewController, didSelect selection: PhotoBrowser.Selection)
     
 }
 
 protocol PhotoBrowserViewDelegate : NSObjectProtocol {
     
-    func photoViewDidSingleTap(view: PhotoBrowser.View)
-    func photoViewDidUpdate(view: PhotoBrowser.View)
+    func photoViewDidSingleTap(_ view: PhotoBrowser.View)
+    func photoViewDidUpdate(_ view: PhotoBrowser.View)
     
 }
 
 protocol PhotoCropperDelegate : NSObjectProtocol {
     
-    func photoCropper(photoCropper: PhotoBrowser.CropperViewController, didFinishCroppingImage croppedImage: UIImage, transform: CGAffineTransform, cropRect: CGRect)
+    func photoCropper(_ photoCropper: PhotoBrowser.CropperViewController, didFinishCroppingImage croppedImage: UIImage, transform: CGAffineTransform, cropRect: CGRect)
     
 }

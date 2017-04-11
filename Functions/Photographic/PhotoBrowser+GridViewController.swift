@@ -22,14 +22,14 @@ extension PhotoBrowser {
         
         weak var delegate: UIViewController!
         
-        static func getInstance(delegate: UIViewController) -> GridViewController {
+        static func getInstance(_ delegate: UIViewController) -> GridViewController {
             let space: CGFloat = 2
-            let width = (min(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height) - space * 5) / 4
+            let width = (min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) - space * 5) / 4
             let layout = UICollectionViewFlowLayout()
             layout.minimumLineSpacing = space
             layout.minimumInteritemSpacing = space
             layout.itemSize = CGSize(width: width, height: width)
-            layout.scrollDirection = .Vertical
+            layout.scrollDirection = .vertical
             layout.sectionInset = UIEdgeInsets(top: space, left: space, bottom: space, right: space)
             let controller = GridViewController(collectionViewLayout: layout)
             controller.delegate = delegate
@@ -46,13 +46,13 @@ extension PhotoBrowser {
             // self.clearsSelectionOnViewWillAppear = false
             
             // Register cell classes
-            self.collectionView!.registerClass(GridCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+            self.collectionView!.register(GridCell.self, forCellWithReuseIdentifier: reuseIdentifier)
             
             // Do any additional setup after loading the view.
             self.title = album?.localizedTitle ?? "相片"
             
-            collectionView?.backgroundColor = UIColor.whiteColor()
-            self.createBarButtonItemAtPosition(.Right, Title: "取消", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(GridViewController.cancelAction(_:)))
+            collectionView?.backgroundColor = UIColor.white
+            self.createBarButtonItemAtPosition(.right, Title: "取消", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(GridViewController.cancelAction(_:)))
 //            self.createBarButtonItemAtPosition(.Right, text: "取消", action: #selector(GridViewController.cancelAction(_:)))
             
             // Init Collection View
@@ -64,21 +64,21 @@ extension PhotoBrowser {
             let options = PHFetchOptions()
             options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
             if let album = album {
-                options.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.Image.rawValue)
-                assets = PHAsset.fetchAssetsInAssetCollection(album, options: options)
+                options.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
+                assets = PHAsset.fetchAssets(in: album, options: options)
             } else {
-                assets = PHAsset.fetchAssetsWithMediaType(.Image, options: options)
+                assets = PHAsset.fetchAssets(with: .image, options: options)
             }
             collectionView?.reloadData()
         }
         
-        override func viewWillAppear(animated: Bool) {
+        override func viewWillAppear(_ animated: Bool) {
             navigationController?.setNavigationBarHidden(false, animated: animated)
             navigationController?.setToolbarHidden(true, animated: animated)
         }
         
-        func cancelAction(sender: AnyObject) {
-            self.dismissViewControllerAnimated(true, completion: nil)
+        func cancelAction(_ sender: AnyObject) {
+            self.dismiss(animated: true, completion: nil)
         }
         
         /*
@@ -92,21 +92,21 @@ extension PhotoBrowser {
         
         // MARK: - UICollectionViewDataSource
         
-        override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        override func numberOfSections(in collectionView: UICollectionView) -> Int {
             // #warning Incomplete implementation, return the number of sections
             return 1
         }
         
         
-        override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             // #warning Incomplete implementation, return the number of items
             return assets == nil ? 0 : assets.count
         }
         
-        override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! GridCell
+        override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! GridCell
             
-            let asset = assets.objectAtIndex(indexPath.row) as! PHAsset
+            let asset = assets.object(at: indexPath.row) as! PHAsset
             
             // Configure the cell
             cell.setAsset(asset)
@@ -116,7 +116,7 @@ extension PhotoBrowser {
         
         // MARK: - UICollectionViewDelegate
         
-        override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             guard let delegate = delegate as? PickerViewController else { return }
             let controller = PreviewController(delegate: self, options: delegate.options, currentIndex: indexPath.row)
             controller.isphotoAlbum = true
@@ -154,25 +154,25 @@ extension PhotoBrowser {
         
         // MARK: LDPhotoBrowserDataSource
         
-        func photoBrowser(photoBrowser: PhotoBrowser.PreviewController, photoModelAtIndex index: Int) -> PhotoBrowser.Model {
+        func photoBrowser(_ photoBrowser: PhotoBrowser.PreviewController, photoModelAtIndex index: Int) -> PhotoBrowser.Model {
             let asset = assets[index] as! PHAsset
-            return PhotoBrowser.Model.Asset(asset: asset)
+            return PhotoBrowser.Model.asset(asset: asset)
         }
         
-        func numberOfPhotosInPhotoBrowser(photoBrowser: PhotoBrowser.PreviewController) -> Int {
+        func numberOfPhotosInPhotoBrowser(_ photoBrowser: PhotoBrowser.PreviewController) -> Int {
             return assets.count
         }
         
         // MARK: LDPhotoBrowserDelegate
         
-        func photoBrowser(viewController: UIViewController, didSelect selection: PhotoBrowser.Selection) {
+        func photoBrowser(_ viewController: UIViewController, didSelect selection: PhotoBrowser.Selection) {
             if let delegate = delegate as? PickerViewController {
                 if let pickerDelegate = delegate.pickerDelegate {
                     switch delegate.options.style {
-                    case .Preview: break
-                    case .SingleSelection:
+                    case .preview: break
+                    case .singleSelection:
                         pickerDelegate.photoBrowser(delegate, didSelect: selection)
-                    case .MultiSelection:
+                    case .multiSelection:
                         pickerDelegate.photoBrowser(delegate, didSelect: selection)
                     }
                 }

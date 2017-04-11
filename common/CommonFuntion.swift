@@ -12,79 +12,79 @@ import Alamofire
 import Swiften
 
 //MARK: ----- UIcolor 颜色 rgb
-func rgba(red: UInt32, _ green: UInt32, _ blue: UInt32, _ alpha: CGFloat) -> UIColor {
+func rgba(_ red: UInt32, _ green: UInt32, _ blue: UInt32, _ alpha: CGFloat) -> UIColor {
     return UIColor(red: CGFloat(red) / 255, green: CGFloat(green) / 255, blue: CGFloat(blue) / 255, alpha: alpha)
 }
 
-func rgba(hex: UInt32) -> UIColor {
+func rgba(_ hex: UInt32) -> UIColor {
     return rgba(hex >> 24, hex >> 16 & 0xFF, hex >> 8 & 0xFF, CGFloat(hex & 0xFF) / 255)
 }
 
-func rgb(red: UInt32, _ green: UInt32, _ blue: UInt32) -> UIColor {
+func rgb(_ red: UInt32, _ green: UInt32, _ blue: UInt32) -> UIColor {
     return rgba(red, green, blue, 1.0)
 }
 
-func rgb(hex: UInt32) -> UIColor {
+func rgb(_ hex: UInt32) -> UIColor {
     return rgba(hex << 8 | 0xFF)
 }
 /// 延迟执行代码
-public func delay(seconds: UInt64, task: () -> Void) {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), task)
+public func delay(_ seconds: UInt64, task: () -> Void) {
+    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(seconds * NSEC_PER_SEC)) / Double(NSEC_PER_SEC), execute: task)
 }
 
 /// 异步执行代码块（先非主线程执行，再返回主线程执行）
-public func async(backgroundTask: () -> AnyObject!, mainTask: AnyObject? -> Void) {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+public func async(_ backgroundTask: () -> AnyObject!, mainTask: (AnyObject?) -> Void) {
+    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
         let result = backgroundTask()
-        dispatch_sync(dispatch_get_main_queue()) {
+        DispatchQueue.main.sync {
             mainTask(result)
         }
     }
 }
 
 /// 异步执行代码块（主线程执行）
-public func async(mainTask: () -> Void) {
-    dispatch_async(dispatch_get_main_queue(), mainTask)
+public func async(_ mainTask: () -> Void) {
+    DispatchQueue.main.async(execute: mainTask)
 }
 
 /// 顺序执行代码块（在队列中执行）
-public func sync(task: () -> Void) {
-    dispatch_sync(dispatch_queue_create("com.catorv.LockQueue", nil), task)
+public func sync(_ task: () -> Void) {
+    DispatchQueue(label: "com.catorv.LockQueue", attributes: []).sync(execute: task)
 }
 
-func alert(message: String, title: String! = nil, completion: (() -> Void)? = nil) {
-    let controller = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-    controller.addAction(UIAlertAction(title: "我知道了", style: .Default) { action in
-        controller.dismissViewControllerAnimated(true, completion: nil)
+func alert(_ message: String, title: String! = nil, completion: (() -> Void)? = nil) {
+    let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    controller.addAction(UIAlertAction(title: "我知道了", style: .default) { action in
+        controller.dismiss(animated: true, completion: nil)
         completion?()
         })
-    UIViewController.topViewController?.presentViewController(controller, animated: true, completion: nil)
+    UIViewController.topViewController?.present(controller, animated: true, completion: nil)
 }
 
-func confirm(message: String, title: String! = nil, completion: Bool -> Void) {
-    let controller = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-    controller.addAction(UIAlertAction(title: "否", style: .Cancel) { action in
-        controller.dismissViewControllerAnimated(true, completion: nil)
+func confirm(_ message: String, title: String! = nil, completion: (Bool) -> Void) {
+    let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    controller.addAction(UIAlertAction(title: "否", style: .cancel) { action in
+        controller.dismiss(animated: true, completion: nil)
         completion(false)
         })
-    controller.addAction(UIAlertAction(title: "是", style: .Default) { action in
-        controller.dismissViewControllerAnimated(true, completion: nil)
+    controller.addAction(UIAlertAction(title: "是", style: .default) { action in
+        controller.dismiss(animated: true, completion: nil)
         completion(true)
         })
-    UIViewController.topViewController?.presentViewController(controller, animated: true, completion: nil)
+    UIViewController.topViewController?.present(controller, animated: true, completion: nil)
 }
 
-func prompt(message: String, title: String! = nil, text: String! = nil, placeholder: String! = nil, completion: String? -> Void) {
-    let controller = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-    controller.addAction(UIAlertAction(title: "取消", style: .Cancel) { action in
-        controller.dismissViewControllerAnimated(true, completion: nil)
+func prompt(_ message: String, title: String! = nil, text: String! = nil, placeholder: String! = nil, completion: (String?) -> Void) {
+    let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    controller.addAction(UIAlertAction(title: "取消", style: .cancel) { action in
+        controller.dismiss(animated: true, completion: nil)
         completion(nil)
         })
-    controller.addAction(UIAlertAction(title: "确定", style: .Default) { action in
-        controller.dismissViewControllerAnimated(true, completion: nil)
+    controller.addAction(UIAlertAction(title: "确定", style: .default) { action in
+        controller.dismiss(animated: true, completion: nil)
         completion(controller.textFields?[0].text ?? "")
         })
-    controller.addTextFieldWithConfigurationHandler { textField in
+    controller.addTextField { textField in
         if let value = text {
             textField.text = value
         }
@@ -92,17 +92,17 @@ func prompt(message: String, title: String! = nil, text: String! = nil, placehol
             textField.placeholder = ph
         }
     }
-    UIViewController.topViewController?.presentViewController(controller, animated: true, completion: nil)
+    UIViewController.topViewController?.present(controller, animated: true, completion: nil)
 }
 
-func toast(message: String, duration: Double = HRToastDefaultDuration, position: AnyObject = HRToastPositionDefault, title: String! = nil, image: UIImage! = nil) {
-    if let view = UIApplication.sharedApplication().keyWindow {
+func toast(_ message: String, duration: Double = HRToastDefaultDuration, position: AnyObject = HRToastPositionDefault, title: String! = nil, image: UIImage! = nil) {
+    if let view = UIApplication.shared.keyWindow {
         let toastView = view.viewForMessage(message, title: nil, image: image)
         view.showToast(toastView!)
     }
 }
-func locationfileiscache(fileName: String, complate:(callback: String)->Void){
-    guard let cachePath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).first else {
+func locationfileiscache(_ fileName: String, complate:(callback: String)->Void){
+    guard let cachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first else {
         complate(callback: "")
         return
     }
@@ -110,7 +110,7 @@ func locationfileiscache(fileName: String, complate:(callback: String)->Void){
 //    Log.debug("Clear Cache: \(cachePath)")
     var path = ""
     // 取出文件夹下所有文件数组
-    if let files = try? NSFileManager.defaultManager().subpathsOfDirectoryAtPath(cachePath){
+    if let files = try? FileManager.default.subpathsOfDirectory(atPath: cachePath){
         // 快速枚举取出所有文件名
         for p in files {
             if p == fileName{
@@ -123,9 +123,9 @@ func locationfileiscache(fileName: String, complate:(callback: String)->Void){
     }
     complate(callback: "")
 }
-func fileDownload(urlArray: [String],complate:((isok: Bool,callbackData: [NSData])->Void)){
+func fileDownload(_ urlArray: [String],complate:((isok: Bool,callbackData: [Data])->Void)){
     if Reachability.networkStatus == .notReachable {return}
-    var dataArray = [NSData]()
+    var dataArray = [Data]()
     //  方法一 自定义下载文件的保存目录 同名文件竟被覆盖
 //    Alamofire.download(.GET, "http://www.hangge.com/blog/images/logo.png") {
 //        temporaryURL, response in
@@ -183,19 +183,19 @@ func fileDownload(urlArray: [String],complate:((isok: Bool,callbackData: [NSData
     }
     
 }
-func RemoveSpecialCharacter(str: String) -> String {
-    let range = str.rangeOfCharacterFromSet(NSCharacterSet(charactersInString: "-,.？、% ~￥#&<>《》()[]{}【】^@/￡¤|§¨「」『』￠￢￣~@#&*（）——+|《》$_€"))
+func RemoveSpecialCharacter(_ str: String) -> String {
+    let range = str.rangeOfCharacter(from: CharacterSet(charactersIn: "-,.？、% ~￥#&<>《》()[]{}【】^@/￡¤|§¨「」『』￠￢￣~@#&*（）——+|《》$_€"))
     if range != nil {
-        return RemoveSpecialCharacter(str.stringByReplacingCharactersInRange(range!, withString: ""))
+        return RemoveSpecialCharacter(str.replacingCharacters(in: range!, with: ""))
     }
     return str
 }
 // Mark: -------- 手机号正则表达式
-func checkMobileReg(mobile: String) -> Bool {
+func checkMobileReg(_ mobile: String) -> Bool {
     let regex = try! NSRegularExpression(pattern: REGEXP_MOBILES,
-                                         options: [.CaseInsensitive])
+                                         options: [.caseInsensitive])
     
-    return regex.firstMatchInString(mobile, options: [],
+    return regex.firstMatch(in: mobile, options: [],
                                     range: NSRange(location: 0, length: mobile.utf16.count))?.range.length != nil
     
 }

@@ -9,48 +9,48 @@
 import MJRefresh
 
 protocol MJCollectionViewRefreshDelegate: NSObjectProtocol {
-    func Collection(Collection: CollectionMjResh, refreshDataWithType refreshType: CollectionMjResh.RefreshType)
+    func Collection(_ Collection: CollectionMjResh, refreshDataWithType refreshType: CollectionMjResh.RefreshType)
 }
 
 class CollectionMjResh: UICollectionView {
     
     enum RefreshType {
-        case Header
-        case Footer
+        case header
+        case footer
     }
     
     weak var refreshDelegate: MJCollectionViewRefreshDelegate?
     var pageSize = 10
-    var reloadIndexSet: NSIndexSet?
+    var reloadIndexSet: IndexSet?
     var imageArray = [UIImage]()
     var isShowNoData = true
     var noDataTitle = "很抱歉，未找到相关的内容"
     var noDataNotice: String?
     var noDataImageYOffset: CGFloat = 0.0
     var KindS = 1
-    private var noDataNoticeView: LDNoDataNoticeView?
+    fileprivate var noDataNoticeView: LDNoDataNoticeView?
     
-    func configRefreshable(headerEnabled headerEnabled: Bool, footerEnabled: Bool) {
+    func configRefreshable(headerEnabled: Bool, footerEnabled: Bool) {
         if headerEnabled {
             let header = MJRefreshNormalHeader(refreshingBlock: {
-                self.refreshDelegate?.Collection(self, refreshDataWithType: .Header)
+                self.refreshDelegate?.Collection(self, refreshDataWithType: .header)
             })
-            header.stateLabel!.hidden = true
+            header.stateLabel!.isHidden = true
             header.arrowView!.image = nil
-            header.lastUpdatedTimeLabel!.hidden = true
+            header.lastUpdatedTimeLabel!.isHidden = true
             self.mj_header = header
         }
         if footerEnabled {
             let footer = MJRefreshBackNormalFooter(refreshingBlock: {
-                self.refreshDelegate?.Collection(self, refreshDataWithType: .Footer)
+                self.refreshDelegate?.Collection(self, refreshDataWithType: .footer)
             })
-            footer.stateLabel!.hidden = true
+            footer.stateLabel!.isHidden = true
             footer.arrowView!.image = nil
             self.mj_footer = footer
         }
     }
 
-    func endRefreshing(num num: Int = 0, count: Int = -1,NoDataNoticeViewKinds: Int = 3) {
+    func endRefreshing(num: Int = 0, count: Int = -1,NoDataNoticeViewKinds: Int = 3) {
         if let header = self.mj_header {
             header.endRefreshing()
         }
@@ -58,7 +58,7 @@ class CollectionMjResh: UICollectionView {
             if num < self.pageSize {
                 footer.endRefreshingWithNoMoreData()
             } else {
-                footer.state = .Idle
+                footer.state = .idle
                 footer.resetNoMoreData()
                 footer.endRefreshing()
             }
@@ -82,33 +82,33 @@ class CollectionMjResh: UICollectionView {
         }
     }
     
-    func refreshData(refreshType: RefreshType = .Header) {
+    func refreshData(_ refreshType: RefreshType = .header) {
         switch refreshType {
-        case .Header:
+        case .header:
             if let header = self.mj_header {
                 header.beginRefreshing()
             }
-        case .Footer:
+        case .footer:
             if let footer = self.mj_footer {
                 footer.beginRefreshing()
             }
         }
     }
     
-    func updateData<T>(inout data: [T], newData: [T], refreshType: RefreshType, endRefreshing: Bool = true) {
+    func updateData<T>(_ data: inout [T], newData: [T], refreshType: RefreshType, endRefreshing: Bool = true) {
         switch refreshType {
-        case .Header: data = newData
-        case .Footer: data += newData
+        case .header: data = newData
+        case .footer: data += newData
         }
         if endRefreshing {
             self.endRefreshing(num: newData.count, count: data.count,NoDataNoticeViewKinds: 3)
         }
     }
     
-    func pageOffset<T>(refreshType: RefreshType, data: [T]) -> Int {
+    func pageOffset<T>(_ refreshType: RefreshType, data: [T]) -> Int {
         switch refreshType {
-        case .Header: return 0
-        case .Footer: return data.count
+        case .header: return 0
+        case .footer: return data.count
         }
     }
     

@@ -16,36 +16,36 @@ extension PhotoBrowser {
 	class TakerViewController: APPviewcontroller, PhotoBrowserViewDelegate, PhotoCropperDelegate {
 
 		var options: PhotoBrowserOptions!
-		var backgroundColor = UIColor.blackColor()
+		var backgroundColor = UIColor.black
 
-		private let captureSession = AVCaptureSession()
-		private let stillImageOutput = AVCaptureStillImageOutput()
-		private var input: AVCaptureDeviceInput!
+		fileprivate let captureSession = AVCaptureSession()
+		fileprivate let stillImageOutput = AVCaptureStillImageOutput()
+		fileprivate var input: AVCaptureDeviceInput!
 
 		weak var delegate: PhotoBrowserDelegate!
 
-		private var previewLayer: AVCaptureVideoPreviewLayer!
-		private var cameraPreview: UIView!
-		private var stopButton: UIButton!
-		private var takeButton: UIButton!
-		private var FlipButton: UIButton!
-		private var photoView: View!
-        private var focusCursor: UIImageView!
+		fileprivate var previewLayer: AVCaptureVideoPreviewLayer!
+		fileprivate var cameraPreview: UIView!
+		fileprivate var stopButton: UIButton!
+		fileprivate var takeButton: UIButton!
+		fileprivate var FlipButton: UIButton!
+		fileprivate var photoView: View!
+        fileprivate var focusCursor: UIImageView!
 
-		private var confirmButton: UIBarButtonItem!
-		private var retakeButton: UIBarButtonItem!
-		private var cropButton: UIBarButtonItem!
+		fileprivate var confirmButton: UIBarButtonItem!
+		fileprivate var retakeButton: UIBarButtonItem!
+		fileprivate var cropButton: UIBarButtonItem!
 
-		private var viewInited = false
-		private var isEditing = false
-		private var buttonsHidden = false
-		private var isUsingFrontFacingCameraBack = true
-		private var isUseFlip = true
-		private let buttonSize = CGSize(width: 60, height: 44)
+		fileprivate var viewInited = false
+		fileprivate var isEditing = false
+		fileprivate var buttonsHidden = false
+		fileprivate var isUsingFrontFacingCameraBack = true
+		fileprivate var isUseFlip = true
+		fileprivate let buttonSize = CGSize(width: 60, height: 44)
 
 		// MARK: - UIViewControll
 
-        override func prefersStatusBarHidden()->Bool {
+        override var prefersStatusBarHidden:Bool {
             
             return true
             
@@ -59,22 +59,22 @@ extension PhotoBrowser {
 			view.backgroundColor = backgroundColor
 		}
 
-		override func viewWillAppear(animated: Bool) {
-			let authStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+		override func viewWillAppear(_ animated: Bool) {
+			let authStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
 			switch (authStatus) {
-			case .NotDetermined:
-				AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo) { (granted) -> Void in
+			case .notDetermined:
+				AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo) { (granted) -> Void in
 					async {
 						if granted {
 							self.initView()
 						} else {
-							self.dismissViewControllerAnimated(true, completion: nil)
+							self.dismiss(animated: true, completion: nil)
 							toast("请在设置中打开访问相机的权限")
 						}
 					}
 				}
-			case .Restricted, .Denied:
-				self.dismissViewControllerAnimated(true, completion: nil)
+			case .restricted, .denied:
+				self.dismiss(animated: true, completion: nil)
 				toast("请在设置中打开访问相机的权限")
 			default:
 				initView()
@@ -93,38 +93,38 @@ extension PhotoBrowser {
 			self.view.addSubview(self.cameraPreview)
 
 			stopButton = UIButton()
-			stopButton.setTitle("取消", forState: .Normal)
-			stopButton.setTitleColor(rgb(128, 128, 128), forState: .Highlighted)
-			stopButton.addTarget(self, action: #selector(TakerViewController.handleStopButtonTap(_:)), forControlEvents: .TouchUpInside)
+			stopButton.setTitle("取消", for: UIControlState())
+			stopButton.setTitleColor(rgb(128, 128, 128), for: .highlighted)
+			stopButton.addTarget(self, action: #selector(TakerViewController.handleStopButtonTap(_:)), for: .touchUpInside)
 
 			takeButton = UIButton()
-			takeButton.setImage(UIImage(named: "Photo_1"), forState: .Normal)
-			takeButton.setImage(UIImage(named: "Photo_2"), forState: .Highlighted)
+			takeButton.setImage(UIImage(named: "Photo_1"), for: UIControlState())
+			takeButton.setImage(UIImage(named: "Photo_2"), for: .highlighted)
 			takeButton.clipsToBounds = true
 			takeButton.layer.cornerRadius = 32
-			takeButton.addTarget(self, action: #selector(TakerViewController.handleTakeButtonTap(_:)), forControlEvents: .TouchUpInside)
+			takeButton.addTarget(self, action: #selector(TakerViewController.handleTakeButtonTap(_:)), for: .touchUpInside)
 
             focusCursor = UIImageView()
 			focusCursor.layer.masksToBounds = true
-            focusCursor.layer.borderColor = rgb(254, 209, 5).CGColor
+            focusCursor.layer.borderColor = rgb(254, 209, 5).cgColor
             focusCursor.layer.borderWidth = 1
 			focusCursor.alpha = 0
 
 			FlipButton = UIButton()
-			FlipButton.setImage(UIImage(named: "button_反向2"), forState: .Normal)
-			FlipButton.setImage(UIImage(named: "button_反向1"), forState: .Highlighted)
-			FlipButton.addTarget(self, action: #selector(TakerViewController.switchCameraSegmentedControlClick), forControlEvents: .TouchUpInside)
+			FlipButton.setImage(UIImage(named: "button_反向2"), for: UIControlState())
+			FlipButton.setImage(UIImage(named: "button_反向1"), for: .highlighted)
+			FlipButton.addTarget(self, action: #selector(TakerViewController.switchCameraSegmentedControlClick), for: .touchUpInside)
 
 			initCaptureSession()
 
 			// Init navbar
-            createBarButtonItemAtPosition(.Right, Title: "取消", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(TakerViewController.handleCancelButtonTap(_:)))
+            createBarButtonItemAtPosition(.right, Title: "取消", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(TakerViewController.handleCancelButtonTap(_:)))
 
 			// Init Toolbar
-			let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-			confirmButton = UIBarButtonItem(title: "选取", style: .Plain, target: self, action: #selector(TakerViewController.handleConfirmButtonTap(_:)))
-			retakeButton = UIBarButtonItem(title: "重拍", style: .Plain, target: self, action: #selector(TakerViewController.handleRetakeButtonTap(_:)))
-			cropButton = UIBarButtonItem(title: "裁剪", style: .Plain, target: self, action: #selector(TakerViewController.handleCropButtonTap(_:)))
+			let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+			confirmButton = UIBarButtonItem(title: "选取", style: .plain, target: self, action: #selector(TakerViewController.handleConfirmButtonTap(_:)))
+			retakeButton = UIBarButtonItem(title: "重拍", style: .plain, target: self, action: #selector(TakerViewController.handleRetakeButtonTap(_:)))
+			cropButton = UIBarButtonItem(title: "裁剪", style: .plain, target: self, action: #selector(TakerViewController.handleCropButtonTap(_:)))
 			toolbarItems = [retakeButton, flexibleSpace, cropButton, flexibleSpace, confirmButton]
 
 			viewInited = true
@@ -162,9 +162,9 @@ extension PhotoBrowser {
 			async({
 				var devices = AVCaptureDevice.devices()
 				if self.isUsingFrontFacingCameraBack {
-					devices = AVCaptureDevice.devices().filter { $0.hasMediaType(AVMediaTypeVideo) && $0.position == AVCaptureDevicePosition.Back }
+					devices = AVCaptureDevice.devices().filter { $0.hasMediaType(AVMediaTypeVideo) && $0.position == AVCaptureDevicePosition.back }
 				} else {
-					devices = AVCaptureDevice.devices().filter { $0.hasMediaType(AVMediaTypeVideo) && $0.position == AVCaptureDevicePosition.Front }
+					devices = AVCaptureDevice.devices().filter { $0.hasMediaType(AVMediaTypeVideo) && $0.position == AVCaptureDevicePosition.front }
 				}
 				if let captureDevice = devices.first as? AVCaptureDevice {
 
@@ -182,7 +182,7 @@ extension PhotoBrowser {
 			}) {
 				guard let success = $0 as? Bool where success else {
 					toast("未找到可用设备")
-					self.dismissViewControllerAnimated(true, completion: nil)
+					self.dismiss(animated: true, completion: nil)
 					return
 				}
                 self.cameraPreview.layer.addSublayer(self.previewLayer)
@@ -223,28 +223,28 @@ extension PhotoBrowser {
 			self.previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
 			if let previewLayer = self.previewLayer {
 				previewLayer.bounds = rect
-				previewLayer.position = CGPointMake(self.view.bounds.midX, self.view.bounds.midY)
+				previewLayer.position = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
 				previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
 			}
 			self.flashButtonClick()
 		}
 		// MARK: Camera Button Handler
 
-		func handleStopButtonTap(sender: UIButton) {
+		func handleStopButtonTap(_ sender: UIButton) {
 			self.stopCaptureSessioin()
 			if photoView.model == nil {
-				self.dismissViewControllerAnimated(true, completion: nil)
+				self.dismiss(animated: true, completion: nil)
 			}
 		}
 
-		func handleTakeButtonTap(sender: UIButton) {
-			guard captureSession.running else { return }
+		func handleTakeButtonTap(_ sender: UIButton) {
+			guard captureSession.isRunning else { return }
 			self.stopButton.removeFromSuperview()
 			self.takeButton.removeFromSuperview()
 			self.FlipButton.removeFromSuperview()
 			self.focusCursor.removeFromSuperview()
-			if let videoConnection = stillImageOutput.connectionWithMediaType(AVMediaTypeVideo) {
-				stillImageOutput.captureStillImageAsynchronouslyFromConnection(videoConnection) {
+			if let videoConnection = stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
+				stillImageOutput.captureStillImageAsynchronously(from: videoConnection) {
 					(imageDataSampleBuffer, error) -> Void in
 					let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
 					let img = UIImage(data: imageData)
@@ -252,7 +252,7 @@ extension PhotoBrowser {
 
 					self.stopCaptureSessioin()
 
-					self.photoView.setup(.Image(image: img!))
+					self.photoView.setup(.image(image: img!))
 					self.photoView.setNeedsLayout()
 					self.isEditing = true
 				}
@@ -261,22 +261,22 @@ extension PhotoBrowser {
 
 		// MARK: Navbar Button Handler
 
-		func handleCancelButtonTap(sender: UIButton) {
-			dismissViewControllerAnimated(true, completion: nil)
+		func handleCancelButtonTap(_ sender: UIButton) {
+			dismiss(animated: true, completion: nil)
 		}
 
 		// MARK: Toolbar Button Handler
 
-		func handleConfirmButtonTap(sender: UIButton) {
+		func handleConfirmButtonTap(_ sender: UIButton) {
 			close()
 		}
 
-		func handleRetakeButtonTap(sender: UIButton) {
+		func handleRetakeButtonTap(_ sender: UIButton) {
 			view.addSubview(cameraPreview)
 			initCaptureSession()
 		}
 
-		func handleCropButtonTap(sender: UIButton) {
+		func handleCropButtonTap(_ sender: UIButton) {
 			photoView.loadOriginImage {
 				guard let image = $0 else { return }
 				// LDPhotoBrowser.showPhotoCropper(self, image: image)
@@ -285,14 +285,14 @@ extension PhotoBrowser {
 				controller.options = self.options
 				controller.image = image
                 controller.isTakerview = true
-				self.navigationController?.showViewController(controller, sender: nil)
+				self.navigationController?.show(controller, sender: nil)
 			}
 		}
 
 		func close() {
 			let model: Model = photoView.model
 			switch model {
-			case .Image(let image):
+			case .image(let image):
 				if options.requireCroppedImage {
 					photoView.loadOriginImage {
 						guard let image = $0 else { return }
@@ -300,39 +300,39 @@ extension PhotoBrowser {
 						controller.delegate = self
 						controller.options = self.options
 						controller.image = image
-						self.navigationController?.showViewController(controller, sender: nil)
+						self.navigationController?.show(controller, sender: nil)
 					}
 					return
 				}
 
-				delegate.photoBrowser(self, didSelect: .Single(-1, .Image(image: image)))
+				delegate.photoBrowser(self, didSelect: .single(-1, .image(image: image)))
 			default: break
 			}
 
-			self.dismissViewControllerAnimated(true, completion: nil)
+			self.dismiss(animated: true, completion: nil)
 		}
 
 		// MARK: - LDPhotoCropperDelegate
 
-		func photoCropper(photoCropper: PhotoBrowser.CropperViewController, didFinishCroppingImage croppedImage: UIImage, transform: CGAffineTransform, cropRect: CGRect) {
+		func photoCropper(_ photoCropper: PhotoBrowser.CropperViewController, didFinishCroppingImage croppedImage: UIImage, transform: CGAffineTransform, cropRect: CGRect) {
 			guard let delegate = delegate else { return }
-			delegate.photoBrowser(self, didSelect: .Single(-1, .Image(image: croppedImage)))
+			delegate.photoBrowser(self, didSelect: .single(-1, .image(image: croppedImage)))
 		}
 
 		// MARK: - LDPhotoBrowserViewDelegate
 
-		func photoViewDidSingleTap(view: PhotoBrowser.View) {
+		func photoViewDidSingleTap(_ view: PhotoBrowser.View) {
 			if isEditing {
 				setFullscreen(!fullscreen, animated: true)
 			}
 		}
 
-		func photoViewDidUpdate(view: PhotoBrowser.View) {
+		func photoViewDidUpdate(_ view: PhotoBrowser.View) {
 			// nothing
 		}
 		// MARK: - 设置闪光灯
 		func flashButtonClick() {
-			let devices = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+			let devices = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
 			do {
 				try devices.lockForConfiguration()
 			} catch _ {
@@ -340,9 +340,9 @@ extension PhotoBrowser {
 			}
 			if devices.hasFlash {
 				if isUsingFrontFacingCameraBack {
-					devices.flashMode = AVCaptureFlashMode.Auto
+					devices.flashMode = AVCaptureFlashMode.auto
 				} else {
-					devices.flashMode = AVCaptureFlashMode.Off
+					devices.flashMode = AVCaptureFlashMode.off
 				}
 			}
 			devices.unlockForConfiguration()
@@ -353,9 +353,9 @@ extension PhotoBrowser {
 			async({ () -> AnyObject! in
 				var devices = AVCaptureDevice.devices()
 				if self.isUsingFrontFacingCameraBack {
-					devices = AVCaptureDevice.devices().filter { $0.hasMediaType(AVMediaTypeVideo) && $0.position == AVCaptureDevicePosition.Front }
+					devices = AVCaptureDevice.devices().filter { $0.hasMediaType(AVMediaTypeVideo) && $0.position == AVCaptureDevicePosition.front }
 				} else {
-					devices = AVCaptureDevice.devices().filter { $0.hasMediaType(AVMediaTypeVideo) && $0.position == AVCaptureDevicePosition.Back }
+					devices = AVCaptureDevice.devices().filter { $0.hasMediaType(AVMediaTypeVideo) && $0.position == AVCaptureDevicePosition.back }
 				}
                 self.previewLayer.session.beginConfiguration()
 				let input: AVCaptureInput?
@@ -386,7 +386,7 @@ extension PhotoBrowser {
 			}
 		}
 
-		func focusWithMode(focusMode: AVCaptureFocusMode, exposureMode: AVCaptureExposureMode, point: CGPoint) {
+		func focusWithMode(_ focusMode: AVCaptureFocusMode, exposureMode: AVCaptureExposureMode, point: CGPoint) {
 			let captureDevice = self.input.device
 			do {
 				try captureDevice.lockForConfiguration()
@@ -394,15 +394,15 @@ extension PhotoBrowser {
 				Log.info("上锁失败")
 			}
 			if captureDevice.isFocusModeSupported(focusMode) {
-				captureDevice.focusMode = AVCaptureFocusMode.AutoFocus
+				captureDevice.focusMode = AVCaptureFocusMode.autoFocus
 			}
-			if captureDevice.focusPointOfInterestSupported {
+			if captureDevice.isFocusPointOfInterestSupported {
 				captureDevice.focusPointOfInterest = point
 			}
 			if captureDevice.isExposureModeSupported(exposureMode) {
-				captureDevice.exposureMode = AVCaptureExposureMode.AutoExpose
+				captureDevice.exposureMode = AVCaptureExposureMode.autoExpose
 			}
-			if captureDevice.exposurePointOfInterestSupported {
+			if captureDevice.isExposurePointOfInterestSupported {
 				captureDevice.exposurePointOfInterest = point
 			}
             captureDevice.unlockForConfiguration()
@@ -412,23 +412,23 @@ extension PhotoBrowser {
 			let tap = UITapGestureRecognizer(target: self, action: #selector(tapScreen))
 			self.cameraPreview.addGestureRecognizer(tap)
 		}
-		func setFocusCursorWithPoint(point: CGPoint) {
+		func setFocusCursorWithPoint(_ point: CGPoint) {
 			self.focusCursor.center = point
-			self.focusCursor.transform = CGAffineTransformMakeScale(1.5, 1.5)
+			self.focusCursor.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
 			self.focusCursor.alpha = 1.0
-			UIView.animateWithDuration(0.4, animations: {
-				self.focusCursor.transform = CGAffineTransformIdentity
-			}) { (isok) in
+			UIView.animate(withDuration: 0.4, animations: {
+				self.focusCursor.transform = CGAffineTransform.identity
+			}, completion: { (isok) in
 				if isok {
 					self.focusCursor.alpha = 0
 				}
-			}
+			}) 
 		}
-		func tapScreen(tapGesture: UITapGestureRecognizer) {
-			let point = tapGesture.locationInView(self.cameraPreview)
-			let cameraPoint = self.previewLayer.captureDevicePointOfInterestForPoint(point)
+		func tapScreen(_ tapGesture: UITapGestureRecognizer) {
+			let point = tapGesture.location(in: self.cameraPreview)
+			let cameraPoint = self.previewLayer.captureDevicePointOfInterest(for: point)
 			self.setFocusCursorWithPoint(point)
-			self.focusWithMode(AVCaptureFocusMode.AutoFocus, exposureMode: AVCaptureExposureMode.AutoExpose, point: cameraPoint)
+			self.focusWithMode(AVCaptureFocusMode.autoFocus, exposureMode: AVCaptureExposureMode.autoExpose, point: cameraPoint)
 		}
 	}
 

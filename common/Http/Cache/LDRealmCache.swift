@@ -23,32 +23,32 @@ class LDRealmCache: LDCachable {
     
     // MARK: - LDCachable
     
-    func get(key: String) -> LDCacheItem? {
+    func get(_ key: String) -> LDCacheItem? {
         if let item = realm.objectForPrimaryKey(LDCacheItem.self, key: key) where item.isValid {
             return item
         }
         return nil
     }
     
-    func set(value: LDCacheItem) {
+    func set(_ value: LDCacheItem) {
         try! realm.write {
             realm.add(value, update: true)
         }
     }
     
-    func getValue(key: String) -> String? {
+    func getValue(_ key: String) -> String? {
         return self.get(key)?.value
     }
     
-    func setValue(value: String, forKey key: String, expires: Double?) {
+    func setValue(_ value: String, forKey key: String, expires: Double?) {
         let item = LDCacheItem()
         item.key = key
         item.value = value
-        item.expires = expires ?? NSDate.distantFuture().timeIntervalSince1970
+        item.expires = expires ?? Date.distantFuture.timeIntervalSince1970
         self.set(item)
     }
     
-    func remove(key: String) {
+    func remove(_ key: String) {
         guard let item = self.get(key) else {return}
         try! realm.write {
             realm.delete(item)

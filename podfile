@@ -2,26 +2,39 @@ platform :ios, '8.0'
 use_frameworks!
 
 target :App do
-	pod 'Swiften', :git => 'https://github.com/catorv/swiften'
-	pod 'Alamofire'
-	pod 'IQKeyboardManagerSwift','4.0.5'
-	pod 'AlamofireImage'
-	pod 'KeychainSwift', '3.0.16'	
-        pod 'SnapKit', '0.30.0.beta2'
-        pod 'SwiftyJSON', '~> 2.3.2'
-        #pod 'RongCloudIMLib', '~> 2.6.3'
-        pod 'RongCloudIMKit', '~> 2.7.0'
-        pod 'MJRefresh'
-        pod 'ObjectMapper'
-	pod 'BaiduMapKit'
-	pod 'AlamofireObjectMapper'
-	pod "Qiniu", "~> 7.1"
+    pod 'Alamofire', '~> 4.3'
+    pod 'AlamofireImage', '~> 3.2'
+    pod 'AlamofireObjectMapper', '~> 4.0'
+    pod 'KeychainSwift', '~> 7.0'
+    pod 'ObjectMapper', '~> 2.2'
+    pod 'ReachabilitySwift', '~> 3'
+    pod 'RealmSwift', '~> 2.4'
+    pod 'SwiftyJSON', '~> 3.1'
+    pod 'Toast-Swift', '~> 2.0.0'
+
+    pod 'IQKeyboardManagerSwift','4.0.5'
+    pod 'RongCloudIMKit', '~> 2.7.0'
+    pod 'MJRefresh'
+    pod 'BaiduMapKit'
+    pod "Qiniu", "~> 7.1"
+end
+
+target :SwiftenTests do
+    pod 'Alamofire', '~> 4.3'
+    pod 'AlamofireImage', '~> 3.2'
+    pod 'AlamofireObjectMapper', '~> 4.0'
+    pod 'KeychainSwift', '~> 7.0'
+    pod 'ObjectMapper', '~> 2.2'
+    pod 'ReachabilitySwift', '~> 3'
+    pod 'RealmSwift', '~> 2.4'
+    pod 'SwiftyJSON', '~> 3.1'
+    pod 'Toast-Swift', '~> 2.0.0'
 end
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
-            config.build_settings['SWIFT_VERSION'] = '2.3'
+            config.build_settings['SWIFT_VERSION'] = '3.0'
         end
     end
 end

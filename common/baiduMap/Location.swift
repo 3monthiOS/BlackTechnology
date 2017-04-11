@@ -29,7 +29,7 @@ class Location : Mappable {
 	required init?(_ map: Map) {
 	}
 
-	func mapping(map: Map) {
+	func mapping(_ map: Map) {
         latitude <- map["latitude"]
         longitude <- map["longitude"]
 		country <- map["country"]

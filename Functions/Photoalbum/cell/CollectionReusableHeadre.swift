@@ -14,7 +14,7 @@ class CollectionReusableHeadre: UICollectionReusableView {
         super.awakeFromNib()
         // Initialization code
     }
-    @IBAction func buttonclickmore(sender: AnyObject) {
+    @IBAction func buttonclickmore(_ sender: AnyObject) {
 //         Notifications.toMineAlbum.post(true)
         
 //        let storyBoard = UIStoryboard(name: "AhaMine",
@@ -23,7 +23,7 @@ class CollectionReusableHeadre: UICollectionReusableView {
 //        UIViewController.showViewController(vc!, animated: true)
         
     }
-    override func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes){
+    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes){
         
     }
 }

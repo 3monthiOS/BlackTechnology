@@ -16,12 +16,12 @@ class Device {
         
 //        let versionCode: String = String(validatingUTF8: NSString(bytes: &systemInfo.machine, length: Int(_SYS_NAMELEN), encoding: String.Encoding.ascii.rawValue)!.utf8String!)!
         
-        let versionCode = String(UTF8String: (NSString(bytes: &systemInfo.machine, length: Int(_SYS_NAMELEN), encoding: String.defaultCStringEncoding())?.UTF8String)!)
+        let versionCode = String(validatingUTF8: (NSString(bytes: &systemInfo.machine, length: Int(_SYS_NAMELEN), encoding: String.defaultCStringEncoding())?.utf8String)!)
         
         return versionCode!
     }
     
-    static  func getVersion(code: String) -> Version {
+    static  func getVersion(_ code: String) -> Version {
         switch code {
             /*** iPhone ***/
         case "iPhone3,1", "iPhone3,2", "iPhone3,3":      return Version.iPhone4
@@ -65,14 +65,14 @@ class Device {
         }
     }
     
-    static  func getType(code: String) -> Type {
+    static  func getType(_ code: String) -> Type {
         let versionCode = Device.getVersionCode()
         
-        if versionCode.containsString("iPhone") {
+        if versionCode.contains("iPhone") {
             return Type.iPhone
-        } else if versionCode.containsString("iPad") {
+        } else if versionCode.contains("iPad") {
             return Type.iPad
-        } else if versionCode.containsString("iPod") {
+        } else if versionCode.contains("iPod") {
             return Type.iPod
         } else if versionCode == "i386" || versionCode == "x86_64" {
             return Type.Simulator
@@ -99,7 +99,7 @@ class Device {
         case 568:
             return Size.screen4Inch
         case 667:
-            return UIScreen.mainScreen().scale == 3.0 ? Size.screen5_5Inch : Size.screen4_7Inch
+            return UIScreen.main.scale == 3.0 ? Size.screen5_5Inch : Size.screen4_7Inch
         case 736:
             return Size.screen5_5Inch
         case 1024:
@@ -122,20 +122,20 @@ class Device {
         return Device.getType(versionName)
     }
     
-    static  func isEqualToScreenSize(size: Size) -> Bool {
+    static  func isEqualToScreenSize(_ size: Size) -> Bool {
         return size == Device.size() ? true : false;
     }
     
-    static  func isLargerThanScreenSize(size: Size) -> Bool {
+    static  func isLargerThanScreenSize(_ size: Size) -> Bool {
         return size.rawValue < Device.size().rawValue ? true : false;
     }
     
-    static  func isSmallerThanScreenSize(size: Size) -> Bool {
+    static  func isSmallerThanScreenSize(_ size: Size) -> Bool {
         return size.rawValue > Device.size().rawValue ? true : false;
     }
     
     static  func isRetina() -> Bool {
-        return UIScreen.mainScreen().scale > 1.0
+        return UIScreen.main.scale > 1.0
     }
     
     static  func isPad() -> Bool {

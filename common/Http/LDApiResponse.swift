@@ -27,14 +27,14 @@ class LDApiResponse<T: Mappable>: Mappable {
     var passport = ""
     var openid = ""
 	
-	var rawData: NSData!
+	var rawData: Data!
 	var rawString: String! {
-		return String(data: rawData, encoding: NSUTF8StringEncoding)
+		return String(data: rawData, encoding: String.Encoding.utf8)
 	}
     var json: JSON? {
         return isOK ? JSON(data: rawData)["obj"] : nil
     }
-    var headers: [NSObject : AnyObject]?
+    var headers: [AnyHashable: Any]?
 
 	var error: LDApiError?
 	
@@ -46,7 +46,7 @@ class LDApiResponse<T: Mappable>: Mappable {
 
 	}
 	
-	func mapping(map: Map) {
+	func mapping(_ map: Map) {
 		code <- map["code"]
         errorMessage <- map["errmsg"]
         flag <- map["flag"]
@@ -61,12 +61,12 @@ class LDApiResponse<T: Mappable>: Mappable {
                 msg = T(map)
             }
 		} else {
-			error = LDApiError.ApiError(code: code, message: errorMessage ?? "")
+			error = LDApiError.apiError(code: code, message: errorMessage ?? "")
 			Log.error("api: ApiError[\(code)] \(errorMessage ?? "")")
 		}
 	}
     
-	func success(@noescape callback: (msg: T) -> Void) -> LDApiResponse {
+	func success(@noescape _ callback: (msg: T) -> Void) -> LDApiResponse {
 		guard isOK else {return self}
 //        session.openid = openid
 //        session.passport = passport
@@ -74,12 +74,12 @@ class LDApiResponse<T: Mappable>: Mappable {
         return self
 	}
 	
-	func failure(@noescape callback: (error: LDApiError) -> Void) -> LDApiResponse {
+	func failure(@noescape _ callback: (error: LDApiError) -> Void) -> LDApiResponse {
 		guard !isOK else {return self}
 		if let error = self.error {
 			callback(error: error)
 		} else if msg == nil {
-			callback(error: LDApiError.DataError)
+			callback(error: LDApiError.dataError)
 		}
         //100000("未登录或登录超时，请重新登录")，100007("用户已在其他设备登录")，100019("用户已被冻结")
 //        if self.code == 100000 || self.code == 100007 || self.code == 100019{
@@ -98,10 +98,10 @@ class LDApiResponse<T: Mappable>: Mappable {
 //                return
 //            }
 			switch error {
-			case .ApiError(_, let message):
+			case .apiError(_, let message):
 				//alert(message, title: "提示")
                 toast(message)
-			case .DataError, .HttpRequestError(_):
+			case .dataError, .httpRequestError(_):
 				//alert("网络不给力", title: "提示")
                 toast("网络不给力")
 			}

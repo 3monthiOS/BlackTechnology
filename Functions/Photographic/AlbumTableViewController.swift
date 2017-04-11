@@ -25,7 +25,7 @@ extension PhotoBrowser {
         }
         
         init(delegate: UIViewController) {
-            super.init(style: .Plain)
+            super.init(style: .plain)
             self.delegate = delegate
         }
         
@@ -34,45 +34,45 @@ extension PhotoBrowser {
             
             // Setup View
             self.title = "相册"
-            self.createBarButtonItemAtPosition(.Right, Title: "取消", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(AlbumTableViewController.cancelAction(_:)))
-            tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
-            tableView.tableFooterView = UIView(frame: CGRectZero)
+            self.createBarButtonItemAtPosition(.right, Title: "取消", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(AlbumTableViewController.cancelAction(_:)))
+            tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+            tableView.tableFooterView = UIView(frame: CGRect.zero)
             
             loadAlbums()
         }
         
-        func cancelAction(sender: AnyObject) {
-            self.dismissViewControllerAnimated(true, completion: nil)
+        func cancelAction(_ sender: AnyObject) {
+            self.dismiss(animated: true, completion: nil)
         }
         
         func loadAlbums() {
-            PHAssetCollection.fetchAssetCollectionsWithType(.SmartAlbum, subtype: .SmartAlbumUserLibrary, options: nil)
-                .enumerateObjectsUsingBlock { (obj, index, stop) -> Void in
+            PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumUserLibrary, options: nil)
+                .enumerateObjects { (obj, index, stop) -> Void in
                     if let collection = obj as? PHAssetCollection {
                         if PHAsset.fetchImageAssetsInAssetCollection(collection).count > 0 {
                             self.albums.append(collection)
                         }
                     }
             }
-            PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .AlbumMyPhotoStream, options: nil)
-                .enumerateObjectsUsingBlock { (obj, index, stop) -> Void in
+            PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumMyPhotoStream, options: nil)
+                .enumerateObjects { (obj, index, stop) -> Void in
                     if let collection = obj as? PHAssetCollection {
                         self.albums.append(collection)
                     }
             }
-            PHAssetCollection.fetchAssetCollectionsWithType(.SmartAlbum, subtype: .SmartAlbumRecentlyAdded, options: nil)
-                .enumerateObjectsUsingBlock { (obj, index, stop) -> Void in
+            PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumRecentlyAdded, options: nil)
+                .enumerateObjects { (obj, index, stop) -> Void in
                     if let collection = obj as? PHAssetCollection {
                         if PHAsset.fetchImageAssetsInAssetCollection(collection).count > 0 {
                             self.albums.append(collection)
                         }
                     }
             }
-            PHAssetCollection.fetchAssetCollectionsWithType(.SmartAlbum, subtype: .Any, options: nil)
-                .enumerateObjectsUsingBlock { (obj, index, stop) -> Void in
+            PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .any, options: nil)
+                .enumerateObjects { (obj, index, stop) -> Void in
                     if let collection = obj as? PHAssetCollection {
                         switch collection.assetCollectionSubtype {
-                        case .SmartAlbumUserLibrary, .SmartAlbumRecentlyAdded:
+                        case .smartAlbumUserLibrary, .smartAlbumRecentlyAdded:
                             break
                         default:
                             if PHAsset.fetchImageAssetsInAssetCollection(collection).count > 0 {
@@ -81,16 +81,16 @@ extension PhotoBrowser {
                         }
                     }
             }
-            PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .AlbumSyncedAlbum, options: nil)
-                .enumerateObjectsUsingBlock { (obj, index, stop) -> Void in
+            PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumSyncedAlbum, options: nil)
+                .enumerateObjects { (obj, index, stop) -> Void in
                     if let collection = obj as? PHAssetCollection {
                         if collection.estimatedAssetCount > 0 {
                             self.albums.append(collection)
                         }
                     }
             }
-            PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .AlbumRegular, options: nil)
-                .enumerateObjectsUsingBlock { (obj, index, stop) -> Void in
+            PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: nil)
+                .enumerateObjects { (obj, index, stop) -> Void in
                     if let collection = obj as? PHAssetCollection {
                         if collection.estimatedAssetCount > 0 {
                             self.albums.append(collection)
@@ -99,7 +99,7 @@ extension PhotoBrowser {
             }
         }
         
-        func buildAlbumTitle(album: PHAssetCollection) -> NSAttributedString {
+        func buildAlbumTitle(_ album: PHAssetCollection) -> NSAttributedString {
             let albumTitle = album.localizedTitle ?? ""
             var count = album.estimatedAssetCount
             if count == Int.max {
@@ -109,43 +109,43 @@ extension PhotoBrowser {
             let title = "\(albumTitle)\(numberString)"
             let attributedString = NSMutableAttributedString(string: title)
             attributedString.setAttributes([
-                NSFontAttributeName: UIFont.systemFontOfSize(16.0),
-                NSForegroundColorAttributeName: UIColor.blackColor()
+                NSFontAttributeName: UIFont.systemFont(ofSize: 16.0),
+                NSForegroundColorAttributeName: UIColor.black
                 ], range: NSMakeRange(0, albumTitle.characters.count))
             attributedString.setAttributes([
-                NSFontAttributeName: UIFont.systemFontOfSize(16.0),
-                NSForegroundColorAttributeName: UIColor.grayColor()
+                NSFontAttributeName: UIFont.systemFont(ofSize: 16.0),
+                NSForegroundColorAttributeName: UIColor.gray
                 ], range: NSMakeRange(albumTitle.characters.count, numberString.characters.count))
             return attributedString
         }
         
         // MARK - UITableViewDelegate
-        override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
             return 64
         }
         
-        override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             return 64
         }
         
-        override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let album = albums[indexPath.row]
             PhotoBrowser.lastAlbum = album
             
             let gridViewController = GridViewController.getInstance(delegate)
             navigationController?.pushViewController(gridViewController, animated: true)
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
         
         // MARK - UITableViewDataSource
-        override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return albums.count
         }
         
-        override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let album = albums[indexPath.row]
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath)
-            cell.accessoryType = .DisclosureIndicator
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
+            cell.accessoryType = .disclosureIndicator
             cell.textLabel?.attributedText = buildAlbumTitle(album)
             
             cell.imageView?.image = UIImage(named: "Placeholder_image")
@@ -153,9 +153,9 @@ extension PhotoBrowser {
             let fetchResult = PHAsset.fetchImageAssetsInAssetCollection(album, fetchLimit: 1)
             let asset = fetchResult.firstObject as! PHAsset
             let options = PHImageRequestOptions()
-            options.deliveryMode = .HighQualityFormat
-            options.resizeMode = .Exact
-            PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: CGSize(width: 128, height: 128), contentMode: .AspectFill, options: options) { (result, info) -> Void in
+            options.deliveryMode = .highQualityFormat
+            options.resizeMode = .exact
+            PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 128, height: 128), contentMode: .aspectFill, options: options) { (result, info) -> Void in
                 if let image = result {
                     cell.imageView?.image = image
                 }

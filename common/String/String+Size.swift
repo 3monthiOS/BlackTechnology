@@ -10,35 +10,35 @@ import Foundation
 
 extension String {
 	
-	func heightWithFontSize(fontSize: CGFloat, width: CGFloat) -> CGFloat {
-		return heightWithFont(UIFont.systemFontOfSize(fontSize), width: width)
+	func heightWithFontSize(_ fontSize: CGFloat, width: CGFloat) -> CGFloat {
+		return heightWithFont(UIFont.systemFont(ofSize: fontSize), width: width)
 	}
     
-    func heightWithFont(font: UIFont, width: CGFloat) -> CGFloat {
-        let size = CGSizeMake(width, CGFloat.max)
+    func heightWithFont(_ font: UIFont, width: CGFloat) -> CGFloat {
+        let size = CGSize(width: width, height: CGFloat.max)
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineBreakMode = .ByWordWrapping;
+        paragraphStyle.lineBreakMode = .byWordWrapping;
         let attributes = [NSFontAttributeName:font,
             NSParagraphStyleAttributeName:paragraphStyle.copy()]
         
         let text = self as NSString
-        let rect = text.boundingRectWithSize(size, options:.UsesLineFragmentOrigin, attributes: attributes, context:nil)
+        let rect = text.boundingRect(with: size, options:.usesLineFragmentOrigin, attributes: attributes, context:nil)
         return rect.size.height
     }
 	
-	func widthWithFontSize(fontSize: CGFloat) -> CGFloat {
-		return widthWithFont(UIFont.systemFontOfSize(fontSize))
+	func widthWithFontSize(_ fontSize: CGFloat) -> CGFloat {
+		return widthWithFont(UIFont.systemFont(ofSize: fontSize))
 	}
     
-    func widthWithFont(font: UIFont) -> CGFloat {
-        let size = CGSizeMake(CGFloat.max, CGFloat.max)
+    func widthWithFont(_ font: UIFont) -> CGFloat {
+        let size = CGSize(width: CGFloat.max, height: CGFloat.max)
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineBreakMode = .ByWordWrapping;
+        paragraphStyle.lineBreakMode = .byWordWrapping;
         let attributes = [NSFontAttributeName:font,
             NSParagraphStyleAttributeName:paragraphStyle.copy()]
         
         let text = self as NSString
-        let rect = text.boundingRectWithSize(size, options:.UsesLineFragmentOrigin, attributes: attributes, context:nil)
+        let rect = text.boundingRect(with: size, options:.usesLineFragmentOrigin, attributes: attributes, context:nil)
         return rect.size.width
     }
 	

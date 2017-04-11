@@ -14,8 +14,8 @@ class LDNoDataNoticeView: UIView {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var imageYOffset: NSLayoutConstraint!
     
-    static func viewWithTitle(title: String, frame: CGRect, imageYOffset: CGFloat = 100,KindS: Int) -> LDNoDataNoticeView {
-        let view = NSBundle.mainBundle().loadNibNamed("LDNoDataNoticeView", owner: nil, options: nil)![KindS] as! LDNoDataNoticeView
+    static func viewWithTitle(_ title: String, frame: CGRect, imageYOffset: CGFloat = 100,KindS: Int) -> LDNoDataNoticeView {
+        let view = Bundle.main.loadNibNamed("LDNoDataNoticeView", owner: nil, options: nil)![KindS] as! LDNoDataNoticeView
         view.frame = frame
         view.titleLabel.text = title
         view.tag = 12545
@@ -23,7 +23,7 @@ class LDNoDataNoticeView: UIView {
         view.layoutIfNeeded()
         return view
     }
-    @IBAction func JumpCotroller(sender: AnyObject) {
+    @IBAction func JumpCotroller(_ sender: AnyObject) {
 //        if let _ = Utils.getUser() {
 //            let storyboard = UIStoryboard(name: "AhaAlbumEditer", bundle: NSBundle.mainBundle())
 //            let controller = storyboard.instantiateViewControllerWithIdentifier("LDNewQdanViewController")

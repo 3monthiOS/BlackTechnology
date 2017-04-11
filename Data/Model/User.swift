@@ -55,7 +55,7 @@ class User: Mappable {
 
     }
 
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         
         id <- map["id"]
         appid <- map["appid"]

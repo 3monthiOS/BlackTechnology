@@ -21,7 +21,7 @@ class ContactsStore {
 }
 class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDelegate, ABNewPersonViewControllerDelegate, ABPersonViewControllerDelegate {
 
-	private static var sharedInstance: MObileFunction? = nil
+	fileprivate static var sharedInstance: MObileFunction? = nil
 	var userNumber: String?
 	var userName: String?
 	var isShow = false
@@ -44,11 +44,11 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 		}
 		return sharedInstance!
 	}
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		if isShow {
-			SaveBtn.hidden = false
+			SaveBtn.isHidden = false
 		} else {
-			SaveBtn.hidden = true
+			SaveBtn.isHidden = true
 		}
 	}
 	override func viewDidLoad() {
@@ -56,34 +56,34 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 
 	}
 	// Mark:- -------保存次联系人 到电话簿
-	@IBAction func saveMobilephone(sender: AnyObject) {
+	@IBAction func saveMobilephone(_ sender: AnyObject) {
 		if isempty() { alert("联系人信息不完整"); return }
 		self.SaveMobileBook(userName!, userNumber: userNumber!)
 	}
 	// Mark:- -------打电话
-	@IBAction func IphoneCall(sender: AnyObject) {
+	@IBAction func IphoneCall(_ sender: AnyObject) {
 		if isempty() { alert("联系人信息不完整"); return }
 		self.phoneCall(userNumber!)
 //		self.dismissActionSheetController()
 	}
-	func phoneCall(phoneStr: String) {
+	func phoneCall(_ phoneStr: String) {
 		let phoneNum = "tel:\(phoneStr)"
 		let callWedView = UIWebView()
-		let request = NSURLRequest(URL: NSURL(string: phoneNum)!)
+		let request = URLRequest(url: URL(string: phoneNum)!)
 		callWedView.loadRequest(request)
 		self.view.addSubview(callWedView)
 	}
 	// Mark:- -------推荐
-	@IBAction func recommended(sender: AnyObject) {
+	@IBAction func recommended(_ sender: AnyObject) {
 	}
 	// Mark:- -------发短信
-	@IBAction func texting(sender: AnyObject) {
+	@IBAction func texting(_ sender: AnyObject) {
 		self.sendMessage(self,MessageContent: "")
 	}
-    func sendMessage(controller: UIViewController, MessageContent: String) {
+    func sendMessage(_ controller: UIViewController, MessageContent: String) {
         self.messageBoy = MessageContent
 		if (self.canSendText()) {
-			controller.presentViewController(self.configuredMessageComposeViewController(), animated: true, completion: nil)
+			controller.present(self.configuredMessageComposeViewController(), animated: true, completion: nil)
 		} else {
 			alert("当前设备不支持短信功能")
 		}
@@ -107,18 +107,18 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 		return messageComposeVC
 	}
 	// Mark: --------发送短信代理
-	func messageComposeViewController(controller: MFMessageComposeViewController,
+	func messageComposeViewController(_ controller: MFMessageComposeViewController,
 		didFinishWithResult result: MessageComposeResult) {
 
 			switch result {
-			case .Sent:
+			case .sent:
 				print("短信已发送")
-			case .Cancelled:
+			case .cancelled:
 				print("短信取消发送")
-			case .Failed:
+			case .failed:
 				print("短信发送失败")
 			}
-			controller.dismissViewControllerAnimated(true, completion: nil)
+			controller.dismiss(animated: true, completion: nil)
 			MObileFunction.sharedInstance = nil
 	}
 
@@ -127,7 +127,7 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 		let personViewVC = ABPersonViewController()
 		personViewVC.personViewDelegate = self
 		personViewVC.allowsEditing = true
-		personViewVC.editing = true
+		personViewVC.isEditing = true
 		personViewVC.allowsActions = true
 
 		// let ab : mobileControl
@@ -143,15 +143,15 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 		self.navigationController?.pushViewController(personViewVC, animated: true)
 	}
 	// Mark: -------- ABNewPersonViewControllerDelegate
-	func personViewController(personViewController: ABPersonViewController, shouldPerformDefaultActionForPerson person: ABRecord, property: ABPropertyID, identifier: ABMultiValueIdentifier) -> Bool {
+	func personViewController(_ personViewController: ABPersonViewController, shouldPerformDefaultActionForPerson person: ABRecord, property: ABPropertyID, identifier: ABMultiValueIdentifier) -> Bool {
 		return false
 	}
-	func newPersonViewController(newPersonView: ABNewPersonViewController, didCompleteWithNewPerson person: ABRecord?) {
+	func newPersonViewController(_ newPersonView: ABNewPersonViewController, didCompleteWithNewPerson person: ABRecord?) {
 		//
 	}
 
 	// Mark: -------- 平台 保存到通讯录
-	func SaveMobileBook(userName: String, userNumber: String) {
+	func SaveMobileBook(_ userName: String, userNumber: String) {
 
 		if userName.isEmpty || userNumber.isEmpty {
 			alert("联系人信息不完整")
@@ -165,9 +165,9 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 				value: CNPhoneNumber(stringValue: userNumber))]
 
 			let saveRequest = CNSaveRequest()
-			saveRequest.addContact(mutableContact, toContainerWithIdentifier: nil)
+			saveRequest.add(mutableContact, toContainerWithIdentifier: nil)
 			do {
-				try ContactsStore.sharedStore.executeSaveRequest(saveRequest)
+				try ContactsStore.sharedStore.execute(saveRequest)
 			} catch let error {
 				print(error)
                 self.dismissActionSheetController({
@@ -182,7 +182,7 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 			SaveMobileObject(userName, userNumber: userNumber)
 		}
 	}
-	func SaveMobileObject(userName: String, userNumber: String) {
+	func SaveMobileObject(_ userName: String, userNumber: String) {
 		var error: Unmanaged<CFErrorRef>?
 		// 定义一个错误标记对象，判断是否成功
 		let addressBook: ABAddressBookRef? = ABAddressBookCreateWithOptions(nil, &error).takeRetainedValue()
@@ -240,23 +240,23 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
         
 		let sysAddressBookStatus = ABAddressBookGetAuthorizationStatus()
 
-		if sysAddressBookStatus == .Denied || sysAddressBookStatus == .NotDetermined {
+		if sysAddressBookStatus == .denied || sysAddressBookStatus == .notDetermined {
 			// Need to ask for authorization
-			var authorizedSingal: dispatch_semaphore_t = dispatch_semaphore_create(0)
+			var authorizedSingal: DispatchSemaphore = DispatchSemaphore(value: 0)
 			var askAuthorization: ABAddressBookRequestAccessCompletionHandler = { success, error in
 				if success {
 					ABAddressBookCopyArrayOfAllPeople(addressBook).takeRetainedValue() as NSArray
-					dispatch_semaphore_signal(authorizedSingal)
+					authorizedSingal.signal()
 				}
 			}
 			ABAddressBookRequestAccessWithCompletion(addressBook, askAuthorization)
-			dispatch_semaphore_wait(authorizedSingal, DISPATCH_TIME_FOREVER)
+			authorizedSingal.wait(timeout: DispatchTime.distantFuture)
 		}
 
-		func analyzeSysContacts(sysContacts: NSArray) -> [[String: AnyObject]] {
+		func analyzeSysContacts(_ sysContacts: NSArray) -> [[String: AnyObject]] {
 			var allContacts: Array = [[String: AnyObject]]()
 
-			func analyzeContactProperty(contact: ABRecordRef, property: ABPropertyID) -> [AnyObject]? {
+			func analyzeContactProperty(_ contact: ABRecordRef, property: ABPropertyID) -> [AnyObject]? {
 				let propertyValues: ABMultiValueRef? = ABRecordCopyValue(contact, property)?.takeRetainedValue()
 				if propertyValues != nil {
 					var values: Array<AnyObject> = Array()
@@ -268,11 +268,11 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 							var valueDictionary: Dictionary = [String: String]()
 
 							let addrNSDict: NSMutableDictionary = value.takeRetainedValue() as! NSMutableDictionary
-							valueDictionary["_Country"] = addrNSDict.valueForKey(kABPersonAddressCountryKey as String) as? String ?? ""
-							valueDictionary["_State"] = addrNSDict.valueForKey(kABPersonAddressStateKey as String) as? String ?? ""
-							valueDictionary["_City"] = addrNSDict.valueForKey(kABPersonAddressCityKey as String) as? String ?? ""
-							valueDictionary["_Street"] = addrNSDict.valueForKey(kABPersonAddressStreetKey as String) as? String ?? ""
-							valueDictionary["_Contrycode"] = addrNSDict.valueForKey(kABPersonAddressCountryCodeKey as String) as? String ?? ""
+							valueDictionary["_Country"] = addrNSDict.value(forKey: kABPersonAddressCountryKey as String) as? String ?? ""
+							valueDictionary["_State"] = addrNSDict.value(forKey: kABPersonAddressStateKey as String) as? String ?? ""
+							valueDictionary["_City"] = addrNSDict.value(forKey: kABPersonAddressCityKey as String) as? String ?? ""
+							valueDictionary["_Street"] = addrNSDict.value(forKey: kABPersonAddressStreetKey as String) as? String ?? ""
+							valueDictionary["_Contrycode"] = addrNSDict.value(forKey: kABPersonAddressCountryCodeKey as String) as? String ?? ""
 
 							// 地址整理
 							let fullAddress: String = (valueDictionary["_Country"]! == "" ? valueDictionary["_Contrycode"]!: valueDictionary["_Country"]!) + ", " + valueDictionary["_State"]! + ", " + valueDictionary["_City"]! + ", " + valueDictionary["_Street"]!
@@ -283,9 +283,9 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 							var valueDictionary: Dictionary = [String: String]()
 
 							let snsNSDict: NSMutableDictionary = value.takeRetainedValue() as! NSMutableDictionary
-							valueDictionary["_Username"] = snsNSDict.valueForKey(kABPersonSocialProfileUsernameKey as String) as? String ?? ""
-							valueDictionary["_URL"] = snsNSDict.valueForKey(kABPersonSocialProfileURLKey as String) as? String ?? ""
-							valueDictionary["_Serves"] = snsNSDict.valueForKey(kABPersonSocialProfileServiceKey as String) as? String ?? ""
+							valueDictionary["_Username"] = snsNSDict.value(forKey: kABPersonSocialProfileUsernameKey as String) as? String ?? ""
+							valueDictionary["_URL"] = snsNSDict.value(forKey: kABPersonSocialProfileURLKey as String) as? String ?? ""
+							valueDictionary["_Serves"] = snsNSDict.value(forKey: kABPersonSocialProfileServiceKey as String) as? String ?? ""
 
 							values.append(valueDictionary)
 							// IM
@@ -293,13 +293,13 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 							var valueDictionary: Dictionary = [String: String]()
 
 							let imNSDict: NSMutableDictionary = value.takeRetainedValue() as! NSMutableDictionary
-							valueDictionary["_Serves"] = imNSDict.valueForKey(kABPersonInstantMessageServiceKey as String) as? String ?? ""
-							valueDictionary["_Username"] = imNSDict.valueForKey(kABPersonInstantMessageUsernameKey as String) as? String ?? ""
+							valueDictionary["_Serves"] = imNSDict.value(forKey: kABPersonInstantMessageServiceKey as String) as? String ?? ""
+							valueDictionary["_Username"] = imNSDict.value(forKey: kABPersonInstantMessageUsernameKey as String) as? String ?? ""
 
 							values.append(valueDictionary)
 							// Date
 						case kABPersonDateProperty:
-							let date: String? = (value.takeRetainedValue() as? NSDate)?.description
+							let date: String? = (value.takeRetainedValue() as? Date)?.description
 							if date != nil {
 								values.append(date!)
 							}
@@ -395,15 +395,15 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 		return analyzeSysContacts(ABAddressBookCopyArrayOfAllPeople(addressBook).takeRetainedValue() as NSArray)
 	}
 	// Mark: -------- 手机号正则表达式
-	func checkMobileReg(mobile: String) -> Bool {
+	func checkMobileReg(_ mobile: String) -> Bool {
 		let regex = try! NSRegularExpression(pattern: REGEXP_MOBILES,
-			options: [.CaseInsensitive])
+			options: [.caseInsensitive])
 
-		return regex.firstMatchInString(mobile, options: [],
+		return regex.firstMatch(in: mobile, options: [],
 			range: NSRange(location: 0, length: mobile.utf16.count))?.range.length != nil
 
 	}
-	@IBAction func canle(sender: AnyObject) {
+	@IBAction func canle(_ sender: AnyObject) {
 		self.dismissActionSheetController()
 	}
 	func isempty() -> Bool {

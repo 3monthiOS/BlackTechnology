@@ -36,14 +36,14 @@ class MobileAddressBooks: UIViewController {
     
     @IBOutlet weak var tableView: TableViewMjResh!
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.getMObileData()
         self.title = "电话本客户"
         if (self.searchBar == nil) {
             initSearchBar()
         }
     }
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         //self.tabBarController?.tabBar.hidden = false
         self.mobileObjectArray = [MobileAddress]()
@@ -56,11 +56,11 @@ class MobileAddressBooks: UIViewController {
     }
     
     func initSearchBar() {
-        self.searchBar = UISearchBar(frame: CGRectMake(0, 0, App_width, 44))
+        self.searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: App_width, height: 44))
         searchBar!.placeholder = "搜索"
-        searchBar!.barStyle = UIBarStyle.Default
-        searchBar!.searchBarStyle = UISearchBarStyle.Default
-        searchBar!.translucent = true
+        searchBar!.barStyle = UIBarStyle.default
+        searchBar!.searchBarStyle = UISearchBarStyle.default
+        searchBar!.isTranslucent = true
         searchBar!.showsSearchResultsButton = false
         searchBar!.showsScopeBar = false
         searchBar!.delegate = self
@@ -105,7 +105,7 @@ class MobileAddressBooks: UIViewController {
         MobileuserArray = RetrieveMobileAddressbook().LetterSortArray(userNmaearrays) as! Array<Array<String>>
         nameZIMUArray = RetrieveMobileAddressbook().IndexArray(userNmaearrays)
         
-        nameZIMUArray?.insert("\(UITableViewIndexSearch)", atIndex: 0)
+        nameZIMUArray?.insert("\(UITableViewIndexSearch)", at: 0)
         self.tableView.mj_header.endRefreshing()
     }
     
@@ -122,7 +122,7 @@ extension MobileAddressBooks: MJTableViewRefreshDelegate {
         tableView.refreshTableDelegate = self
         tableView.configRefreshable(headerEnabled: true, footerEnabled: true)
     }
-    func tableView(tableView: TableViewMjResh, refreshDataWithType refreshType: TableViewMjResh.RefreshType){
+    func tableView(_ tableView: TableViewMjResh, refreshDataWithType refreshType: TableViewMjResh.RefreshType){
         if self.searchStatus == "UNsearch" { // 通讯录
             self.mobileObjectArray = [MobileAddress]()
             self.userNmaearrays = [String]()
@@ -132,7 +132,7 @@ extension MobileAddressBooks: MJTableViewRefreshDelegate {
 }
     // MARK: - -------- UITableViewDelegate
 extension MobileAddressBooks: UITableViewDelegate, UITableViewDataSource{
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int { // 区
+    func numberOfSections(in tableView: UITableView) -> Int { // 区
         
         if self.searchStatus == "UNsearch" {
             if let number = nameZIMUArray?.count {
@@ -141,24 +141,24 @@ extension MobileAddressBooks: UITableViewDelegate, UITableViewDataSource{
         }
         return 1
     }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int { // 行数
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { // 行数
         if self.searchStatus != "UNsearch" {
             return result.count
         }
         return MobileuserArray[section].count
     }
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 45
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let identifier = "cell13"
-        var cell = tableView.dequeueReusableCellWithIdentifier(identifier)
+        var cell = tableView.dequeueReusableCell(withIdentifier: identifier)
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: identifier)
+            cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: identifier)
         }
-        cell?.textLabel?.textColor = UIColor.blackColor()
-        cell?.detailTextLabel?.textColor = UIColor.lightGrayColor()
+        cell?.textLabel?.textColor = UIColor.black
+        cell?.detailTextLabel?.textColor = UIColor.lightGray
         cell?.detailTextLabel?.font = UIFont(name: "Menlo-Regular", size: 14)
         // 通讯录
         //		let cell = NSBundle.mainBundle().loadNibNamed("UserIphoneNumbercell", owner: nil, options: nil)[0] as? UserIphoneNumbercell
@@ -181,45 +181,45 @@ extension MobileAddressBooks: UITableViewDelegate, UITableViewDataSource{
         cell?.detailTextLabel?.text = MOB.mobile
         return cell!
     }
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) { // 选中哪一行
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { // 选中哪一行
+        tableView.deselectRow(at: indexPath, animated: false)
+        let cell = tableView.cellForRow(at: indexPath)
         //			let cell = tableView.cellForRowAtIndexPath(indexPath) as! UserIphoneNumbercell
         mobileControl.userNumber = cell?.detailTextLabel?.text
         mobileControl.userName = cell?.textLabel?.text
         mobileControl.isShow = false
         mobileControl.presentOverViewController(self)
     }
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 25
     }
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return nameZIMUArray![section + 1]
     }
     // MARK: - 添加索引列
-    func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-        tableView.sectionIndexBackgroundColor = UIColor.clearColor()
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        tableView.sectionIndexBackgroundColor = UIColor.clear
         if self.searchStatus == "UNsearch" {
             if nameZIMUArray![0] != "\(UITableViewIndexSearch)" {
-                nameZIMUArray?.insert("\(UITableViewIndexSearch)", atIndex: 0)
+                nameZIMUArray?.insert("\(UITableViewIndexSearch)", at: 0)
             }
             return nameZIMUArray
         }
         return [""]
     }
     // MARK: - 索引列点击事件
-    func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
+    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         if index == 0 {
             tableView.setContentOffset(CGPoint(x: 0, y: -62), animated: true)
             return -1
         }
-        tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: index - 1), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+        tableView.scrollToRow(at: IndexPath(row: 0, section: index - 1), at: UITableViewScrollPosition.top, animated: true)
         return index
     }
 }
 // MARK: - -------- UISearchBarDelegate
 extension MobileAddressBooks: UISearchBarDelegate {
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchBar.showsCancelButton = true
         if userNmaearrays.count<1 {
             alert("无用户可搜索")
@@ -232,10 +232,10 @@ extension MobileAddressBooks: UISearchBarDelegate {
             // 匹配用户输入的前缀，不区分大小写
             self.result = []
             for arr in self.userNmaearrays {
-                if arr.lowercaseString.hasPrefix(searchText.lowercaseString) {
+                if arr.lowercased().hasPrefix(searchText.lowercased()) {
                     self.result.append(arr)
                 }else{
-                    if arr.lowercaseString.hasSuffix(searchText.lowercaseString){
+                    if arr.lowercased().hasSuffix(searchText.lowercased()){
                         self.result.append(arr)
                     }
                 }
@@ -244,7 +244,7 @@ extension MobileAddressBooks: UISearchBarDelegate {
         }
     }
     // MARK: - 搜索触发事件，点击虚拟键盘上的search按钮时触发此方法
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         var error: Unmanaged<CFErrorRef>?
         if !(ABAddressBookCreateWithOptions(nil, &error) != nil) {
             alert("请到设置中打开通讯录授权")
@@ -256,11 +256,11 @@ extension MobileAddressBooks: UISearchBarDelegate {
     }
     
     // 书签按钮触发事件
-    func searchBarBookmarkButtonClicked(searchBar: UISearchBar) {
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
         print("搜索历史")
     }
     // 取消按钮触发事件
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
         // 搜索内容置空

@@ -20,11 +20,11 @@ extension PhotoBrowser {
         var isTakerview = false
         weak var delegate: PhotoCropperDelegate!
         
-        private var cropView: PECropView!
+        fileprivate var cropView: PECropView!
         
-        private var confirmButton: UIBarButtonItem!
-        private var resetButton: UIBarButtonItem!
-        private var constrainButton: UIBarButtonItem!
+        fileprivate var confirmButton: UIBarButtonItem!
+        fileprivate var resetButton: UIBarButtonItem!
+        fileprivate var constrainButton: UIBarButtonItem!
         
         // MARK: - UIViewController
         
@@ -34,7 +34,7 @@ extension PhotoBrowser {
             automaticallyAdjustsScrollViewInsets = false
             title = "裁剪"
             
-            view.backgroundColor = UIColor.blackColor()
+            view.backgroundColor = UIColor.black
             view.clipsToBounds = true
             
             // Init Crop View
@@ -47,45 +47,45 @@ extension PhotoBrowser {
 //                createBarButtonItemAtPosition(.Right, text: "取消", action: #selector(CropperViewController.handleCancelButtonTap(_:)))
 //            }
             // Init Toolbar
-            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-            confirmButton = UIBarButtonItem(title: "发送", style: .Plain, target: self, action: #selector(CropperViewController.handleConfirmButtonTap(_:)))
-            resetButton = UIBarButtonItem(title: "重置", style: .Plain, target: self, action: #selector(CropperViewController.handleResetButtonTap(_:)))
+            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            confirmButton = UIBarButtonItem(title: "发送", style: .plain, target: self, action: #selector(CropperViewController.handleConfirmButtonTap(_:)))
+            resetButton = UIBarButtonItem(title: "重置", style: .plain, target: self, action: #selector(CropperViewController.handleResetButtonTap(_:)))
             if options.keepingCropAspectRatio {
                 toolbarItems = [resetButton, flexibleSpace, confirmButton]
             } else {
-                constrainButton = UIBarButtonItem(title: "尺寸", style: .Plain, target: self, action: #selector(CropperViewController.handleConstrainButtonTap(_:)))
+                constrainButton = UIBarButtonItem(title: "尺寸", style: .plain, target: self, action: #selector(CropperViewController.handleConstrainButtonTap(_:)))
                 toolbarItems = [resetButton, flexibleSpace, constrainButton, flexibleSpace, confirmButton]
             }
         }
         
-        override func viewWillAppear(animated: Bool) {
-            UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: .Slide)
+        override func viewWillAppear(_ animated: Bool) {
+            UIApplication.shared.setStatusBarHidden(true, with: .slide)
             navigationController?.setNavigationBarHidden(false, animated: true)
             navigationController?.setToolbarHidden(false, animated: true)
         }
         
-        override func prefersStatusBarHidden()->Bool {
+        override var prefersStatusBarHidden:Bool {
             
             return true
             
         }
-        override func viewDidAppear(animated: Bool) {
+        override func viewDidAppear(_ animated: Bool) {
             if options.cropAspectRatio > 0 {
                 cropView.cropAspectRatio = options.cropAspectRatio
             }
             cropView.keepingCropAspectRatio = options.keepingCropAspectRatio
         }
         
-        override func viewWillDisappear(animated: Bool) {
-            UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: .Slide)
+        override func viewWillDisappear(_ animated: Bool) {
+            UIApplication.shared.setStatusBarHidden(false, with: .slide)
         }
         
-        override func shouldAutorotate() -> Bool {
+        override var shouldAutorotate : Bool {
             return options.shouldSupportLandscape
         }
         
-        override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-            return options.shouldSupportLandscape ? .All : .Portrait
+        override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+            return options.shouldSupportLandscape ? .all : .portrait
         }
         
         // MARK: - Layout
@@ -97,48 +97,48 @@ extension PhotoBrowser {
         
         // MARK: - Actions
         
-        func handleCancelButtonTap(sender: UIButton) {
-            dismissViewControllerAnimated(true, completion: nil)
+        func handleCancelButtonTap(_ sender: UIButton) {
+            dismiss(animated: true, completion: nil)
         }
         
-        func handleConfirmButtonTap(sender: UIButton) {
+        func handleConfirmButtonTap(_ sender: UIButton) {
             let image = cropView.croppedImage
             image.contentType = .JPEG
             delegate?.photoCropper(self, didFinishCroppingImage: image, transform: cropView.rotation, cropRect: cropView.zoomedCropRect)
             closeViewControllerJumpChatcontroller(false)
         }
-        func closeViewControllerJumpChatcontroller(animated: Bool) {
+        func closeViewControllerJumpChatcontroller(_ animated: Bool) {
             if let controller = navigationController where controller.viewControllers.count > 1 {
                 if isTakerview {
-                    dismissViewControllerAnimated(animated, completion: nil)
+                    dismiss(animated: animated, completion: nil)
                 }else{
                     let vc = controller.viewControllers[controller.viewControllers.count-3]
                     controller.popToViewController(vc, animated: false)
                 }
             } else {
-                dismissViewControllerAnimated(animated, completion: nil)
+                dismiss(animated: animated, completion: nil)
             }
 //            toast("发送成功")
         }
-        func handleResetButtonTap(sender: UIButton) {
-            self.cropView.resetCropRectAnimated(true)
+        func handleResetButtonTap(_ sender: UIButton) {
+            self.cropView.resetCropRect(animated: true)
             if options.cropAspectRatio > 0 {
                 self.cropView.cropAspectRatio = options.cropAspectRatio
             }
         }
         
-        func handleConstrainButtonTap(sender: UIButton) {
+        func handleConstrainButtonTap(_ sender: UIButton) {
             let actionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle:"取消", destructiveButtonTitle: nil, otherButtonTitles:"原图","1 x 1","3 x 2","4 x 3","16 x 9", "自定义")
-            actionSheet.showInView(view)
+            actionSheet.show(in: view)
         }
         
-        func localizedString(key: String, _ comment: String!) -> String {
-            return PECropViewController.bundle().localizedStringForKey(key, value: comment, table: "Localizable")
+        func localizedString(_ key: String, _ comment: String!) -> String {
+            return PECropViewController.bundle().localizedString(forKey: key, value: comment, table: "Localizable")
         }
         
         // MARK: - UIActionSheetDelegate
         
-        func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
             guard buttonIndex != actionSheet.cancelButtonIndex else { return }
             
             switch buttonIndex {
@@ -150,10 +150,10 @@ extension PhotoBrowser {
                 var ratio: CGFloat
                 if width < height {
                     ratio = width / height
-                    cropRect.size = CGSizeMake(CGRectGetHeight(cropRect) * ratio, CGRectGetHeight(cropRect))
+                    cropRect.size = CGSize(width: cropRect.height * ratio, height: cropRect.height)
                 } else {
                     ratio = height / width
-                    cropRect.size = CGSizeMake(CGRectGetWidth(cropRect), CGRectGetWidth(cropRect) * ratio)
+                    cropRect.size = CGSize(width: cropRect.width, height: cropRect.width * ratio)
                 }
                 self.cropView.cropRect = cropRect
             case 2: // Square

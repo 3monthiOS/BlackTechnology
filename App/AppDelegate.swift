@@ -18,7 +18,16 @@ import ObjectMapper
 let api = LDApiSettings()
 let cache = LDCacheSettings(manager: LDRealmCache(realm: Realm.sharedRealm))
 var user = User()
+/*
+ post_install do |installer|
+ installer.pods_project.targets.each do |target|
+ target.build_configurations.each do |config|
+ config.build_settings['SWIFT_VERSION'] = '2.3'
+ end
+ end
+ end
 
+ */
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -26,13 +35,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var Home: HomeTabBarController?
     var Login: LoginviewController?
     var isok = false
-    private var searchingReverseGeoCode = false
+    fileprivate var searchingReverseGeoCode = false
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         let them = ThemeManager.currentTheme()
         ThemeManager.overrideApplyTheme(them)
-        self.window = UIWindow.init(frame: UIScreen.mainScreen().bounds)
+        self.window = UIWindow.init(frame: UIScreen.main.bounds)
         
         //友盟初始化
 //        UMHelper.initSdkWithAppKey(UMENG_APPKEY, channelId: "", launchOptions: launchOptions)
@@ -42,10 +51,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if #available(iOS 8.0, *) {
             //注册推送,用于iOS8以上系统
             application.registerUserNotificationSettings(
-                UIUserNotificationSettings(forTypes:[.Alert, .Badge, .Sound], categories: nil))
+                UIUserNotificationSettings(types:[.alert, .badge, .sound], categories: nil))
         } else {
             //注册推送,用于iOS8以下系统
-            application.registerForRemoteNotificationTypes([.Badge, .Alert, .Sound])
+            application.registerForRemoteNotifications(matching: [.badge, .alert, .sound])
         }
         
         // 初始化百度地图
@@ -65,27 +74,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
     
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
     }
     
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         BaiduLocationManager.stopLocationService()
         Notifications.timerChatMessageUpdate.post("end")
     }
     
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         Log.info("AppDelegate: application will enter foreground");
         
         Notifications.timerChatMessageUpdate.post("star")
@@ -96,7 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     //分享 支付 回调  ios 8
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
 //        Log.info("AppDelegate: application open url \"\(url)\" from source application \"\(sourceApplication)\"");
 //        let result = UMSocialSnsService.handleOpenURL(url)
 //        if !result {
@@ -110,7 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // iOS 9 以上请用这个
-    func application(app: UIApplication, openURL url: NSURL, options: [String:AnyObject]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey:Any]) -> Bool {
         Log.info("AppDelegate: ZHJ   application open url \"\(url)\" from source application")
 //        let result = UMSocialSnsService.handleOpenURL(url)
 //        if !result {
@@ -124,26 +133,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Core Data stack
     
-    lazy var applicationDocumentsDirectory: NSURL = {
+    lazy var applicationDocumentsDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "IndependentRegiment.zhj.App" in the application's documents Application Support directory.
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.count-1]
     }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = NSBundle.mainBundle().URLForResource("App", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)!
+        let modelURL = Bundle.main.url(forResource: "App", withExtension: "momd")!
+        return NSManagedObjectModel(contentsOf: modelURL)!
     }()
     
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
         // Create the coordinator and store
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
+        let url = self.applicationDocumentsDirectory.appendingPathComponent("SingleViewCoreData.sqlite")
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
-            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
         } catch {
             // Report any error we got.
             var dict = [String: AnyObject]()
@@ -164,7 +173,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var managedObjectContext: NSManagedObjectContext = {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
         let coordinator = self.persistentStoreCoordinator
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }()
@@ -188,50 +197,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 extension AppDelegate: RCIMConnectionStatusDelegate, RCIMUserInfoDataSource, RCIMGroupInfoDataSource, RCIMReceiveMessageDelegate{
     func initRCIM(){
-        RCIM.sharedRCIM().initWithAppKey(RY_APPKEY)
+        RCIM.shared().initWithAppKey(RY_APPKEY)
         //设置监听连接状态
-        RCIM.sharedRCIM().connectionStatusDelegate = self
+        RCIM.shared().connectionStatusDelegate = self
         //设置消息接收的监听
-        RCIM.sharedRCIM().receiveMessageDelegate = self
+        RCIM.shared().receiveMessageDelegate = self
         //设置用户信息提供者，需要提供正确的用户信息，否则SDK无法显示用户头像、用户名和本地通知
-        RCIM.sharedRCIM().userInfoDataSource = self
+        RCIM.shared().userInfoDataSource = self
         //设置群组信息提供者，需要提供正确的群组信息，否则SDK无法显示群组头像、群名称和本地通知
-        RCIM.sharedRCIM().groupInfoDataSource = self
+        RCIM.shared().groupInfoDataSource = self
     }
     //推送处理2
     @available(iOS 8.0, *)
-    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
         //注册推送,用于iOS8以上系统
         application.registerForRemoteNotifications()
     }
     
     //推送处理3
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         var rcDevicetoken = deviceToken.description
-        rcDevicetoken = rcDevicetoken.stringByReplacingOccurrencesOfString("<", withString: "")
-        rcDevicetoken = rcDevicetoken.stringByReplacingOccurrencesOfString(">", withString: "")
-        rcDevicetoken = rcDevicetoken.stringByReplacingOccurrencesOfString(" ", withString: "")
+        rcDevicetoken = rcDevicetoken.replacingOccurrences(of: "<", with: "")
+        rcDevicetoken = rcDevicetoken.replacingOccurrences(of: ">", with: "")
+        rcDevicetoken = rcDevicetoken.replacingOccurrences(of: " ", with: "")
         
-        RCIMClient.sharedRCIMClient().setDeviceToken(rcDevicetoken)
+        RCIMClient.shared().setDeviceToken(rcDevicetoken)
     }
     
     //推送处理4
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         //远程推送的userInfo内容格式请参考官网文档
         //http://www.rongcloud.cn/docs/ios.html#App_接收的消息推送格式
     }
     
-    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         //本地通知
     }
     
     //监听连接状态变化
-    func onRCIMConnectionStatusChanged(status: RCConnectionStatus) {
+    func onRCIMConnectionStatusChanged(_ status: RCConnectionStatus) {
         print("RCConnectionStatus = \(status.rawValue)")
     }
     
     //用户信息提供者。您需要在completion中返回userId对应的用户信息，SDK将根据您提供的信息显示头像和用户名
-    func getUserInfoWithUserId(userId: String!, completion: ((RCUserInfo!) -> Void)!) {
+    func getUserInfo(withUserId userId: String!, completion: ((RCUserInfo!) -> Void)!) {
         print("用户信息提供者，getUserInfoWithUserId:\(userId)")
         
         //简单的示例，根据userId获取对应的用户信息并返回
@@ -249,7 +258,7 @@ extension AppDelegate: RCIMConnectionStatusDelegate, RCIMUserInfoDataSource, RCI
     }
     
     //群组信息提供者。您需要在Block中返回groupId对应的群组信息，SDK将根据您提供的信息显示头像和群组名
-    func getGroupInfoWithGroupId(groupId: String!, completion: ((RCGroup!) -> Void)!) {
+    func getGroupInfo(withGroupId groupId: String!, completion: ((RCGroup!) -> Void)!) {
         print("群组信息提供者，getGroupInfoWithGroupId:\(groupId)")
         
         //简单的示例，根据groupId获取对应的群组信息并返回
@@ -264,7 +273,7 @@ extension AppDelegate: RCIMConnectionStatusDelegate, RCIMUserInfoDataSource, RCI
     }
     
     //监听消息接收
-    func onRCIMReceiveMessage(message: RCMessage!, left: Int32) {
+    func onRCIMReceive(_ message: RCMessage!, left: Int32) {
         if (left != 0) {
             print("收到一条消息，当前的接收队列中还剩余\(left)条消息未接收，您可以等待left为0时再刷新UI以提高性能")
         } else {
@@ -275,7 +284,7 @@ extension AppDelegate: RCIMConnectionStatusDelegate, RCIMUserInfoDataSource, RCI
 // MARK: - Location Service
 extension AppDelegate: BMKGeneralDelegate, BMKGeoCodeSearchDelegate {
     
-    func locationUpdatedNotification(notification : NSNotification) {
+    func locationUpdatedNotification(_ notification : Notification) {
         if let location = notification.object as? CLLocation {
             let coord = location.coordinate
             
@@ -298,7 +307,7 @@ extension AppDelegate: BMKGeneralDelegate, BMKGeoCodeSearchDelegate {
         }
     }
     
-    func onGetReverseGeoCodeResult(searcher: BMKGeoCodeSearch!, result: BMKReverseGeoCodeResult!, errorCode error: BMKSearchErrorCode) {
+    func onGetReverseGeoCodeResult(_ searcher: BMKGeoCodeSearch!, result: BMKReverseGeoCodeResult!, errorCode error: BMKSearchErrorCode) {
         searchingReverseGeoCode = false
         switch error {
         case BMK_SEARCH_NO_ERROR:
@@ -320,7 +329,7 @@ extension AppDelegate: BMKGeneralDelegate, BMKGeoCodeSearchDelegate {
             Log.info("BMK ReverseGeoCodeResult: \(result.addressDetail.province) \(result.addressDetail.city) \(result.addressDetail.district) \(result.addressDetail.streetName) \(result.addressDetail.streetNumber) 商业圈： \(result.businessCircle) 经度：\(result.location.longitude) 维度：\(result.location.latitude) 地址周边POI信息，成员类型为BMKPoiInfo \(result.poiList)")
             
             Log.info("place update: \(locObj.locName ?? "") in \(locObj.city ?? "")")
-            locObj.lasttime = NSDate().timestamp
+            locObj.lasttime = Date().timestamp
             cache[.Location] = Mapper().toJSONString(locObj)
             
             Notifications.placeUpdated.post(locObj)
@@ -356,7 +365,7 @@ extension AppDelegate: BMKGeneralDelegate, BMKGeoCodeSearchDelegate {
     
     //MARK: - BMKGeneralDelegate
     
-    func onGetNetworkState(iError: Int32) {
+    func onGetNetworkState(_ iError: Int32) {
         if (0 == iError) {
             Log.info("BMK: baidu联网成功")
         } else {
@@ -364,7 +373,7 @@ extension AppDelegate: BMKGeneralDelegate, BMKGeoCodeSearchDelegate {
         }
     }
     
-    func onGetPermissionState(iError: Int32) {
+    func onGetPermissionState(_ iError: Int32) {
         if (0 == iError) {
             Log.info("BMK: baidu授权成功")
             BaiduLocationManager.startLocationService()
@@ -375,7 +384,7 @@ extension AppDelegate: BMKGeneralDelegate, BMKGeoCodeSearchDelegate {
     
 }
 extension AppDelegate: AppLoginSucessDelegate{
-    func loginSucess(Viewcontroller: LoginviewController) {
+    func loginSucess(_ Viewcontroller: LoginviewController) {
         self.isok = true
         gotoMainViewController()
     }
@@ -406,7 +415,7 @@ extension AppDelegate {
             let homeTabar = UIViewController.loadViewControllerFromStoryboard("Main", storyboardID: "HomeTabBarController")
             if let _ = homeTabar{
                 self.window?.rootViewController = homeTabar
-                self.window?.makeKeyWindow()
+                self.window?.makeKey()
             }
         }else{
             if Home != nil {
@@ -416,7 +425,7 @@ extension AppDelegate {
             let login = tabvc.viewControllers[0] as! LoginviewController
             login.loginDelegate = self
             window?.rootViewController = tabvc
-            window?.makeKeyWindow()
+            window?.makeKey()
         }
     }
 }

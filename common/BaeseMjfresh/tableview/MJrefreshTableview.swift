@@ -9,49 +9,49 @@
 import MJRefresh
 
 protocol MJTableViewRefreshDelegate: NSObjectProtocol {
-	func tableView(tableView: TableViewMjResh, refreshDataWithType refreshType: TableViewMjResh.RefreshType)
+	func tableView(_ tableView: TableViewMjResh, refreshDataWithType refreshType: TableViewMjResh.RefreshType)
 }
 
 class TableViewMjResh: UITableView {
 
 	enum RefreshType {
-		case Header
-		case Footer
+		case header
+		case footer
 	}
 
 	weak var refreshTableDelegate: MJTableViewRefreshDelegate?
 	var pageSize = 10
-	var reloadIndexSet: NSIndexSet?
+	var reloadIndexSet: IndexSet?
 	var imageArray = [UIImage]()
 	var isShowNoData = true
 	var noDataTitle = "很抱歉，未找到相关的内容"
 	var noDataNotice: String?
 	var noDataImageYOffset: CGFloat = 0.0
     var KindS = 1
-	private var noDataNoticeView: LDNoDataNoticeView?
+	fileprivate var noDataNoticeView: LDNoDataNoticeView?
 
-	func configRefreshable(headerEnabled headerEnabled: Bool, footerEnabled: Bool) {
+	func configRefreshable(headerEnabled: Bool, footerEnabled: Bool) {
         
 		if headerEnabled {
             let header = MJRefreshNormalHeader(refreshingBlock: {
-                self.refreshTableDelegate?.tableView(self, refreshDataWithType: .Header)
+                self.refreshTableDelegate?.tableView(self, refreshDataWithType: .header)
             })
-            header.stateLabel!.hidden = true
+            header.stateLabel!.isHidden = true
             header.arrowView!.image = nil
-            header.lastUpdatedTimeLabel!.hidden = true
+            header.lastUpdatedTimeLabel!.isHidden = true
             self.mj_header = header
 		}
 		if footerEnabled {
 			let footer = MJRefreshBackStateFooter(refreshingBlock: {
-                self.refreshTableDelegate?.tableView(self, refreshDataWithType: .Footer)
+                self.refreshTableDelegate?.tableView(self, refreshDataWithType: .footer)
 			})
-			footer.stateLabel!.hidden = false
+			footer.stateLabel!.isHidden = false
 			self.mj_footer = footer
-			self.mj_footer.automaticallyHidden = false
+			self.mj_footer.isAutomaticallyHidden = false
 		}
 	}
 
-	func endRefreshing(num num: Int = 0, count: Int = -1) {
+	func endRefreshing(num: Int = 0, count: Int = -1) {
         if let header = self.mj_header {
             header.endRefreshing()
         }
@@ -59,7 +59,7 @@ class TableViewMjResh: UITableView {
 			if num < self.pageSize {
 				footer.endRefreshingWithNoMoreData()
 			} else {
-                footer.state = .Idle
+                footer.state = .idle
                 footer.resetNoMoreData()
 				footer.endRefreshing()
 			}
@@ -76,40 +76,40 @@ class TableViewMjResh: UITableView {
 			if let _ = self.mj_footer {
 				self.reloadData()
 			} else {
-				self.reloadSections(reloadIndexSet, withRowAnimation: .None)
+				self.reloadSections(reloadIndexSet, with: .none)
 			}
 		} else {
 			self.reloadData()
 		}
 	}
 
-	func refreshData(refreshType: RefreshType = .Header) {
+	func refreshData(_ refreshType: RefreshType = .header) {
 		switch refreshType {
-		case .Header:
+		case .header:
 			if let header = self.mj_header {
 				header.beginRefreshing()
 			}
-		case .Footer:
+		case .footer:
 			if let footer = self.mj_footer {
 				footer.beginRefreshing()
 			}
 		}
 	}
 
-	func updateData<T>(inout data: [T], newData: [T], refreshType: RefreshType, endRefreshing: Bool = true) {
+	func updateData<T>(_ data: inout [T], newData: [T], refreshType: RefreshType, endRefreshing: Bool = true) {
 		switch refreshType {
-		case .Header: data = newData
-		case .Footer: data += newData
+		case .header: data = newData
+		case .footer: data += newData
 		}
 		if endRefreshing {
 			self.endRefreshing(num: newData.count, count: data.count)
 		}
 	}
 
-	func pageOffset<T>(refreshType: RefreshType, data: [T]) -> Int {
+	func pageOffset<T>(_ refreshType: RefreshType, data: [T]) -> Int {
 		switch refreshType {
-		case .Header: return 0
-		case .Footer: return data.count
+		case .header: return 0
+		case .footer: return data.count
 		}
 	}
 

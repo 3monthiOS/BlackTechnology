@@ -26,13 +26,13 @@ class MutableFilterViewController: UIViewController {
        configureImgView()
       configureSlider()
     }
-  private func configureImgView(){
+  fileprivate func configureImgView(){
     baseImgView.layer.shadowOpacity = 0.8
-    baseImgView.layer.shadowColor = UIColor.blackColor().CGColor
+    baseImgView.layer.shadowColor = UIColor.black.cgColor
     baseImgView.layer.shadowOffset = CGSize(width: 1, height: 1)
     baseImgView.image = originalImage
   }
-  private func configureSlider(){
+  fileprivate func configureSlider(){
     slider.maximumValue = Float(M_PI)
     slider.minimumValue = Float(-M_PI)
     slider.value = 0
@@ -40,11 +40,11 @@ class MutableFilterViewController: UIViewController {
     let inputImage = CIImage(image: originalImage)
     filter = CIFilter(name: "CIHueAdjust")
     filter.setValue(inputImage, forKey: kCIInputImageKey)
-    slider.sendActionsForControlEvents(UIControlEvents.ValueChanged)
+    slider.sendActions(for: UIControlEvents.valueChanged)
   }
   func showFiltersInConsole() {
     
-    let filterNames = CIFilter.filterNamesInCategory(kCICategoryBuiltIn)
+    let filterNames = CIFilter.filterNames(inCategory: kCICategoryBuiltIn)
 //    filters = filterNames.filter({$0.containsString("Photo") || $0.containsString("Color") })
 //    filters.append("CIGaussianBlur")
     print(filterNames.count)
@@ -52,14 +52,14 @@ class MutableFilterViewController: UIViewController {
     print(filterNames)
     
   }
-  @IBAction func changeFilterParmClick(sender: UISlider) {
+  @IBAction func changeFilterParmClick(_ sender: UISlider) {
     filter.setValue(slider.value, forKey: kCIInputAngleKey)
     let outputImage = filter.outputImage
-    let cgImage = context.createCGImage(outputImage!, fromRect: outputImage!.extent)
-    baseImgView.image = UIImage(CGImage: cgImage!)
+    let cgImage = context.createCGImage(outputImage!, from: outputImage!.extent)
+    baseImgView.image = UIImage(cgImage: cgImage!)
   }
   
-  @IBAction func oldFilmStyleClick(sender: UIButton) {
+  @IBAction func oldFilmStyleClick(_ sender: UIButton) {
     let inputImage = CIImage(image: originalImage)
     
     // 1.创建CISepiaTone滤镜
@@ -69,7 +69,7 @@ class MutableFilterViewController: UIViewController {
 
     // 2.创建白斑图滤镜
     let whiteSpecksFilter = CIFilter(name: "CIColorMatrix") //  Matrix  n. [数] 矩阵；模型；[生物][地质] 基质；母体；子宫；[地质] 脉石
-    whiteSpecksFilter!.setValue(CIFilter(name: "CIRandomGenerator")!.outputImage!.imageByCroppingToRect(inputImage!.extent), forKey: kCIInputImageKey)
+    whiteSpecksFilter!.setValue(CIFilter(name: "CIRandomGenerator")!.outputImage!.cropping(to: inputImage!.extent), forKey: kCIInputImageKey)
     whiteSpecksFilter!.setValue(CIVector(x: 0, y: 1, z: 0, w: 0), forKey: "inputRVector")
     whiteSpecksFilter!.setValue(CIVector(x: 0, y: 1, z: 0, w: 0), forKey: "inputGVector")
     whiteSpecksFilter!.setValue(CIVector(x: 0, y: 1, z: 0, w: 0), forKey: "inputBVector")
@@ -84,8 +84,8 @@ class MutableFilterViewController: UIViewController {
     
     // 4.用CIAffineTransform滤镜先对随机噪点图进行处理
     let affineTransformFilter = CIFilter(name: "CIAffineTransform")
-    affineTransformFilter!.setValue(CIFilter(name: "CIRandomGenerator")!.outputImage!.imageByCroppingToRect(inputImage!.extent), forKey: kCIInputImageKey)
-      affineTransformFilter!.setValue(NSValue(CGAffineTransform: CGAffineTransformMakeScale(1.5, 25)), forKey: kCIInputTransformKey)
+    affineTransformFilter!.setValue(CIFilter(name: "CIRandomGenerator")!.outputImage!.cropping(to: inputImage!.extent), forKey: kCIInputImageKey)
+      affineTransformFilter!.setValue(NSValue(cgAffineTransform: CGAffineTransform(scaleX: 1.5, y: 25)), forKey: kCIInputTransformKey)
     
     // 5.创建蓝绿色磨砂图滤镜
     let darkScratchesFilter = CIFilter(name: "CIColorMatrix")
@@ -109,16 +109,16 @@ class MutableFilterViewController: UIViewController {
     
     // 8.最后输出
     let outputImage = multiplyCompositingFilter!.outputImage
-    let cgImage = context.createCGImage(outputImage!, fromRect: outputImage!.extent)
-    baseImgView.image = UIImage(CGImage: cgImage!)
+    let cgImage = context.createCGImage(outputImage!, from: outputImage!.extent)
+    baseImgView.image = UIImage(cgImage: cgImage!)
   }
   
-  @IBAction func InvertColorStyleClick(sender: UIButton) {
+  @IBAction func InvertColorStyleClick(_ sender: UIButton) {
     let colorInvertFilter = CIColorInvert()
     colorInvertFilter.inputImage = CIImage(image: baseImgView.image!)
     let outputImage = colorInvertFilter.outputImage
-    let cgImage = context.createCGImage(outputImage, fromRect: outputImage.extent)
-    baseImgView.image = UIImage(CGImage: cgImage!)
+    let cgImage = context.createCGImage(outputImage, from: outputImage.extent)
+    baseImgView.image = UIImage(cgImage: cgImage!)
   }
   
     override func didReceiveMemoryWarning() {

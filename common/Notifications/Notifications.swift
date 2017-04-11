@@ -11,7 +11,7 @@ import Swiften
 
 struct Notifications {
 	
-	static let notificationCenter = NSNotificationCenter.defaultCenter()
+	static let notificationCenter = NotificationCenter.default
 	
 	// 地理位置信息更新
 	static var locationUpdated: Delegate = Delegate(name: "LocationUpdated")
@@ -28,35 +28,35 @@ struct Notifications {
     // 跳转 主页面
     
 	class Delegate {
-		private let name: String
+		fileprivate let name: String
 		
 		init(name: String) {
 			self.name = name
 		}
 		
-        func post(object: AnyObject? = nil, userInfo: [NSObject : AnyObject]? = nil) {
+        func post(_ object: AnyObject? = nil, userInfo: [AnyHashable: Any]? = nil) {
 			if object == nil {
 				Log.info("@N>\(name) nil")
 			} else {
 				Log.info("@N>\(name) \(object!)")
 			}
 			async {
-				notificationCenter.postNotificationName(self.name, object: object, userInfo: userInfo)
+				notificationCenter.post(name: Notification.Name(rawValue: self.name), object: object, userInfo: userInfo)
 			}
 		}
 		
-		func addObserver(observer: AnyObject, selector: Selector, sender object: AnyObject? = nil) {
+		func addObserver(_ observer: AnyObject, selector: Selector, sender object: AnyObject? = nil) {
 			Log.info("@N+\(name) \(selector)@\(observer)")
 			notificationCenter.addObserver(observer, selector: selector, name: name, object: object)
 		}
 		
-		func removeObserver(observer: AnyObject, sender object: AnyObject? = nil) {
+		func removeObserver(_ observer: AnyObject, sender object: AnyObject? = nil) {
 			Log.info("@N-\(name) \(observer)")
 			notificationCenter.removeObserver(observer, name: name, object: object)
 		}
 	}
 	
-	static func removeAllForObserver(observer: AnyObject) {
+	static func removeAllForObserver(_ observer: AnyObject) {
 		Log.info("@N_\(observer)")
 		notificationCenter.removeObserver(observer)
 	}

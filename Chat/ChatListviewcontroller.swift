@@ -15,14 +15,14 @@ class ChatListviewcontroller: RCConversationListViewController {
     @IBOutlet weak var chatBGimage: UIImageView!
     var userId = ""
     let tokenArray = ["/7Ho4V0LAxqx1eeMZvJjIxEwXKiZajUg1lYnzbenGFogaU5Q8wQe3i4cPyJqgjLBrHIfKRaHVIyUG7tyo6E/Z1xb6BKkYi9r","E7V5pupiLPLwKarhAgnPFvyVRNEe+kEOk6zXm2XQoNOfjfi1kG/r4pLOfMim3fF1BmbWapvgkUY=","SaNRAdb1HvDSwXK/4Pejr6UNOrqEnO6vXv8cpipmaDmyq/6rAyPo0sCKcMwKe23s75GUDOcwZk7o2IyVY4SdeQ==","CJov2IWBq7H/CKoaiB9TQgIIlo0WhrAzzoatEDpPkLlXv74SI5Izo46/SCKfcn8Pqg1D6PXiDBY=","QPdoi2Ij1WZcLNpvo+PKIhEwXKiZajUg1lYnzbenGFogaU5Q8wQe3pwszl9J/nnfNFXN0ntL4ZVcW+gSpGIvaw=="]
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "聊天"
         let token = tokenArray[Int(arc4random()%4)]
-        RCIM.sharedRCIM().connectWithToken(token,success: { (userId) -> Void in
+        RCIM.shared().connect(withToken: token,success: { (userId) -> Void in
             self.userId = userId
             print("登陆成功。当前登录的用户ID：\(userId)")
             }, error: { (status) -> Void in
@@ -48,12 +48,12 @@ class ChatListviewcontroller: RCConversationListViewController {
         //设置需要将哪些类型的会话在会话列表中聚合显示
         self.setCollectionConversationType([RCConversationType.ConversationType_DISCUSSION.rawValue,
             RCConversationType.ConversationType_GROUP.rawValue])
-        createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.Right, Title: "单聊", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(privateChat))
+        createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.right, Title: "单聊", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(privateChat))
 //        createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.Left, Title: "讨论组", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(createDiscussionGroupsChat))
         createDiscussionGroupsChat()
     }
     func createDiscussionGroupsChat(){
-        RCIM.sharedRCIM().createDiscussion("什么鬼", userIdList: ["zhj1214","CB","CB0","ZW","ZW0"], success: { (RCDiscussio) in
+        RCIM.shared().createDiscussion("什么鬼", userIdList: ["zhj1214","CB","CB0","ZW","ZW0"], success: { (RCDiscussio) in
             Log.info("创建讨论组成功")
 //            let chatWithSelf = AppChatScreenViewController(conversationType: RCConversationType.ConversationType_DISCUSSION, targetId: RCDiscussio.discussionId)
 //            chatWithSelf.title = RCDiscussio.discussionName
@@ -75,11 +75,11 @@ class ChatListviewcontroller: RCConversationListViewController {
     
     func logout() {
         //断开连接并设置不再接收推送消息
-        RCIM.sharedRCIM().disconnect(false)
-        self.navigationController?.popViewControllerAnimated(true)
+        RCIM.shared().disconnect(false)
+        self.navigationController?.popViewController(animated: true)
     }
     //重写RCConversationListViewController的onSelectedTableRow事件
-    override func onSelectedTableRow(conversationModelType: RCConversationModelType, conversationModel model: RCConversationModel!, atIndexPath indexPath: NSIndexPath!) {
+    override func onSelectedTableRow(_ conversationModelType: RCConversationModelType, conversationModel model: RCConversationModel!, at indexPath: IndexPath!) {
         //打开会话界面
         let chat = AppChatScreenViewController(conversationType: model.conversationType, targetId: model.targetId)
         chat.title = "聊天界面"

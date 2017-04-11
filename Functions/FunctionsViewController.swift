@@ -19,7 +19,7 @@ class FunctionsViewController: APPviewcontroller {
     var collectionHeader: UICollectionReusableView!
     
     var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","通讯录","上传图片","云相册","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        let box = QNUtils.getaccesskey()
 //        let headers = [
@@ -41,7 +41,7 @@ class FunctionsViewController: APPviewcontroller {
         super.viewDidLoad()
         
         self.title = "功能列表"
-        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.isTranslucent = false
         initcollectionMjrefresh()
         initCollectionview()
         initData()
@@ -56,12 +56,12 @@ class FunctionsViewController: APPviewcontroller {
         self.view.backgroundColor = rgb(242,245,249)
       
         //注册一个cell
-        collectionView.registerNib(UINib(nibName: "QdanCollectionViewCell",bundle: nil), forCellWithReuseIdentifier: "cell")
-        collectionView.registerNib(UINib(nibName: "QdanCollectionViewzeroCell",bundle: nil), forCellWithReuseIdentifier: "cell0")
+        collectionView.register(UINib(nibName: "QdanCollectionViewCell",bundle: nil), forCellWithReuseIdentifier: "cell")
+        collectionView.register(UINib(nibName: "QdanCollectionViewzeroCell",bundle: nil), forCellWithReuseIdentifier: "cell0")
         
         //注册一个headView
-        collectionView!.registerClass(UICollectionReusableView.self, forSupplementaryViewOfKind:UICollectionElementKindSectionHeader, withReuseIdentifier: "headView")
-        collectionView.registerNib(UINib(nibName: "CollectionReusableHeadre",bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footerView")
+        collectionView!.register(UICollectionReusableView.self, forSupplementaryViewOfKind:UICollectionElementKindSectionHeader, withReuseIdentifier: "headView")
+        collectionView.register(UINib(nibName: "CollectionReusableHeadre",bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footerView")
 
 //        layout.headerReferenceSize = CGSizeZero //CGSizeMake(App_width,44)
 //        layout.footerReferenceSize = CGSizeZero //CGSizeMake(App_width,80)
@@ -85,12 +85,12 @@ class FunctionsViewController: APPviewcontroller {
     //Mark: ------ UICollectionViewDataSource
 extension FunctionsViewController: UICollectionViewDataSource{
   
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageUrlArray.count
     }
 
-  func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! QdanCollectionViewCell
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! QdanCollectionViewCell
     cell.bindData(imageUrlArray,functionTitle: functionTitleData,atIndex :indexPath)
     return cell
   }
@@ -99,30 +99,30 @@ extension FunctionsViewController: UICollectionViewDataSource{
  //Mark: ------ UICollectionViewDelegate
 extension FunctionsViewController: UICollectionViewDelegate{
   //返回自定义HeadView或者FootView，我这里以headview为例
-  func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView{
+  func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView{
     if kind == UICollectionElementKindSectionHeader {
-      collectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "headView", forIndexPath: indexPath)
-      collectionHeader.backgroundColor = UIColor.clearColor()
+      collectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headView", for: indexPath)
+      collectionHeader.backgroundColor = UIColor.clear
       return collectionHeader
     }else if kind == UICollectionElementKindSectionFooter{
-      collectionfoot = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "footerView", forIndexPath: indexPath) as? CollectionReusableViewFooter
+      collectionfoot = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "footerView", for: indexPath) as? CollectionReusableViewFooter
       if collectionfoot == nil{
-        collectionfoot = NSBundle.mainBundle().loadNibNamed("CollectionReusableViewFooter", owner: nil, options: nil)!.first as? CollectionReusableViewFooter
+        collectionfoot = Bundle.main.loadNibNamed("CollectionReusableViewFooter", owner: nil, options: nil)!.first as? CollectionReusableViewFooter
       }
-      collectionfoot.backgroundColor = UIColor.clearColor()
+      collectionfoot.backgroundColor = UIColor.clear
     }
     return collectionfoot
   }
   //点击
-  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
     switch indexPath.item {
     case 0:
-      self.performSegueWithIdentifier("gradient", sender: nil)
+      self.performSegue(withIdentifier: "gradient", sender: nil)
     case 1:
-      self.performSegueWithIdentifier("filter", sender: nil)
+      self.performSegue(withIdentifier: "filter", sender: nil)
     case 2:
-      self.performSegueWithIdentifier("complexFilter", sender: nil)
+      self.performSegue(withIdentifier: "complexFilter", sender: nil)
     case 3:
         let baidu = BaiduMapViewController()
         baidu.hidesBottomBarWhenPushed = true
@@ -151,11 +151,11 @@ extension FunctionsViewController: UICollectionViewDelegate{
  //Mark: ------ UICollectionViewDelegateFlowLayout
 extension FunctionsViewController: UICollectionViewDelegateFlowLayout{
   //返回cell 上下左右的间距
-  func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets{
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets{
     return UIEdgeInsetsMake(8, 12, 8, 12)
   }
   
-  func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
     let cellwidth = (App_width - 24 - 24)/4
     let cellHight = (App_width - 24 - 24)/4 * 33/28 - 2
     return CGSize(width: cellwidth,height: cellHight)
@@ -163,13 +163,13 @@ extension FunctionsViewController: UICollectionViewDelegateFlowLayout{
 }
  //Mark: ------ 刷新代理
 extension FunctionsViewController: MJCollectionViewRefreshDelegate{
-  func Collection(Collection: CollectionMjResh, refreshDataWithType refreshType: CollectionMjResh.RefreshType) {
+  func Collection(_ Collection: CollectionMjResh, refreshDataWithType refreshType: CollectionMjResh.RefreshType) {
     Collection.endRefreshing(num: 11, count: 3, NoDataNoticeViewKinds: 0)
   }
 }
 //相机 ， 相册 
 extension FunctionsViewController: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,PhotoBrowserDataSource{
-    func photobrowserAction(indexPath: NSIndexPath) {
+    func photobrowserAction(_ indexPath: IndexPath) {
         let photo = SystemPhotoAlbum()
         photo.albumDeleagte = self
         switch indexPath.row {
@@ -183,19 +183,19 @@ extension FunctionsViewController: SystemPhotoAlbumDelegate,PhotoBrowserDelegate
         }
     }
     
-    func getImageSucessful(image: UIImage) {
+    func getImageSucessful(_ image: UIImage) {
             Log.info("有——图片\(image)")
     }
     
-    func photoBrowser(photoBrowser: PhotoBrowser.PreviewController, photoModelAtIndex index: Int) -> PhotoBrowser.Model {
+    func photoBrowser(_ photoBrowser: PhotoBrowser.PreviewController, photoModelAtIndex index: Int) -> PhotoBrowser.Model {
         let url = imageUrlArray[index]
         var img : UIImage?
         // 网络图片
         if !url.isEmpty{
-            if let str = url.componentsSeparatedByString("/").last{
+            if let str = url.components(separatedBy: "/").last{
                 locationfileiscache(str, complate: { (callback) in
                     if !callback.isEmpty{
-                        guard let imageData = NSData(contentsOfFile: callback) else {return}
+                        guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}
                         img = UIImage.gifWithData(imageData)!
                     }else{
 //                        Log.info("我没有找到：————————\(str)")
@@ -206,23 +206,23 @@ extension FunctionsViewController: SystemPhotoAlbumDelegate,PhotoBrowserDelegate
         }
         // 本地图片
         var image = UIImage()
-        let data = NSData(contentsOfFile: url)
+        let data = try? Data(contentsOf: URL(fileURLWithPath: url))
         if data == nil {
             image = UIImage(named: "chat_image_load_failed")!
         }else{
             image = UIImage(data: data!)!
         }
         if let img = img {
-         return PhotoBrowser.Model.Image(image: img)
+         return PhotoBrowser.Model.image(image: img)
         }
-        return PhotoBrowser.Model.Image(image: image)
+        return PhotoBrowser.Model.image(image: image)
     }
     
-    func numberOfPhotosInPhotoBrowser(photoBrowser: PhotoBrowser.PreviewController) -> Int {
+    func numberOfPhotosInPhotoBrowser(_ photoBrowser: PhotoBrowser.PreviewController) -> Int {
         return imageUrlArray.count ?? 0
     }
     
-    func photoBrowser(viewController: UIViewController, didSelect selection: PhotoBrowser.Selection) {
+    func photoBrowser(_ viewController: UIViewController, didSelect selection: PhotoBrowser.Selection) {
         selection.getImage { (image) in
             if image != nil {
                 Log.info("有——图片")

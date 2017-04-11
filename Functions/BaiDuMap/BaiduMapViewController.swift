@@ -22,18 +22,18 @@ class BaiduMapViewController: UIViewController, BMKMapViewDelegate {
         mapView.zoomLevel = 20
         mapView.showMapScaleBar = true
         mapView.gesturesEnabled = true
-        mapView.buildingsEnabled = true
-        mapView.trafficEnabled = false //路况图
+        mapView.isBuildingsEnabled = true
+        mapView.isTrafficEnabled = false //路况图
         
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         mapView.viewWillAppear()
         mapView.delegate = self  // 此处记得不用的时候需要置nil，否则影响内存的释放
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         mapView.viewWillDisappear()
         mapView.delegate = nil  // 不用时，置nil

@@ -65,7 +65,7 @@ class LoginUser: Mappable {
 
     }
 
-    func mapping(map: Map) {
+    func mapping(_ map: Map) {
         id <- map["id"]
         state <- map["state"]
         country <- map["country"]
@@ -103,7 +103,7 @@ class UserInfo:Mappable{
         
     }
     
-     func mapping(map: Map) {
+     func mapping(_ map: Map) {
         
         role <- map["role"]
         

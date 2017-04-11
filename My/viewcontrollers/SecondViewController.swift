@@ -10,7 +10,7 @@ import UIKit
 
 class SecondViewController: UIViewController {
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         //        viewWillAppear(animated)
         self.view.backgroundColor = rgb(arc4random()%100,arc4random()%202,arc4random()%150)
         Log.info(arc4random()%100)

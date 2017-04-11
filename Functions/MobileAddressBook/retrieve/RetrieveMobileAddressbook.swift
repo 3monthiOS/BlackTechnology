@@ -12,7 +12,7 @@ class RetrieveMobileAddressbook: NSObject {
 	var pinYin = "" // 首字母
 
     // MARK: -  返回tableview右方 indexArray
-	func IndexArray(stringArr: [String]) -> [String] {
+	func IndexArray(_ stringArr: [String]) -> [String] {
 		let tempArray = ReturnSortChineseArrar(stringArr)
 		var A_Result = [String]()
 		var tempString =  ""
@@ -26,7 +26,7 @@ class RetrieveMobileAddressbook: NSObject {
 		return A_Result
 	}
     // MARK: -  返回一组字母排序数组
-	func SortArray(stringArr: [String]) -> [String] {
+	func SortArray(_ stringArr: [String]) -> [String] {
 		var stringArray = [String]()
 		let tempArray = ReturnSortChineseArrar(stringArr)
 		for obj in tempArray {
@@ -36,7 +36,7 @@ class RetrieveMobileAddressbook: NSObject {
 	}
 
     // MARK: -  返回联系人
-	func LetterSortArray(stringArr: [String]) -> [AnyObject] {
+	func LetterSortArray(_ stringArr: [String]) -> [AnyObject] {
 		let tempArray = ReturnSortChineseArrar(stringArr)
         var LetterResult : Array<Array<String>> = []
         var item = [String]()
@@ -57,15 +57,15 @@ class RetrieveMobileAddressbook: NSObject {
 		return LetterResult
 	}
     // MARK: - 过滤指定字符串   里面的指定字符根据自己的需要添加
-	func RemoveSpecialCharacter(str: String) -> String {
-		let range = str.rangeOfCharacterFromSet(NSCharacterSet(charactersInString: "-,.？、% ~￥#&<>《》()[]{}【】^@/￡¤|§¨「」『』￠￢￣~@#&*（）——+|《》$_€"))
+	func RemoveSpecialCharacter(_ str: String) -> String {
+		let range = str.rangeOfCharacter(from: CharacterSet(charactersIn: "-,.？、% ~￥#&<>《》()[]{}【】^@/￡¤|§¨「」『』￠￢￣~@#&*（）——+|《》$_€"))
 		if range != nil {
-			return self.RemoveSpecialCharacter(str.stringByReplacingCharactersInRange(range!, withString: ""))
+			return self.RemoveSpecialCharacter(str.replacingCharacters(in: range!, with: ""))
 		}
 		return str
 	}
     // MARK: - 中文转换 拼音
-    func chineseConversionPinYin(str:String)->String{
+    func chineseConversionPinYin(_ str:String)->String{
             let strpinyin = NSMutableString(string:str) as CFMutableString
         if CFStringTransform(strpinyin, nil, kCFStringTransformToLatin, false){
             if CFStringTransform(strpinyin, nil, kCFStringTransformStripDiacritics, false){
@@ -78,7 +78,7 @@ class RetrieveMobileAddressbook: NSObject {
 
 
 	// MARK: -  返回排序好的字符拼音
-	func ReturnSortChineseArrar(stringArr: [String]) -> [RetrieveMobileAddressbook] {
+	func ReturnSortChineseArrar(_ stringArr: [String]) -> [RetrieveMobileAddressbook] {
 		var chineseStringsArray = [RetrieveMobileAddressbook]()
 		for str in stringArr {
             let chineseString = RetrieveMobileAddressbook()
@@ -88,15 +88,15 @@ class RetrieveMobileAddressbook: NSObject {
 				chineseString.strings = str
 			}
 			// 去除两端空格和回车
-			chineseString.strings = chineseString.strings.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+			chineseString.strings = chineseString.strings.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 			chineseString.strings = self.RemoveSpecialCharacter(chineseString.strings)
 			// 判断首字符是否为字母
 			let regex = "[A-Za-z]+"
 			let predicate = NSPredicate.init(format: "SELF MATCHES %@", regex)
 
-			if predicate.evaluateWithObject(chineseString.strings) {
+			if predicate.evaluate(with: chineseString.strings) {
 				// 首字母大写
-				chineseString.pinYin = chineseString.strings.capitalizedString
+				chineseString.pinYin = chineseString.strings.capitalized
 			} else {
                 let strPinYin = chineseConversionPinYin(chineseString.strings)
 				if !strPinYin.isEmpty {
@@ -104,8 +104,8 @@ class RetrieveMobileAddressbook: NSObject {
 						if char == " " {
 							continue
 						}
-						let number = Int(String(strPinYin.characters.indexOf(char)!))
-						chineseString.pinYin = String(strPinYin.characters.dropFirst(number!)).capitalizedString
+						let number = Int(String(strPinYin.characters.index(of: char)!))
+						chineseString.pinYin = String(strPinYin.characters.dropFirst(number!)).capitalized
 						break
 					}
 				} else {
@@ -115,7 +115,7 @@ class RetrieveMobileAddressbook: NSObject {
             chineseStringsArray.append(chineseString)
 		}
         let array = chineseStringsArray
-        chineseStringsArray = array.sort({$0.pinYin < $1.pinYin})
+        chineseStringsArray = array.sorted(by: {$0.pinYin < $1.pinYin})
 		return chineseStringsArray
 	}
 }

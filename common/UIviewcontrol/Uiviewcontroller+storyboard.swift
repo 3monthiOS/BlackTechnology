@@ -11,14 +11,14 @@ import UIKit
 
 extension UIViewController {
     
-    static func loadViewControllerFromStoryboard(storyboardName:String,storyboardID:String) ->UIViewController? {
+    static func loadViewControllerFromStoryboard(_ storyboardName:String,storyboardID:String) ->UIViewController? {
         
         let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
         
-        return storyboard.instantiateViewControllerWithIdentifier(storyboardID)
+        return storyboard.instantiateViewController(withIdentifier: storyboardID)
     }
-    static func loadViewControllerFormNib(nibName:String) -> UIViewController? {
+    static func loadViewControllerFormNib(_ nibName:String) -> UIViewController? {
         
-        return NSBundle.mainBundle().loadNibNamed(nibName, owner: nil, options: nil)!.first as? UIViewController
+        return Bundle.main.loadNibNamed(nibName, owner: nil, options: nil)!.first as? UIViewController
     }
 }

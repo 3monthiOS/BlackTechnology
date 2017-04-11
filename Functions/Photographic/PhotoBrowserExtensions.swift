@@ -17,18 +17,18 @@ import MobileCoreServices
 extension PhotoBrowser {
     
     enum Style {
-        case Preview //预览
-        case SingleSelection  // 单张
-        case MultiSelection  // 多张
+        case preview //预览
+        case singleSelection  // 单张
+        case multiSelection  // 多张
     }
 }
 
 // MARK: Model
 extension PhotoBrowser {
     enum Model {
-        case Urls(url: String, preview: String)
-        case Asset(asset: PHAsset)
-        case Image(image: UIImage)
+        case urls(url: String, preview: String)
+        case asset(asset: PHAsset)
+        case image(image: UIImage)
         
         //		static func createWithUrls(url: String, preview: String! = nil) -> Model {
         //			let imageUrl = NSURL(string: url)!
@@ -41,19 +41,19 @@ extension PhotoBrowser {
 extension PhotoBrowser {
     
     enum Selection {
-        case None
-        case Single(Int, Model)
-        case Multi([Int], [Model])
+        case none
+        case single(Int, Model)
+        case multi([Int], [Model])
         
-        func getImage(completion: UIImage? -> Void) {
+        func getImage(_ completion: (UIImage?) -> Void) {
             switch self {
-            case .None: break
-            case .Multi( _, let models):
+            case .none: break
+            case .multi( _, let models):
                 for model in models {
                     switch model {
-                    case .Asset(let asset):
+                    case .asset(let asset):
                         UIViewController.topViewController?.view.makeToastActivity(ToastPosition.Center)
-                        PHImageManager.defaultManager().requestImageDataForAsset(asset, options: nil) { (data, dataUTI, orientation, info) -> Void in
+                        PHImageManager.default().requestImageData(for: asset, options: nil) { (data, dataUTI, orientation, info) -> Void in
                             if data != nil {
                                 let contentType = UIImage.ContentType.contentTypeWithImageData(data)
                                 let img = UIImage(data: data!)
@@ -66,10 +66,10 @@ extension PhotoBrowser {
                             UIViewController.topViewController?.view.hideToastActivity()
                         }
                         return
-                    case .Image(let image):
+                    case .image(let image):
                         completion(image)
                         return
-                    case .Urls(let url, _):
+                    case .urls(let url, _):
                         UIViewController.topViewController?.view.makeToastActivity(ToastPosition.Center)
                         NetworkManager.sharedInstace.defaultManager.request(.GET, url).responseImage { (response: Alamofire.Response<AlamofireImage.Image, NSError>) in
                             switch response.result {
@@ -84,11 +84,11 @@ extension PhotoBrowser {
                         }
                     }
                 }
-            case .Single(_, let model):
+            case .single(_, let model):
                 switch model {
-                case .Asset(let asset):
+                case .asset(let asset):
                     UIViewController.topViewController?.view.makeToastActivity(ToastPosition.Center)
-                    PHImageManager.defaultManager().requestImageDataForAsset(asset, options: nil) { (data, dataUTI, orientation, info) -> Void in
+                    PHImageManager.default().requestImageData(for: asset, options: nil) { (data, dataUTI, orientation, info) -> Void in
                         if data != nil {
                             let contentType = UIImage.ContentType.contentTypeWithImageData(data)
                             let img = UIImage(data: data!)
@@ -101,10 +101,10 @@ extension PhotoBrowser {
                         UIViewController.topViewController?.view.hideToastActivity()
                     }
                     return
-                case .Image(let image):
+                case .image(let image):
                     completion(image)
                     return
-                case .Urls(let url, _):
+                case .urls(let url, _):
                     UIViewController.topViewController?.view.makeToastActivity(ToastPosition.Center)
                     NetworkManager.sharedInstace.defaultManager.request(.GET, url).responseImage { (response: Alamofire.Response<AlamofireImage.Image, NSError>) in
                         switch response.result {
@@ -126,7 +126,7 @@ extension PhotoBrowser {
 }
 
 // MARK: getLocString
-func getLocString(key: String, comment: String = "") -> String {
+func getLocString(_ key: String, comment: String = "") -> String {
     return NSLocalizedString(key, comment: comment)
 }
 
@@ -149,14 +149,14 @@ extension PhotoBrowser {
         override func viewDidLoad() {
             super.viewDidLoad()
             
-            view.backgroundColor = UIColor.whiteColor()
+            view.backgroundColor = UIColor.white
         }
         
-        override func viewWillAppear(animated: Bool) {
+        override func viewWillAppear(_ animated: Bool) {
             PHPhotoLibrary.requestAuthorization { (status) -> Void in
                 async {
-                    if status == .Denied || status == .Restricted {
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                    if status == .denied || status == .restricted {
+                        self.dismiss(animated: true, completion: nil)
                         toast("请在设置中打开访问相片的权限")
                     } else {
                         let albumTableViewController = AlbumTableViewController(delegate: self)
@@ -176,12 +176,12 @@ extension PhotoBrowser {
     
     class GridCell: UICollectionViewCell {
         
-        private var asset: PHAsset!
-        private var imageView: UIImageView!
+        fileprivate var asset: PHAsset!
+        fileprivate var imageView: UIImageView!
         
-        private var inited = false
+        fileprivate var inited = false
         
-        func setAsset(asset: PHAsset) {
+        func setAsset(_ asset: PHAsset) {
             self.asset = asset
             
             if !inited {
@@ -192,10 +192,10 @@ extension PhotoBrowser {
             }
             
             let options = PHImageRequestOptions()
-            options.deliveryMode = .HighQualityFormat
-            options.resizeMode = .Exact
+            options.deliveryMode = .highQualityFormat
+            options.resizeMode = .exact
             let size = CGSize(width: self.bounds.size.width * SCREEN_SCALE, height: self.bounds.size.height * SCREEN_SCALE)
-            PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: size, contentMode: .AspectFill, options: options) { (result, info) -> Void in
+            PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: options) { (result, info) -> Void in
                 if let image = result {
                     self.imageView.image = image
                 }
@@ -211,12 +211,12 @@ extension UIViewController {
     
     class GridCell: UICollectionViewCell {
         
-        private var asset: PHAsset!
-        private var imageView: UIImageView!
+        fileprivate var asset: PHAsset!
+        fileprivate var imageView: UIImageView!
         
-        private var inited = false
+        fileprivate var inited = false
         
-        func setAsset(asset: PHAsset) {
+        func setAsset(_ asset: PHAsset) {
             self.asset = asset
             
             if !inited {
@@ -227,10 +227,10 @@ extension UIViewController {
             }
             
             let options = PHImageRequestOptions()
-            options.deliveryMode = .HighQualityFormat
-            options.resizeMode = .Exact
+            options.deliveryMode = .highQualityFormat
+            options.resizeMode = .exact
             let size = CGSize(width: self.bounds.size.width * SCREEN_SCALE, height: self.bounds.size.height * SCREEN_SCALE)
-            PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: size, contentMode: .AspectFill, options: options) { (result, info) -> Void in
+            PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: options) { (result, info) -> Void in
                 if let image = result {
                     self.imageView.image = image
                 }
@@ -241,14 +241,14 @@ extension UIViewController {
     
     // 设置状态栏
     var fullscreen: Bool {
-        get { return navigationController?.navigationBarHidden ?? false }
+        get { return navigationController?.isNavigationBarHidden ?? false }
         set {
             setFullscreen(newValue, animated: false)
         }
     }
     
-    func setFullscreen(flag: Bool, animated: Bool) {
-        UIApplication.sharedApplication().setStatusBarHidden(flag, withAnimation: animated ? .Fade : .None)
+    func setFullscreen(_ flag: Bool, animated: Bool) {
+        UIApplication.shared.setStatusBarHidden(flag, with: animated ? .fade : .none)
         navigationController?.setNavigationBarHidden(flag, animated: animated)
         navigationController?.setToolbarHidden(flag, animated: animated)
     }
@@ -257,13 +257,13 @@ extension UIViewController {
 // MARK: PHAsset
 extension PHAsset {
     
-    static func fetchImageAssetsInAssetCollection(assetCollection: PHAssetCollection, fetchLimit: Int = 0) -> PHFetchResult {
+    static func fetchImageAssetsInAssetCollection(_ assetCollection: PHAssetCollection, fetchLimit: Int = 0) -> PHFetchResult {
         let options = PHFetchOptions()
-        options.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.Image.rawValue)
+        options.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
         if #available(iOS 9.0, *) {
             options.fetchLimit = fetchLimit
         }
-        return PHAsset.fetchAssetsInAssetCollection(assetCollection, options: options)
+        return PHAsset.fetchAssets(in: assetCollection, options: options)
     }
     
 }

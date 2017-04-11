@@ -64,11 +64,11 @@ class LDApiSettings {
         self.host = API_HOST
     }
 
-    func buildWebLink(path: String) -> String {
+    func buildWebLink(_ path: String) -> String {
         return "\(baseWebURL)\(path)"
     }
 
-    func getRequest(action: String, params: LDApiRequestParams? = nil, options: LDApiRequestOptions? = nil) -> LDApiRequest {
+    func getRequest(_ action: String, params: LDApiRequestParams? = nil, options: LDApiRequestOptions? = nil) -> LDApiRequest {
         let request = LDApiRequest(action: action, settings: self)
         if let newOptions = options {
             request.updateOptions(newOptions)

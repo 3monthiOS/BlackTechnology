@@ -31,7 +31,7 @@ extension PhotoBrowser {
         var imageView: UIImageView!
         var scrollView: UIScrollView!
         
-        private var indicatorView: UIActivityIndicatorView!
+        fileprivate var indicatorView: UIActivityIndicatorView!
         
         var model: Model!
         
@@ -42,7 +42,7 @@ extension PhotoBrowser {
                 delegate?.photoViewDidUpdate(self)
             }
         }
-        private var actionSheetShowed = false
+        fileprivate var actionSheetShowed = false
         
         weak var delegate: PhotoBrowserViewDelegate!
         
@@ -61,7 +61,7 @@ extension PhotoBrowser {
             
             // Init ImageView
             imageView = UIImageView()
-            imageView.hidden = true
+            imageView.isHidden = true
             scrollView.addSubview(imageView)
             
             // Init Gesture Recognizer
@@ -75,7 +75,7 @@ extension PhotoBrowser {
             singleTapGestureRecognizer.numberOfTouchesRequired = 1
             self.addGestureRecognizer(singleTapGestureRecognizer)
             
-            singleTapGestureRecognizer.requireGestureRecognizerToFail(doubleTapGestureRecognizer) //双击失败以后才会执行单击的操作
+            singleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer) //双击失败以后才会执行单击的操作
             
             let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(View.handleLongPress(_:)))
             self.addGestureRecognizer(longPressGestureRecognizer)
@@ -92,21 +92,21 @@ extension PhotoBrowser {
         
         // MARK: Setup
         
-        func setup(model: Model) {
+        func setup(_ model: Model) {
             needsSetup = false
             self.model = model
             switch model {
-            case .Urls(let url, let preview):
+            case .urls(let url, let preview):
                 originImageLoaded = (url == preview)
                 loadImageWithUrl(preview)
-            case .Asset(let asset):
+            case .asset(let asset):
                 originImageLoaded = false
                 loadImageWithAsset(asset)
-            case .Image(let image):
+            case .image(let image):
                 imageLoaded = true
                 originImageLoaded = true
                 imageView.image = image
-                imageView.hidden = false
+                imageView.isHidden = false
             }
         }
         
@@ -124,19 +124,19 @@ extension PhotoBrowser {
             adjustImageViewCenter()
         }
         // MARK: Load Image
-        func loadImageWithAsset(asset: PHAsset) {
+        func loadImageWithAsset(_ asset: PHAsset) {
             let options = PHImageRequestOptions()
-            options.deliveryMode = .HighQualityFormat
-            let screenSize = UIScreen.mainScreen().bounds.size
+            options.deliveryMode = .highQualityFormat
+            let screenSize = UIScreen.main.bounds.size
             let size = CGSize(width: screenSize.width * SCREEN_SCALE, height: screenSize.height * SCREEN_SCALE)
-            PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: size, contentMode: .AspectFit, options: options) { (obj, info) -> Void in
+            PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFit, options: options) { (obj, info) -> Void in
                 guard let image = obj else { return }
                 
                 let orientation = info?["PHImageFileOrientationKey"] as? Int ?? 0
-                let himage = UIImage(CGImage: image.CGImage!, scale: SCREEN_SCALE, orientation: UIImageOrientation(rawValue: orientation)!)
+                let himage = UIImage(cgImage: image.cgImage!, scale: SCREEN_SCALE, orientation: UIImageOrientation(rawValue: orientation)!)
                 
                 self.imageView.image = himage
-                self.imageView.hidden = false
+                self.imageView.isHidden = false
                 self.imageLoaded = true
                 
                 self.adjustFrames()
@@ -150,7 +150,7 @@ extension PhotoBrowser {
             
         }
         
-        func loadImageWithUrl(url: String, completion: (UIImage? -> Void)? = nil) {
+        func loadImageWithUrl(_ url: String, completion: ((UIImage?) -> Void)? = nil) {
             self.indicatorStart()
             
             NetworkManager.sharedInstace.defaultManager.request(.GET, url).responseImage { (response: Alamofire.Response<AlamofireImage.Image, NSError>) in
@@ -193,15 +193,15 @@ extension PhotoBrowser {
             }
         }
         
-        func loadOriginImage(completion: (UIImage? -> Void)? = nil) {
+        func loadOriginImage(_ completion: ((UIImage?) -> Void)? = nil) {
             guard let model = self.model else {return}
             if !originImageLoaded {
                 originImageLoaded = true
                 switch model {
-                case .Urls(let url, _):
+                case .urls(let url, _):
                     loadImageWithUrl(url) { completion?($0) }
-                case .Asset(let asset):
-                    PHImageManager.defaultManager().requestImageDataForAsset(asset, options: nil) { (data, dataUTI, orientation, info) -> Void in
+                case .asset(let asset):
+                    PHImageManager.default().requestImageData(for: asset, options: nil) { (data, dataUTI, orientation, info) -> Void in
                         if data != nil {
                             let contentType = UIImage.ContentType.contentTypeWithImageData(data)
                             var image: UIImage?
@@ -220,7 +220,7 @@ extension PhotoBrowser {
                             completion?(self.imageView.image)
                         }
                     }
-                case .Image(let image):
+                case .image(let image):
                     completion?(image)
                 }
             } else {
@@ -228,15 +228,15 @@ extension PhotoBrowser {
             }
         }
         
-        private func indicatorStart() {
+        fileprivate func indicatorStart() {
             indicatorStop()
-            indicatorView = UIActivityIndicatorView(activityIndicatorStyle: .White)
+            indicatorView = UIActivityIndicatorView(activityIndicatorStyle: .white)
             indicatorView.startAnimating()
             indicatorView.center = self.bounds.center
             self.addSubview(indicatorView)
         }
         
-        private func indicatorStop() {
+        fileprivate func indicatorStop() {
             if self.indicatorView != nil {
                 self.indicatorView.stopAnimating()
                 self.indicatorView.removeFromSuperview()
@@ -288,11 +288,11 @@ extension PhotoBrowser {
 //            scrollView.contentOffset = CGPointZero
 //        }
         // MARK: Layout
-        private func adjustFrames() {
+        fileprivate func adjustFrames() {
             guard imageView.image != nil else {
                 return
             }
-            imageView.hidden = false
+            imageView.isHidden = false
             scrollView.frame = self.bounds
             
             let containerSize = self.scrollView.frame.size
@@ -319,7 +319,7 @@ extension PhotoBrowser {
                 height = containerSize.height
             }
             
-            imageView.frame = CGRect(origin: CGPointZero, size: CGSize(width: width, height: height))
+            imageView.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: width, height: height))
             imageView.center = CGPoint(x: scrollView.frame.center.x, y: scrollView.frame.center.y)
             
             let zoomScaleX = imageSize.width / containerSize.width
@@ -328,56 +328,56 @@ extension PhotoBrowser {
             scrollView.minimumZoomScale = minimumZoomScale
             scrollView.maximumZoomScale = max(zoomScaleX, zoomScaleY, maximumZoomScale)
             scrollView.zoomScale = 1.0
-            scrollView.contentOffset = CGPointZero
+            scrollView.contentOffset = CGPoint.zero
         }
 
         // MARK: - Gesture Recognizer
         
-        func handleDoubleTap(recognizer: UITapGestureRecognizer) {
+        func handleDoubleTap(_ recognizer: UITapGestureRecognizer) {
             guard imageLoaded else {
                 return
             }
-            let touchPoint = recognizer.locationInView(self)
+            let touchPoint = recognizer.location(in: self)
             if scrollView.zoomScale <= 1.0 {
                 let scaleX = touchPoint.x + self.scrollView.contentOffset.x
                 let scaleY = touchPoint.y + self.scrollView.contentOffset.y
-                scrollView.zoomToRect(CGRect(x: scaleX - 10, y: scaleY - 10, width: 10, height: 10), animated: true)
+                scrollView.zoom(to: CGRect(x: scaleX - 10, y: scaleY - 10, width: 10, height: 10), animated: true)
             } else {
                 scrollView.setZoomScale(1.0, animated: true)
             }
             adjustImageViewCenter()
         }
-        func handleOnthecross(recognizer: UITapGestureRecognizer) {
+        func handleOnthecross(_ recognizer: UITapGestureRecognizer) {
             guard imageLoaded else {
                 return
             }
         }
-        func handleSingleTap(recognizer: UITapGestureRecognizer) {
+        func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
             if let delegate = delegate {
                 delegate.photoViewDidSingleTap(self)
             }
         }
         
-        func handleLongPress(recognizer: UITapGestureRecognizer) {
+        func handleLongPress(_ recognizer: UITapGestureRecognizer) {
             guard !actionSheetShowed else { return }
             guard let model: Model = model else { return }
             actionSheetShowed = true
             let actionSheet = UIActionSheet(title: nil, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil)
             var buttonIndex = 1
             switch model {
-            case .Urls(_, _), .Image(_):
-                actionSheet.addButtonWithTitle("保存图片")
+            case .urls(_, _), .image(_):
+                actionSheet.addButton(withTitle: "保存图片")
                 buttonIndexSave = buttonIndex
                 buttonIndex += 1
-            case .Asset(_): break
+            case .asset(_): break
             }
             if !originImageLoaded {
-                actionSheet.addButtonWithTitle("显示原图")
+                actionSheet.addButton(withTitle: "显示原图")
                 buttonIndexOrigin = buttonIndex
                 buttonIndex += 1
             }
             if buttonIndex > 1 {
-                actionSheet.showInView(self)
+                actionSheet.show(in: self)
             }
         }
         
@@ -386,7 +386,7 @@ extension PhotoBrowser {
         func saveImage() {
             if let model: Model = model {
                 switch model {
-                case .Urls(let url, _):
+                case .urls(let url, _):
                     saveImageFromUrl(url)
                     return
                 default: break
@@ -411,7 +411,7 @@ extension PhotoBrowser {
             toast("图片保存失败")
         }
         
-        func saveImageFromUrl(url: String) {
+        func saveImageFromUrl(_ url: String) {
             NetworkManager.sharedInstace.defaultManager.request(.GET, url).response { (request, response, data, error) -> Void in
                 if error == nil {
                     let library = ALAssetsLibrary()
@@ -441,7 +441,7 @@ extension PhotoBrowser {
         
         // MARK: - UIActionSheetDelegate
         
-        func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
             switch buttonIndex {
             case buttonIndexSave:
                 loadOriginImage { _ in self.saveImage()
@@ -453,16 +453,16 @@ extension PhotoBrowser {
             }
         }
         
-        func actionSheet(actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int) {
+        func actionSheet(_ actionSheet: UIActionSheet, didDismissWithButtonIndex buttonIndex: Int) {
             actionSheetShowed = false
         }
         
         // MARK: UIScrollViewDelegate
-        func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        func viewForZooming(in scrollView: UIScrollView) -> UIView? {
             return imageView
         }
         
-        func scrollViewDidZoom(scrollView: UIScrollView) {
+        func scrollViewDidZoom(_ scrollView: UIScrollView) {
             adjustImageViewCenter()
         }
         

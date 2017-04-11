@@ -13,10 +13,10 @@ class HomeTabBarController: UITabBarController,UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.white
     }
 
-    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         switch item.tag {
         case 0:
             item.title = "聊天"
@@ -49,7 +49,7 @@ class HomeTabBarController: UITabBarController,UITabBarControllerDelegate {
 //    CGContextStrokePath(ctx);
 //    
 //    }
-    func drawRect(rect: CGRect) {
+    func drawRect(_ rect: CGRect) {
 //        let ctx = UIGraphicsGetCurrentContext()
 //        let str = "军"
 //        str.dr
