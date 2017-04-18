@@ -17,7 +17,7 @@ class User: Mappable {
     var appid: String?
     //
     var uuid: String?
-    // 用户状态码
+    // 用户状态码  1 代表登录
     var state: Int?
     // 国籍
     var country: String?

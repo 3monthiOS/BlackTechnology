@@ -50,7 +50,7 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
         createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.right, Title: "完成", normalImage: nil, highlightImage: nil, action: #selector(registerClick))
     }
     func getDBuser(){
-        if let userkeyArray = session.object(forKey: "userkeyArray") as? [Dictionary<String,String>] {
+        if let userkeyArray = session.object(forKey: USERGROUPOBJECTKEY) as? [Dictionary<String,String>] {
             self.userkeyArray = userkeyArray
         }
     }
@@ -69,13 +69,13 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
             let userKey = "user" + String(describing: userkeyArray) + "key"
             let userdic = ["primaryKey":userKey,"phone":text]
             userkeyArray.append(userdic)
-            session.setObject(userkeyArray as AnyObject, forKey: "userkeyArray")
-//            NSCache.setObject(user, forKey: userKey)
+            session.setObject(userkeyArray as AnyObject, forKey: USERGROUPOBJECTKEY)
+            cache.setObject(user, forKey: userKey)
         }else{
             alert("坏淫，手机号不对");return
         }
         alert("谢谢您留下手机号，小军一定好好保管，密码为手机号后8位。")
-        Log.info("这个手机里面的用户数量：\(userkeyArray.count) \(userkeyArray.last!["phone"])")
+        Log.info("这个手机里面的用户数量：\(userkeyArray.count) \(String(describing: userkeyArray.last!["phone"]))")
         self.navigationController?.popViewController(animated: true)
 //        let VC = UIViewController.loadViewControllerFromStoryboard("Login", storyboardID: "Loginview") as! LoginviewController
 //        JumpAnimation(Animations.SuckEffect, Direction: "top", CurrentVc: self, ForVc:VC , isJump: true)

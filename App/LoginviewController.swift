@@ -184,7 +184,7 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
     func JumpMainViecontrol(){
         self.loginDelegate?.loginSucess(self)
     }
-    
+    //MARK: -- 登录注册 事件
     func registeredClick(_ btn: UIButton){
         if btn.tag == 11{// 注册
             self.navigationController?.pushViewController(RegisteredViewController(), animated: true)
@@ -194,27 +194,28 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
                 alert("新装应用请先注册，才可以使用");return
             }
             for item in userkeyArray {
-//                if let primaryKey = item["primaryKey"]{
-//                    if let user: User = cache.objectForKey(primaryKey){
-//                        if user.userphone == txtUser!.text{
-//                            if txtPwd?.text == user.password {
-//                                user.state = 1
-////                                cache.setObject(user, forKey: CacheSettings.Key.User)
-//                                cache.setObject(user, forKey: primaryKey)
-//                                self.loginDelegate?.loginSucess(self)
-//                                return
-//                            }else{
-//                                alert("密码错误");return
-//                            }
-//                        }
-//                    }
-//                }
+                if let primaryKey = item["primaryKey"]{
+                    if let userinfo: User = cache.object(forKey: primaryKey) {
+                        if userinfo.userphone == txtUser!.text{
+                            if txtPwd?.text == userinfo.password {
+                                userinfo.state = 1
+                                cache.setObject(userinfo, forKey: CacheManager.Key.User.rawValue)
+                                cache.setObject(userinfo, forKey: primaryKey) //更新用户状态
+                                user = userinfo
+                                self.loginDelegate?.loginSucess(self)
+                                return
+                            }else{
+                                alert("密码错误");return
+                            }
+                        }
+                    }
+                }
             }
             alert("用户不存在")
         }
     }
     func getDBuser(){
-        if let userkeyArray = session.object(forKey: "userkeyArray") as? [Dictionary<String,String>] {
+        if let userkeyArray = session.object(forKey: USERGROUPOBJECTKEY) as? [Dictionary<String,String>] {
             self.userkeyArray = userkeyArray
         }
     }

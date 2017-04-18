@@ -16,18 +16,9 @@ import RealmSwift
 import ObjectMapper
 
 //let api = LDApiSettings()
-//let cache = CacheSettings(manager: RealmCache(realm: Realm.sharedRealm))
+let cache = CacheManager(cachable: Realm.sharedRealm as! Cachable)
 var user = User()
-/*
- post_install do |installer|
- installer.pods_project.targets.each do |target|
- target.build_configurations.each do |config|
- config.build_settings['SWIFT_VERSION'] = '2.3'
- end
- end
- end
 
- */
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -323,15 +314,15 @@ extension AppDelegate: BMKGeneralDelegate, BMKGeoCodeSearchDelegate {
             locObj.street = result.addressDetail.streetName + result.addressDetail.streetNumber
             locObj.city = result.addressDetail.city
             session.city = locObj.city
-            Log.info("城市：\(locObj.city)")
+            Log.info("城市：\(String(describing: locObj.city))")
             // Zip code
             
             Log.info("BMK ReverseGeoCodeResult: \(result.addressDetail.province) \(result.addressDetail.city) \(result.addressDetail.district) \(result.addressDetail.streetName) \(result.addressDetail.streetNumber) 商业圈： \(result.businessCircle) 经度：\(result.location.longitude) 维度：\(result.location.latitude) 地址周边POI信息，成员类型为BMKPoiInfo \(result.poiList)")
             
             Log.info("place update: \(locObj.locName ?? "") in \(locObj.city ?? "")")
             locObj.lasttime = Date().timestamp
+//            cache.setObject(Mapper(). toJSONString(locObj.city), forKey: CacheManager.Key.Location.rawValue)
 //            cache[.Location] = Mapper().toJSONString(locObj)
-            
             Notifications.placeUpdated.post(locObj)
             
             return
@@ -391,22 +382,21 @@ extension AppDelegate: AppLoginSucessDelegate{
 }
 extension AppDelegate {
     func gotoMainViewController(){
-        
-//        if let userinfos: LoginUser = NSCache.objectForKey(.User) {
-//            if let number = userinfos.state{
-//                if number == 1 {
-//                    isok = true
-//                }else{
-//                    isok = false
-//                }
-//            }
-//        }else{
-//            if user.state == 1 {
-//                isok = true
-//            }else{
-//                isok = false
-//            }
-//        }
+        if let userinfos: LoginUser = cache.object(forKey: CacheManager.Key.User.rawValue) {
+            if let number = userinfos.state{
+                if number == 1 {
+                    isok = true
+                }else{
+                    isok = false
+                }
+            }
+        }else{
+            if user.state == 1 {
+                isok = true
+            }else{
+                isok = false
+            }
+        }
         
         if isok {
             if self.Login != nil{

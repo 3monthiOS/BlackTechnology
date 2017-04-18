@@ -50,6 +50,32 @@ extension CacheItem {
 
 class CacheManager {
 
+    enum Key: String {
+        case Location = "_Location"
+        case User = "_User"
+        case LastAppVersion = "_LastAppVersion"
+        case LastGetCodeTime = "_LastGetCodeTime"
+        case GetCodeCount = "_GetCodeCount"
+        case GetFollowTrends = "_GetFollowTrends"
+        case GetExtendTabs = "_GetExtendTabs"
+        case GetMainLiveData = "_GetMainLiveData"
+        case GetMainForeNoticeData = "_GetMainForeNoticeData"
+        case GetMainHotData = "_GetMainHotData"
+        case GetMainThemeData = "_GetMainThemeData"
+        case ChatToken = "_ChatToken"
+        case ShowAdBanners = "_ShowAdBanners"
+        case GetHomeShowData = "_GetHomeShowData"
+        case GetShowStyleData = "_GetShowStyleData"
+        case GetUserRecommen = "_GetUserRecommen"
+        case PopupAd = "_PopupAd"
+        
+        func suffixWith(suffix: AnyObject) -> String {
+            return "\(self.rawValue)_\(suffix)"
+        }
+        
+    }
+
+    
     let cachable: Cachable
 
     init(cachable: Cachable) {
