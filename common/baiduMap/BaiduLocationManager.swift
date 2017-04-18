@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Swiften
+//import Swiften
 
 class BaiduLocationManager {
     
@@ -25,14 +25,14 @@ class BaiduLocationManager {
             Log.info("BMK: heading is \(userLocation.heading)")
         }
         
-        func didUpdate(_ userLocation: BMKUserLocation!) {
+        func didUpdate (_ userLocation: BMKUserLocation!) {
             let location = userLocation.location
-            Log.info("location update: \(location)")
-            session.location = location
+            Log.info("location update: \(String(describing: location))")
+            session.location = location!
             Notifications.locationUpdated.post(location)
         }
         
-        func didFailToLocateUserWithError(_ error: NSError!) {
+        func didFailToLocateUserWithError(_ error: Error!) {
             Log.error("BMK: \(error)")
         }
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 import Photos
-import Swiften
+//import Swiften
 
 extension PhotoBrowser {
     
@@ -47,29 +47,29 @@ extension PhotoBrowser {
         
         func loadAlbums() {
             PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumUserLibrary, options: nil)
-                .enumerateObjects { (obj, index, stop) -> Void in
+                .enumerateObjects({ (obj, index, stop) -> Void in
                     if let collection = obj as? PHAssetCollection {
                         if PHAsset.fetchImageAssetsInAssetCollection(collection).count > 0 {
                             self.albums.append(collection)
                         }
                     }
-            }
+                })
             PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumMyPhotoStream, options: nil)
-                .enumerateObjects { (obj, index, stop) -> Void in
+                .enumerateObjects({ (obj, index, stop) -> Void in
                     if let collection = obj as? PHAssetCollection {
                         self.albums.append(collection)
                     }
-            }
+                })
             PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumRecentlyAdded, options: nil)
-                .enumerateObjects { (obj, index, stop) -> Void in
+                .enumerateObjects({ (obj, index, stop) -> Void in
                     if let collection = obj as? PHAssetCollection {
                         if PHAsset.fetchImageAssetsInAssetCollection(collection).count > 0 {
                             self.albums.append(collection)
                         }
                     }
-            }
+                })
             PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .any, options: nil)
-                .enumerateObjects { (obj, index, stop) -> Void in
+                .enumerateObjects({ (obj, index, stop) -> Void in
                     if let collection = obj as? PHAssetCollection {
                         switch collection.assetCollectionSubtype {
                         case .smartAlbumUserLibrary, .smartAlbumRecentlyAdded:
@@ -80,23 +80,23 @@ extension PhotoBrowser {
                             }
                         }
                     }
-            }
+                })
             PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumSyncedAlbum, options: nil)
-                .enumerateObjects { (obj, index, stop) -> Void in
+                .enumerateObjects({ (obj, index, stop) -> Void in
                     if let collection = obj as? PHAssetCollection {
                         if collection.estimatedAssetCount > 0 {
                             self.albums.append(collection)
                         }
                     }
-            }
+                })
             PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: nil)
-                .enumerateObjects { (obj, index, stop) -> Void in
+                .enumerateObjects({ (obj, index, stop) -> Void in
                     if let collection = obj as? PHAssetCollection {
                         if collection.estimatedAssetCount > 0 {
                             self.albums.append(collection)
                         }
                     }
-            }
+                })
         }
         
         func buildAlbumTitle(_ album: PHAssetCollection) -> NSAttributedString {

@@ -54,7 +54,7 @@ class RetrieveMobileAddressbook: NSObject {
 		}
         
         
-		return LetterResult
+		return LetterResult as [AnyObject]
 	}
     // MARK: - 过滤指定字符串   里面的指定字符根据自己的需要添加
 	func RemoveSpecialCharacter(_ str: String) -> String {
@@ -104,7 +104,7 @@ class RetrieveMobileAddressbook: NSObject {
 						if char == " " {
 							continue
 						}
-						let number = Int(String(strPinYin.characters.index(of: char)!))
+						let number = Int(String(describing: strPinYin.characters.index(of: char)!))
 						chineseString.pinYin = String(strPinYin.characters.dropFirst(number!)).capitalized
 						break
 					}

@@ -13,13 +13,13 @@ class MappableBaseType<T> : Mappable {
     
     var value: T?
     
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         if let val = map.currentValue as? T {
             value = val
         }
     }
     
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         // nothing
     }
 }

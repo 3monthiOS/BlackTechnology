@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import Swiften
+//import Swiften
 
 extension PhotoBrowser {
 
@@ -116,7 +116,7 @@ extension PhotoBrowser {
         }
 
 		override var shouldAutorotate : Bool {
-            super.shouldAutorotate()
+            super.shouldAutorotate
 			return options.shouldSupportLandscape
 		}
 
@@ -173,15 +173,15 @@ extension PhotoBrowser {
 				previousView = currentView
 				currentView = nextView
 				nextView = view
-				view.reset()
-				view.tag = index + 1
+				view?.reset()
+				view?.tag = index + 1
 			} else if index < currentIndex {
 				let view = nextView
 				nextView = currentView
 				currentView = previousView
 				previousView = view
-				view.reset()
-				view.tag = index - 1
+				view?.reset()
+				view?.tag = index - 1
 			} else if force {
 				previousView.tag = index - 1
 				currentView.tag = index

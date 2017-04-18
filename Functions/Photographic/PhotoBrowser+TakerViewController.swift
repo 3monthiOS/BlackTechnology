@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 import AVFoundation
-import Swiften
+//import Swiften
+import Toast_Swift
 
 extension PhotoBrowser {
 
@@ -37,7 +38,7 @@ extension PhotoBrowser {
 		fileprivate var cropButton: UIBarButtonItem!
 
 		fileprivate var viewInited = false
-		fileprivate var isEditing = false
+		fileprivate var isEditings = false
 		fileprivate var buttonsHidden = false
 		fileprivate var isUsingFrontFacingCameraBack = true
 		fileprivate var isUseFlip = true
@@ -162,25 +163,25 @@ extension PhotoBrowser {
 			async({
 				var devices = AVCaptureDevice.devices()
 				if self.isUsingFrontFacingCameraBack {
-					devices = AVCaptureDevice.devices().filter { $0.hasMediaType(AVMediaTypeVideo) && $0.position == AVCaptureDevicePosition.back }
+					devices = AVCaptureDevice.devices().filter { ($0 as AnyObject).hasMediaType(AVMediaTypeVideo) && ($0 as AnyObject).position == AVCaptureDevicePosition.back }
 				} else {
-					devices = AVCaptureDevice.devices().filter { $0.hasMediaType(AVMediaTypeVideo) && $0.position == AVCaptureDevicePosition.front }
+					devices = AVCaptureDevice.devices().filter { ($0 as AnyObject).hasMediaType(AVMediaTypeVideo) && ($0 as AnyObject).position == AVCaptureDevicePosition.front }
 				}
-				if let captureDevice = devices.first as? AVCaptureDevice {
+				if let captureDevice = devices?.first as? AVCaptureDevice {
 
 					do {
 						self.input = try AVCaptureDeviceInput(device: captureDevice)
 					} catch let error as NSError {
 						Log.error(error.localizedDescription)
 						self.view.makeToast(error.localizedDescription)
-						return false
+						return false as AnyObject
 					}
 					self.initUIdata()
-					return true
+					return true as AnyObject
 				}
-				return false
+				return false as AnyObject
 			}) {
-				guard let success = $0 as? Bool where success else {
+				guard let success = $0 as? Bool, success else {
 					toast("未找到可用设备")
 					self.dismiss(animated: true, completion: nil)
 					return
@@ -247,14 +248,14 @@ extension PhotoBrowser {
 				stillImageOutput.captureStillImageAsynchronously(from: videoConnection) {
 					(imageDataSampleBuffer, error) -> Void in
 					let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
-					let img = UIImage(data: imageData)
+					let img = UIImage(data: imageData!)
 					img?.contentType = .JPEG
 
 					self.stopCaptureSessioin()
 
 					self.photoView.setup(.image(image: img!))
 					self.photoView.setNeedsLayout()
-					self.isEditing = true
+					self.isEditings = true
 				}
 			}
 		}
@@ -322,7 +323,7 @@ extension PhotoBrowser {
 		// MARK: - LDPhotoBrowserViewDelegate
 
 		func photoViewDidSingleTap(_ view: PhotoBrowser.View) {
-			if isEditing {
+			if isEditings {
 				setFullscreen(!fullscreen, animated: true)
 			}
 		}
@@ -334,18 +335,18 @@ extension PhotoBrowser {
 		func flashButtonClick() {
 			let devices = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
 			do {
-				try devices.lockForConfiguration()
+				try devices?.lockForConfiguration()
 			} catch _ {
 				toast("锁定异常")
 			}
-			if devices.hasFlash {
+			if (devices?.hasFlash)! {
 				if isUsingFrontFacingCameraBack {
-					devices.flashMode = AVCaptureFlashMode.auto
+					devices?.flashMode = AVCaptureFlashMode.auto
 				} else {
-					devices.flashMode = AVCaptureFlashMode.off
+					devices?.flashMode = AVCaptureFlashMode.off
 				}
 			}
-			devices.unlockForConfiguration()
+			devices?.unlockForConfiguration()
 		}
 		// MARK: - 设置镜头翻转
 		func switchCameraSegmentedControlClick() {
@@ -353,31 +354,32 @@ extension PhotoBrowser {
 			async({ () -> AnyObject! in
 				var devices = AVCaptureDevice.devices()
 				if self.isUsingFrontFacingCameraBack {
-					devices = AVCaptureDevice.devices().filter { $0.hasMediaType(AVMediaTypeVideo) && $0.position == AVCaptureDevicePosition.front }
+					devices = AVCaptureDevice.devices().filter { ($0 as AnyObject).hasMediaType(AVMediaTypeVideo) && ($0 as AnyObject).position == AVCaptureDevicePosition.front }
 				} else {
-					devices = AVCaptureDevice.devices().filter { $0.hasMediaType(AVMediaTypeVideo) && $0.position == AVCaptureDevicePosition.back }
+					devices = AVCaptureDevice.devices().filter { ($0 as AnyObject).hasMediaType(AVMediaTypeVideo) && ($0 as AnyObject).position == AVCaptureDevicePosition.back }
 				}
                 self.previewLayer.session.beginConfiguration()
 				let input: AVCaptureInput?
-				if let captureDevice = devices.first as? AVCaptureDevice {
+				if let captureDevice = devices?.first as? AVCaptureDevice {
 					do {
 						input = try AVCaptureDeviceInput(device: captureDevice)
 					} catch let error as NSError {
 						Log.error(error.localizedDescription)
 						self.view.makeToast(error.localizedDescription)
-						return false
+						return false as AnyObject
 					}
 					for oldInput: AVCaptureInput in self.previewLayer.session.inputs as! [AVCaptureInput] {
 						self.previewLayer.session.removeInput(oldInput)
 					}
 					self.previewLayer.session.addInput(input)
                     self.previewLayer.session.commitConfiguration()
-					return true
+					return
+                        true as AnyObject
 				}
-				return false
+				return false as AnyObject
 			}) { (isok) in
 				self.view.hideToastActivity()
-				guard let success = isok as? Bool where success else {
+				guard let success = isok as? Bool, success else {
 					toast("旋转失败")
 					return
 				}
@@ -389,23 +391,23 @@ extension PhotoBrowser {
 		func focusWithMode(_ focusMode: AVCaptureFocusMode, exposureMode: AVCaptureExposureMode, point: CGPoint) {
 			let captureDevice = self.input.device
 			do {
-				try captureDevice.lockForConfiguration()
+				try captureDevice?.lockForConfiguration()
 			} catch {
 				Log.info("上锁失败")
 			}
-			if captureDevice.isFocusModeSupported(focusMode) {
-				captureDevice.focusMode = AVCaptureFocusMode.autoFocus
+			if (captureDevice?.isFocusModeSupported(focusMode))! {
+				captureDevice?.focusMode = AVCaptureFocusMode.autoFocus
 			}
-			if captureDevice.isFocusPointOfInterestSupported {
-				captureDevice.focusPointOfInterest = point
+			if (captureDevice?.isFocusPointOfInterestSupported)! {
+				captureDevice?.focusPointOfInterest = point
 			}
-			if captureDevice.isExposureModeSupported(exposureMode) {
-				captureDevice.exposureMode = AVCaptureExposureMode.autoExpose
+			if (captureDevice?.isExposureModeSupported(exposureMode))! {
+				captureDevice?.exposureMode = AVCaptureExposureMode.autoExpose
 			}
-			if captureDevice.isExposurePointOfInterestSupported {
-				captureDevice.exposurePointOfInterest = point
+			if (captureDevice?.isExposurePointOfInterestSupported)! {
+				captureDevice?.exposurePointOfInterest = point
 			}
-            captureDevice.unlockForConfiguration()
+            captureDevice?.unlockForConfiguration()
             
 		}
 		func addGenstureRecognizer() {

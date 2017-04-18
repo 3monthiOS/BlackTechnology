@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import Swiften
+//import Swiften
 
 protocol SystemPhotoAlbumDelegate {
     func getImageSucessful(_ image: UIImage)

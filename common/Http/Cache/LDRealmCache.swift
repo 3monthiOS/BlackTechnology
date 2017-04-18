@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 import Realm
-import Swiften
+//import Swiften
 
 class LDRealmCache: LDCachable {
     
@@ -24,7 +24,7 @@ class LDRealmCache: LDCachable {
     // MARK: - LDCachable
     
     func get(_ key: String) -> LDCacheItem? {
-        if let item = realm.objectForPrimaryKey(LDCacheItem.self, key: key) where item.isValid {
+        if let item = realm.object(ofType: LDCacheItem.self, forPrimaryKey: key as AnyObject), item.isValid {
             return item
         }
         return nil

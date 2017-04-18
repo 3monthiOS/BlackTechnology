@@ -8,66 +8,36 @@
 
 import Foundation
 import RealmSwift
-
-open class RealmCacheValue: Object, CacheValue {
-  dynamic public var key: String = ""
-  dynamic public var value: String = ""
-  dynamic public var expires: TimeInterval = 0.0
-  
-  // 主键
-  override open static func primaryKey() -> String? {
-    return "key"
-  }
-  
-  public static let om = RealmObjectManager<RealmCacheValue>(realm: Realm.sharedRealm)
-  
-  public var isValid: Bool {
-    return expires < 0.000001 || expires > Date.timeIntervalSinceReferenceDate
-  }
-}
+import Realm
 
 open class RealmCache: Cachable {
-  
-  public typealias Value = RealmCacheValue
-  
-  public init() {
-    
-  }
 
-  public func value(forKey key: String) -> RealmCacheValue? {
-    guard let cacheValue = RealmCacheValue.om.object(primaryKey: key as AnyObject), cacheValue.isValid else {
-      return nil
+    open func value(forKey key: String) -> CacheItem? {
+        return CacheItem.em.object(primaryKey: key as AnyObject)
     }
-    return cacheValue
-  }
-  
-  public func set(value: RealmCacheValue) {
-    RealmCacheValue.om.save(value)
-  }
-  
-  public func string(forKey key: String) -> String? {
-    return value(forKey: key)?.value
-  }
-  
-  public func set(string value: String, forKey key: String, expires: TimeInterval) {
-    if !key.isEmpty {
-      let cacheValue = RealmCacheValue()
-      cacheValue.key = key
-      cacheValue.value = value
-      cacheValue.expires = expires
-      set(value: cacheValue)
+
+    open func setValue(_ value: CacheItem) {
+        CacheItem.em.save(value)
     }
-  }
-  
-  public func remove(forKey key: String) {
-    guard let item = value(forKey: key) else {
-      return
+
+    open func string(forKey key: String) -> String? {
+        return value(forKey: key)?.value
     }
-    RealmCacheValue.om.delete(item)
-  }
-  
-  public func clear() {
-    RealmCacheValue.om.deleteAll()
-  }
-  
+
+    open func setString(_ value: String, forKey key: String, expires: Double?) {
+        let item = CacheItem()
+        item.key = key
+        item.value = value
+        item.expires = expires ?? Date.distantFuture.timeIntervalSince1970
+        setValue(item)
+    }
+
+    open func remove(forKey key: String) {
+        guard let item = value(forKey: key) else { return }
+        CacheItem.em.delete(item)
+    }
+
+    open func clear() {
+        CacheItem.em.deleteAll()
+    }
 }

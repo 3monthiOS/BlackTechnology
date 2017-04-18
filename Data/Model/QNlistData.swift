@@ -33,11 +33,11 @@ class QNlistData: Mappable {
 
     }
 
-    required init?(_ map: Map) {
+    required init?(map: Map) {
 
     }
 
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         id <- map["id"]
         marker <- map["marker"]
         commonPrefixes <- map["commonPrefixes"]
@@ -60,11 +60,11 @@ class QNlistItms: Mappable{
     //资源内容的唯一属主标识，请参考上传策略。
     var customer: String?
     
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         
     }
     
-     func mapping(_ map: Map) {
+     func mapping(map: Map) {
         
         key <- map["key"]
         

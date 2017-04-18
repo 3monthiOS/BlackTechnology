@@ -21,10 +21,10 @@
 #import <BaiduMapAPI_Search/BMKSearchComponent.h>//引入检索功能所有的头文件
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>//引入定位功能所有的头文件
 //相册
-#import "PECropRectView.h"
-#import "UIImage+PECrop.h"
-#import "PECropViewController.h"
-#import "PECropView.h"
+//#import "PECropRectView.h"
+//#import "UIImage+PECrop.h"
+//#import "PECropViewController.h"
+//#import "PECropView.h"
 //友盟
 //#import "UMSocial.h"
 //#import "UMSocialWechatHandler.h"
@@ -35,6 +35,8 @@
 //#import <RongIMLib/RongIMLib.h>
 #import <RongIMKit/RongIMKit.h>
 #endif /* Bridging_Header_h */
+// 加密
+#import <CommonCrypto/CommonCrypto.h>
 // 我
 #import "TYTabButtonPagerController.h"
 #import "TYPagerController.h"

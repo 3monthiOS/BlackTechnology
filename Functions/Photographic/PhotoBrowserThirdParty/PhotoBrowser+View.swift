@@ -14,7 +14,7 @@ import AlamofireImage
 import MobileCoreServices
 import Photos
 import AssetsLibrary
-import Swiften
+//import Swiften
 
 extension PhotoBrowser {
     
@@ -152,20 +152,20 @@ extension PhotoBrowser {
         
         func loadImageWithUrl(_ url: String, completion: ((UIImage?) -> Void)? = nil) {
             self.indicatorStart()
-            
-            NetworkManager.sharedInstace.defaultManager.request(.GET, url).responseImage { (response: Alamofire.Response<AlamofireImage.Image, NSError>) in
-                
+            NetworkManager.defaultManager.request(url).responseData { (response :DataResponse<Data>) in
                 switch response.result {
-                case .Success(let image):
-                    image.contentType = UIImage.ContentType.contentType(mimeType: response.response?.MIMEType)
+                case .success:
+                    let image = UIImage(data: response.data!)
+                    image?.contentType = UIImage.ContentType.contentType(mimeType: response.response?.mimeType)
+//                    image.contentType = UIImage.ContentType.contentType(mimeType: response.response?.MIMEType)
                     if !self.originImageLoaded {
                         // 如果是动态GIF图，则预览图就是原图
-                        self.originImageLoaded = (image.classForCoder.description() == "_UIAnimatedImage")
+                        self.originImageLoaded = (image?.classForCoder.description() == "_UIAnimatedImage")
                     }
                     self.imageView.image = image
-                    self.imageView.hidden = false
+                    self.imageView.isHidden = false
                     self.imageLoaded = true
-                case .Failure(let error):
+                case .failure(let error):
                     if !self.originImageLoaded {
                         self.indicatorStop()
                         self.loadOriginImage(completion)
@@ -183,14 +183,23 @@ extension PhotoBrowser {
                 if !self.originImageLoaded {
                     guard let model = self.model else {return}
                     switch model {
-                    case .Urls(_, _):
+                    case .urls(url: _, preview: _):
                         if Reachability.networkStatus != .reachableViaWiFi {
                             self.loadOriginImage()
                         }
                     default: break
                     }
                 }
+
             }
+//            NetworkManager.defaultManager.request(url).response { (response :DataResponse) in
+//                            }
+//            NetworkManager.sharedInstace.defaultManager.request(.GET, url).responseImage { (response: Alamofire.Response<AlamofireImage.Image, NSError>) in
+//                
+//                
+//                
+//                
+//            }
         }
         
         func loadOriginImage(_ completion: ((UIImage?) -> Void)? = nil) {
@@ -203,7 +212,7 @@ extension PhotoBrowser {
                 case .asset(let asset):
                     PHImageManager.default().requestImageData(for: asset, options: nil) { (data, dataUTI, orientation, info) -> Void in
                         if data != nil {
-                            let contentType = UIImage.ContentType.contentTypeWithImageData(data)
+                            let contentType = UIImage.ContentType.contentTypeWithImageData(imageData: data! as NSData)
                             var image: UIImage?
                             switch contentType {
                             case .GIF: break
@@ -397,7 +406,7 @@ extension PhotoBrowser {
                 //				UIImageWriteToSavedPhotosAlbum(image, self, "image:didFinishSavingWithError:contextInfo:", nil)
                 if let data = image.data {
                     let library = ALAssetsLibrary()
-                    library.writeImageDataToSavedPhotosAlbum(data, metadata: nil) { url, error in
+                    library.writeImageData(toSavedPhotosAlbum: data as Data!, metadata: nil) { url, error in
                         if let err = error {
                             toast("图片保存失败")
                             Log.error(err)
@@ -412,10 +421,10 @@ extension PhotoBrowser {
         }
         
         func saveImageFromUrl(_ url: String) {
-            NetworkManager.sharedInstace.defaultManager.request(.GET, url).response { (request, response, data, error) -> Void in
-                if error == nil {
+            NetworkManager.defaultManager.request(url).response { (DefaultDataResponse) -> Void in
+                if DefaultDataResponse.error  == nil {
                     let library = ALAssetsLibrary()
-                    library.writeImageDataToSavedPhotosAlbum(data, metadata: nil) { url, error in
+                    library.writeImageData(toSavedPhotosAlbum: DefaultDataResponse.data, metadata: nil) { url, error in
                         if let err = error {
                             toast("图片保存失败")
                             Log.error(err)
@@ -425,9 +434,12 @@ extension PhotoBrowser {
                     }
                 } else {
                     toast("图片保存失败")
-                    Log.error(error)
+                    Log.error(DefaultDataResponse.error)
                 }
+
             }
+//            NetworkManager.defaultManager.request(.GET, url).response { (request, response, data, error) -> Void in
+//                           }
         }
         
         //		func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: AnyObject) {

@@ -36,11 +36,11 @@ class MobileAddress: Mappable {
 
 	}
 
-	required init?(_ map: Map) {
+	required init?(map: Map) {
 
 	}
 
-	func mapping(_ map: Map) {
+	func mapping(map: Map) {
 
 		Email <- map["Email"]
 
@@ -75,11 +75,11 @@ class MobileRecommend: Mappable {
 
 	}
 
-	required init?(_ map: Map) {
+	required init?(map: Map) {
 
 	}
 
-	func mapping(_ map: Map) {
+	func mapping(map: Map) {
         
         total <- map["total"]
         list <- map["list"]
@@ -109,11 +109,11 @@ class MobileAddresObject: Mappable {
         
     }
     
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         
     }
     
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         
         Email <- map["Email"]
         

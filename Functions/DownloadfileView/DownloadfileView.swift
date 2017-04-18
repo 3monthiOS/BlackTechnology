@@ -20,8 +20,8 @@ class DownloadfileView: UIViewController {
     
     
     //下载文件的保存路径
-    let destination = Alamofire.Request.suggestedDownloadDestination(
-        directory: .DocumentDirectory, domain: .UserDomainMask)
+//    let destination = Alamofire.Request.suggestedDownloadDestination(
+//        directory: .DocumentDirectory, domain: .UserDomainMask)
     
     //用于停止下载时，保存已下载的部分
     var cancelledData: Data?
@@ -33,13 +33,13 @@ class DownloadfileView: UIViewController {
         super.viewDidLoad()
         
         //页面加载完毕就自动开始下载
-        self.downloadRequest =  Alamofire.download(.GET,
-                                                   "http://dldir1.qq.com/qqfile/qq/QQ7.9/16621/QQ7.9.exe",
-                                                   destination: destination)
-        
-        self.downloadRequest.progress(downloadProgress) //下载进度
-        
-        self.downloadRequest.response(completionHandler: downloadResponse) //下载停止响应
+//        self.downloadRequest =  Alamofire.download(.GET,
+//                                                   "http://dldir1.qq.com/qqfile/qq/QQ7.9/16621/QQ7.9.exe",
+//                                                   destination: destination)
+//        
+//        self.downloadRequest.progress(downloadProgress) //下载进度
+//        
+//        self.downloadRequest.response(completionHandler: downloadResponse) //下载停止响应
     }
     
     //下载过程中改变进度条
@@ -61,10 +61,10 @@ class DownloadfileView: UIViewController {
             if error.code == NSURLErrorCancelled {
                 self.cancelledData = data //意外终止的话，把已下载的数据储存起来
             } else {
-                print("Failed to download file: \(response) \(error)")
+                print("Failed to download file: \(String(describing: response)) \(error)")
             }
         } else {
-            print("Successfully downloaded file: \(response)")
+            print("Successfully downloaded file: \(String(describing: response))")
         }
     }
     
@@ -77,17 +77,17 @@ class DownloadfileView: UIViewController {
     
     //继续按钮点击
     @IBAction func continueBtnClick(_ sender: AnyObject) {
-        if let cancelledData = self.cancelledData {
-            self.downloadRequest = Alamofire.download(resumeData: cancelledData,
-                                                      destination: destination)
+//        if let cancelledData = self.cancelledData {
+//            self.downloadRequest = Alamofire.download(resumeData: cancelledData,
+//                                                      destination: description)
+        
+//            self.downloadRequest.progress(downloadProgress) //下载进度
             
-            self.downloadRequest.progress(downloadProgress) //下载进度
-            
-            self.downloadRequest.response(completionHandler: downloadResponse) //下载停止响应
+//            self.downloadRequest.response(completionHandler: downloadResponse) //下载停止响应
             
             self.stopBtn.isEnabled = true
             self.continueBtn.isEnabled = false
-        }
+//        }
     }
 
     

@@ -14,8 +14,8 @@ protocol ZHJtableviewDelgate {
     func bindtableViewRefresh(_ tableView: TableViewMjResh, refreshDataWithType refreshType: TableViewMjResh.RefreshType)
 }
 @objc protocol ZHJtableviewDataSource {
-    optional func bindHeaderView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
-    optional func bindFooterView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView?
+    @objc optional func bindHeaderView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
+    @objc optional func bindFooterView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView?
 }
 class ZHJtableview: TableViewMjResh {
 
@@ -33,8 +33,8 @@ class ZHJtableview: TableViewMjResh {
     
     var canEditRow:Bool = false
     var needRefreshControl:[Bool] = [false,false]
-    var heraerViewheight = CGFloat.min
-    var footerViewheight = CGFloat.min
+    var heraerViewheight = CGFloat.leastNormalMagnitude
+    var footerViewheight = CGFloat.leastNormalMagnitude
     
     override func awakeFromNib() {
         super.awakeFromNib()

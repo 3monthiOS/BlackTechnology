@@ -26,7 +26,7 @@ extension UIImage {
 
     public class func gifWithData(_ data: Data) -> UIImage? {
         // Create source from data
-        guard let source = CGImageSourceCreateWithData(data, nil) else {
+        guard let source = CGImageSourceCreateWithData(data as CFData, nil) else {
             print("SwiftGif: Source for the image does not exist")
             return nil
         }
@@ -77,7 +77,7 @@ extension UIImage {
 
         // Get dictionaries
         let cfProperties = CGImageSourceCopyPropertiesAtIndex(source, index, nil)
-        let gifProperties: CFDictionaryRef = unsafeBitCast(
+        let gifProperties: CFDictionary = unsafeBitCast(
             CFDictionaryGetValue(cfProperties,
                 Unmanaged.passUnretained(kCGImagePropertyGIFDictionary).toOpaque()),
             to: CFDictionary.self)
@@ -152,7 +152,7 @@ extension UIImage {
 
     class func animatedImageWithSource(_ source: CGImageSource) -> UIImage? {
         let count = CGImageSourceGetCount(source)
-        var images = [CGImageRef]()
+        var images = [CGImage]()
         var delays = [Int]()
         // Fill arrays
         for i in 0..<count {

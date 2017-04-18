@@ -23,7 +23,7 @@ class ChatListviewcontroller: RCConversationListViewController {
         self.title = "聊天"
         let token = tokenArray[Int(arc4random()%4)]
         RCIM.shared().connect(withToken: token,success: { (userId) -> Void in
-            self.userId = userId
+            self.userId = userId!
             print("登陆成功。当前登录的用户ID：\(userId)")
             }, error: { (status) -> Void in
                 print("登陆的错误码为:\(status.rawValue)")
@@ -68,9 +68,9 @@ class ChatListviewcontroller: RCConversationListViewController {
     func privateChat() {
         //打开会话界面
         let chatWithSelf = RCConversationViewController(conversationType: RCConversationType.ConversationType_PRIVATE, targetId: userId)
-        chatWithSelf.title = "私聊"
-        chatWithSelf.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(chatWithSelf, animated: true)
+        chatWithSelf?.title = "私聊"
+        chatWithSelf?.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(chatWithSelf!, animated: true)
     }
     
     func logout() {
@@ -82,9 +82,9 @@ class ChatListviewcontroller: RCConversationListViewController {
     override func onSelectedTableRow(_ conversationModelType: RCConversationModelType, conversationModel model: RCConversationModel!, at indexPath: IndexPath!) {
         //打开会话界面
         let chat = AppChatScreenViewController(conversationType: model.conversationType, targetId: model.targetId)
-        chat.title = "聊天界面"
-        chat.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(chat, animated: true)
+        chat?.title = "聊天界面"
+        chat?.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(chat!, animated: true)
     }
     
     override func didReceiveMemoryWarning() {

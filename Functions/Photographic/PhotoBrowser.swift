@@ -8,7 +8,7 @@
 
 import Foundation
 import Photos
-import Swiften
+//import Swiften
 
 class PhotoBrowser {
 	static var defaultDelegate: DefaultDelegate!

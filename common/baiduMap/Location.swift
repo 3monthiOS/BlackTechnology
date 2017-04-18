@@ -26,10 +26,10 @@ class Location : Mappable {
 		self.longitude = lng
 	}
 
-	required init?(_ map: Map) {
+	required init?(map: Map) {
 	}
 
-	func mapping(_ map: Map) {
+	func mapping(map: Map) {
         latitude <- map["latitude"]
         longitude <- map["longitude"]
 		country <- map["country"]

@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import Swiften
+//import Swiften
+import SnapKit
 
 class Myviewcontroller: APPviewcontroller{
     

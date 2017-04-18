@@ -8,7 +8,7 @@
 
 import Foundation
 import Qiniu
-import Swiften
+//import Swiften
 import SwiftyJSON
 /**
  * 七牛工具集
@@ -21,7 +21,7 @@ struct QNUtils {
     }
     
     enum UploadResult {
-        case success(url: String, response: [AnyHashable: Any]?, info: QNResponseInfo!)
+        case success(url: String, response: [AnyHashable: Any]?, info: QNResponseInfo?)
         case failure(error: NSError?)
     }
     
@@ -69,16 +69,16 @@ struct QNUtils {
 //            <#code#>
 //        }
     }
-    static func putData(_ data: Data, withKey key: String, token: String,resourceType: ResourceType, isQuiet: Bool = false,completion: (UploadResult) -> Void) {
+    static func putData(_ data: Data, withKey key: String, token: String,resourceType: ResourceType, isQuiet: Bool = false,completion: @escaping (UploadResult) -> Void) {
         let config = QNConfiguration.build { (builder: QNConfigurationBuilder!) in
             builder.setZone(QNZone.zone0())
         }
         let uploadManager = QNUploadManager(configuration: config)
         
         Log.info("QiNiu: put data (token=\(token), key=\(key), type=\(resourceType.rawValue))")
-        uploadManager.put(data, key: key, token: token, complete: {
+        uploadManager?.put(data, key: key, token: token, complete: {
             (info, key, resp) in
-            if info.statusCode == 200 {
+            if info?.statusCode == 200 {
                 //上传完毕
                 if let respKey = resp?["key"] as? String {
                     let qiniuUrl = getHost(resourceType)
@@ -87,14 +87,14 @@ struct QNUtils {
                     completion(.success(url: url, response: resp, info: info))
                     return
                 }
-            }else if info.statusCode == 401{
+            }else if info?.statusCode == 401{
                 generateToken(true)
                 alert("token已重置,请重新上传")
-            }else if info.statusCode == -5 {
+            }else if info?.statusCode == -5 {
                 alert("token错误,请检查你的证书秘钥")
             }
-            Log.error("QiNiu: put data failure (\(info.error))")
-            completion(.failure(error: info.error))
+            Log.error("QiNiu: put data failure (\(info?.error))")
+            completion(.failure(error: info?.error as! NSError))
             
             }, option: nil)
     }
@@ -143,11 +143,11 @@ struct QNUtils {
             let encodedPolicy = QN_GTM_Base64.string(byWebSafeEncoding: policyData, padded: true)
                     print("对json序列化后的上传策略进行URL安全的Base64编码,得到如下encoded:\(encodedPolicy)")
             
-            let hmacData = encodedPolicy.hmacData(.sha1, key: secretKey)
+            let hmacData = encodedPolicy?.hmacData(.sha1, key: secretKey)
             let encodedSigned = QN_GTM_Base64.string(byWebSafeEncoding: hmacData, padded: true)
             let token = "\(accessKey):\(encodedSigned!):\(encodedPolicy)"
 //            userdefaults.setObject(token, forKey: "QNtoken")
-            session.setObject(token, forKey: "QNtoken")
+            session.setObject(token as AnyObject, forKey: "QNtoken")
             return token
         }else{
             let token = session.object(forKey: "QNtoken")

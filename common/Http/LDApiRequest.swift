@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import AlamofireObjectMapper
 import ObjectMapper
-import Swiften
+//import Swiften
 import SwiftyJSON
 import SnapKit
 
@@ -79,8 +79,8 @@ typealias LDApiRequestOptions = [String: Any]
             }
         }
         if start != nil || limit != nil {
-            self.params["offset"] = start ?? 0
-            self.params["size"] = limit ?? 20
+            self.params["offset"] = start as AnyObject ?? 0 as AnyObject
+            self.params["size"] = limit as AnyObject ?? 20 as AnyObject
         }
         return self
     }
@@ -96,7 +96,7 @@ typealias LDApiRequestOptions = [String: Any]
         params: [String: AnyObject]? = nil,
         start: Int? = nil,
         limit: Int? = nil,
-        callback: (response: LDApiResponse<T>) -> Void)
+        callback: @escaping (_ response: LDApiResponse<T>) -> Void)
         -> LDApiRequest
     {
         if params == nil && start == nil && limit == nil {
@@ -107,7 +107,7 @@ typealias LDApiRequestOptions = [String: Any]
     }
 
     /// 调用API请求
-    func call<T>(_ method: Alamofire.Method, _ callback: (response: LDApiResponse<T>) -> Void) -> LDApiRequest {
+    func call<T>(_ method: Alamofire.Method, _ callback: @escaping (_ response: LDApiResponse<T>) -> Void) -> LDApiRequest {
         
         #if DEBUG
             startTime = NSDate.timeIntervalSinceReferenceDate()
@@ -150,13 +150,12 @@ typealias LDApiRequestOptions = [String: Any]
         let jString = j.jsonString 
         let sign = jString.md5
 
-        var parameters: [String: AnyObject] = [ "_t": tid, "j": jString, "sign": sign ]
+        var parameters: [String: AnyObject] = [ "_t": tid as AnyObject, "j": jString as AnyObject, "sign": sign as AnyObject ]
 
         if let ljsonp = options["ljsonp"] as? Bool,
-               japi = options["japi"] as? String,
-               jdomain = options["jdomain"] as? String
-            where ljsonp {
-            parameters["jdomain"] = jdomain
+               let japi = options["japi"] as? String,
+               let jdomain = options["jdomain"] as? String, ljsonp {
+            parameters["jdomain"] = jdomain as AnyObject
             parameters["japi"] = japi
         }
 
@@ -181,7 +180,7 @@ typealias LDApiRequestOptions = [String: Any]
         return self
     }
 
-    fileprivate func handleJSON<T>(response: Alamofire.Response<LDApiResponse<T>, NSError>, callback: (response: LDApiResponse<T>) -> Void) {
+    fileprivate func handleJSON<T>(response: Alamofire.Response<LDApiResponse<T>, NSError>, callback: (_ response: LDApiResponse<T>) -> Void) {
         Log.info("api[\(self.tid)]: \(response.response == nil ? "nil" : response.response!.debugDescription) Data: \((response.data?.length)!) bytes, Time: \(round((Date.timeIntervalSinceReferenceDate() - startTime) * 10000) / 10) ms")
         switch response.result {
         case .Success(let value):
@@ -224,7 +223,7 @@ extension LDApiRequest {
 
     fileprivate func startLoading() {
         guard let window = UIApplication.shared.keyWindow else { return }
-        if let quiet = self.options["quiet"] as? Bool where quiet {
+        if let quiet = self.options["quiet"] as? Bool, quiet {
             return
         }
         sync {
@@ -251,7 +250,7 @@ extension LDApiRequest {
     }
 
     fileprivate func stopLoading() {
-        if let quiet = self.options["quiet"] as? Bool where quiet {
+        if let quiet = self.options["quiet"] as? Bool, quiet {
             return
         }
         sync {
@@ -277,22 +276,22 @@ extension LDApiRequest {
 extension LDApiRequest {
 
     /// 调用GET请求
-    func get<T>(_ params: [String: AnyObject]? = nil, start: Int? = nil, limit: Int? = nil, callback: (response: LDApiResponse<T>) -> Void) -> LDApiRequest {
+    func get<T>(_ params: [String: AnyObject]? = nil, start: Int? = nil, limit: Int? = nil, callback: (_ response: LDApiResponse<T>) -> Void) -> LDApiRequest {
         return prepare(.GET, params: params, start: start, limit: limit, callback: callback)
     }
 
     /// 调用POST请求
-    func post<T>(_ params: [String: AnyObject]? = nil, start: Int? = nil, limit: Int? = nil, callback: (response: LDApiResponse<T>) -> Void) -> LDApiRequest {
+    func post<T>(_ params: [String: AnyObject]? = nil, start: Int? = nil, limit: Int? = nil, callback: (_ response: LDApiResponse<T>) -> Void) -> LDApiRequest {
         return prepare(.POST, params: params, start: start, limit: limit, callback: callback)
     }
 
     /// 调用PUT请求
-    func put<T>(_ params: [String: AnyObject]? = nil, start: Int? = nil, limit: Int? = nil, callback: (response: LDApiResponse<T>) -> Void) -> LDApiRequest {
+    func put<T>(_ params: [String: AnyObject]? = nil, start: Int? = nil, limit: Int? = nil, callback: (_ response: LDApiResponse<T>) -> Void) -> LDApiRequest {
         return prepare(.PUT, params: params, start: start, limit: limit, callback: callback)
     }
 
     /// 调用DELETE请求
-    func delete<T>(_ params: [String: AnyObject]? = nil, start: Int? = nil, limit: Int? = nil, callback: (response: LDApiResponse<T>) -> Void) -> LDApiRequest {
+    func delete<T>(_ params: [String: AnyObject]? = nil, start: Int? = nil, limit: Int? = nil, callback: (_ response: LDApiResponse<T>) -> Void) -> LDApiRequest {
         return prepare(.DELETE, params: params, start: start, limit: limit, callback: callback)
     }
 
@@ -302,16 +301,16 @@ extension LDApiRequest {
 
 extension LDApiRequest {
     /// 调用GET请求
-    func get<T: Mappable>(_ params: [String: AnyObject]? = nil, start: Int? = nil, limit: Int? = nil, callback: (data: T) -> Void) -> LDApiRequest {
+    func get<T: Mappable>(_ params: [String: AnyObject]? = nil, start: Int? = nil, limit: Int? = nil, callback: (_ data: T) -> Void) -> LDApiRequest {
         return self.get(params, start: start, limit: limit) { (response: LDApiResponse<T>) in
             response.failureDefault().success {
-                callback(data: $0)
+                callback($0)
             }
         }
     }
 
     /// 调用POST请求
-    func post<T: Mappable>(_ params: [String: AnyObject]? = nil, start: Int? = nil, limit: Int? = nil, callback: (data: T) -> Void) -> LDApiRequest {
+    func post<T: Mappable>(_ params: [String: AnyObject]? = nil, start: Int? = nil, limit: Int? = nil, callback: (_ data: T) -> Void) -> LDApiRequest {
         return self.post(params, start: start, limit: limit) { (response: LDApiResponse<T>) in
             response.failureDefault().success {
                 callback(data: $0)
@@ -320,16 +319,16 @@ extension LDApiRequest {
     }
 
     /// 调用PUT请求
-    func put<T: Mappable>(_ params: [String: AnyObject]? = nil, start: Int? = nil, limit: Int? = nil, callback: (data: T) -> Void) -> LDApiRequest {
+    func put<T: Mappable>(_ params: [String: AnyObject]? = nil, start: Int? = nil, limit: Int? = nil, callback: @escaping (_ data: T) -> Void) -> LDApiRequest {
         return self.put(params, start: start, limit: limit) { (response: LDApiResponse<T>) in
             response.failureDefault().success {
-                callback(data: $0)
+                callback($0)
             }
         }
     }
 
     /// 调用DELETE请求
-    func delete<T: Mappable>(_ params: [String: AnyObject]? = nil, start: Int? = nil, limit: Int? = nil, callback: (data: T) -> Void) -> LDApiRequest {
+    func delete<T: Mappable>(_ params: [String: AnyObject]? = nil, start: Int? = nil, limit: Int? = nil, callback: (_ data: T) -> Void) -> LDApiRequest {
         return self.delete(params, start: start, limit: limit) { (response: LDApiResponse<T>) in
             response.failureDefault().success {
                 callback(data: $0)
@@ -343,7 +342,7 @@ extension LDApiRequest {
 extension LDApiRequest {
 
     /// 调用POST请求(提交JSON字符串)
-    func post<T>(jsonString: String, callback: (response: LDApiResponse<T>) -> Void) {
+    func post<T>(jsonString: String, callback: (_ response: LDApiResponse<T>) -> Void) {
         let url = URL(string: buildUrlString())!
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "POST"

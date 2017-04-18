@@ -15,7 +15,7 @@ extension String {
 	}
     
     func heightWithFont(_ font: UIFont, width: CGFloat) -> CGFloat {
-        let size = CGSize(width: width, height: CGFloat.max)
+        let size = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = .byWordWrapping;
         let attributes = [NSFontAttributeName:font,
@@ -31,7 +31,7 @@ extension String {
 	}
     
     func widthWithFont(_ font: UIFont) -> CGFloat {
-        let size = CGSize(width: CGFloat.max, height: CGFloat.max)
+        let size = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = .byWordWrapping;
         let attributes = [NSFontAttributeName:font,

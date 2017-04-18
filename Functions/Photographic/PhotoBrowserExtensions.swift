@@ -8,7 +8,7 @@
 
 import Foundation
 import Photos
-import Swiften
+//import Swiften
 import Alamofire
 import AlamofireImage
 import MobileCoreServices
@@ -40,91 +40,92 @@ extension PhotoBrowser {
 // MARK: Selection
 extension PhotoBrowser {
     
-    enum Selection {
-        case none
-        case single(Int, Model)
-        case multi([Int], [Model])
-        
-        func getImage(_ completion: (UIImage?) -> Void) {
-            switch self {
-            case .none: break
-            case .multi( _, let models):
-                for model in models {
-                    switch model {
-                    case .asset(let asset):
-                        UIViewController.topViewController?.view.makeToastActivity(ToastPosition.Center)
-                        PHImageManager.default().requestImageData(for: asset, options: nil) { (data, dataUTI, orientation, info) -> Void in
-                            if data != nil {
-                                let contentType = UIImage.ContentType.contentTypeWithImageData(data)
-                                let img = UIImage(data: data!)
-                                img?.contentType = contentType
-                                completion(img)
-                                
-                            } else {
-                                completion(nil)
-                            }
-                            UIViewController.topViewController?.view.hideToastActivity()
-                        }
-                        return
-                    case .image(let image):
-                        completion(image)
-                        return
-                    case .urls(let url, _):
-                        UIViewController.topViewController?.view.makeToastActivity(ToastPosition.Center)
-                        NetworkManager.sharedInstace.defaultManager.request(.GET, url).responseImage { (response: Alamofire.Response<AlamofireImage.Image, NSError>) in
-                            switch response.result {
-                            case .Success(let image):
-                                image.contentType = UIImage.ContentType.contentType(mimeType: response.response?.MIMEType)
-                                completion(image)
-                                return
-                            case .Failure(let error):
-                                Log.error(error)
-                            }
-                            UIViewController.topViewController?.view.hideToastActivity()
-                        }
-                    }
-                }
-            case .single(_, let model):
-                switch model {
-                case .asset(let asset):
-                    UIViewController.topViewController?.view.makeToastActivity(ToastPosition.Center)
-                    PHImageManager.default().requestImageData(for: asset, options: nil) { (data, dataUTI, orientation, info) -> Void in
-                        if data != nil {
-                            let contentType = UIImage.ContentType.contentTypeWithImageData(data)
-                            let img = UIImage(data: data!)
-                            img?.contentType = contentType
-                            completion(img)
-                            
-                        } else {
-                            completion(nil)
-                        }
-                        UIViewController.topViewController?.view.hideToastActivity()
-                    }
-                    return
-                case .image(let image):
-                    completion(image)
-                    return
-                case .urls(let url, _):
-                    UIViewController.topViewController?.view.makeToastActivity(ToastPosition.Center)
-                    NetworkManager.sharedInstace.defaultManager.request(.GET, url).responseImage { (response: Alamofire.Response<AlamofireImage.Image, NSError>) in
-                        switch response.result {
-                        case .Success(let image):
-                            image.contentType = UIImage.ContentType.contentType(mimeType: response.response?.MIMEType)
-                            completion(image)
-                            return
-                        case .Failure(let error):
-                            Log.error(error)
-                        }
-                        UIViewController.topViewController?.view.hideToastActivity()
-                    }
-                }
-                completion(nil)
-            }
-        }
-    }
-    
+//    enum Selection {
+//        case none
+//        case single(Int, Model)
+//        case multi([Int], [Model])
+//        
+//        func getImage(_ completion: @escaping (UIImage?) -> Void) {
+//            switch self {
+//            case .none: break
+//            case .multi( _, let models):
+//                for model in models {
+//                    switch model {
+//                    case .asset(let asset):
+//                        UIViewController.topViewController?.view.makeToastActivity(ToastPosition.center)
+//                        PHImageManager.default().requestImageData(for: asset, options: nil) { (data, dataUTI, orientation, info) -> Void in
+//                            if data != nil {
+//                                let contentType = UIImage.ContentType.contentTypeWithImageData(imageData: data! as NSData)
+//                                let img = UIImage(data: data!)
+//                                img?.contentType = contentType
+//                                completion(img)
+//                                
+//                            } else {
+//                                completion(nil)
+//                            }
+//                            UIViewController.topViewController?.view.hideToastActivity()
+//                        }
+//                        return
+//                    case .image(let image):
+//                        completion(image)
+//                        return
+//                    case .urls(let url, _):
+//                        UIViewController.topViewController?.view.makeToastActivity(ToastPosition.center)
+//                        NetworkManager.defaultManager.request(url).responseData(completionHandler: { (response: DataResponse<Data>) in
+//                            switch response.result {
+//                            case .success:
+//                                var image = UIImage(data: response.data!)
+//                                image?.contentType = UIImage.ContentType.contentType(mimeType: response.response?.mimeType)
+//                                completion(image)
+//                                return
+//                            case .failure(let error):
+//                                Log.error(error)
+//                            }
+//                            UIViewController.topViewController?.view.hideToastActivity()
+//                        }
+//                    }
+//                }
+//                case .single(_, let model):
+//                switch model {
+//                case .asset(let asset):
+//                    UIViewController.topViewController?.view.makeToastActivity(ToastPosition.center)
+//                    PHImageManager.default().requestImageData(for: asset, options: nil) { (data, dataUTI, orientation, info) -> Void in
+//                        if data != nil {
+//                            let contentType = UIImage.ContentType.contentTypeWithImageData(imageData: data as! NSData)
+//                            let img = UIImage(data: data!)
+//                            img?.contentType = contentType
+//                            completion(img)
+//                            
+//                        } else {
+//                            completion(nil)
+//                        }
+//                        UIViewController.topViewController?.view.hideToastActivity()
+//                    }
+//                    return
+//                case .image(let image):
+//                    completion(image)
+//                    return
+//                case .urls(let url, _):
+//                    UIViewController.topViewController?.view.makeToastActivity(ToastPosition.center)
+//                    NetworkManager.sharedInstace.defaultManager.request(.GET, url).responseImage { (response: Alamofire.Response<AlamofireImage.Image, NSError>) in
+//                        switch response.result {
+//                        case .Success(let image):
+//                            image.contentType = UIImage.ContentType.contentType(mimeType: response.response?.MIMEType)
+//                            completion(image)
+//                            return
+//                        case .Failure(let error):
+//                            Log.error(error)
+//                        }
+//                        UIViewController.topViewController?.view.hideToastActivity()
+//                    }
+//                }
+//                completion(nil)
+//            }
+//        }
+//    }
+//    
 }
-
+//
 // MARK: getLocString
 func getLocString(_ key: String, comment: String = "") -> String {
     return NSLocalizedString(key, comment: comment)
@@ -257,13 +258,13 @@ extension UIViewController {
 // MARK: PHAsset
 extension PHAsset {
     
-    static func fetchImageAssetsInAssetCollection(_ assetCollection: PHAssetCollection, fetchLimit: Int = 0) -> PHFetchResult {
+    static func fetchImageAssetsInAssetCollection(_ assetCollection: PHAssetCollection, fetchLimit: Int = 0) -> PHFetchResult<AnyObject> {
         let options = PHFetchOptions()
         options.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
         if #available(iOS 9.0, *) {
             options.fetchLimit = fetchLimit
         }
-        return PHAsset.fetchAssets(in: assetCollection, options: options)
+        return PHAsset.fetchAssets(in: assetCollection, options: options) as! PHFetchResult<AnyObject>
     }
     
 }

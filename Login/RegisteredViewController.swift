@@ -8,7 +8,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
-import Swiften
+//import Swiften
 //
 class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
 
@@ -55,7 +55,7 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
         }
     }
     func registerClick(){
-        guard let text = phoneNumber.text where !text.isEmpty else{toast("请输入手机号");return}
+        guard let text = phoneNumber.text, !text.isEmpty else{toast("请输入手机号");return}
         
         if checkMobileReg(text){
             for dic in userkeyArray {
@@ -66,11 +66,11 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
             // 新用户注册
             user.userphone = text
             user.password = text.substring(3, 11)
-            let userKey = "user" + String(userkeyArray) + "key"
+            let userKey = "user" + String(describing: userkeyArray) + "key"
             let userdic = ["primaryKey":userKey,"phone":text]
             userkeyArray.append(userdic)
-            session.setObject(userkeyArray, forKey: "userkeyArray")
-            cache.setObject(user, forKey: userKey)
+            session.setObject(userkeyArray as AnyObject, forKey: "userkeyArray")
+//            NSCache.setObject(user, forKey: userKey)
         }else{
             alert("坏淫，手机号不对");return
         }

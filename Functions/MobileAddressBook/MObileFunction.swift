@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Swiften
+//import Swiften
 import Foundation
 import MessageUI
 import AddressBookUI
@@ -108,7 +108,7 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 	}
 	// Mark: --------发送短信代理
 	func messageComposeViewController(_ controller: MFMessageComposeViewController,
-		didFinishWithResult result: MessageComposeResult) {
+		didFinishWith result: MessageComposeResult) {
 
 			switch result {
 			case .sent:
@@ -183,16 +183,16 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 		}
 	}
 	func SaveMobileObject(_ userName: String, userNumber: String) {
-		var error: Unmanaged<CFErrorRef>?
+		var error: Unmanaged<CFError>?
 		// 定义一个错误标记对象，判断是否成功
-		let addressBook: ABAddressBookRef? = ABAddressBookCreateWithOptions(nil, &error).takeRetainedValue()
+		let addressBook: ABAddressBook? = ABAddressBookCreateWithOptions(nil, &error).takeRetainedValue()
 
 		// 创建一个联系人对象
-		let newContact: ABRecordRef! = ABPersonCreate().takeRetainedValue()
+		let newContact: ABRecord! = ABPersonCreate().takeRetainedValue()
 		var success: Bool = false
 
 		// 设置联系人对象昵称
-		success = ABRecordSetValue(newContact, kABPersonNicknameProperty, userName, &error)
+		success = ABRecordSetValue(newContact, kABPersonNicknameProperty, userName as CFTypeRef, &error)
 		print("设置昵称结果:\(success)")
 
 		// 设置联系人姓氏
@@ -204,8 +204,8 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 		// print("设置名字结果:\(success)")
 
 		// 设置联系人电话
-		let phones: ABMutableMultiValueRef = ABMultiValueCreateMutable(ABPropertyType(kABStringPropertyType)).takeRetainedValue()
-		success = ABMultiValueAddValueAndLabel(phones, userNumber, "公司", nil)
+		let phones: ABMutableMultiValue = ABMultiValueCreateMutable(ABPropertyType(kABStringPropertyType)).takeRetainedValue()
+		success = ABMultiValueAddValueAndLabel(phones, userNumber as CFTypeRef, "公司" as CFString, nil)
 		print("设置电话条目:\(success)")
 		success = ABRecordSetValue(newContact, kABPersonPhoneProperty, phones, nil)
 		print("设置电话结果:\(success)")
@@ -234,9 +234,9 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 		var error: Unmanaged<CFError>?
         if !(ABAddressBookCreateWithOptions(nil, &error) != nil) {
             alert("请到设置中打开通讯录授权")
-            return [["":""]]
+            return [["":"" as AnyObject]]
         }
-		var addressBook: ABAddressBookRef? = ABAddressBookCreateWithOptions(nil, &error).takeRetainedValue()
+		var addressBook: ABAddressBook? = ABAddressBookCreateWithOptions(nil, &error).takeRetainedValue()
         
 		let sysAddressBookStatus = ABAddressBookGetAuthorizationStatus()
 
@@ -256,8 +256,8 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 		func analyzeSysContacts(_ sysContacts: NSArray) -> [[String: AnyObject]] {
 			var allContacts: Array = [[String: AnyObject]]()
 
-			func analyzeContactProperty(_ contact: ABRecordRef, property: ABPropertyID) -> [AnyObject]? {
-				let propertyValues: ABMultiValueRef? = ABRecordCopyValue(contact, property)?.takeRetainedValue()
+			func analyzeContactProperty(_ contact: ABRecord, property: ABPropertyID) -> [AnyObject]? {
+				let propertyValues: ABMultiValue? = ABRecordCopyValue(contact, property)?.takeRetainedValue()
 				if propertyValues != nil {
 					var values: Array<AnyObject> = Array()
 					for i in 0 ..< ABMultiValueGetCount(propertyValues) {
@@ -267,7 +267,7 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 						case kABPersonAddressProperty:
 							var valueDictionary: Dictionary = [String: String]()
 
-							let addrNSDict: NSMutableDictionary = value.takeRetainedValue() as! NSMutableDictionary
+							let addrNSDict: NSMutableDictionary = value!.takeRetainedValue() as! NSMutableDictionary
 							valueDictionary["_Country"] = addrNSDict.value(forKey: kABPersonAddressCountryKey as String) as? String ?? ""
 							valueDictionary["_State"] = addrNSDict.value(forKey: kABPersonAddressStateKey as String) as? String ?? ""
 							valueDictionary["_City"] = addrNSDict.value(forKey: kABPersonAddressCityKey as String) as? String ?? ""
@@ -276,36 +276,36 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 
 							// 地址整理
 							let fullAddress: String = (valueDictionary["_Country"]! == "" ? valueDictionary["_Contrycode"]!: valueDictionary["_Country"]!) + ", " + valueDictionary["_State"]! + ", " + valueDictionary["_City"]! + ", " + valueDictionary["_Street"]!
-							values.append(fullAddress)
+							values.append(fullAddress as AnyObject)
 
 							// SNS
 						case kABPersonSocialProfileProperty:
 							var valueDictionary: Dictionary = [String: String]()
 
-							let snsNSDict: NSMutableDictionary = value.takeRetainedValue() as! NSMutableDictionary
+							let snsNSDict: NSMutableDictionary = value!.takeRetainedValue() as! NSMutableDictionary
 							valueDictionary["_Username"] = snsNSDict.value(forKey: kABPersonSocialProfileUsernameKey as String) as? String ?? ""
 							valueDictionary["_URL"] = snsNSDict.value(forKey: kABPersonSocialProfileURLKey as String) as? String ?? ""
 							valueDictionary["_Serves"] = snsNSDict.value(forKey: kABPersonSocialProfileServiceKey as String) as? String ?? ""
 
-							values.append(valueDictionary)
+							values.append(valueDictionary as AnyObject)
 							// IM
 						case kABPersonInstantMessageProperty:
 							var valueDictionary: Dictionary = [String: String]()
 
-							let imNSDict: NSMutableDictionary = value.takeRetainedValue() as! NSMutableDictionary
+							let imNSDict: NSMutableDictionary = value!.takeRetainedValue() as! NSMutableDictionary
 							valueDictionary["_Serves"] = imNSDict.value(forKey: kABPersonInstantMessageServiceKey as String) as? String ?? ""
 							valueDictionary["_Username"] = imNSDict.value(forKey: kABPersonInstantMessageUsernameKey as String) as? String ?? ""
 
-							values.append(valueDictionary)
+							values.append(valueDictionary as AnyObject)
 							// Date
 						case kABPersonDateProperty:
-							let date: String? = (value.takeRetainedValue() as? Date)?.description
+							let date: String? = (value?.takeRetainedValue() as? Date)?.description
 							if date != nil {
-								values.append(date!)
+								values.append(date! as AnyObject)
 							}
 						default:
-							let val: String = value.takeRetainedValue() as? String ?? ""
-							values.append(val)
+							let val: String = value!.takeRetainedValue() as? String ?? ""
+							values.append(val as AnyObject)
 						}
 					}
 					return values
@@ -320,33 +320,33 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 				 部分单值属性
 				 */
 				// 姓、姓氏拼音
-				let FirstName: String = ABRecordCopyValue(contact, kABPersonFirstNameProperty)?.takeRetainedValue() as! String? ?? ""
-				currentContact["FirstName"] = FirstName
-				currentContact["FirstNamePhonetic"] = ABRecordCopyValue(contact, kABPersonFirstNamePhoneticProperty)?.takeRetainedValue() as! String? ?? ""
+				let FirstName: String = ABRecordCopyValue(contact as ABRecord, kABPersonFirstNameProperty)?.takeRetainedValue() as! String? ?? ""
+				currentContact["FirstName"] = FirstName as AnyObject
+				currentContact["FirstNamePhonetic"] = ABRecordCopyValue(contact as ABRecord, kABPersonFirstNamePhoneticProperty)?.takeRetainedValue() as! String? as AnyObject ?? "" as AnyObject
 				// 名、名字拼音
-				let LastName: String = ABRecordCopyValue(contact, kABPersonLastNameProperty)?.takeRetainedValue() as! String? ?? ""
-				currentContact["LastName"] = LastName
-				currentContact["LirstNamePhonetic"] = ABRecordCopyValue(contact, kABPersonLastNamePhoneticProperty)?.takeRetainedValue() as! String? ?? ""
+				let LastName: String = ABRecordCopyValue(contact as ABRecord, kABPersonLastNameProperty)?.takeRetainedValue() as! String? ?? ""
+				currentContact["LastName"] = LastName as AnyObject
+				currentContact["LirstNamePhonetic"] = ABRecordCopyValue(contact as ABRecord, kABPersonLastNamePhoneticProperty)?.takeRetainedValue() as! String? as AnyObject ?? "" as AnyObject
 				// 昵称
-				currentContact["Nikename"] = ABRecordCopyValue(contact, kABPersonNicknameProperty)?.takeRetainedValue() as! String? ?? ""
+				currentContact["Nikename"] = ABRecordCopyValue(contact as ABRecord, kABPersonNicknameProperty)?.takeRetainedValue() as! String? as AnyObject ?? "" as AnyObject
 
 				// 姓名整理
-				currentContact["fullName"] = LastName + FirstName
+				currentContact["fullName"] = LastName + FirstName as AnyObject
 
 				// 公司（组织）
-				currentContact["Organization"] = ABRecordCopyValue(contact, kABPersonOrganizationProperty)?.takeRetainedValue() as! String? ?? ""
+				currentContact["Organization"] = ABRecordCopyValue(contact as ABRecord, kABPersonOrganizationProperty)?.takeRetainedValue() as! String? as AnyObject ?? "" as AnyObject
 				// 职位
-				currentContact["JobTitle"] = ABRecordCopyValue(contact, kABPersonJobTitleProperty)?.takeRetainedValue() as! String? ?? ""
+				currentContact["JobTitle"] = ABRecordCopyValue(contact as ABRecord, kABPersonJobTitleProperty)?.takeRetainedValue() as! String? as AnyObject ?? "" as AnyObject
 				// 部门
-				currentContact["Department"] = ABRecordCopyValue(contact, kABPersonDepartmentProperty)?.takeRetainedValue() as! String? ?? ""
+				currentContact["Department"] = ABRecordCopyValue(contact as ABRecord, kABPersonDepartmentProperty)?.takeRetainedValue() as! String? as AnyObject ?? "" as AnyObject
 				// 备注
-				currentContact["Note"] = ABRecordCopyValue(contact, kABPersonNoteProperty)?.takeRetainedValue() as! String? ?? ""
+				currentContact["Note"] = ABRecordCopyValue(contact as ABRecord, kABPersonNoteProperty)?.takeRetainedValue() as! String? as AnyObject ?? "" as AnyObject
 
 				// 获取头像
 
-				if ABPersonHasImageData(contact) {
-					let imgData = ABPersonCopyImageDataWithFormat(contact, kABPersonImageFormatOriginalSize).takeRetainedValue()
-					let image = UIImage(data: imgData)
+				if ABPersonHasImageData(contact as ABRecord) {
+					let imgData = ABPersonCopyImageDataWithFormat(contact as ABRecord, kABPersonImageFormatOriginalSize).takeRetainedValue()
+					let image = UIImage(data: imgData as Data)
 					currentContact["TX"] = image
 				}
 
@@ -357,36 +357,36 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 				 部分多值属性
 				 */
 				// 电话
-				let Phone: Array<AnyObject>? = analyzeContactProperty(contact, property: kABPersonPhoneProperty)
+				let Phone: Array<AnyObject>? = analyzeContactProperty(contact as ABRecord, property: kABPersonPhoneProperty)
 				if Phone != nil {
-					currentContact["Phone"] = Phone
+					currentContact["Phone"] = Phone as AnyObject
 				}
 
 				// 地址
-				let Address: Array<AnyObject>? = analyzeContactProperty(contact, property: kABPersonAddressProperty)
+				let Address: Array<AnyObject>? = analyzeContactProperty(contact as ABRecord, property: kABPersonAddressProperty)
 				if Address != nil {
-					currentContact["Address"] = Address
+					currentContact["Address"] = Address as AnyObject
 				}
 
 				// E-mail
-				let Email: Array<AnyObject>? = analyzeContactProperty(contact, property: kABPersonEmailProperty)
+				let Email: Array<AnyObject>? = analyzeContactProperty(contact as ABRecord, property: kABPersonEmailProperty)
 				if Email != nil {
-					currentContact["Email"] = Email
+					currentContact["Email"] = Email as AnyObject
 				}
 				// 纪念日
-				let Date: Array<AnyObject>? = analyzeContactProperty(contact, property: kABPersonDateProperty)
+				let Date: Array<AnyObject>? = analyzeContactProperty(contact as ABRecord, property: kABPersonDateProperty)
 				if Date != nil {
-					currentContact["Date"] = Date
+					currentContact["Date"] = Date as AnyObject
 				}
 				// URL
-				let URL: Array<AnyObject>? = analyzeContactProperty(contact, property: kABPersonURLProperty)
+				let URL: Array<AnyObject>? = analyzeContactProperty(contact as ABRecord, property: kABPersonURLProperty)
 				if URL != nil {
-					currentContact["URL"] = URL
+					currentContact["URL"] = URL as AnyObject
 				}
 				// SNS
-				let SNS: Array<AnyObject>? = analyzeContactProperty(contact, property: kABPersonSocialProfileProperty)
+				let SNS: Array<AnyObject>? = analyzeContactProperty(contact as ABRecord, property: kABPersonSocialProfileProperty)
 				if SNS != nil {
-					currentContact["SNS"] = SNS
+					currentContact["SNS"] = SNS as AnyObject
 				}
 				allContacts.append(currentContact)
 			}
@@ -407,7 +407,7 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 		self.dismissActionSheetController()
 	}
 	func isempty() -> Bool {
-		if let name = userName, number = userNumber {
+		if let name = userName, let number = userNumber {
 			if name == "" || number == "" {
 				return true
 			}

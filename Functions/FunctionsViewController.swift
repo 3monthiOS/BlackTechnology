@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Swiften
+//import Swiften
 import Alamofire
 import AlamofireImage
 import AlamofireObjectMapper
@@ -135,10 +135,10 @@ extension FunctionsViewController: UICollectionViewDelegate{
         let upload = QNPhotoController()
         upload.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(upload, animated: true)
-    case 7:
-        photobrowserAction(indexPath)
-    case 8:
-        photobrowserAction(indexPath)
+//    case 7:
+//        photobrowserAction(indexPath)
+//    case 8:
+//        photobrowserAction(indexPath)
     case 9:
 //        MobileAddressBookbuttonclick(100)
         call_openContact()
@@ -168,68 +168,68 @@ extension FunctionsViewController: MJCollectionViewRefreshDelegate{
   }
 }
 //相机 ， 相册 
-extension FunctionsViewController: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,PhotoBrowserDataSource{
-    func photobrowserAction(_ indexPath: IndexPath) {
-        let photo = SystemPhotoAlbum()
-        photo.albumDeleagte = self
-        switch indexPath.row {
-        case 8:
-            PhotoBrowser.showPhotoPicker(self, withOptions: PhotoBrowserOptions.photoBrowserOptionsForSingleSelection())
-        case 7:
-            //打开相机
-            PhotoBrowser.showPhotoTaker(self)
-        default:
-            break
-        }
-    }
-    
-    func getImageSucessful(_ image: UIImage) {
-            Log.info("有——图片\(image)")
-    }
-    
-    func photoBrowser(_ photoBrowser: PhotoBrowser.PreviewController, photoModelAtIndex index: Int) -> PhotoBrowser.Model {
-        let url = imageUrlArray[index]
-        var img : UIImage?
-        // 网络图片
-        if !url.isEmpty{
-            if let str = url.components(separatedBy: "/").last{
-                locationfileiscache(str, complate: { (callback) in
-                    if !callback.isEmpty{
-                        guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}
-                        img = UIImage.gifWithData(imageData)!
-                    }else{
-//                        Log.info("我没有找到：————————\(str)")
-                        img = UIImage(named: "chat_image_load_failed")!
-                    }
-                })
-            }
-        }
-        // 本地图片
-        var image = UIImage()
-        let data = try? Data(contentsOf: URL(fileURLWithPath: url))
-        if data == nil {
-            image = UIImage(named: "chat_image_load_failed")!
-        }else{
-            image = UIImage(data: data!)!
-        }
-        if let img = img {
-         return PhotoBrowser.Model.image(image: img)
-        }
-        return PhotoBrowser.Model.image(image: image)
-    }
-    
-    func numberOfPhotosInPhotoBrowser(_ photoBrowser: PhotoBrowser.PreviewController) -> Int {
-        return imageUrlArray.count ?? 0
-    }
-    
-    func photoBrowser(_ viewController: UIViewController, didSelect selection: PhotoBrowser.Selection) {
-        selection.getImage { (image) in
-            if image != nil {
-                Log.info("有——图片")
-            }else{
-                Log.info("没有——图片")
-            }
-        }
-    }
-}
+//extension FunctionsViewController: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,PhotoBrowserDataSource{
+//    func photobrowserAction(_ indexPath: IndexPath) {
+//        let photo = SystemPhotoAlbum()
+//        photo.albumDeleagte = self
+//        switch indexPath.row {
+//        case 8:
+//            PhotoBrowser.showPhotoPicker(self, withOptions: PhotoBrowserOptions.photoBrowserOptionsForSingleSelection())
+//        case 7:
+//            //打开相机
+//            PhotoBrowser.showPhotoTaker(self)
+//        default:
+//            break
+//        }
+//    }
+//    
+//    func getImageSucessful(_ image: UIImage) {
+//            Log.info("有——图片\(image)")
+//    }
+//    
+//    func photoBrowser(_ photoBrowser: PhotoBrowser.PreviewController, photoModelAtIndex index: Int) -> PhotoBrowser.Model {
+//        let url = imageUrlArray[index]
+//        var img : UIImage?
+//        // 网络图片
+//        if !url.isEmpty{
+//            if let str = url.components(separatedBy: "/").last{
+//                locationfileiscache(str, complate: { (callback) in
+//                    if !callback.isEmpty{
+//                        guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}
+//                        img = UIImage.gifWithData(imageData)!
+//                    }else{
+////                        Log.info("我没有找到：————————\(str)")
+//                        img = UIImage(named: "chat_image_load_failed")!
+//                    }
+//                })
+//            }
+//        }
+//        // 本地图片
+//        var image = UIImage()
+//        let data = try? Data(contentsOf: URL(fileURLWithPath: url))
+//        if data == nil {
+//            image = UIImage(named: "chat_image_load_failed")!
+//        }else{
+//            image = UIImage(data: data!)!
+//        }
+//        if let img = img {
+//         return PhotoBrowser.Model.image(image: img)
+//        }
+//        return PhotoBrowser.Model.image(image: image)
+//    }
+//    
+//    func numberOfPhotosInPhotoBrowser(_ photoBrowser: PhotoBrowser.PreviewController) -> Int {
+//        return imageUrlArray.count ?? 0
+//    }
+//    
+//    func photoBrowser(_ viewController: UIViewController, didSelect selection: PhotoBrowser.Selection) {
+//        selection.getImage { (image) in
+//            if image != nil {
+//                Log.info("有——图片")
+//            }else{
+//                Log.info("没有——图片")
+//            }
+//        }
+//    }
+//}
 

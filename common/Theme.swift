@@ -115,7 +115,7 @@ let SelectedThemeKey = "SelectedTheme"
 struct ThemeManager {
     
     static func currentTheme() -> Theme {
-        if let storedTheme = UserDefaults.standard.value(forKey: SelectedThemeKey)?.intValue {
+        if let storedTheme = session.object(forKey: SelectedThemeKey) as? Int {
             return Theme(rawValue: storedTheme)!
         } else {
             return .whiteColor
@@ -158,7 +158,7 @@ struct ThemeManager {
     //tabar 下边框
         let rect = CGRect(x: 0, y: 0, width: App_width, height: SIZE_1PX);
         UIGraphicsBeginImageContextWithOptions(rect.size, false, UIScreen.main.scale)
-        let context:CGContextRef = UIGraphicsGetCurrentContext()!
+        let context:CGContext = UIGraphicsGetCurrentContext()!
         context.setFillColor(rgb(0xFF5148).cgColor);
         context.fill(rect);
         let img = UIGraphicsGetImageFromCurrentImageContext();

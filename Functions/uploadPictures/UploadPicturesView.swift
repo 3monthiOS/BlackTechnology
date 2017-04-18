@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Swiften
+//import Swiften
 
 class uploadPicturesView: UIViewController {
 
@@ -26,7 +26,7 @@ class uploadPicturesView: UIViewController {
                 imageUrlData = session.object(forKey: "funcationupdateimageUrlData") as! [String]
             }else{
                 imageUrlData = [""]
-                imageUrlData = session.setObject([""], forKey: "funcationupdateimageUrlData") as! [String]
+                imageUrlData = session.setObject(imageUrlData as AnyObject, forKey: "funcationupdateimageUrlData") as! [String]
             }
         }
     }
@@ -38,10 +38,10 @@ class uploadPicturesView: UIViewController {
     }
 
     @IBAction func chouse(_ sender: AnyObject) {
-        self.photobrowserAction(8)
+//        self.photobrowserAction(8)
     }
     @IBAction func camera(_ sender: AnyObject) {
-        self.photobrowserAction(7)
+//        self.photobrowserAction(7)
     }
     
     @IBAction func uploadimage(_ sender: AnyObject) {
@@ -66,9 +66,9 @@ class uploadPicturesView: UIViewController {
         if !key.isEmpty{
             if !value.isEmpty{
                 if session.object(forKey: key) != nil{
-                    session.setObject(value, forKey: key)
+                    session.setObject(value as AnyObject, forKey: key)
                 }else{
-                    session.setObject(value, forKey: key)
+                    session.setObject(value as AnyObject, forKey: key)
                 }
             }
         }
@@ -79,94 +79,94 @@ class uploadPicturesView: UIViewController {
     }
 }
 
-extension uploadPicturesView: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,PhotoBrowserDataSource{
-    func photobrowserAction(_ index: Int) {
-        let photo = SystemPhotoAlbum()
-        photo.albumDeleagte = self
-        switch index {
-        case 8:
-            PhotoBrowser.showPhotoPicker(self, withOptions: PhotoBrowserOptions.photoBrowserOptionsForSingleSelection())
-        case 7:
-            //打开相机
-            PhotoBrowser.showPhotoTaker(self)
-        default:
-            break
-        }
-    }
-    
-    func getImageSucessful(_ image: UIImage) {
-        Log.info("有——图片")
-        let imageSize = CGSize(width: image.size.width,height: image.size.height)
-        let iamgeData = image.af_imageScaledToSize(imageSize)
-        guard let
-            data = iamgeData.data,
-            key = QNUtils.keyForImage(image)
-            else {
-                return
-        }
-        self.avatarData = data
-        self.avatarKey = key
-        showImageview.image = image
-    }
-    
-    func photoBrowser(_ photoBrowser: PhotoBrowser.PreviewController, photoModelAtIndex index: Int) -> PhotoBrowser.Model {
-        let url = imageUrlArray[index]
-        var img : UIImage?
-        // 网络图片
-        if !url.isEmpty{
-            if let str = url.components(separatedBy: "/").last{
-                locationfileiscache(str, complate: { (callback) in
-                    if !callback.isEmpty{
-                        guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}
-                        img = UIImage.gifWithData(imageData)!
-                    }else{
-                        //                        Log.info("我没有找到：————————\(str)")
-                        img = UIImage(named: "chat_image_load_failed")!
-                    }
-                })
-            }
-        }
-        // 本地图片
-        var image = UIImage()
-        let data = try? Data(contentsOf: URL(fileURLWithPath: url))
-        if data == nil {
-            image = UIImage(named: "chat_image_load_failed")!
-        }else{
-            image = UIImage(data: data!)!
-        }
-        if let img = img {
-            return PhotoBrowser.Model.image(image: img)
-        }
-        return PhotoBrowser.Model.image(image: image)
-    }
-    
-    func numberOfPhotosInPhotoBrowser(_ photoBrowser: PhotoBrowser.PreviewController) -> Int {
-        return imageUrlArray.count ?? 0
-    }
-    
-    func photoBrowser(_ viewController: UIViewController, didSelect selection: PhotoBrowser.Selection) {
-        selection.getImage { (image) in
-            if image != nil {
-                Log.info("有——图片")
-                if let image = image{
-                    let imageSize = CGSize(width: image.size.width,height: image.size.height)
-                    let iamgeData = image.af_imageScaledToSize(imageSize)
-                    guard let
-                        data = iamgeData.data,
-                        key = QNUtils.keyForImage(image)
-                        else {
-                            return
-                    }
-                    self.avatarData = data
-                    self.avatarKey = key
-                    self.showImageview.image = image
-                }
-            }else{
-                Log.info("没有——图片")
-            }
-        }
-    }
-}
+//extension uploadPicturesView: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,PhotoBrowserDataSource{
+//    func photobrowserAction(_ index: Int) {
+//        let photo = SystemPhotoAlbum()
+//        photo.albumDeleagte = self
+//        switch index {
+//        case 8:
+//            PhotoBrowser.showPhotoPicker(self, withOptions: PhotoBrowserOptions.photoBrowserOptionsForSingleSelection())
+//        case 7:
+//            //打开相机
+//            PhotoBrowser.showPhotoTaker(self)
+//        default:
+//            break
+//        }
+//    }
+//    
+//    func getImageSucessful(_ image: UIImage) {
+//        Log.info("有——图片")
+//        let imageSize = CGSize(width: image.size.width,height: image.size.height)
+//        let iamgeData = image.af_imageScaled(to: imageSize)
+//        guard let
+//            data = iamgeData.data,
+//            let key = QNUtils.keyForImage(image)
+//            else {
+//                return
+//        }
+//        self.avatarData = data as Data
+//        self.avatarKey = key
+//        showImageview.image = image
+//    }
+//    
+//    func photoBrowser(_ photoBrowser: PhotoBrowser.PreviewController, photoModelAtIndex index: Int) -> PhotoBrowser.Model {
+//        let url = imageUrlArray[index]
+//        var img : UIImage?
+//        // 网络图片
+//        if !url.isEmpty{
+//            if let str = url.components(separatedBy: "/").last{
+//                locationfileiscache(str, complate: { (callback) in
+//                    if !callback.isEmpty{
+//                        guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}
+//                        img = UIImage.gifWithData(imageData)!
+//                    }else{
+//                        //                        Log.info("我没有找到：————————\(str)")
+//                        img = UIImage(named: "chat_image_load_failed")!
+//                    }
+//                })
+//            }
+//        }
+//        // 本地图片
+//        var image = UIImage()
+//        let data = try? Data(contentsOf: URL(fileURLWithPath: url))
+//        if data == nil {
+//            image = UIImage(named: "chat_image_load_failed")!
+//        }else{
+//            image = UIImage(data: data!)!
+//        }
+//        if let img = img {
+//            return PhotoBrowser.Model.image(image: img)
+//        }
+//        return PhotoBrowser.Model.image(image: image)
+//    }
+//    
+//    func numberOfPhotosInPhotoBrowser(_ photoBrowser: PhotoBrowser.PreviewController) -> Int {
+//        return imageUrlArray.count ?? 0
+//    }
+//    
+//    func photoBrowser(_ viewController: UIViewController, didSelect selection: PhotoBrowser.Selection) {
+//        selection.getImage { (image) in
+//            if image != nil {
+//                Log.info("有——图片")
+//                if let image = image{
+//                    let imageSize = CGSize(width: image.size.width,height: image.size.height)
+//                    let iamgeData = image.af_imageScaled(to: imageSize)
+//                    guard let
+//                        data = iamgeData.data,
+//                        let key = QNUtils.keyForImage(image)
+//                        else {
+//                            return
+//                    }
+//                    self.avatarData = data as Data
+//                    self.avatarKey = key
+//                    self.showImageview.image = image
+//                }
+//            }else{
+//                Log.info("没有——图片")
+//            }
+//        }
+//    }
+//}
 
 
 

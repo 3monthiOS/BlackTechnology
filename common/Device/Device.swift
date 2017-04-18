@@ -16,7 +16,7 @@ class Device {
         
 //        let versionCode: String = String(validatingUTF8: NSString(bytes: &systemInfo.machine, length: Int(_SYS_NAMELEN), encoding: String.Encoding.ascii.rawValue)!.utf8String!)!
         
-        let versionCode = String(validatingUTF8: (NSString(bytes: &systemInfo.machine, length: Int(_SYS_NAMELEN), encoding: String.defaultCStringEncoding())?.utf8String)!)
+        let versionCode = String(validatingUTF8: (NSString(bytes: &systemInfo.machine, length: Int(_SYS_NAMELEN), encoding: String.defaultCStringEncoding.rawValue)?.utf8String)!)
         
         return versionCode!
     }

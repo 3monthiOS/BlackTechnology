@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import Alamofire
-import Swiften
+//import Swiften
 
 //MARK: ----- UIcolor 颜色 rgb
 func rgba(_ red: UInt32, _ green: UInt32, _ blue: UInt32, _ alpha: CGFloat) -> UIColor {
@@ -28,12 +28,12 @@ func rgb(_ hex: UInt32) -> UIColor {
     return rgba(hex << 8 | 0xFF)
 }
 /// 延迟执行代码
-public func delay(_ seconds: UInt64, task: () -> Void) {
+public func delay(_ seconds: UInt64, task: @escaping () -> Void) {
     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(seconds * NSEC_PER_SEC)) / Double(NSEC_PER_SEC), execute: task)
 }
 
 /// 异步执行代码块（先非主线程执行，再返回主线程执行）
-public func async(_ backgroundTask: () -> AnyObject!, mainTask: (AnyObject?) -> Void) {
+public func async(_ backgroundTask: @escaping () -> AnyObject!, mainTask: @escaping (AnyObject?) -> Void) {
     DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
         let result = backgroundTask()
         DispatchQueue.main.sync {
@@ -43,7 +43,7 @@ public func async(_ backgroundTask: () -> AnyObject!, mainTask: (AnyObject?) -> 
 }
 
 /// 异步执行代码块（主线程执行）
-public func async(_ mainTask: () -> Void) {
+public func async(_ mainTask: @escaping () -> Void) {
     DispatchQueue.main.async(execute: mainTask)
 }
 
@@ -61,7 +61,7 @@ func alert(_ message: String, title: String! = nil, completion: (() -> Void)? = 
     UIViewController.topViewController?.present(controller, animated: true, completion: nil)
 }
 
-func confirm(_ message: String, title: String! = nil, completion: (Bool) -> Void) {
+func confirm(_ message: String, title: String! = nil, completion: @escaping (Bool) -> Void) {
     let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
     controller.addAction(UIAlertAction(title: "否", style: .cancel) { action in
         controller.dismiss(animated: true, completion: nil)
@@ -74,7 +74,7 @@ func confirm(_ message: String, title: String! = nil, completion: (Bool) -> Void
     UIViewController.topViewController?.present(controller, animated: true, completion: nil)
 }
 
-func prompt(_ message: String, title: String! = nil, text: String! = nil, placeholder: String! = nil, completion: (String?) -> Void) {
+func prompt(_ message: String, title: String! = nil, text: String! = nil, placeholder: String! = nil, completion: @escaping (String?) -> Void) {
     let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
     controller.addAction(UIAlertAction(title: "取消", style: .cancel) { action in
         controller.dismiss(animated: true, completion: nil)
@@ -95,15 +95,9 @@ func prompt(_ message: String, title: String! = nil, text: String! = nil, placeh
     UIViewController.topViewController?.present(controller, animated: true, completion: nil)
 }
 
-func toast(_ message: String, duration: Double = HRToastDefaultDuration, position: AnyObject = HRToastPositionDefault, title: String! = nil, image: UIImage! = nil) {
-    if let view = UIApplication.shared.keyWindow {
-        let toastView = view.viewForMessage(message, title: nil, image: image)
-        view.showToast(toastView!)
-    }
-}
-func locationfileiscache(_ fileName: String, complate:(callback: String)->Void){
+func locationfileiscache(_ fileName: String, complate:(_ callback: String)->Void){
     guard let cachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first else {
-        complate(callback: "")
+        complate("")
         return
     }
     // 打印路径,需要测试的可以往这个路径下放东西
@@ -115,15 +109,15 @@ func locationfileiscache(_ fileName: String, complate:(callback: String)->Void){
         for p in files {
             if p == fileName{
 //                Log.info("____找到的文件名字:\(p)")
-                path = cachePath.stringByAppendingFormat("/\(p)")
-                complate(callback: path)
+                path = cachePath.appendingFormat("/\(p)")
+                complate(path)
                 return
             }
         }
     }
-    complate(callback: "")
+    complate("")
 }
-func fileDownload(_ urlArray: [String],complate:((isok: Bool,callbackData: [Data])->Void)){
+func fileDownload(_ urlArray: [String],complate:@escaping ((_ isok: Bool,_ callbackData: [Data])->Void)){
     if Reachability.networkStatus == .notReachable {return}
     var dataArray = [Data]()
     //  方法一 自定义下载文件的保存目录 同名文件竟被覆盖
@@ -138,49 +132,99 @@ func fileDownload(_ urlArray: [String],complate:((isok: Bool,callbackData: [Data
 //    }
     
     // 方式二
-    let destination = Alamofire.Request.suggestedDownloadDestination(
-        directory: .DocumentDirectory, domain: .UserDomainMask)
+//    let destination = Alamofire.Request.suggestedDownloadDestination(
+//        directory: .DocumentDirectory, domain: .UserDomainMask)
     
     for url in urlArray {
         if url.hasPrefix("http://") || url.hasPrefix("https://") {
-            Alamofire.download(.GET, url, destination: destination)
-                .progress { (bytesRead, totalBytesRead, totalBytesExpectedToRead) in
-                    let percent = totalBytesRead*100/totalBytesExpectedToRead
-                    print("已下载：\(totalBytesRead)  总共：\(totalBytesExpectedToRead) 当前进度：\(percent)%")
+            
+            Alamofire.download(url).responseData { response in
+                if let data = response.result.value {
+                    let image = UIImage(data: data)
                 }
-                .response { (request, response, _, error) in
-                    if let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first {
-                        let fileName = response?.suggestedFilename!
-                        if let fileName = fileName{
-                            let newPath = NSURL(fileURLWithPath: "\(path)/\(fileName)")
-//                            print("下载路径：\(newPath)____名称：\(response?.suggestedFilename)")
-//                            print(response)
-                            let fileManager = NSFileManager.defaultManager()
-                            print(fileManager.fileExistsAtPath(newPath.path!))
-                            if ( fileManager.fileExistsAtPath(newPath.path!) ) {
-//                                print(newPath)
-                                let data = NSData(contentsOfURL: newPath)
-                                dataArray.append(data!)
-                            }else{
-                                dataArray.append(NSData())
-                                toast("没找到文件")
-                                print("创建文件")
-                                //                            try {
-                                //                                fileManager.removeItemAtURL(newPath)
-                                //                                fileManager.moveItemAtURL(NSURL(string: url)!, toURL: newPath)
-                                //                            }
-                                
+            }
+            
+            Alamofire.download(url)
+                .downloadProgress { progress in
+                    print("Download Progress: \(progress.fractionCompleted)")
+                }
+                .responseData { response in
+                    if let data = response.result.value {
+                        
+                        if let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
+                            let fileName = url.substring(8)
+                            if let fileName = fileName{
+                                let newPath = NSURL(fileURLWithPath: "\(path)/\(fileName)")
+                                //                            print("下载路径：\(newPath)____名称：\(response?.suggestedFilename)")
+                                //                            print(response)
+                                let fileManager = FileManager.default
+                                print(fileManager.fileExists(atPath: newPath.path!))
+                                if ( fileManager.fileExists(atPath: newPath.path!) ) {
+                                    let data = NSData(contentsOfFile: newPath.path!)
+                                    dataArray.append(data! as Data)
+                                }else{
+                                    dataArray.append(NSData() as Data)
+                                    toast("没找到文件")
+                                    print("创建文件")
+                                    //                            try {
+                                    //                                fileManager.removeItemAtURL(newPath)
+                                    //                                fileManager.moveItemAtURL(NSURL(string: url)!, toURL: newPath)
+                                    //                            }
+                                    
+                                }
                             }
                         }
-                    }
-                    if dataArray.count == urlArray.count{
-                        complate(isok: true, callbackData: dataArray)
-                    }else{
-                        complate(isok: false, callbackData: dataArray)
+                        if dataArray.count == urlArray.count{
+                            complate(true, dataArray)
+                        }else{
+                            complate(false, dataArray)
+                        }
                     }
             }
         }
+        
     }
+    
+//    for url in urlArray {
+//        if url.hasPrefix("http://") || url.hasPrefix("https://") {
+//            Alamofire.download(.GET, url, destination: destination)
+//                .progress { (bytesRead, totalBytesRead, totalBytesExpectedToRead) in
+//                    let percent = totalBytesRead*100/totalBytesExpectedToRead
+//                    print("已下载：\(totalBytesRead)  总共：\(totalBytesExpectedToRead) 当前进度：\(percent)%")
+//                }
+//                .response { (request, response, _, error) in
+//                    if let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first {
+//                        let fileName = response?.suggestedFilename!
+//                        if let fileName = fileName{
+//                            let newPath = NSURL(fileURLWithPath: "\(path)/\(fileName)")
+////                            print("下载路径：\(newPath)____名称：\(response?.suggestedFilename)")
+////                            print(response)
+//                            let fileManager = NSFileManager.defaultManager()
+//                            print(fileManager.fileExistsAtPath(newPath.path!))
+//                            if ( fileManager.fileExistsAtPath(newPath.path!) ) {
+////                                print(newPath)
+//                                let data = NSData(contentsOfURL: newPath)
+//                                dataArray.append(data!)
+//                            }else{
+//                                dataArray.append(NSData())
+//                                toast("没找到文件")
+//                                print("创建文件")
+//                                //                            try {
+//                                //                                fileManager.removeItemAtURL(newPath)
+//                                //                                fileManager.moveItemAtURL(NSURL(string: url)!, toURL: newPath)
+//                                //                            }
+//                                
+//                            }
+//                        }
+//                    }
+//                    if dataArray.count == urlArray.count{
+//                        complate(isok: true, callbackData: dataArray)
+//                    }else{
+//                        complate(isok: false, callbackData: dataArray)
+//                    }
+//            }
+//        }
+//    }
     
 }
 func RemoveSpecialCharacter(_ str: String) -> String {

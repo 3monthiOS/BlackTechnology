@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Swiften
+//import Swiften
 
 struct Notifications {
 	
@@ -25,7 +25,8 @@ struct Notifications {
 	static var chatMessageUploading: Delegate = Delegate(name: "ChatMessageUploading")
     // 新建聊天会话
     static var conversationStarting: Delegate = Delegate(name: "ConversationStarting")
-    // 跳转 主页面
+    // 
+    public static let reachabilityChanged: Delegate = Delegate(name: "ReachabilityChanged")
     
 	class Delegate {
 		fileprivate let name: String
@@ -47,12 +48,12 @@ struct Notifications {
 		
 		func addObserver(_ observer: AnyObject, selector: Selector, sender object: AnyObject? = nil) {
 			Log.info("@N+\(name) \(selector)@\(observer)")
-			notificationCenter.addObserver(observer, selector: selector, name: name, object: object)
+			notificationCenter.addObserver(observer, selector: selector, name: NSNotification.Name(rawValue: name), object: object)
 		}
 		
 		func removeObserver(_ observer: AnyObject, sender object: AnyObject? = nil) {
 			Log.info("@N-\(name) \(observer)")
-			notificationCenter.removeObserver(observer, name: name, object: object)
+			notificationCenter.removeObserver(observer, name: NSNotification.Name(rawValue: name), object: object)
 		}
 	}
 	

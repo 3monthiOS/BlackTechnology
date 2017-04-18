@@ -36,16 +36,16 @@ class TableViewMjResh: UITableView {
             let header = MJRefreshNormalHeader(refreshingBlock: {
                 self.refreshTableDelegate?.tableView(self, refreshDataWithType: .header)
             })
-            header.stateLabel!.isHidden = true
-            header.arrowView!.image = nil
-            header.lastUpdatedTimeLabel!.isHidden = true
+            header?.stateLabel!.isHidden = true
+            header?.arrowView!.image = nil
+            header?.lastUpdatedTimeLabel!.isHidden = true
             self.mj_header = header
 		}
 		if footerEnabled {
 			let footer = MJRefreshBackStateFooter(refreshingBlock: {
                 self.refreshTableDelegate?.tableView(self, refreshDataWithType: .footer)
 			})
-			footer.stateLabel!.isHidden = false
+			footer?.stateLabel!.isHidden = false
 			self.mj_footer = footer
 			self.mj_footer.isAutomaticallyHidden = false
 		}

@@ -117,7 +117,7 @@ class MutableFilterViewController: UIViewController {
     let colorInvertFilter = CIColorInvert()
     colorInvertFilter.inputImage = CIImage(image: baseImgView.image!)
     let outputImage = colorInvertFilter.outputImage
-    let cgImage = context.createCGImage(outputImage, from: outputImage.extent)
+    let cgImage = context.createCGImage(outputImage!, from: (outputImage?.extent)!)
     baseImgView.image = UIImage(cgImage: cgImage!)
   }
   

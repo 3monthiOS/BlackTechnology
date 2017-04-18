@@ -10,25 +10,14 @@ target :App do
     pod 'ReachabilitySwift', '~> 3'
     pod 'RealmSwift', '~> 2.4'
     pod 'SwiftyJSON', '~> 3.1'
-    pod 'Toast-Swift', '~> 2.0.0'
+#    pod 'Toast-Swift', '~> 2.0.0'
 
-    pod 'IQKeyboardManagerSwift','4.0.5'
+    pod 'IQKeyboardManagerSwift','4.0.8'
     pod 'RongCloudIMKit', '~> 2.7.0'
     pod 'MJRefresh'
     pod 'BaiduMapKit'
-    pod "Qiniu", "~> 7.1"
-end
-
-target :SwiftenTests do
-    pod 'Alamofire', '~> 4.3'
-    pod 'AlamofireImage', '~> 3.2'
-    pod 'AlamofireObjectMapper', '~> 4.0'
-    pod 'KeychainSwift', '~> 7.0'
-    pod 'ObjectMapper', '~> 2.2'
-    pod 'ReachabilitySwift', '~> 3'
-    pod 'RealmSwift', '~> 2.4'
-    pod 'SwiftyJSON', '~> 3.1'
-    pod 'Toast-Swift', '~> 2.0.0'
+    pod 'Qiniu', '~> 7.1'
+    pod 'SnapKit', '~> 3.2.0'
 end
 
 post_install do |installer|

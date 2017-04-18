@@ -11,12 +11,12 @@ import CoreData
 import IQKeyboardManagerSwift
 import MapKit
 import CoreLocation
-import Swiften
+//import Swiften
 import RealmSwift
 import ObjectMapper
 
-let api = LDApiSettings()
-let cache = LDCacheSettings(manager: LDRealmCache(realm: Realm.sharedRealm))
+//let api = LDApiSettings()
+//let cache = CacheSettings(manager: RealmCache(realm: Realm.sharedRealm))
 var user = User()
 /*
  post_install do |installer|
@@ -91,13 +91,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         BaiduLocationManager.stopLocationService()
-        Notifications.timerChatMessageUpdate.post("end")
+        Notifications.timerChatMessageUpdate.post("end" as AnyObject)
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         Log.info("AppDelegate: application will enter foreground");
         
-        Notifications.timerChatMessageUpdate.post("star")
+        Notifications.timerChatMessageUpdate.post("star" as AnyObject)
         
         application.applicationIconBadgeNumber = 0
         BaiduLocationManager.startLocationService()//进入前台获取位置
@@ -156,8 +156,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             // Report any error we got.
             var dict = [String: AnyObject]()
-            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
-            dict[NSLocalizedFailureReasonErrorKey] = failureReason
+            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject
+            dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject
             
             dict[NSUnderlyingErrorKey] = error as? NSError
             let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
@@ -240,7 +240,7 @@ extension AppDelegate: RCIMConnectionStatusDelegate, RCIMUserInfoDataSource, RCI
     }
     
     //用户信息提供者。您需要在completion中返回userId对应的用户信息，SDK将根据您提供的信息显示头像和用户名
-    func getUserInfo(withUserId userId: String!, completion: ((RCUserInfo!) -> Void)!) {
+    func getUserInfo(withUserId userId: String!, completion: ((RCUserInfo?) -> Void)!) {
         print("用户信息提供者，getUserInfoWithUserId:\(userId)")
         
         //简单的示例，根据userId获取对应的用户信息并返回
@@ -258,7 +258,7 @@ extension AppDelegate: RCIMConnectionStatusDelegate, RCIMUserInfoDataSource, RCI
     }
     
     //群组信息提供者。您需要在Block中返回groupId对应的群组信息，SDK将根据您提供的信息显示头像和群组名
-    func getGroupInfo(withGroupId groupId: String!, completion: ((RCGroup!) -> Void)!) {
+    func getGroupInfo(withGroupId groupId: String!, completion: ((RCGroup?) -> Void)!) {
         print("群组信息提供者，getGroupInfoWithGroupId:\(groupId)")
         
         //简单的示例，根据groupId获取对应的群组信息并返回
@@ -330,7 +330,7 @@ extension AppDelegate: BMKGeneralDelegate, BMKGeoCodeSearchDelegate {
             
             Log.info("place update: \(locObj.locName ?? "") in \(locObj.city ?? "")")
             locObj.lasttime = Date().timestamp
-            cache[.Location] = Mapper().toJSONString(locObj)
+//            cache[.Location] = Mapper().toJSONString(locObj)
             
             Notifications.placeUpdated.post(locObj)
             
@@ -392,21 +392,21 @@ extension AppDelegate: AppLoginSucessDelegate{
 extension AppDelegate {
     func gotoMainViewController(){
         
-        if let userinfos: LoginUser = cache.objectForKey(.User) {
-            if let number = userinfos.state{
-                if number == 1 {
-                    isok = true
-                }else{
-                    isok = false
-                }
-            }
-        }else{
-            if user.state == 1 {
-                isok = true
-            }else{
-                isok = false
-            }
-        }
+//        if let userinfos: LoginUser = NSCache.objectForKey(.User) {
+//            if let number = userinfos.state{
+//                if number == 1 {
+//                    isok = true
+//                }else{
+//                    isok = false
+//                }
+//            }
+//        }else{
+//            if user.state == 1 {
+//                isok = true
+//            }else{
+//                isok = false
+//            }
+//        }
         
         if isok {
             if self.Login != nil{

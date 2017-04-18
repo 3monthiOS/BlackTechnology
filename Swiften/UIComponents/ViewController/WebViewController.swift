@@ -7,73 +7,74 @@
 //
 
 import Foundation
+import UIKit
 
 open class WebViewController: UIViewController {
-  @IBOutlet public var webView: WebView!
-  
-  public var url: URL!
-  
-  override open func viewDidLoad() {
-    super.viewDidLoad()
-    
-    if webView == nil {
-      webView = WebView(frame: view.bounds)
-      view.addSubview(webView!)
+    @IBOutlet open var webView: WebView!
+
+    fileprivate var URL: Foundation.URL!
+
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+
+        if webView == nil {
+            webView = WebView(frame: view.bounds)
+            view.addSubview(webView!)
+        }
+
+        if let URL = URL {
+            load(from: URL)
+            self.URL = nil
+        }
     }
-		webView.webView.addObserver(self, forKeyPath: "title", options: .new, context: nil)
-		
-    if let url = url {
-      webView.load(URLRequest(url: url))
-      self.url = nil
+
+    open func load(from URL: Foundation.URL) {
+        if webView != nil {
+            load(URLRequest(url: URL))
+        } else {
+            self.URL = URL
+        }
     }
-  }
-  
-  // MARK: - Navigation
-  
-  open func close() {
-    self.hide(animated: true)
-  }
-  
-  open func back() {
-		if webView?.canGoBack == true {
-      webView.goBack()
-    } else {
-      close()
+
+    open func load(_ request: URLRequest) {
+        webView.loadRequest(request)
     }
-  }
-  
-  open func forward() {
-    if webView?.canGoForward == true {
-      webView.goForward()
+
+    // MARK: - Navigation
+
+    open func close() {
+        self.closeViewControllerAnimated(true)
     }
-  }
-	
-	open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		if keyPath == "title" {
-			title = webView.title
-		}
-	}
-	
-	deinit {
-		webView.webView.removeObserver(self, forKeyPath: "title")
-	}
+
+    open func back() {
+        guard let webView = webView?.webView else { return }
+        if webView.canGoBack {
+            webView.goBack()
+        } else {
+            close()
+        }
+    }
+
+    open func forward() {
+        guard let webView = webView?.webView else { return }
+        if webView.canGoForward {
+            webView.goForward()
+        }
+    }
+
 }
 
 extension WebViewController {
-  open class func open(urlString: String?) {
-    guard let urlString = urlString else {
-      return
+    public class func open(urlString: String?) {
+        guard let urlString = urlString else { return }
+        open(URL: Foundation.URL(string: urlString))
     }
-    open(url: URL(string: urlString))
-  }
-  
-  open class func open(url: URL?) {
-    guard let url = url else {
-      return
+
+    public class func open(URL: Foundation.URL?) {
+        guard let URL = URL else { return }
+        let controller = WebViewController()
+        controller.load(from: URL)
+        controller.hidesBottomBarWhenPushed = true
+        UIViewController.showViewController(controller, animated: true)
     }
-    let viewController = WebViewController()
-		viewController.url = url
-    viewController.hidesBottomBarWhenPushed = true
-    UIViewController.show(viewController, animated: true)
-  }
 }

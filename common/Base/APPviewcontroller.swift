@@ -21,7 +21,7 @@ class APPviewcontroller: UIViewController {
         
 //        self.navigationController?.setNavigationBarHidden(false, animated: false)
         
-        let pageId = String(self.classForCoder)
+        let pageId = String(describing: self.classForCoder)
         Log.info("navigate: \(pageId) will appear")
 //        MobClick.beginLogPageView(pageId)
     }
@@ -29,7 +29,7 @@ class APPviewcontroller: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        let pageId = String(self.classForCoder)
+        let pageId = String(describing: self.classForCoder)
         Log.info("navigate: \(pageId) will disappear")
 //        MobClick.endLogPageView(pageId)
     }

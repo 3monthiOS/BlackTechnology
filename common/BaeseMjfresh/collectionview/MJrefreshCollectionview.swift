@@ -35,17 +35,17 @@ class CollectionMjResh: UICollectionView {
             let header = MJRefreshNormalHeader(refreshingBlock: {
                 self.refreshDelegate?.Collection(self, refreshDataWithType: .header)
             })
-            header.stateLabel!.isHidden = true
-            header.arrowView!.image = nil
-            header.lastUpdatedTimeLabel!.isHidden = true
+            header?.stateLabel!.isHidden = true
+            header?.arrowView!.image = nil
+            header?.lastUpdatedTimeLabel!.isHidden = true
             self.mj_header = header
         }
         if footerEnabled {
             let footer = MJRefreshBackNormalFooter(refreshingBlock: {
                 self.refreshDelegate?.Collection(self, refreshDataWithType: .footer)
             })
-            footer.stateLabel!.isHidden = true
-            footer.arrowView!.image = nil
+            footer?.stateLabel!.isHidden = true
+            footer?.arrowView!.image = nil
             self.mj_footer = footer
         }
     }

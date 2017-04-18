@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Swiften
+//import Swiften
 
 class QNPhotoController: UIViewController {
     

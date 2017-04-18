@@ -8,7 +8,7 @@
 
 import UIKit
 import Foundation
-import CommonCrypto
+//import CommonCrypto
 
 enum CryptoAlgorithm {
     case md5, sha1, sha224, sha256, sha384, sha512
@@ -43,36 +43,36 @@ enum CryptoAlgorithm {
 extension String  {
     var md5EP: String! {
         let str = self.cString(using: String.Encoding.utf8)
-        let strLen = CC_LONG(self.lengthOfBytesUsingEncoding(String.Encoding.utf8))
+        let strLen = CC_LONG(self.lengthOfBytes(using: String.Encoding.utf8))
         let digestLen = Int(CC_MD5_DIGEST_LENGTH)
-        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
+        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
         CC_MD5(str!, strLen, result)
         return stringFromBytes(result, length: digestLen)
     }
     
     var sha1: String! {
         let str = self.cString(using: String.Encoding.utf8)
-        let strLen = CC_LONG(self.lengthOfBytesUsingEncoding(String.Encoding.utf8))
+        let strLen = CC_LONG(self.lengthOfBytes(using: String.Encoding.utf8))
         let digestLen = Int(CC_SHA1_DIGEST_LENGTH)
-        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
+        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
         CC_SHA1(str!, strLen, result)
         return stringFromBytes(result, length: digestLen)
     }
     
     var sha256String: String! {
         let str = self.cString(using: String.Encoding.utf8)
-        let strLen = CC_LONG(self.lengthOfBytesUsingEncoding(String.Encoding.utf8))
+        let strLen = CC_LONG(self.lengthOfBytes(using: String.Encoding.utf8))
         let digestLen = Int(CC_SHA256_DIGEST_LENGTH)
-        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
+        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
         CC_SHA256(str!, strLen, result)
         return stringFromBytes(result, length: digestLen)
     }
     
     var sha512String: String! {
         let str = self.cString(using: String.Encoding.utf8)
-        let strLen = CC_LONG(self.lengthOfBytesUsingEncoding(String.Encoding.utf8))
+        let strLen = CC_LONG(self.lengthOfBytes(using: String.Encoding.utf8))
         let digestLen = Int(CC_SHA512_DIGEST_LENGTH)
-        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
+        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
         CC_SHA512(str!, strLen, result)
         return stringFromBytes(result, length: digestLen)
     }
@@ -82,7 +82,7 @@ extension String  {
         for i in 0..<length {
             hash.appendFormat("%02x", bytes[i])
         }
-        bytes.deallocateCapacity(length)
+        bytes.deallocate(capacity: length)
         return String(format: hash as String)
     }
     
@@ -100,7 +100,7 @@ extension String  {
         
         let data = Data(bytes: UnsafePointer<UInt8>(result), count: digestLen)
         
-        result.deallocateCapacity(digestLen)
+        result.deallocate(capacity: digestLen)
         
         return data
     }
@@ -117,7 +117,7 @@ extension String  {
         
         let digest = stringFromResult(result, length: digestLen)
         
-        result.deallocateCapacity(digestLen)
+        result.deallocate(capacity: digestLen)
         
         return digest
     }

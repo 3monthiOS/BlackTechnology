@@ -10,43 +10,42 @@ import Foundation
 import RealmSwift
 
 extension Realm {
-  
-  public static let defaultRootUrl = Realm.Configuration.defaultConfiguration.fileURL?.deletingLastPathComponent()
-  
-  public static func createRealm(name: String) -> Realm? {
-    guard let url = defaultRootUrl?.appendingPathComponent("\(name).realm") else {
-      Log.error("无效的数据库路径： \(name).realm in \(String(describing: defaultRootUrl))")
-      return nil
+    
+//    public static let rootPath = (Realm.Configuration.defaultConfiguration.path! as NSString).stringByDeletingLastPathComponent
+     public static let rootPath = (Realm.Configuration.defaultConfiguration.fileURL!.path as NSString).deletingLastPathComponent
+    
+    fileprivate static var _userRealm: Realm!
+    public static var userRealm: Realm {
+        if _userRealm == nil {
+            //let realm = Realm.sharedRealm()
+            //if let user = auth.user {
+                //Realm._userRealm = try! Realm(path: "\(Realm.rootPath)/\(user.id).realm")
+            //} else {
+                //return realm
+            //}
+            return Realm.sharedRealm
+        }
+        return _userRealm
     }
-    do {
-      return try Realm(fileURL: url)
-    } catch let error {
-      Log.error("创建数据库失败：\(error)")
+    
+    public static func setUserRealm(_ realm: Realm) {
+        _userRealm = realm
     }
-    return nil
-  }
-  
-  private static var _userRealm: Realm!
-  public static var userRealm: Realm! {
-    get {
-      return _userRealm ?? sharedRealm
+    
+    public static func resetUserRealm() {
+        _userRealm = nil
     }
-    set {
-      _userRealm = newValue
+    
+    fileprivate static var _sharedRealm: Realm!
+    public static var sharedRealm: Realm {
+        if _sharedRealm == nil {
+//            _sharedRealm = try! Realm(path: "\(rootPath)/shared.realm")
+            _sharedRealm = try! Realm(fileURL: NSURL(string:"\(rootPath)/shared.realm")! as URL)
+        }
+        return _sharedRealm
     }
-  }
-  
-  private static var _sharedRealm: Realm!
-  public static var sharedRealm: Realm! {
-    get {
-      if _sharedRealm == nil {
-        _sharedRealm = createRealm(name: "shared")
-      }
-      return _sharedRealm
+    
+    public static func setSharedRealm(_ realm: Realm) {
+        _sharedRealm = realm
     }
-    set {
-      _sharedRealm = newValue
-    }
-  }
-  
 }

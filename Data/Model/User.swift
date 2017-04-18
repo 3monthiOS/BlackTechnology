@@ -51,11 +51,11 @@ class User: Mappable {
 
     }
 
-    required init?(_ map: Map) {
+    required init?(map: Map) {
 
     }
 
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         
         id <- map["id"]
         appid <- map["appid"]

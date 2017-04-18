@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 import SwiftyJSON
-import Swiften
+//import Swiften
 
 
 class LDApiResponse<T: Mappable>: Mappable {
@@ -42,11 +42,11 @@ class LDApiResponse<T: Mappable>: Mappable {
 
 	}
 	
-	required init?(_ map: Map) {
+	required init?(map: Map) {
 
 	}
 	
-	func mapping(_ map: Map) {
+	func mapping(map: Map) {
 		code <- map["code"]
         errorMessage <- map["errmsg"]
         flag <- map["flag"]
@@ -66,20 +66,20 @@ class LDApiResponse<T: Mappable>: Mappable {
 		}
 	}
     
-	func success(@noescape _ callback: (msg: T) -> Void) -> LDApiResponse {
+	func success( _ callback: @noescape (_ msg: T) -> Void) -> LDApiResponse {
 		guard isOK else {return self}
 //        session.openid = openid
 //        session.passport = passport
-		callback(msg: msg!)
+		callback(msg!)
         return self
 	}
 	
-	func failure(@noescape _ callback: (error: LDApiError) -> Void) -> LDApiResponse {
+	func failure( _ callback: @noescape (_ error: LDApiError) -> Void) -> LDApiResponse {
 		guard !isOK else {return self}
 		if let error = self.error {
-			callback(error: error)
+			callback(error)
 		} else if msg == nil {
-			callback(error: LDApiError.dataError)
+			callback(LDApiError.dataError)
 		}
         //100000("未登录或登录超时，请重新登录")，100007("用户已在其他设备登录")，100019("用户已被冻结")
 //        if self.code == 100000 || self.code == 100007 || self.code == 100019{

@@ -61,11 +61,11 @@ class LoginUser: Mappable {
 
     }
 
-    required init?(_ map: Map) {
+    required init?(map: Map) {
 
     }
 
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         id <- map["id"]
         state <- map["state"]
         country <- map["country"]
@@ -95,15 +95,15 @@ class LoginUser: Mappable {
 
 class UserInfo:Mappable{
     
-    var role  = []
+    var role :Array<Any>?
     
     var user:LoginUser?
     
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         
     }
     
-     func mapping(_ map: Map) {
+     func mapping(map: Map) {
         
         role <- map["role"]
         

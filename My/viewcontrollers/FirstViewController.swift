@@ -22,7 +22,7 @@ class FirstViewController: UIViewController {
 //        configureTable()
     }
     func initZHJtableview(){
-        zhjtable.tableveiwData = dataArray
+        zhjtable.tableveiwData = dataArray as [AnyObject]
         zhjtable.needRefreshControl = [true,true]
         zhjtable.delgate = self
         zhjtable.dataSources = self
@@ -98,7 +98,7 @@ extension FirstViewController : ZHJtableviewDelgate{
     func didSelectRowAtIndexPath(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         if indexPath.row == 6{
             user.state = 0
-            cache.setObject(user, forKey: .User)
+//            NSCache.setObject(user, forKey: .User)
             alert("您以退出登录")
         }
     }

@@ -63,7 +63,7 @@ extension UIViewController {
     
     /// 关闭 view controller（根据当前上下文，自动选择 pop 或 dismiss 方式）
     public func closeViewControllerAnimated(_ animated: Bool) {
-        if let controller = navigationController where controller.viewControllers.count > 1 {
+        if let controller = navigationController, controller.viewControllers.count > 1 {
             controller.popViewController(animated: animated)
         } else {
             dismiss(animated: animated, completion: nil)
@@ -101,7 +101,7 @@ extension UIViewController {
         let newAlpha = alpha ?? self.navigationBarAlpha
         
         for subview in navigationBar.subviews {
-            let className = String(subview.classForCoder)
+            let className = String(describing: subview.classForCoder)
             if className == "_UINavigationBarBackground" || className == "UINavigationItemView" {
                 subview.alpha = newAlpha
             }

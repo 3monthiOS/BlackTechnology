@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 import AlamofireImage
-import Swiften
+//import Swiften
 
 class NetworkManager {
     static let sharedInstace = NetworkManager()
@@ -24,9 +24,9 @@ class NetworkManager {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 15 // 网络超时时间
         configuration.HTTPAdditionalHeaders = headers
-        configuration.HTTPAdditionalHeaders!["User-Agent"] = WebView.userAgent
+        configuration.httpAdditionalHeaders!["User-Agent"] = WebView.userAgent
         configuration.httpCookieStorage = cookieStorage
-        configuration.URLCache = URLCache.sharedURLCache()
+        configuration.urlCache = URLCache.shared
         configuration.requestCachePolicy = .returnCacheDataElseLoad
         
         let manager = Alamofire.Manager(configuration: configuration)

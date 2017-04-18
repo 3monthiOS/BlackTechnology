@@ -6,7 +6,7 @@
 //  Copyright © 2016年 侯伟. All rights reserved.
 //
 import Foundation
-import Swiften
+//import Swiften
 import UIKit
 import AddressBookUI
 import AddressBook
@@ -74,7 +74,7 @@ class MobileAddressBooks: UIViewController {
         for dic in iphoneMobileAddressBookData {
             user = MobileAddress()
             // 获取 电话数组   如果没有电话 就不展示此联系人
-            if let number = dic["Phone"] as? [String] where number.count > 0 {
+            if let number = dic["Phone"] as? [String], number.count > 0 {
                 for phone in number {
                     let mobilephone = RetrieveMobileAddressbook().RemoveSpecialCharacter(phone)
                     if mobileControl.checkMobileReg(mobilephone) {
@@ -85,10 +85,10 @@ class MobileAddressBooks: UIViewController {
                 // 如果有手机号  就保存 否则就不保存
                 if user?.mobile != "" {
                     // 获取姓名数组
-                    if let name = dic["fullName"] as? String where !name.isEmpty {
+                    if let name = dic["fullName"] as? String, !name.isEmpty {
                         user?.name = name
                     } else {
-                        if let name = dic["Nikename"] as? String where !name.isEmpty {
+                        if let name = dic["Nikename"] as? String, !name.isEmpty {
                             user?.name = name
                         } else {
                             user?.name = "姓名未知"
@@ -245,7 +245,7 @@ extension MobileAddressBooks: UISearchBarDelegate {
     }
     // MARK: - 搜索触发事件，点击虚拟键盘上的search按钮时触发此方法
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        var error: Unmanaged<CFErrorRef>?
+        var error: Unmanaged<CFError>?
         if !(ABAddressBookCreateWithOptions(nil, &error) != nil) {
             alert("请到设置中打开通讯录授权")
             return

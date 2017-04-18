@@ -8,79 +8,79 @@
 
 import Foundation
 import SwiftyJSON
+import Alamofire
+import CoreLocation
 
 public protocol WebViewServiceDelegate: NSObjectProtocol {
-  func webView(_ webView: WebView, didCallService service: String, withStatus status: Bool, result: Any, options: JSON)
-  func webView(_ webView: WebView, didCancelService service: String, withOptions options: JSON)
+    func webView(_ webView: WebView, didCallService service: String, withStatus status: Bool, message: Any, options: WebView.EmbedService.Options)
+    func webView(_ webView: WebView, didCancelService service: String, withOptions options: WebView.EmbedService.Options)
 }
 
 extension WebView {
-  
-  open class EmbedService: NSObject {
-    
-    public weak var userContentController: UserContentController!
-		
-    public init(userContentController: UserContentController) {
-      self.userContentController = userContentController
-    }
-    
-    public func process(_ serviceName: String, options: JSON) {
-			let selector = Selector("call_\(serviceName):")
-      if self.responds(to: selector) {
-        Log.info("embed service: \(options.jsonString)")
-        self.performSelector(inBackground: selector, with: options)
-      } else {
-        Log.error("unknown embed service: \(options.jsonString)")
-      }
-    }
-    
-    public func callback(_ success: Bool, result: Any, options: JSON, evaluateJavaScript: Bool = true) {
-      guard let webView = userContentController.webView else { return }
-			
-			let serviceNameKey = userContentController!.compatible ? userContentController!.compatibleServiceNameKey : userContentController!.serviceNameKey
-      let serviceName = options[serviceNameKey].stringValue
-      webView.serviceDelegate?.webView(webView, didCallService: serviceName, withStatus: success, result: result, options: options)
-      
-      guard evaluateJavaScript else { return }
-			
-			let json: JSON
-			if userContentController!.compatible {
-				json = JSON(["success": success, "msg": result])
-			} else {
-				json = JSON(["success": success, "result": result])
-			}
-      let result = json.rawString(.utf8, options: JSONSerialization.WritingOptions()) ?? ""
-      if let webView = userContentController!.webView.webView {
-        let callbackFunction = success ? options["success"] : options["fail"]
-        if let funcname = callbackFunction.string {
-          Log.info("embed service: \(serviceName) \(success ? "success" : "fail") \(funcname)()")
-          webView.evaluateJavaScript("\(funcname)(\(result))", completionHandler: nil)
+
+    open class EmbedService: NSObject {
+
+        public typealias Options = [String: AnyObject]
+
+        open weak var userContentController: UserContentController?
+        fileprivate var optionsDict = [String: Options]()
+
+        public init(userContentController: UserContentController) {
+            self.userContentController = userContentController
         }
-        if let funcname = options["complete"].string {
-          Log.info("embed service: \(serviceName) complete \(funcname)()")
-          webView.evaluateJavaScript("\(funcname)(\(result))", completionHandler: nil)
+
+        open func process(_ methodName: String, options: JSON) {
+            let selector = Selector("call_\(methodName):")
+            if self.responds(to: selector) {
+                Log.info("embed service: \(options.jsonString)")
+                self.performSelector(inBackground: selector, with: options.object)
+            } else {
+                Log.error("unknown embed service: \(options.jsonString)")
+            }
         }
-      }
+
+        open func callback(_ success: Bool, msg: Any, options: Options, evaluateJavaScript: Bool = true) {
+            guard let webView = userContentController?.webView else { return }
+
+            let methodName = options[userContentController!.methodKey] as! String
+            webView.serviceDelegate?.webView(webView, didCallService: methodName, withStatus: success, message: msg, options: options)
+
+            guard evaluateJavaScript else { return }
+
+            let result = JSON(["success": success, "msg": msg as AnyObject]).jsonString
+            if let webView = userContentController!.webView.webView {
+                let callbackFunction = success ? options["success"]: options["fail"]
+                if let funcname = callbackFunction as? String {
+                    Log.info("embed service: \(success ? "success" : "fail") \(funcname)(\(methodName))")
+                    webView.evaluateJavaScript("\(funcname)(\(result))", completionHandler: nil)
+                }
+                if let complete = options["complete"] as? String {
+                    Log.info("embed service: complete \(complete)(\(methodName))")
+                    webView.evaluateJavaScript("\(complete)(\(result))", completionHandler: nil)
+                }
+            }
+        }
+
+        open func cancel(_ options: Options) {
+            guard let webView = userContentController?.webView else { return }
+
+            let methodName = options[userContentController!.methodKey] as! String
+            webView.serviceDelegate?.webView(webView, didCancelService: methodName, withOptions: options)
+
+            if let webView = webView.webView, let funcname = options["cancel"] as? String {
+                Log.info("embed service: cancel")
+                webView.evaluateJavaScript("\(funcname)()", completionHandler: nil)
+            }
+        }
+
+        // MARK: - getAppVersion
+        func call_getAppVersion(_ options: Options) {
+            callback(true, msg: [
+                "versionCode": App.buildNumber,
+                "versionName": App.version
+                ], options: options)
+        }
+
     }
-    
-    public func cancel(_ options: JSON) {
-      guard let webView = userContentController?.webView else { return }
-			
-			let serviceNameKey = userContentController!.compatible ? userContentController!.compatibleServiceNameKey : userContentController!.serviceNameKey
-      let serviceName = options[serviceNameKey].stringValue
-      webView.serviceDelegate?.webView(webView, didCancelService: serviceName, withOptions: options)
-      
-      if let webView = webView.webView, let funcname = options["cancel"].string {
-        Log.info("embed service: \(serviceName) cancel \(funcname)()")
-        webView.evaluateJavaScript("\(funcname)()", completionHandler: nil)
-      }
-    }
-    
-    // MARK: - getAppVersion
-    public func call_getAppVersion(_ options: Any) {
-      callback(true, result: ["version": App.version, "build": App.build], options: options as! JSON)
-    }
-    
-  }
-  
+
 }

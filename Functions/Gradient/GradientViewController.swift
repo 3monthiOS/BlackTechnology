@@ -23,8 +23,8 @@ class GradientViewController: UIViewController {
     }
     
   @IBAction func positionChangeClick(_ sender: UISlider) {
-     let gradient = baseView.layer.sublayers?.first as? CAGradientLayer
-    gradient?.locations = [0,sender.value ,1]
+//     let gradient = baseView.layer.sublayers?.first as? CAGradientLayer
+//    gradient?.locations = [0,NSNumber(sender.value) ,1]
   }
 
   @IBAction func colorChangeClick(_ sender: UISlider) {

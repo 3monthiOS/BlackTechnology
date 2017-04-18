@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import Swiften
+//import Swiften
 
 extension PhotoBrowser {
     
@@ -103,12 +103,12 @@ extension PhotoBrowser {
         
         func handleConfirmButtonTap(_ sender: UIButton) {
             let image = cropView.croppedImage
-            image.contentType = .JPEG
-            delegate?.photoCropper(self, didFinishCroppingImage: image, transform: cropView.rotation, cropRect: cropView.zoomedCropRect)
+            image?.contentType = .JPEG
+            delegate?.photoCropper(self, didFinishCroppingImage: image!, transform: cropView.rotation, cropRect: cropView.zoomedCropRect)
             closeViewControllerJumpChatcontroller(false)
         }
         func closeViewControllerJumpChatcontroller(_ animated: Bool) {
-            if let controller = navigationController where controller.viewControllers.count > 1 {
+            if let controller = navigationController, controller.viewControllers.count > 1 {
                 if isTakerview {
                     dismiss(animated: animated, completion: nil)
                 }else{
