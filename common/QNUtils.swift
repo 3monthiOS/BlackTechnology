@@ -150,11 +150,14 @@ struct QNUtils {
             session.setObject(token as AnyObject, forKey: "QNtoken")
             return token
         }else{
-            let token = session.object(forKey: "QNtoken")
-//            let token = userdefaults.objectForKey("QNtoken") as? String
-            if let token = token{
+            if let token = session.object(forKey: "QNtoken"){
+                if token.isEqual(NSNull()) {
+                    return generateToken(true)
+                }
                 return token as! String
-            }else{
+            }
+//            let token = userdefaults.objectForKey("QNtoken") as? String
+            else{
                 return generateToken(true)
             }
         }
