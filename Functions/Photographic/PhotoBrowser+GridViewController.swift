@@ -18,7 +18,7 @@ extension PhotoBrowser {
         
         var album: PHAssetCollection?
         
-        var assets: PHFetchResult!
+        var assets: PHFetchResult<AnyObject>!
         
         weak var delegate: UIViewController!
         
@@ -52,7 +52,7 @@ extension PhotoBrowser {
             self.title = album?.localizedTitle ?? "相片"
             
             collectionView?.backgroundColor = UIColor.white
-            self.createBarButtonItemAtPosition(.right, Title: "取消", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(GridViewController.cancelAction(_:)))
+            let _ = self.createBarButtonItemAtPosition(.right, Title: "取消", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(GridViewController.cancelAction(_:)))
 //            self.createBarButtonItemAtPosition(.Right, text: "取消", action: #selector(GridViewController.cancelAction(_:)))
             
             // Init Collection View
@@ -65,9 +65,9 @@ extension PhotoBrowser {
             options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
             if let album = album {
                 options.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
-                assets = PHAsset.fetchAssets(in: album, options: options)
+                assets = PHAsset.fetchAssets(in: album, options: options) as! PHFetchResult<AnyObject>
             } else {
-                assets = PHAsset.fetchAssets(with: .image, options: options)
+                assets = PHAsset.fetchAssets(with: .image, options: options) as! PHFetchResult<AnyObject>
             }
             collectionView?.reloadData()
         }

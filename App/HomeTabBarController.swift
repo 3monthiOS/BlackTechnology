@@ -21,7 +21,7 @@ class HomeTabBarController: UITabBarController,UITabBarControllerDelegate {
         case 0:
             item.title = "聊天"
         case 1:
-            item.title = "功能"
+            item.title = "功能列表"
         case 2:
             item.title = "我"
         default:

@@ -61,7 +61,7 @@ class PhotoBrowser {
 		actioinSheet.view.tintColor = UIColor.darkGray
 	}
 // MARK: PhotoBrowser Action
-    static func showPhotoPreviewer(_ delegate: protocol<PhotoBrowserDelegate, PhotoBrowserDataSource>! = nil, options: PhotoBrowserOptions? = nil, currentIndex: Int = 0,isPhotoAlbum: Bool) {
+    static func showPhotoPreviewer(_ delegate: (PhotoBrowserDelegate & PhotoBrowserDataSource)! = nil, options: PhotoBrowserOptions? = nil, currentIndex: Int = 0,isPhotoAlbum: Bool) {
 		let controller = PreviewController(delegate: delegate, options: options ?? PhotoBrowserOptions(), currentIndex: currentIndex)
         controller.hidesBottomBarWhenPushed = true
 		controller.modalPresentationStyle = .overFullScreen

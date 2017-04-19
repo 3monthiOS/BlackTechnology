@@ -40,14 +40,13 @@ extension UIImage {
 
     public class func gifWithURL(_ gifUrl:String) -> UIImage? {
         // Validate URL
-        guard let bundleURL:URL? = URL(string: gifUrl)
-            else {
+        guard let bundleURL = URL(string: gifUrl) else {
                 print("SwiftGif: This image named \"\(gifUrl)\" does not exist")
                 return nil
         }
 
         // Validate data
-        guard let imageData = try? Data(contentsOf: bundleURL!) else {
+        guard let imageData = try? Data(contentsOf: bundleURL) else {
             print("SwiftGif: Cannot turn image named \"\(gifUrl)\" into NSData")
             return nil
         }

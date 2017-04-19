@@ -98,6 +98,23 @@
 		F27F5E621D8641EE00336915 /* UIViewController+TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27F5E551D8641EE00336915 /* UIViewController+TopViewController.swift */; };
 		F27F5E681D8643D000336915 /* CustomAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27F5E661D8643D000336915 /* CustomAnimation.swift */; };
 		F27F5E691D8643D000336915 /* SwiftLogoLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27F5E671D8643D000336915 /* SwiftLogoLayer.swift */; };
+		F28C54A71EA7646300209259 /* AlbumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54901EA7646300209259 /* AlbumTableViewController.swift */; };
+		F28C54A81EA7646300209259 /* PhotoBrowser+CropperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54911EA7646300209259 /* PhotoBrowser+CropperViewController.swift */; };
+		F28C54A91EA7646300209259 /* PhotoBrowser+GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54921EA7646300209259 /* PhotoBrowser+GridViewController.swift */; };
+		F28C54AA1EA7646300209259 /* PhotoBrowser+PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54931EA7646300209259 /* PhotoBrowser+PreviewController.swift */; };
+		F28C54AB1EA7646300209259 /* PhotoBrowser+TakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54941EA7646300209259 /* PhotoBrowser+TakerViewController.swift */; };
+		F28C54AC1EA7646300209259 /* PhotoBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54951EA7646300209259 /* PhotoBrowser.swift */; };
+		F28C54AD1EA7646300209259 /* PhotoBrowserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54961EA7646300209259 /* PhotoBrowserDelegate.swift */; };
+		F28C54AE1EA7646300209259 /* PhotoBrowserExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54971EA7646300209259 /* PhotoBrowserExtensions.swift */; };
+		F28C54AF1EA7646300209259 /* PhotoBrowserOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54981EA7646300209259 /* PhotoBrowserOptions.swift */; };
+		F28C54B01EA7646300209259 /* PECropRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = F28C549B1EA7646300209259 /* PECropRectView.m */; };
+		F28C54B11EA7646300209259 /* PECropView.m in Sources */ = {isa = PBXBuildFile; fileRef = F28C549D1EA7646300209259 /* PECropView.m */; };
+		F28C54B21EA7646300209259 /* PECropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F28C549F1EA7646300209259 /* PECropViewController.m */; };
+		F28C54B31EA7646300209259 /* PEPhotoCropEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F28C54A01EA7646300209259 /* PEPhotoCropEditor.bundle */; };
+		F28C54B41EA7646300209259 /* PEResizeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F28C54A21EA7646300209259 /* PEResizeControl.m */; };
+		F28C54B51EA7646300209259 /* PhotoBrowser+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54A31EA7646300209259 /* PhotoBrowser+View.swift */; };
+		F28C54B61EA7646300209259 /* UIImage+PECrop.m in Sources */ = {isa = PBXBuildFile; fileRef = F28C54A51EA7646300209259 /* UIImage+PECrop.m */; };
+		F28C54B71EA7646300209259 /* SystemPhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54A61EA7646300209259 /* SystemPhotoAlbum.swift */; };
 		F28C98591E07D7BC00DACB18 /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C98541E07D7BC00DACB18 /* LoginUser.swift */; };
 		F28C985A1E07D7BC00DACB18 /* MappableBaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C98551E07D7BC00DACB18 /* MappableBaseType.swift */; };
 		F28C985B1E07D7BC00DACB18 /* QNlistData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C98561E07D7BC00DACB18 /* QNlistData.swift */; };
@@ -270,6 +287,28 @@
 		F27F5E551D8641EE00336915 /* UIViewController+TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+TopViewController.swift"; sourceTree = "<group>"; };
 		F27F5E661D8643D000336915 /* CustomAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnimation.swift; sourceTree = "<group>"; };
 		F27F5E671D8643D000336915 /* SwiftLogoLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLogoLayer.swift; sourceTree = "<group>"; };
+		F28C54901EA7646300209259 /* AlbumTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableViewController.swift; sourceTree = "<group>"; };
+		F28C54911EA7646300209259 /* PhotoBrowser+CropperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoBrowser+CropperViewController.swift"; sourceTree = "<group>"; };
+		F28C54921EA7646300209259 /* PhotoBrowser+GridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoBrowser+GridViewController.swift"; sourceTree = "<group>"; };
+		F28C54931EA7646300209259 /* PhotoBrowser+PreviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoBrowser+PreviewController.swift"; sourceTree = "<group>"; };
+		F28C54941EA7646300209259 /* PhotoBrowser+TakerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoBrowser+TakerViewController.swift"; sourceTree = "<group>"; };
+		F28C54951EA7646300209259 /* PhotoBrowser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowser.swift; sourceTree = "<group>"; };
+		F28C54961EA7646300209259 /* PhotoBrowserDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserDelegate.swift; sourceTree = "<group>"; };
+		F28C54971EA7646300209259 /* PhotoBrowserExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserExtensions.swift; sourceTree = "<group>"; };
+		F28C54981EA7646300209259 /* PhotoBrowserOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserOptions.swift; sourceTree = "<group>"; };
+		F28C549A1EA7646300209259 /* PECropRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECropRectView.h; sourceTree = "<group>"; };
+		F28C549B1EA7646300209259 /* PECropRectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECropRectView.m; sourceTree = "<group>"; };
+		F28C549C1EA7646300209259 /* PECropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECropView.h; sourceTree = "<group>"; };
+		F28C549D1EA7646300209259 /* PECropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECropView.m; sourceTree = "<group>"; };
+		F28C549E1EA7646300209259 /* PECropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECropViewController.h; sourceTree = "<group>"; };
+		F28C549F1EA7646300209259 /* PECropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECropViewController.m; sourceTree = "<group>"; };
+		F28C54A01EA7646300209259 /* PEPhotoCropEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PEPhotoCropEditor.bundle; sourceTree = "<group>"; };
+		F28C54A11EA7646300209259 /* PEResizeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEResizeControl.h; sourceTree = "<group>"; };
+		F28C54A21EA7646300209259 /* PEResizeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEResizeControl.m; sourceTree = "<group>"; };
+		F28C54A31EA7646300209259 /* PhotoBrowser+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoBrowser+View.swift"; sourceTree = "<group>"; };
+		F28C54A41EA7646300209259 /* UIImage+PECrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PECrop.h"; sourceTree = "<group>"; };
+		F28C54A51EA7646300209259 /* UIImage+PECrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PECrop.m"; sourceTree = "<group>"; };
+		F28C54A61EA7646300209259 /* SystemPhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemPhotoAlbum.swift; sourceTree = "<group>"; };
 		F28C98541E07D7BC00DACB18 /* LoginUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUser.swift; sourceTree = "<group>"; };
 		F28C98551E07D7BC00DACB18 /* MappableBaseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappableBaseType.swift; sourceTree = "<group>"; };
 		F28C98561E07D7BC00DACB18 /* QNlistData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNlistData.swift; sourceTree = "<group>"; };
@@ -685,6 +724,7 @@
 		F2666A8D1D879C6F00B2029E /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				F28C548F1EA7646300209259 /* Photographic */,
 				F294B3361DFFDDB70055C8CB /* MobileAddressBook */,
 				F25F3F041DF7E18D00ACACB6 /* Photoalbum */,
 				F24E9A351DEEB16800A45EB8 /* uploadPictures */,
@@ -854,6 +894,43 @@
 				F27F5E671D8643D000336915 /* SwiftLogoLayer.swift */,
 			);
 			path = customAnimation;
+			sourceTree = "<group>";
+		};
+		F28C548F1EA7646300209259 /* Photographic */ = {
+			isa = PBXGroup;
+			children = (
+				F28C54901EA7646300209259 /* AlbumTableViewController.swift */,
+				F28C54911EA7646300209259 /* PhotoBrowser+CropperViewController.swift */,
+				F28C54921EA7646300209259 /* PhotoBrowser+GridViewController.swift */,
+				F28C54931EA7646300209259 /* PhotoBrowser+PreviewController.swift */,
+				F28C54941EA7646300209259 /* PhotoBrowser+TakerViewController.swift */,
+				F28C54951EA7646300209259 /* PhotoBrowser.swift */,
+				F28C54961EA7646300209259 /* PhotoBrowserDelegate.swift */,
+				F28C54971EA7646300209259 /* PhotoBrowserExtensions.swift */,
+				F28C54981EA7646300209259 /* PhotoBrowserOptions.swift */,
+				F28C54991EA7646300209259 /* PhotoBrowserThirdParty */,
+				F28C54A61EA7646300209259 /* SystemPhotoAlbum.swift */,
+			);
+			path = Photographic;
+			sourceTree = "<group>";
+		};
+		F28C54991EA7646300209259 /* PhotoBrowserThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				F28C549A1EA7646300209259 /* PECropRectView.h */,
+				F28C549B1EA7646300209259 /* PECropRectView.m */,
+				F28C549C1EA7646300209259 /* PECropView.h */,
+				F28C549D1EA7646300209259 /* PECropView.m */,
+				F28C549E1EA7646300209259 /* PECropViewController.h */,
+				F28C549F1EA7646300209259 /* PECropViewController.m */,
+				F28C54A01EA7646300209259 /* PEPhotoCropEditor.bundle */,
+				F28C54A11EA7646300209259 /* PEResizeControl.h */,
+				F28C54A21EA7646300209259 /* PEResizeControl.m */,
+				F28C54A31EA7646300209259 /* PhotoBrowser+View.swift */,
+				F28C54A41EA7646300209259 /* UIImage+PECrop.h */,
+				F28C54A51EA7646300209259 /* UIImage+PECrop.m */,
+			);
+			path = PhotoBrowserThirdParty;
 			sourceTree = "<group>";
 		};
 		F28C98521E07D7BC00DACB18 /* Data */ = {
@@ -1189,6 +1266,7 @@
 				F2FA2DA11DE808D000CE0A3C /* DownloadfileView.xib in Resources */,
 				F24E9A3C1DEEBA0800A45EB8 /* gif131.gif in Resources */,
 				F2D690561DFE87DD0087328B /* QNPhotoController.xib in Resources */,
+				F28C54B31EA7646300209259 /* PEPhotoCropEditor.bundle in Resources */,
 				F26871F51D9236D800611136 /* LDNoDataNoticeView.xib in Resources */,
 				F2D652D41D7E94A90005824D /* Assets.xcassets in Resources */,
 				F2D652CF1D7E94A90005824D /* Main.storyboard in Resources */,
@@ -1269,6 +1347,7 @@
 				F23481361EA5E6ED00CB84F2 /* App.swift in Sources */,
 				F294B3471DFFDDB70055C8CB /* MobileAddres.swift in Sources */,
 				F23481481EA5E6EE00CB84F2 /* String+Extension.swift in Sources */,
+				F28C54B21EA7646300209259 /* PECropViewController.m in Sources */,
 				F27AE1FD1D928E09000E0509 /* CollectionReusableViewHeadre.swift in Sources */,
 				F27F5E581D8641EE00336915 /* CommonFuntion.swift in Sources */,
 				F234815E1EA5E6EE00CB84F2 /* WebView+UIDelegate.swift in Sources */,
@@ -1282,11 +1361,15 @@
 				F2666A941D87A42000B2029E /* Notifications.swift in Sources */,
 				F234813F1EA5E6EE00CB84F2 /* MIMEType.swift in Sources */,
 				F29401DD1D94FF2C00CF582F /* BaiduLocationManager.swift in Sources */,
+				F28C54AD1EA7646300209259 /* PhotoBrowserDelegate.swift in Sources */,
+				F28C54B41EA7646300209259 /* PEResizeControl.m in Sources */,
+				F28C54AC1EA7646300209259 /* PhotoBrowser.swift in Sources */,
 				F23481431EA5E6EE00CB84F2 /* RestError.swift in Sources */,
 				F26871F31D9236D800611136 /* MJrefreshCollectionview.swift in Sources */,
 				F2D652CC1D7E94A90005824D /* ViewController.swift in Sources */,
 				F24E9A381DEEB18A00A45EB8 /* UploadPicturesView.swift in Sources */,
 				F2D768751E0A712C003A5936 /* Size.swift in Sources */,
+				F28C54B71EA7646300209259 /* SystemPhotoAlbum.swift in Sources */,
 				F23481381EA5E6ED00CB84F2 /* Functions.swift in Sources */,
 				F2666A911D879CEE00B2029E /* FunctionsViewController.swift in Sources */,
 				F294B3451DFFDDB70055C8CB /* MObileFunction.swift in Sources */,
@@ -1314,9 +1397,12 @@
 				F23481521EA5E6EE00CB84F2 /* CGRect+Extension.swift in Sources */,
 				F234813A1EA5E6ED00CB84F2 /* Stringify.swift in Sources */,
 				F29401DF1D94FF6300CF582F /* Location.swift in Sources */,
+				F28C54B51EA7646300209259 /* PhotoBrowser+View.swift in Sources */,
 				F28C98591E07D7BC00DACB18 /* LoginUser.swift in Sources */,
 				F27F5E691D8643D000336915 /* SwiftLogoLayer.swift in Sources */,
 				F24E9A321DEEA77B00A45EB8 /* QNUtils.swift in Sources */,
+				F28C54A71EA7646300209259 /* AlbumTableViewController.swift in Sources */,
+				F28C54A81EA7646300209259 /* PhotoBrowser+CropperViewController.swift in Sources */,
 				F27AE2011D928E09000E0509 /* QdanCollectionViewzeroCell.swift in Sources */,
 				F2D3A3E51E03A788007DE758 /* SecondViewController.swift in Sources */,
 				F23481581EA5E6EE00CB84F2 /* ActionSheetController.swift in Sources */,
@@ -1350,8 +1436,11 @@
 				F294B34A1DFFDDB70055C8CB /* UserIphoneNumbercell.swift in Sources */,
 				F234813D1EA5E6EE00CB84F2 /* UDID.swift in Sources */,
 				F234814B1EA5E6EE00CB84F2 /* RealmEntityManager.swift in Sources */,
+				F28C54AB1EA7646300209259 /* PhotoBrowser+TakerViewController.swift in Sources */,
+				F28C54AA1EA7646300209259 /* PhotoBrowser+PreviewController.swift in Sources */,
 				F23481471EA5E6EE00CB84F2 /* NSDate+Extension.swift in Sources */,
 				F2DFE7D21D82A1B300E5DC71 /* LoginviewController.swift in Sources */,
+				F28C54AF1EA7646300209259 /* PhotoBrowserOptions.swift in Sources */,
 				F234814F1EA5E6EE00CB84F2 /* Session.swift in Sources */,
 				F23096801E0238C4001ACE00 /* TYPagerController.m in Sources */,
 				F23096821E0238C4001ACE00 /* TYTabPagerController.m in Sources */,
@@ -1360,22 +1449,27 @@
 				F23481421EA5E6EE00CB84F2 /* Rest.swift in Sources */,
 				F2D768741E0A712C003A5936 /* Device.swift in Sources */,
 				F2D6904D1DFE7A200087328B /* QNCollectionViewCell.swift in Sources */,
+				F28C54AE1EA7646300209259 /* PhotoBrowserExtensions.swift in Sources */,
 				F234814A1EA5E6EE00CB84F2 /* Realm+Manager.swift in Sources */,
 				F234814D1EA5E6EE00CB84F2 /* LocalStorage.swift in Sources */,
 				F23481401EA5E6EE00CB84F2 /* NetworkManager.swift in Sources */,
 				F294B3431DFFDDB70055C8CB /* MobileAddressBooks.swift in Sources */,
+				F28C54B01EA7646300209259 /* PECropRectView.m in Sources */,
 				F23481501EA5E6EE00CB84F2 /* VerticalButton.swift in Sources */,
 				F28C985A1E07D7BC00DACB18 /* MappableBaseType.swift in Sources */,
 				654B6AD91D9D25DA00B46F6F /* FilterViewController.swift in Sources */,
 				F27F5E5E1D8641EE00336915 /* UIImage+Gif.swift in Sources */,
+				F28C54B11EA7646300209259 /* PECropView.m in Sources */,
 				65529C3A1D9E722A00ED3E1C /* CubeMap.c in Sources */,
 				F2D652CA1D7E94A90005824D /* AppDelegate.swift in Sources */,
 				654B6ADB1D9D25DA00B46F6F /* GradientViewController.swift in Sources */,
+				F28C54B61EA7646300209259 /* UIImage+PECrop.m in Sources */,
 				65529C351D9E66CE00ED3E1C /* MutableFilterMoreViewController.swift in Sources */,
 				F23096911E027A59001ACE00 /* ZHJtableview.swift in Sources */,
 				F23481531EA5E6EE00CB84F2 /* LoadingIndicator.swift in Sources */,
 				F26871F41D9236D800611136 /* LDNoDataNoticeView.swift in Sources */,
 				F2ED945C1D8699A2000C2E59 /* UIimage+Watermark.swift in Sources */,
+				F28C54A91EA7646300209259 /* PhotoBrowser+GridViewController.swift in Sources */,
 				F234813E1EA5E6EE00CB84F2 /* Log.swift in Sources */,
 				F2FA2DA01DE808D000CE0A3C /* DownloadfileView.swift in Sources */,
 				F27F5E681D8643D000336915 /* CustomAnimation.swift in Sources */,

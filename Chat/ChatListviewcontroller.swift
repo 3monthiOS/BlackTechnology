@@ -24,7 +24,7 @@ class ChatListviewcontroller: RCConversationListViewController {
         let token = tokenArray[Int(arc4random()%4)]
         RCIM.shared().connect(withToken: token,success: { (userId) -> Void in
             self.userId = userId!
-            print("登陆成功。当前登录的用户ID：\(userId)")
+            print("登陆成功。当前登录的用户ID：\(String(describing: userId))")
             }, error: { (status) -> Void in
                 print("登陆的错误码为:\(status.rawValue)")
             }, tokenIncorrect: {
@@ -48,7 +48,7 @@ class ChatListviewcontroller: RCConversationListViewController {
         //设置需要将哪些类型的会话在会话列表中聚合显示
         self.setCollectionConversationType([RCConversationType.ConversationType_DISCUSSION.rawValue,
             RCConversationType.ConversationType_GROUP.rawValue])
-        createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.right, Title: "单聊", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(privateChat))
+        let _ = createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.right, Title: "单聊", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(privateChat))
 //        createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.Left, Title: "讨论组", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(createDiscussionGroupsChat))
         createDiscussionGroupsChat()
     }

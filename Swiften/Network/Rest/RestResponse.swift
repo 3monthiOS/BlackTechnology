@@ -19,7 +19,7 @@ open class RestResponse<T:Mappable>: Mappable {
     }
     /// HTTP响应内容的JSON对象
     open var json: JSON? {
-        return rawData == nil ? nil : JSON(data: rawData!)
+        return rawData == nil ? JSON.null : JSON(data: rawData!)
     }
 
     /// 错误信息

@@ -33,8 +33,8 @@ class MutableFilterViewController: UIViewController {
     baseImgView.image = originalImage
   }
   fileprivate func configureSlider(){
-    slider.maximumValue = Float(M_PI)
-    slider.minimumValue = Float(-M_PI)
+    slider.maximumValue = Float(Double.pi / 2)
+    slider.minimumValue = Float(-Double.pi / 2)
     slider.value = 0
     
     let inputImage = CIImage(image: originalImage)

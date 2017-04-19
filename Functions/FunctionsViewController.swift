@@ -21,25 +21,10 @@ class FunctionsViewController: APPviewcontroller {
     var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","通讯录","上传图片","云相册","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        let box = QNUtils.getaccesskey()
-//        let headers = [
-//            "Authorization": "QBox \(box)",
-//            "Content-Type": "application/x-www-form-urlencoded",
-//        ]
-//        Log.info("+++++++++++++____________\(headers["Authorization"])")
-//        //http://rsf.qbox.me/list?bucket=zhj1214
-//        let bucket = "zhj1214"
-//        Alamofire.request(.POST, "http://rsf.qbox.me/list?", parameters: ["bucket":bucket], encoding: .URL, headers: headers).responseJSON { (response) in
-//            if response.result.isSuccess{
-//                Log.info("成功----------\(response.response)----\(response.response?.allHeaderFields)-\(response.data)-\(response.result)-\(response.debugDescription)-\(response.description)")
-//            }else{
-//                Log.info("失败------\(response.result.error)")
-//            }
-//        }
+        QNcheck()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.title = "功能列表"
         self.navigationController?.navigationBar.isTranslucent = false
         initcollectionMjrefresh()
@@ -50,7 +35,6 @@ class FunctionsViewController: APPviewcontroller {
         collectionView.noDataNotice = "无数据可加载"
         collectionView.refreshDelegate = self
         collectionView.configRefreshable(headerEnabled: true, footerEnabled: true)
-//        collectionView.refreshData()
     }
     func initCollectionview(){
         self.view.backgroundColor = rgb(242,245,249)
@@ -80,6 +64,24 @@ class FunctionsViewController: APPviewcontroller {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
       
+    }
+    // 七牛验证
+    func QNcheck(){
+        //        let box = QNUtils.getaccesskey()
+        //        let headers = [
+        //            "Authorization": "QBox \(box)",
+        //            "Content-Type": "application/x-www-form-urlencoded",
+        //        ]
+        //        Log.info("+++++++++++++____________\(headers["Authorization"])")
+        //        //http://rsf.qbox.me/list?bucket=zhj1214
+        //        let bucket = "zhj1214"
+        //        Alamofire.request(.POST, "http://rsf.qbox.me/list?", parameters: ["bucket":bucket], encoding: .URL, headers: headers).responseJSON { (response) in
+        //            if response.result.isSuccess{
+        //                Log.info("成功----------\(response.response)----\(response.response?.allHeaderFields)-\(response.data)-\(response.result)-\(response.debugDescription)-\(response.description)")
+        //            }else{
+        //                Log.info("失败------\(response.result.error)")
+        //            }
+        //        }
     }
 }
     //Mark: ------ UICollectionViewDataSource
@@ -135,10 +137,10 @@ extension FunctionsViewController: UICollectionViewDelegate{
         let upload = QNPhotoController()
         upload.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(upload, animated: true)
-//    case 7:
-//        photobrowserAction(indexPath)
-//    case 8:
-//        photobrowserAction(indexPath)
+    case 7:
+        photobrowserAction(indexPath)
+    case 8:
+        photobrowserAction(indexPath)
     case 9:
 //        MobileAddressBookbuttonclick(100)
         call_openContact()
@@ -168,68 +170,68 @@ extension FunctionsViewController: MJCollectionViewRefreshDelegate{
   }
 }
 //相机 ， 相册 
-//extension FunctionsViewController: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,PhotoBrowserDataSource{
-//    func photobrowserAction(_ indexPath: IndexPath) {
-//        let photo = SystemPhotoAlbum()
-//        photo.albumDeleagte = self
-//        switch indexPath.row {
-//        case 8:
-//            PhotoBrowser.showPhotoPicker(self, withOptions: PhotoBrowserOptions.photoBrowserOptionsForSingleSelection())
-//        case 7:
-//            //打开相机
-//            PhotoBrowser.showPhotoTaker(self)
-//        default:
-//            break
-//        }
-//    }
-//    
-//    func getImageSucessful(_ image: UIImage) {
-//            Log.info("有——图片\(image)")
-//    }
-//    
-//    func photoBrowser(_ photoBrowser: PhotoBrowser.PreviewController, photoModelAtIndex index: Int) -> PhotoBrowser.Model {
-//        let url = imageUrlArray[index]
-//        var img : UIImage?
-//        // 网络图片
-//        if !url.isEmpty{
-//            if let str = url.components(separatedBy: "/").last{
-//                locationfileiscache(str, complate: { (callback) in
-//                    if !callback.isEmpty{
-//                        guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}
-//                        img = UIImage.gifWithData(imageData)!
-//                    }else{
-////                        Log.info("我没有找到：————————\(str)")
-//                        img = UIImage(named: "chat_image_load_failed")!
-//                    }
-//                })
-//            }
-//        }
-//        // 本地图片
-//        var image = UIImage()
-//        let data = try? Data(contentsOf: URL(fileURLWithPath: url))
-//        if data == nil {
-//            image = UIImage(named: "chat_image_load_failed")!
-//        }else{
-//            image = UIImage(data: data!)!
-//        }
-//        if let img = img {
-//         return PhotoBrowser.Model.image(image: img)
-//        }
-//        return PhotoBrowser.Model.image(image: image)
-//    }
-//    
-//    func numberOfPhotosInPhotoBrowser(_ photoBrowser: PhotoBrowser.PreviewController) -> Int {
-//        return imageUrlArray.count ?? 0
-//    }
-//    
-//    func photoBrowser(_ viewController: UIViewController, didSelect selection: PhotoBrowser.Selection) {
-//        selection.getImage { (image) in
-//            if image != nil {
-//                Log.info("有——图片")
-//            }else{
-//                Log.info("没有——图片")
-//            }
-//        }
-//    }
-//}
+extension FunctionsViewController: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,PhotoBrowserDataSource{
+    func photobrowserAction(_ indexPath: IndexPath) {
+        let photo = SystemPhotoAlbum()
+        photo.albumDeleagte = self
+        switch indexPath.row {
+        case 8:
+            PhotoBrowser.showPhotoPicker(self, withOptions: PhotoBrowserOptions.photoBrowserOptionsForSingleSelection())
+        case 7:
+            //打开相机
+            PhotoBrowser.showPhotoTaker(self)
+        default:
+            break
+        }
+    }
+    
+    func getImageSucessful(_ image: UIImage) {
+            Log.info("有——图片\(image)")
+    }
+    
+    func photoBrowser(_ photoBrowser: PhotoBrowser.PreviewController, photoModelAtIndex index: Int) -> PhotoBrowser.Model {
+        let url = imageUrlArray[index]
+        var img : UIImage?
+        // 网络图片
+        if !url.isEmpty{
+            if let str = url.components(separatedBy: "/").last{
+                locationfileiscache(str, complate: { (callback) in
+                    if !callback.isEmpty{
+                        guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}
+                        img = UIImage.gifWithData(imageData)!
+                    }else{
+//                        Log.info("我没有找到：————————\(str)")
+                        img = UIImage(named: "chat_image_load_failed")!
+                    }
+                })
+            }
+        }
+        // 本地图片
+        var image = UIImage()
+        let data = try? Data(contentsOf: URL(fileURLWithPath: url))
+        if data == nil {
+            image = UIImage(named: "chat_image_load_failed")!
+        }else{
+            image = UIImage(data: data!)!
+        }
+        if let img = img {
+         return PhotoBrowser.Model.image(image: img)
+        }
+        return PhotoBrowser.Model.image(image: image)
+    }
+    
+    func numberOfPhotosInPhotoBrowser(_ photoBrowser: PhotoBrowser.PreviewController) -> Int {
+        return imageUrlArray.count 
+    }
+    
+    func photoBrowser(_ viewController: UIViewController, didSelect selection: PhotoBrowser.Selection) {
+        selection.getImage { (image) in
+            if image != nil {
+                Log.info("有——图片")
+            }else{
+                Log.info("没有——图片")
+            }
+        }
+    }
+}
 
