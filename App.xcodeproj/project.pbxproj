@@ -14,6 +14,7 @@
 		65529C351D9E66CE00ED3E1C /* MutableFilterMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65529C341D9E66CE00ED3E1C /* MutableFilterMoreViewController.swift */; };
 		65529C3A1D9E722A00ED3E1C /* CubeMap.c in Sources */ = {isa = PBXBuildFile; fileRef = 65529C391D9E722A00ED3E1C /* CubeMap.c */; };
 		6598A7331D93EB3D00A22338 /* UIView+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6598A7321D93EB3D00A22338 /* UIView+Gradient.swift */; };
+		65A223261EA73A4D004664A2 /* VideoRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A223251EA73A4D004664A2 /* VideoRecorderViewController.swift */; };
 		F21437AC1D98D403000E0CBF /* BaiduMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21437AB1D98D403000E0CBF /* BaiduMapViewController.swift */; };
 		F21437C41D98EEA9000E0CBF /* Session+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21437C31D98EEA9000E0CBF /* Session+extension.swift */; };
 		F217F2091D842B74000E3A0D /* RegisteredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F217F2071D842B74000E3A0D /* RegisteredViewController.swift */; };
@@ -173,6 +174,7 @@
 		65529C341D9E66CE00ED3E1C /* MutableFilterMoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableFilterMoreViewController.swift; sourceTree = "<group>"; };
 		65529C391D9E722A00ED3E1C /* CubeMap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CubeMap.c; sourceTree = "<group>"; };
 		6598A7321D93EB3D00A22338 /* UIView+Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Gradient.swift"; sourceTree = "<group>"; };
+		65A223251EA73A4D004664A2 /* VideoRecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoRecorderViewController.swift; sourceTree = "<group>"; };
 		7FEFAF43BC70671EDF9716E6 /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5A6087CE1A63B4E2D426C9 /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
 		F21437AB1D98D403000E0CBF /* BaiduMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaiduMapViewController.swift; sourceTree = "<group>"; };
@@ -378,6 +380,14 @@
 				654B6AD81D9D25DA00B46F6F /* GradientViewController.swift */,
 			);
 			path = Gradient;
+			sourceTree = "<group>";
+		};
+		65A223241EA73A37004664A2 /* video */ = {
+			isa = PBXGroup;
+			children = (
+				65A223251EA73A4D004664A2 /* VideoRecorderViewController.swift */,
+			);
+			path = video;
 			sourceTree = "<group>";
 		};
 		EE62508F8DE98C65D9612A64 /* Pods */ = {
@@ -685,6 +695,7 @@
 		F2666A8D1D879C6F00B2029E /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				65A223241EA73A37004664A2 /* video */,
 				F294B3361DFFDDB70055C8CB /* MobileAddressBook */,
 				F25F3F041DF7E18D00ACACB6 /* Photoalbum */,
 				F24E9A351DEEB16800A45EB8 /* uploadPictures */,
@@ -1332,6 +1343,7 @@
 				F2D289AB1D856C420059D289 /* AppSetting.swift in Sources */,
 				F2D54B251D93A692006DE294 /* TableViewHeaderCell.swift in Sources */,
 				F2666A8F1D879CCD00B2029E /* Myviewcontroller.swift in Sources */,
+				65A223261EA73A4D004664A2 /* VideoRecorderViewController.swift in Sources */,
 				F2D768771E0A712C003A5936 /* Version.swift in Sources */,
 				F23481541EA5E6EE00CB84F2 /* UIColor+Extension.swift in Sources */,
 				F27F5E5F1D8641EE00336915 /* UIView+Swift.m in Sources */,
