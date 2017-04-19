@@ -10,9 +10,6 @@ import UIKit
 import AVFoundation
 import AssetsLibrary
 import Photos
-let SCREEN_WIDTH = UIScreen.main.bounds.width
-let SCREEN_HEIGHT = UIScreen.main.bounds.height
-
 class VideoRecorderViewController: UIViewController {
 
   var captureSession = AVCaptureSession()
@@ -46,7 +43,7 @@ class VideoRecorderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       view.backgroundColor = UIColor.white
-      outView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - 120))
+      outView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: App_width, height: App_height - 120))
       view.addSubview(outView!)
       
       let recorderBtn = UIButton(type: .custom)

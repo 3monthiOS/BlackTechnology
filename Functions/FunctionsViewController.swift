@@ -18,7 +18,7 @@ class FunctionsViewController: APPviewcontroller {
     var collectionfoot: CollectionReusableViewFooter!
     var collectionHeader: UICollectionReusableView!
     
-    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","通讯录","上传图片","云相册","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
+    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","通讯录","上传图片","云相册","视频录制","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 //        let box = QNUtils.getaccesskey()
@@ -135,6 +135,9 @@ extension FunctionsViewController: UICollectionViewDelegate{
         let upload = QNPhotoController()
         upload.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(upload, animated: true)
+    case 12 :
+      let vc = VideoRecorderViewController()
+      navigationController?.pushViewController(vc, animated: true)
 //    case 7:
 //        photobrowserAction(indexPath)
 //    case 8:
