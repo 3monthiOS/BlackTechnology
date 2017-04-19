@@ -9,7 +9,7 @@
 import UIKit
 import IQKeyboardManagerSwift
 //import Swiften
-//
+
 class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
 
     @IBOutlet weak var phoneNumber: UITextField!
@@ -74,9 +74,10 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
         }else{
             alert("坏淫，手机号不对");return
         }
-        alert("谢谢您留下手机号，小军一定好好保管，密码为手机号后8位。")
         Log.info("这个手机里面的用户数量：\(userkeyArray.count) \(String(describing: userkeyArray.last!["phone"]))")
-        self.navigationController?.popViewController(animated: true)
+        alert("谢谢您留下手机号，小军一定好好保管，密码为手机号后8位。", title: "注册") {
+            self.navigationController?.popViewController(animated: true)
+        }
 //        let VC = UIViewController.loadViewControllerFromStoryboard("Login", storyboardID: "Loginview") as! LoginviewController
 //        JumpAnimation(Animations.SuckEffect, Direction: "top", CurrentVc: self, ForVc:VC , isJump: true)
     }
@@ -99,16 +100,5 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -322,19 +322,19 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 				// 姓、姓氏拼音
 				let FirstName: String = ABRecordCopyValue(contact as ABRecord, kABPersonFirstNameProperty)?.takeRetainedValue() as! String? ?? ""
 				currentContact["FirstName"] = FirstName as AnyObject
-				currentContact["FirstNamePhonetic"] = ABRecordCopyValue(contact as ABRecord, kABPersonFirstNamePhoneticProperty)?.takeRetainedValue() as! String? as AnyObject ?? "" as AnyObject
+				currentContact["FirstNamePhonetic"] = ABRecordCopyValue(contact as ABRecord, kABPersonFirstNamePhoneticProperty)?.takeRetainedValue() as! String? as AnyObject
 				// 名、名字拼音
 				let LastName: String = ABRecordCopyValue(contact as ABRecord, kABPersonLastNameProperty)?.takeRetainedValue() as! String? ?? ""
 				currentContact["LastName"] = LastName as AnyObject
-				currentContact["LirstNamePhonetic"] = ABRecordCopyValue(contact as ABRecord, kABPersonLastNamePhoneticProperty)?.takeRetainedValue() as! String? as AnyObject ?? "" as AnyObject
+				currentContact["LirstNamePhonetic"] = ABRecordCopyValue(contact as ABRecord, kABPersonLastNamePhoneticProperty)?.takeRetainedValue() as! String? as AnyObject 
 				// 昵称
-				currentContact["Nikename"] = ABRecordCopyValue(contact as ABRecord, kABPersonNicknameProperty)?.takeRetainedValue() as! String? as AnyObject ?? "" as AnyObject
+				currentContact["Nikename"] = ABRecordCopyValue(contact as ABRecord, kABPersonNicknameProperty)?.takeRetainedValue() as! String? as AnyObject 
 
 				// 姓名整理
 				currentContact["fullName"] = LastName + FirstName as AnyObject
 
 				// 公司（组织）
-				currentContact["Organization"] = ABRecordCopyValue(contact as ABRecord, kABPersonOrganizationProperty)?.takeRetainedValue() as! String? as AnyObject ?? "" as AnyObject
+				currentContact["Organization"] = ABRecordCopyValue(contact as ABRecord, kABPersonOrganizationProperty)?.takeRetainedValue() as! String? as AnyObject 
 				// 职位
 				currentContact["JobTitle"] = ABRecordCopyValue(contact as ABRecord, kABPersonJobTitleProperty)?.takeRetainedValue() as! String? as AnyObject ?? "" as AnyObject
 				// 部门

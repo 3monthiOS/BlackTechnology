@@ -16,7 +16,7 @@ import RealmSwift
 import ObjectMapper
 
 //let api = LDApiSettings()
-let cache = CacheManager(cachable: Realm.sharedRealm as! Cachable)
+let cache = CacheManager(cachable: RealmCache(realm: Realm.sharedRealm))
 var user = User()
 
 @UIApplicationMain
@@ -150,7 +150,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject
             dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject
             
-            dict[NSUnderlyingErrorKey] = error as? NSError
+            dict[NSUnderlyingErrorKey] = error as AnyObject
             let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.

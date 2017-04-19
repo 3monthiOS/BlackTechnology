@@ -12,6 +12,15 @@ import Realm
 
 open class RealmCache: Cachable {
 
+    let realm: Realm
+    
+    // MARK: - init
+    
+    init(realm: Realm) {
+        self.realm = realm
+    }
+    
+    
     open func value(forKey key: String) -> CacheItem? {
         return CacheItem.em.object(primaryKey: key as AnyObject)
     }

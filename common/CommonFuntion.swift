@@ -34,7 +34,13 @@ public func delay(_ seconds: UInt64, task: @escaping () -> Void) {
 
 /// 异步执行代码块（先非主线程执行，再返回主线程执行）
 public func async(_ backgroundTask: @escaping () -> AnyObject!, mainTask: @escaping (AnyObject?) -> Void) {
-    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+//    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+//        let result = backgroundTask()
+//        DispatchQueue.main.sync {
+//            mainTask(result)
+//        }
+//    }
+    DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
         let result = backgroundTask()
         DispatchQueue.main.sync {
             mainTask(result)

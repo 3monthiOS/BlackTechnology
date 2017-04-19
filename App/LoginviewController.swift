@@ -98,6 +98,7 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
         
         txtUser = UITextField(frame: CGRect(x: 30, y: 30, width: vLogin.frame.size.width - 60, height: 44))
         txtUser!.delegate = self
+        txtUser?.keyboardType = .numberPad
         txtUser?.placeholder = "好男人就是我"
         txtUser!.layer.cornerRadius = 5
         txtUser!.layer.borderColor = UIColor.lightGray.cgColor
