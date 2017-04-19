@@ -88,13 +88,13 @@ struct QNUtils {
                     return
                 }
             }else if info?.statusCode == 401{
-                generateToken(true)
+                let _ = generateToken(true)
                 alert("token已重置,请重新上传")
             }else if info?.statusCode == -5 {
                 alert("token错误,请检查你的证书秘钥")
             }
-            Log.error("QiNiu: put data failure (\(info?.error))")
-            completion(.failure(error: info?.error as! NSError))
+            Log.error("QiNiu: put data failure (\(String(describing: info?.error)))")
+            completion(.failure(error: info?.error as NSError?))
             
             }, option: nil)
     }
@@ -105,7 +105,7 @@ struct QNUtils {
         let signingStr = "/list?\nbucket=zhj1214&limit=20"
         let sign = signingStr.hmacData(.sha1, key: secretKey)
         let encodedSigned = QN_GTM_Base64.string(byWebSafeEncoding: sign, padded: true)
-        let accesstoken = "\(accessKey):\(encodedSigned)"
+        let accesstoken = "\(accessKey):\(String(describing: encodedSigned))"
         Log.info("最后的key___      \(accesstoken)")
         return accesstoken
     }

@@ -113,6 +113,7 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
         
         txtPwd = UITextField(frame: CGRect(x: 30, y: 90, width: vLogin.frame.size.width - 60, height: 44))
         txtPwd!.delegate = self
+        txtPwd?.keyboardType = .numberPad
         txtPwd?.placeholder = "我就是小军"
         txtPwd!.layer.cornerRadius = 5;
         txtPwd!.layer.borderColor = UIColor.lightGray.cgColor

@@ -47,7 +47,7 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         phoneNumber.returnKeyType = UIReturnKeyType.done
         getDBuser()
-        createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.right, Title: "完成", normalImage: nil, highlightImage: nil, action: #selector(registerClick))
+        let _ = createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.right, Title: "完成", normalImage: nil, highlightImage: nil, action: #selector(registerClick))
     }
     func getDBuser(){
         if let userkeyArray = session.object(forKey: USERGROUPOBJECTKEY) as? [Dictionary<String,String>] {

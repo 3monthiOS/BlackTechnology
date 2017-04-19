@@ -102,15 +102,15 @@ func prompt(_ message: String, title: String! = nil, text: String! = nil, placeh
 }
 
 func locationfileiscache(_ fileName: String, complate:(_ callback: String)->Void){
-    guard let cachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first else {
+    guard var cachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first else {
         complate("")
         return
     }
     // 打印路径,需要测试的可以往这个路径下放东西
-//    Log.debug("Clear Cache: \(cachePath)")
     var path = ""
+    cachePath = cachePath + "/"
     // 取出文件夹下所有文件数组
-    if let files = try? FileManager.default.subpathsOfDirectory(atPath: cachePath){
+    if let files = try? FileManager.default.subpathsOfDirectory(atPath: cachePath + "/" ){
         // 快速枚举取出所有文件名
         for p in files {
             if p == fileName{
@@ -138,100 +138,45 @@ func fileDownload(_ urlArray: [String],complate:@escaping ((_ isok: Bool,_ callb
 //    }
     
     // 方式二
-//    let destination = Alamofire.Request.suggestedDownloadDestination(
-//        directory: .DocumentDirectory, domain: .UserDomainMask)
-    
     for url in urlArray {
         if url.hasPrefix("http://") || url.hasPrefix("https://") {
-            
-            Alamofire.download(url).responseData { response in
-                if let data = response.result.value {
-                    let image = UIImage(data: data)
-                }
-            }
-            
-            Alamofire.download(url)
-                .downloadProgress { progress in
-                    print("Download Progress: \(progress.fractionCompleted)")
-                }
-                .responseData { response in
-                    if let data = response.result.value {
-                        
+            Alamofire.request(url).downloadProgress(queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.default), closure: { (Progress) in
+//                print("Download Progress: \(String(describing: String(Progress.fractionCompleted * 100).substring(0, 5))))%")
+            }).responseJSON { response in
+                if let imageData = response.data {
                         if let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
-                            let fileName = url.substring(8)
-                            if let fileName = fileName{
-                                let newPath = NSURL(fileURLWithPath: "\(path)/\(fileName)")
-                                //                            print("下载路径：\(newPath)____名称：\(response?.suggestedFilename)")
-                                //                            print(response)
-                                let fileManager = FileManager.default
-                                print(fileManager.fileExists(atPath: newPath.path!))
-                                if ( fileManager.fileExists(atPath: newPath.path!) ) {
-                                    let data = NSData(contentsOfFile: newPath.path!)
-                                    dataArray.append(data! as Data)
-                                }else{
-                                    dataArray.append(NSData() as Data)
-                                    toast("没找到文件")
-                                    print("创建文件")
-                                    //                            try {
-                                    //                                fileManager.removeItemAtURL(newPath)
-                                    //                                fileManager.moveItemAtURL(NSURL(string: url)!, toURL: newPath)
-                                    //                            }
-                                    
-                                }
+                            var  fileName = ""
+                            if let dataName = url.components(separatedBy: "/").last{
+                                fileName = dataName
+                            }else{ fileName = url.substring(8)!}
+                            let newPath = NSURL(fileURLWithPath: "\(path)/\(fileName)")
+                            Log.info("下载路径： \(newPath)____文件名称：\(fileName)")
+                            let fileManager = FileManager.default
+                            if ( fileManager.fileExists(atPath: newPath.path!) ) { // 如果存在则覆盖 此文件
+                                try? imageData.write(to: newPath as URL)
+                                dataArray.append(imageData)
+                                toast("文件重复，被覆盖")
+                            }else{ // 不存在 重复文件
+                                dataArray.append(imageData)
+                                try? imageData.write(to: newPath as URL)
+                                //                                    try {
+                                //                                        fileManager.removeItemAtURL(newPath)
+                                //                                        fileManager.moveItemAtURL(NSURL(string: url)!, toURL: newPath)
+                                //                                    }
                             }
                         }
+                    
                         if dataArray.count == urlArray.count{
                             complate(true, dataArray)
                         }else{
                             complate(false, dataArray)
                         }
-                    }
+                    }else{
+                    toast("请求gif图片失败")
+                }
             }
         }
-        
     }
-    
-//    for url in urlArray {
-//        if url.hasPrefix("http://") || url.hasPrefix("https://") {
-//            Alamofire.download(.GET, url, destination: destination)
-//                .progress { (bytesRead, totalBytesRead, totalBytesExpectedToRead) in
-//                    let percent = totalBytesRead*100/totalBytesExpectedToRead
-//                    print("已下载：\(totalBytesRead)  总共：\(totalBytesExpectedToRead) 当前进度：\(percent)%")
-//                }
-//                .response { (request, response, _, error) in
-//                    if let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first {
-//                        let fileName = response?.suggestedFilename!
-//                        if let fileName = fileName{
-//                            let newPath = NSURL(fileURLWithPath: "\(path)/\(fileName)")
-////                            print("下载路径：\(newPath)____名称：\(response?.suggestedFilename)")
-////                            print(response)
-//                            let fileManager = NSFileManager.defaultManager()
-//                            print(fileManager.fileExistsAtPath(newPath.path!))
-//                            if ( fileManager.fileExistsAtPath(newPath.path!) ) {
-////                                print(newPath)
-//                                let data = NSData(contentsOfURL: newPath)
-//                                dataArray.append(data!)
-//                            }else{
-//                                dataArray.append(NSData())
-//                                toast("没找到文件")
-//                                print("创建文件")
-//                                //                            try {
-//                                //                                fileManager.removeItemAtURL(newPath)
-//                                //                                fileManager.moveItemAtURL(NSURL(string: url)!, toURL: newPath)
-//                                //                            }
-//                                
-//                            }
-//                        }
-//                    }
-//                    if dataArray.count == urlArray.count{
-//                        complate(isok: true, callbackData: dataArray)
-//                    }else{
-//                        complate(isok: false, callbackData: dataArray)
-//                    }
-//            }
-//        }
-//    }
-    
 }
 func RemoveSpecialCharacter(_ str: String) -> String {
     let range = str.rangeOfCharacter(from: CharacterSet(charactersIn: "-,.？、% ~￥#&<>《》()[]{}【】^@/￡¤|§¨「」『』￠￢￣~@#&*（）——+|《》$_€"))
