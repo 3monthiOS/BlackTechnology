@@ -121,6 +121,7 @@
 		F28C985D1E07D7BC00DACB18 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C98581E07D7BC00DACB18 /* User.swift */; };
 		F29401DD1D94FF2C00CF582F /* BaiduLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29401DC1D94FF2C00CF582F /* BaiduLocationManager.swift */; };
 		F29401DF1D94FF6300CF582F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29401DE1D94FF6300CF582F /* Location.swift */; };
+		F2940A071EA85C0000CE9250 /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2940A061EA85C0000CE9250 /* SwiftSpinner.swift */; };
 		F294B3431DFFDDB70055C8CB /* MobileAddressBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F294B3371DFFDDB70055C8CB /* MobileAddressBooks.swift */; };
 		F294B3441DFFDDB70055C8CB /* MobileAddressBooks.xib in Resources */ = {isa = PBXBuildFile; fileRef = F294B3381DFFDDB70055C8CB /* MobileAddressBooks.xib */; };
 		F294B3451DFFDDB70055C8CB /* MObileFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F294B3391DFFDDB70055C8CB /* MObileFunction.swift */; };
@@ -315,6 +316,7 @@
 		F28C98581E07D7BC00DACB18 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F29401DC1D94FF2C00CF582F /* BaiduLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaiduLocationManager.swift; sourceTree = "<group>"; };
 		F29401DE1D94FF6300CF582F /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		F2940A061EA85C0000CE9250 /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
 		F294B3371DFFDDB70055C8CB /* MobileAddressBooks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileAddressBooks.swift; sourceTree = "<group>"; };
 		F294B3381DFFDDB70055C8CB /* MobileAddressBooks.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MobileAddressBooks.xib; sourceTree = "<group>"; };
 		F294B3391DFFDDB70055C8CB /* MObileFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MObileFunction.swift; sourceTree = "<group>"; };
@@ -870,6 +872,7 @@
 		F27F5E4F1D8641EE00336915 /* Uiview */ = {
 			isa = PBXGroup;
 			children = (
+				F2940A061EA85C0000CE9250 /* SwiftSpinner.swift */,
 				F27F5E501D8641EE00336915 /* UIView+Swift.h */,
 				F27F5E511D8641EE00336915 /* UIView+Swift.m */,
 				F27F5E521D8641EE00336915 /* UIView+HFZToast.swift */,
@@ -1359,6 +1362,7 @@
 				F27F5E561D8641EE00336915 /* JumpAnimationcontroller.swift in Sources */,
 				654B6ADA1D9D25DA00B46F6F /* MutableFilterViewController.swift in Sources */,
 				F2666A941D87A42000B2029E /* Notifications.swift in Sources */,
+				F2940A071EA85C0000CE9250 /* SwiftSpinner.swift in Sources */,
 				F234813F1EA5E6EE00CB84F2 /* MIMEType.swift in Sources */,
 				F29401DD1D94FF2C00CF582F /* BaiduLocationManager.swift in Sources */,
 				F28C54AD1EA7646300209259 /* PhotoBrowserDelegate.swift in Sources */,

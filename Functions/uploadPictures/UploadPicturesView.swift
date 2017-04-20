@@ -22,11 +22,11 @@ class uploadPicturesView: UIViewController {
     var user: User?
     var imageUrlData: [String] = []{
         willSet{
-            if session.object(forKey: "funcationupdateimageUrlData") != nil{
-                imageUrlData = session.object(forKey: "funcationupdateimageUrlData") as! [String]
+            if session.object(forKey: "funcationupdateimageUrlData") != nil && !(session.object(forKey: "funcationupdateimageUrlData")?.isEqual(NSNull()))!{
+                imageUrlData = (session.object(forKey: "funcationupdateimageUrlData") as? [String])!
             }else{
                 imageUrlData = [""]
-                imageUrlData = session.setObject(imageUrlData as AnyObject, forKey: "funcationupdateimageUrlData") as! [String]
+                let _ = session.setObject(imageUrlData as AnyObject, forKey: "funcationupdateimageUrlData")
             }
         }
     }
@@ -49,10 +49,12 @@ class uploadPicturesView: UIViewController {
         let token = QNUtils.generateToken()
         if let data = avatarData {
             let key = avatarKey
+            let _ = SwiftSpinner.showLoading(title: "正在上传、请稍后", superView: self.view)
             QNUtils.putData(data, withKey: key, token: token, resourceType: .image) { (result) in
                 switch result {
                 case .success(let url, _, _):
                     //更新用户表
+                    alert("上传成功")
                     Log.error("上传成功\(url)")
                     self.text.text = url
                     self.imageUrlData.append(url)
@@ -60,17 +62,16 @@ class uploadPicturesView: UIViewController {
                 case .failure( _):
                     Log.error("上传头像失败")
                 }
+                SwiftSpinner.hide(superView: self.view, completion: {
+  
+                })
             }
         }
     }
     func saveUpdata(_ key: String,value: [String]){
         if !key.isEmpty{
             if !value.isEmpty{
-                if session.object(forKey: key) != nil{
                     session.setObject(value as AnyObject, forKey: key)
-                }else{
-                    session.setObject(value as AnyObject, forKey: key)
-                }
             }
         }
     }
