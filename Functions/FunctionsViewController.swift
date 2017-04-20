@@ -129,6 +129,13 @@ extension FunctionsViewController: UICollectionViewDelegate{
         let baidu = BaiduMapViewController()
         baidu.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(baidu, animated: true)
+    case 7:
+        photobrowserAction(indexPath)
+    case 8:
+        photobrowserAction(indexPath)
+    case 9:
+        //        MobileAddressBookbuttonclick(100)
+        call_openContact()
     case 10:
         let upload = uploadPicturesView()
         upload.hidesBottomBarWhenPushed = true
@@ -139,15 +146,9 @@ extension FunctionsViewController: UICollectionViewDelegate{
         self.navigationController?.pushViewController(upload, animated: true)
     case 12:
       let vc = VideoRecorderViewController()
+      vc.hidesBottomBarWhenPushed = true
       navigationController?.pushViewController(vc, animated: true)
-    case 7:
-        photobrowserAction(indexPath)
-    case 8:
-        photobrowserAction(indexPath)
-    case 9:
-//        MobileAddressBookbuttonclick(100)
-        call_openContact()
-    default:
+        default:
       break
         }
     }
