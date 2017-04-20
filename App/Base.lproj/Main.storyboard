@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="41k-6P-G8q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="41k-6P-G8q">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,11 +43,11 @@
             </objects>
             <point key="canvasLocation" x="553" y="168"/>
         </scene>
-        <!--功能-->
+        <!--功能列表-->
         <scene sceneID="eo2-l1-GAK">
             <objects>
                 <navigationController id="Ats-RC-H2P" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="功能" id="obS-3i-4I9"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="功能列表" id="obS-3i-4I9"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uxQ-MD-vPr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

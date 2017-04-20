@@ -245,12 +245,12 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 			var authorizedSingal: DispatchSemaphore = DispatchSemaphore(value: 0)
 			var askAuthorization: ABAddressBookRequestAccessCompletionHandler = { success, error in
 				if success {
-					ABAddressBookCopyArrayOfAllPeople(addressBook).takeRetainedValue() as NSArray
+					let _ = ABAddressBookCopyArrayOfAllPeople(addressBook).takeRetainedValue()
 					authorizedSingal.signal()
 				}
 			}
 			ABAddressBookRequestAccessWithCompletion(addressBook, askAuthorization)
-			authorizedSingal.wait(timeout: DispatchTime.distantFuture)
+			let _ =  authorizedSingal.wait(timeout: DispatchTime.distantFuture)
 		}
 
 		func analyzeSysContacts(_ sysContacts: NSArray) -> [[String: AnyObject]] {
@@ -336,11 +336,11 @@ class MObileFunction: ActionSheetController, MFMessageComposeViewControllerDeleg
 				// 公司（组织）
 				currentContact["Organization"] = ABRecordCopyValue(contact as ABRecord, kABPersonOrganizationProperty)?.takeRetainedValue() as! String? as AnyObject 
 				// 职位
-				currentContact["JobTitle"] = ABRecordCopyValue(contact as ABRecord, kABPersonJobTitleProperty)?.takeRetainedValue() as! String? as AnyObject ?? "" as AnyObject
+				currentContact["JobTitle"] = ABRecordCopyValue(contact as ABRecord, kABPersonJobTitleProperty)?.takeRetainedValue() as! String? as AnyObject
 				// 部门
-				currentContact["Department"] = ABRecordCopyValue(contact as ABRecord, kABPersonDepartmentProperty)?.takeRetainedValue() as! String? as AnyObject ?? "" as AnyObject
+				currentContact["Department"] = ABRecordCopyValue(contact as ABRecord, kABPersonDepartmentProperty)?.takeRetainedValue() as! String? as AnyObject 
 				// 备注
-				currentContact["Note"] = ABRecordCopyValue(contact as ABRecord, kABPersonNoteProperty)?.takeRetainedValue() as! String? as AnyObject ?? "" as AnyObject
+				currentContact["Note"] = ABRecordCopyValue(contact as ABRecord, kABPersonNoteProperty)?.takeRetainedValue() as! String? as AnyObject 
 
 				// 获取头像
 

@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import AVFoundation
 //import Swiften
-import Toast_Swift
 
 extension PhotoBrowser {
 

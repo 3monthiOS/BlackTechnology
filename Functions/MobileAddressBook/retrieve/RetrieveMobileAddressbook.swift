@@ -104,8 +104,9 @@ class RetrieveMobileAddressbook: NSObject {
 						if char == " " {
 							continue
 						}
-						let number = Int(String(describing: strPinYin.characters.index(of: char)!))
-						chineseString.pinYin = String(strPinYin.characters.dropFirst(number!)).capitalized
+                        let range = strPinYin.range(of: char.description)
+                        let r = strings.nsRange(from: range!)
+                        chineseString.pinYin = String(strPinYin.characters.dropFirst(r.location)).capitalized
 						break
 					}
 				} else {
