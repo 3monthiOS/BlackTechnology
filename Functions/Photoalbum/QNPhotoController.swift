@@ -9,7 +9,7 @@
 import UIKit
 //import Swiften
 
-class QNPhotoController: UIViewController {
+class QNPhotoController: APPviewcontroller {
     
     var collectionfoot: CollectionReusableHeadre!
     var collectionHeader: UICollectionReusableView!
@@ -26,7 +26,7 @@ class QNPhotoController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "上传列表"
+        self.title = "上传相册列表"
         initcollectionMjrefresh()
         initCollectionview()
         initData()
