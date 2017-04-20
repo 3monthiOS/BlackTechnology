@@ -13,6 +13,7 @@
 		654B6ADB1D9D25DA00B46F6F /* GradientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B6AD81D9D25DA00B46F6F /* GradientViewController.swift */; };
 		65529C351D9E66CE00ED3E1C /* MutableFilterMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65529C341D9E66CE00ED3E1C /* MutableFilterMoreViewController.swift */; };
 		65529C3A1D9E722A00ED3E1C /* CubeMap.c in Sources */ = {isa = PBXBuildFile; fileRef = 65529C391D9E722A00ED3E1C /* CubeMap.c */; };
+		657929B31EA8A5E10006F607 /* VideoRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657929B21EA8A5E10006F607 /* VideoRecorderViewController.swift */; };
 		6598A7331D93EB3D00A22338 /* UIView+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6598A7321D93EB3D00A22338 /* UIView+Gradient.swift */; };
 		F21437AC1D98D403000E0CBF /* BaiduMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21437AB1D98D403000E0CBF /* BaiduMapViewController.swift */; };
 		F21437C41D98EEA9000E0CBF /* Session+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21437C31D98EEA9000E0CBF /* Session+extension.swift */; };
@@ -121,7 +122,6 @@
 		F28C985D1E07D7BC00DACB18 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C98581E07D7BC00DACB18 /* User.swift */; };
 		F29401DD1D94FF2C00CF582F /* BaiduLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29401DC1D94FF2C00CF582F /* BaiduLocationManager.swift */; };
 		F29401DF1D94FF6300CF582F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29401DE1D94FF6300CF582F /* Location.swift */; };
-		F2940A071EA85C0000CE9250 /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2940A061EA85C0000CE9250 /* SwiftSpinner.swift */; };
 		F294B3431DFFDDB70055C8CB /* MobileAddressBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F294B3371DFFDDB70055C8CB /* MobileAddressBooks.swift */; };
 		F294B3441DFFDDB70055C8CB /* MobileAddressBooks.xib in Resources */ = {isa = PBXBuildFile; fileRef = F294B3381DFFDDB70055C8CB /* MobileAddressBooks.xib */; };
 		F294B3451DFFDDB70055C8CB /* MObileFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F294B3391DFFDDB70055C8CB /* MObileFunction.swift */; };
@@ -190,6 +190,7 @@
 		654B6AD81D9D25DA00B46F6F /* GradientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientViewController.swift; sourceTree = "<group>"; };
 		65529C341D9E66CE00ED3E1C /* MutableFilterMoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableFilterMoreViewController.swift; sourceTree = "<group>"; };
 		65529C391D9E722A00ED3E1C /* CubeMap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CubeMap.c; sourceTree = "<group>"; };
+		657929B21EA8A5E10006F607 /* VideoRecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoRecorderViewController.swift; sourceTree = "<group>"; };
 		6598A7321D93EB3D00A22338 /* UIView+Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Gradient.swift"; sourceTree = "<group>"; };
 		7FEFAF43BC70671EDF9716E6 /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5A6087CE1A63B4E2D426C9 /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
@@ -316,7 +317,6 @@
 		F28C98581E07D7BC00DACB18 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F29401DC1D94FF2C00CF582F /* BaiduLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaiduLocationManager.swift; sourceTree = "<group>"; };
 		F29401DE1D94FF6300CF582F /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		F2940A061EA85C0000CE9250 /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
 		F294B3371DFFDDB70055C8CB /* MobileAddressBooks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileAddressBooks.swift; sourceTree = "<group>"; };
 		F294B3381DFFDDB70055C8CB /* MobileAddressBooks.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MobileAddressBooks.xib; sourceTree = "<group>"; };
 		F294B3391DFFDDB70055C8CB /* MObileFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MObileFunction.swift; sourceTree = "<group>"; };
@@ -419,6 +419,14 @@
 				654B6AD81D9D25DA00B46F6F /* GradientViewController.swift */,
 			);
 			path = Gradient;
+			sourceTree = "<group>";
+		};
+		657929B11EA8A5E10006F607 /* video */ = {
+			isa = PBXGroup;
+			children = (
+				657929B21EA8A5E10006F607 /* VideoRecorderViewController.swift */,
+			);
+			path = video;
 			sourceTree = "<group>";
 		};
 		EE62508F8DE98C65D9612A64 /* Pods */ = {
@@ -726,6 +734,7 @@
 		F2666A8D1D879C6F00B2029E /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				657929B11EA8A5E10006F607 /* video */,
 				F28C548F1EA7646300209259 /* Photographic */,
 				F294B3361DFFDDB70055C8CB /* MobileAddressBook */,
 				F25F3F041DF7E18D00ACACB6 /* Photoalbum */,
@@ -872,7 +881,6 @@
 		F27F5E4F1D8641EE00336915 /* Uiview */ = {
 			isa = PBXGroup;
 			children = (
-				F2940A061EA85C0000CE9250 /* SwiftSpinner.swift */,
 				F27F5E501D8641EE00336915 /* UIView+Swift.h */,
 				F27F5E511D8641EE00336915 /* UIView+Swift.m */,
 				F27F5E521D8641EE00336915 /* UIView+HFZToast.swift */,
@@ -1362,7 +1370,6 @@
 				F27F5E561D8641EE00336915 /* JumpAnimationcontroller.swift in Sources */,
 				654B6ADA1D9D25DA00B46F6F /* MutableFilterViewController.swift in Sources */,
 				F2666A941D87A42000B2029E /* Notifications.swift in Sources */,
-				F2940A071EA85C0000CE9250 /* SwiftSpinner.swift in Sources */,
 				F234813F1EA5E6EE00CB84F2 /* MIMEType.swift in Sources */,
 				F29401DD1D94FF2C00CF582F /* BaiduLocationManager.swift in Sources */,
 				F28C54AD1EA7646300209259 /* PhotoBrowserDelegate.swift in Sources */,
@@ -1466,6 +1473,7 @@
 				F28C54B11EA7646300209259 /* PECropView.m in Sources */,
 				65529C3A1D9E722A00ED3E1C /* CubeMap.c in Sources */,
 				F2D652CA1D7E94A90005824D /* AppDelegate.swift in Sources */,
+				657929B31EA8A5E10006F607 /* VideoRecorderViewController.swift in Sources */,
 				654B6ADB1D9D25DA00B46F6F /* GradientViewController.swift in Sources */,
 				F28C54B61EA7646300209259 /* UIImage+PECrop.m in Sources */,
 				65529C351D9E66CE00ED3E1C /* MutableFilterMoreViewController.swift in Sources */,

@@ -140,24 +140,21 @@ struct QNUtils {
             // MARK: - 过滤指定字符串   里面的指定字符根据自己的需要添加
                     print("将上传策略序列化成为json格式:\(json)")
             let policyData = json.data(using: String.Encoding.utf8)
-            let encodedPolicy = QN_GTM_Base64.string(byWebSafeEncoding: policyData, padded: true)!
+            let encodedPolicy = QN_GTM_Base64.string(byWebSafeEncoding: policyData, padded: true)
                     print("对json序列化后的上传策略进行URL安全的Base64编码,得到如下encoded:\(String(describing: encodedPolicy))")
             
-            let hmacData = encodedPolicy.hmacData(.sha1, key: secretKey)
+            let hmacData = encodedPolicy?.hmacData(.sha1, key: secretKey)
             let encodedSigned = QN_GTM_Base64.string(byWebSafeEncoding: hmacData, padded: true)
             let token = "\(accessKey):\(encodedSigned!):\(String(describing: encodedPolicy))"
 //            userdefaults.setObject(token, forKey: "QNtoken")
             session.setObject(token as AnyObject, forKey: "QNtoken")
             return token
         }else{
-            if let token = session.object(forKey: "QNtoken"){
-                if token.isEqual(NSNull()) {
-                    return generateToken(true)
-                }
-                return token as! String
-            }
+            let token = session.object(forKey: "QNtoken")
 //            let token = userdefaults.objectForKey("QNtoken") as? String
-            else{
+            if let token = token{
+                return token as! String
+            }else{
                 return generateToken(true)
             }
         }
