@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum LDApiError: Error {
+enum ApiError: Error {
 	case httpRequestError(status: Int)
 	case apiError(code: Int, message: String)
 	case dataError

@@ -19,7 +19,7 @@ extension PhotoBrowser {
 		var gap: CGFloat = 20.0
 
 		var currentIndex = 0
-		weak var delegate: protocol<PhotoBrowserDelegate, PhotoBrowserDataSource>!
+		weak var delegate: (PhotoBrowserDelegate & PhotoBrowserDataSource)!
 
 		fileprivate var scrollView: UIScrollView!
         
@@ -35,7 +35,7 @@ extension PhotoBrowser {
 
 		// MARK: - Init
 
-		convenience init(delegate: protocol<PhotoBrowserDelegate, PhotoBrowserDataSource>!, options: PhotoBrowserOptions, currentIndex: Int = 0) {
+		convenience init(delegate: (PhotoBrowserDelegate & PhotoBrowserDataSource)!, options: PhotoBrowserOptions, currentIndex: Int = 0) {
 			self.init()
 			self.delegate = delegate
 			self.options = options

@@ -12,7 +12,7 @@ import SwiftyJSON
 //import Swiften
 
 
-class LDApiResponse<T: Mappable>: Mappable {
+class ApiResponse<T: Mappable>: Mappable {
 	
 	var isOK: Bool {
 		return code == 0 && (msg != nil || errorMessage != nil) && error == nil
@@ -32,11 +32,11 @@ class LDApiResponse<T: Mappable>: Mappable {
 		return String(data: rawData, encoding: String.Encoding.utf8)
 	}
     var json: JSON? {
-        return isOK ? JSON(data: rawData)["obj"] : nil
+        return isOK ? JSON(data: rawData)["obj"] : JSON.null
     }
     var headers: [AnyHashable: Any]?
 
-	var error: LDApiError?
+	var error: ApiError?
 	
 	init() {
 
@@ -58,28 +58,28 @@ class LDApiResponse<T: Mappable>: Mappable {
             msg <- map["obj"]
 			let value = map.currentValue
             if value is String || value is Bool || value is Int || value is Array<AnyObject> {
-                msg = T(map)
+                msg = map as? T
             }
 		} else {
-			error = LDApiError.apiError(code: code, message: errorMessage ?? "")
+			error = ApiError.apiError(code: code, message: errorMessage ?? "")
 			Log.error("api: ApiError[\(code)] \(errorMessage ?? "")")
 		}
 	}
     
-	func success( _ callback: @noescape (_ msg: T) -> Void) -> LDApiResponse {
+	func success( _ callback: (_ msg: T) -> Void) -> ApiResponse {
 		guard isOK else {return self}
-//        session.openid = openid
-//        session.passport = passport
+        session.openid = openid
+        session.passport = passport
 		callback(msg!)
         return self
 	}
 	
-	func failure( _ callback: @noescape (_ error: LDApiError) -> Void) -> LDApiResponse {
+	func failure( _ callback: (_ error: ApiError) -> Void) -> ApiResponse {
 		guard !isOK else {return self}
 		if let error = self.error {
 			callback(error)
 		} else if msg == nil {
-			callback(LDApiError.dataError)
+			callback(ApiError.dataError)
 		}
         //100000("未登录或登录超时，请重新登录")，100007("用户已在其他设备登录")，100019("用户已被冻结")
 //        if self.code == 100000 || self.code == 100007 || self.code == 100019{
@@ -90,7 +90,7 @@ class LDApiResponse<T: Mappable>: Mappable {
         return self
 	}
 	
-	func failureDefault() -> LDApiResponse {
+	func failureDefault() -> ApiResponse {
 		self.failure { error in
             // 忽略的错误代码列表
             // 999981 远程服务调用超时

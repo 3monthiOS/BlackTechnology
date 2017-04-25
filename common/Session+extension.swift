@@ -10,23 +10,23 @@ extension Session {
 
     /** appid */
     var appid: String {
-        return user?.appid ?? ""
-//        get { return string(forKey: "APPID", defaultValue: "") }
-//        set { setObject(newValue, forKey: "APPID") }
+//        return user?.appid ?? ""
+        get { return string(forKey: "APPID", defaultValue: "") }
+        set { setObject(newValue as AnyObject, forKey: "APPID") }
     }
 
     /** passport */
     var passport: String {
-        return user?.passport ?? ""
-//        get { return string(forKey: "PASSPORT", defaultValue: "") }
-//        set { setObject(newValue, forKey: "PASSPORT") }
+//        return user?.passport ?? ""
+        get { return string(forKey: "PASSPORT", defaultValue: "") }
+        set { setObject(newValue as AnyObject, forKey: "PASSPORT") }
     }
 
     /** openid */
     var openid: String {
-        return user?.openid ?? ""
-//        get { return string(forKey: "OPENID", defaultValue: "") }
-//        set { setObject(newValue, forKey: "OPENID") }
+//        return user?.openid ?? ""
+        get { return string(forKey: "OPENID", defaultValue: "") }
+        set { setObject(newValue as AnyObject, forKey: "OPENID") }
     }
 
     /// cityUrl

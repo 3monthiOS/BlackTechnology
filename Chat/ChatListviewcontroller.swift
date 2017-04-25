@@ -9,8 +9,11 @@
 import Foundation
 import UIKit
 import IQKeyboardManagerSwift
+import Alamofire
 
 class ChatListviewcontroller: RCConversationListViewController {
+    
+    var requwst : ApiService?
     
     @IBOutlet weak var chatBGimage: UIImageView!
     var userId = ""
@@ -35,6 +38,7 @@ class ChatListviewcontroller: RCConversationListViewController {
         })
 
         initChatView()
+        requestTest()
     }
     func initChatView(){
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
@@ -91,5 +95,29 @@ class ChatListviewcontroller: RCConversationListViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
+
+// MARK: -- 请求测试
+extension ChatListviewcontroller{
     
+    func requestTest(){
+        HttpClient.default.adapter = AccessTokenAdapter()
+        HttpClient.defaultEncoding = JerseyEncoding.default
+        HttpClient.errorFieldName = "msg"
+        testParam()
+    }
+    
+    func testParam() {
+        testObject()
+    }
+    
+    func testObject() {
+        Api.testArrayStringBaiDu.call { (response: ApiObjectResponse<MessageBody>) in
+            if let value = response.value {
+                let json = value.toJSONString()
+                Log.info("\(String(describing: json))")
+            }
+        }
+    }
+
 }

@@ -18,7 +18,7 @@ public class NetworkManager {
     
     public static func initNetworkManager(sserverTrustPolicie serverTrustPolicies: [String: ServerTrustPolicy]? = nil) {
         
-        URLCache.activate()
+        FileURLCache.activate()
         
         var serverTrustPolicyManager: ServerTrustPolicyManager? = nil
         if let policies = serverTrustPolicies {

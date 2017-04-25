@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Alamofire
 //import CommonCrypto
 
 /*
@@ -55,6 +56,17 @@ extension String {
     public var urlDecoded: String {
         return self.removingPercentEncoding ?? self
     }
+}
+
+// Alamofire 4 Swift 3 ParameterEncoding Custom
+extension String: ParameterEncoding {
+    
+    public func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
+        var request = try urlRequest.asURLRequest()
+        request.httpBody = data(using: .utf8, allowLossyConversion: false)
+        return request
+    }
+    
 }
 
 // MARK: Digest
@@ -120,21 +132,27 @@ extension String {
 }
 
 // MARK: Substring
-
 extension String {
+    public func index(at position: Int) -> Index? {
+        if position < 0 {
+            return nil
+        }
+        return index(startIndex, offsetBy: position, limitedBy: endIndex)
+    }
+    
     public func substring(_ fromIndex: Int, _ toIndex: Int = Int.max) -> String? {
-        let len = self.length
+        let len = length
         var start: Int
         var end: Int
         if fromIndex < 0 {
-            start = 0
-            end = len + fromIndex
+            start = len + fromIndex
+            end = len
         } else {
             start = fromIndex
             if toIndex < 0 {
                 end = len + toIndex
             } else {
-                end = min(toIndex, len)
+                end = toIndex
             }
         }
         
@@ -142,26 +160,58 @@ extension String {
             return nil
         }
         
-        return self[start..<end]
+        return self[start..<min(end, len)]
+    }
+    
+    public subscript(range: ClosedRange<Int>) -> String? {
+        get {
+            return self[range.lowerBound..<range.upperBound+1]
+        }
+        set {
+            self[range.lowerBound..<range.upperBound+1] = newValue
+        }
     }
     
     public subscript(range: Range<Int>) -> String? {
-        let len = self.length
-        if range.lowerBound >= len || range.upperBound < 0 {
-            return nil
+        get {
+            guard let start = index(at: range.lowerBound),
+                let end = index(at: range.upperBound)
+                else {
+                    return nil
+            }
+            return self[start..<end]
         }
-        
-        let startIndex = self.characters.index(self.startIndex, offsetBy: max(0, range.lowerBound))
-        let endIndex = self.characters.index(self.startIndex, offsetBy: min(len, range.upperBound))
-        
-        return self[startIndex..<endIndex]
+        set {
+            guard let start = index(at: range.lowerBound),
+                let end = index(at: range.upperBound)
+                else {
+                    return
+            }
+            if let value = newValue {
+                replaceSubrange(start..<end, with: value)
+            } else {
+                removeSubrange(start..<end)
+            }
+        }
     }
     
-    public subscript(index: Int) -> Character? {
-        if index < 0 || index >= self.length {
-            return nil
+    public subscript(position: Int) -> Character? {
+        get {
+            guard let index = index(at: position) else {
+                return nil
+            }
+            return self[index]
         }
-        return self[self.characters.index(self.startIndex, offsetBy: index)]
+        set {
+            guard let index = index(at: position) else {
+                return
+            }
+            if let value = newValue {
+                replaceSubrange(index...index, with: String(value))
+            } else {
+                remove(at: index)
+            }
+        }
     }
 }
 

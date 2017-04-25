@@ -10,7 +10,7 @@ import UIKit
 //import Swiften
 import SnapKit
 
-class Myviewcontroller: APPviewcontroller{
+class Myviewcontroller: KGDrawerViewController{
     
     let conreollerName = ["MyinfoControllerView","MyinfoControllerView","MyinfoControllerView","MyinfoControllerView","MyinfoControllerView","MyinfoControllerView","MyinfoControllerView","MyinfoControllerView","MyinfoControllerView","MyinfoControllerView"]
     var controllers = [UIViewController]()
@@ -30,6 +30,18 @@ class Myviewcontroller: APPviewcontroller{
         addPagerController()
         self.pagerController!.reloadData()
         self.pagerController?.moveToController(at: 0, animated: false)
+        
+        
+        
+        self.centerViewController = self
+        self.leftViewController = viewControllerForStoryboardId("left")
+        self.rightViewController = viewControllerForStoryboardId("right")
+        //背景图片
+        drawerViewController.backgroundImage = UIImage(named: "sky3")
+        
+        _drawerViewController = drawerViewController
+        return drawerViewController
+        
     }
     
     func addPagerController(){

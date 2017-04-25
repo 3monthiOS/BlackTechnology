@@ -54,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if !mapManager.start(BAIDU_KEY, generalDelegate: self) {
             Log.error("BMK: baidu map manager start failed!")
         }
+        
         Notifications.locationUpdated.addObserver(self, selector: #selector(locationUpdatedNotification(_:)), sender: nil)
         // IQ 键盘
         IQKeyboardManager.sharedManager().enable = true

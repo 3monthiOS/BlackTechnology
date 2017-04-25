@@ -63,7 +63,7 @@
         <!--聊天-->
         <scene sceneID="rBX-2m-wDg">
             <objects>
-                <viewController id="dDP-iZ-hvx" customClass="ChatListviewcontroller" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatListviewcontroller" id="dDP-iZ-hvx" customClass="ChatListviewcontroller" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hw5-ec-T2e"/>
                         <viewControllerLayoutGuide type="bottom" id="DJV-Sz-AfZ"/>
@@ -83,7 +83,7 @@
         <!--黑科技-->
         <scene sceneID="Y6E-r1-A4O">
             <objects>
-                <viewController title="是不是黑科技呢" id="1kZ-9X-6ha" userLabel="黑科技" customClass="FunctionsViewController" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FunctionsViewController" title="是不是黑科技呢" id="1kZ-9X-6ha" userLabel="黑科技" customClass="FunctionsViewController" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aoh-co-ZeG"/>
                         <viewControllerLayoutGuide type="bottom" id="YWu-wu-m1L"/>
@@ -132,7 +132,7 @@
         <!--myTable-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="小军" id="BYZ-38-t0r" userLabel="myTable" customClass="Myviewcontroller" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Myviewcontroller" title="小军" id="BYZ-38-t0r" userLabel="myTable" customClass="Myviewcontroller" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>

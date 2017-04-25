@@ -207,14 +207,14 @@ extension VideoRecorderViewController: AVCaptureFileOutputRecordingDelegate{
         PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputFileURL)
       }) { (gwc, error) in
         DispatchQueue.main.async {
-          debugPrint(error?.localizedDescription,Thread.current)
+          debugPrint(error?.localizedDescription as Any,Thread.current)
           self.navigationController?.popViewController(animated: true)
         }
       }
     }else {
       let ass = ALAssetsLibrary()
       ass.writeVideoAtPath(toSavedPhotosAlbum: outputFileURL) { (url, error) in
-        debugPrint(error?.localizedDescription)
+        debugPrint(error?.localizedDescription as Any)
         self.navigationController?.popViewController(animated: true)
       }
     }

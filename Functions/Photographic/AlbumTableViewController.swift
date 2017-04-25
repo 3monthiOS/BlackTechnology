@@ -34,7 +34,7 @@ extension PhotoBrowser {
             
             // Setup View
             self.title = "相册"
-            self.createBarButtonItemAtPosition(.right, Title: "取消", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(AlbumTableViewController.cancelAction(_:)))
+            let _ = self.createBarButtonItemAtPosition(.right, Title: "取消", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(AlbumTableViewController.cancelAction(_:)))
             tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
             tableView.tableFooterView = UIView(frame: CGRect.zero)
             

@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum LDApiDataTypes: String {
+enum ApiDataTypes: String {
 	case JSON, HTML, XML, Text
 	
 	var mime: String {
