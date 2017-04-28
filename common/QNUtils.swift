@@ -10,6 +10,9 @@ import Foundation
 import Qiniu
 //import Swiften
 import SwiftyJSON
+import Alamofire
+
+
 /**
  * 七牛工具集
  */
@@ -48,7 +51,9 @@ struct QNUtils {
     
     static func getlistdata(){
         //        bucket=<UrlEncodedBucket>&marker=<Marker>&limit=<Limit>&prefix=<UrlEncodedPrefix>&delimiter=<UrlEncodedDelimiter>
+
 //        zhj1214=
+        
 //        api.updateLiveTrailer.post(["id": curLiveNotice!.id!, "startTime": self.liveTime!]){
 //            (response: LDApiResponse<LiveNotice>) in
 //            self.submitBtn.userInteractionEnabled = true
@@ -61,13 +66,19 @@ struct QNUtils {
 //                UMHelper.postEvent("mine_update_live_pre-broadcast")
 //            }
 //        }
-        let bucket = "zhj1214"
-        let url = "http://rsf.qbox.me/list?bucket=\(bucket.urlEncoded)"
+        let bucket = "zhj1214" // ?bucket=\(bucket.urlEncoded)
+        let url = "http://rsf.qbox.me/list"
+        
+        Alamofire.request(url, method: .post, parameters: ["bucket":"\(bucket.urlEncoded)"], encoding: URLEncoding.default, headers: ["Content-Type":"application/x-www-form-urlencoded","Authorization":"\(generateToken())"]).responseJSON { response in
+            Log.info("我拿到的token -=== \(generateToken())")
+            if response.result.isSuccess {
+                Log.info("\(response)")
+            }
+            
+        }
+        
     
         Log.info(url)
-//        api.getQNlistdata.post(<#T##params: [String : AnyObject]?##[String : AnyObject]?#>, start: <#T##Int?#>, limit: <#T##Int?#>) { (response) in
-//            <#code#>
-//        }
     }
     static func putData(_ data: Data, withKey key: String, token: String,resourceType: ResourceType, isQuiet: Bool = false,completion: @escaping (UploadResult) -> Void) {
         let config = QNConfiguration.build { (builder: QNConfigurationBuilder!) in
@@ -140,10 +151,10 @@ struct QNUtils {
             // MARK: - 过滤指定字符串   里面的指定字符根据自己的需要添加
                     print("将上传策略序列化成为json格式:\(json)")
             let policyData = json.data(using: String.Encoding.utf8)
-            let encodedPolicy = QN_GTM_Base64.string(byWebSafeEncoding: policyData, padded: true)
+            let encodedPolicy = QN_GTM_Base64.string(byWebSafeEncoding: policyData, padded: true)!
                     print("对json序列化后的上传策略进行URL安全的Base64编码,得到如下encoded:\(String(describing: encodedPolicy))")
             
-            let hmacData = encodedPolicy?.hmacData(.sha1, key: secretKey)
+            let hmacData = encodedPolicy.hmacData(.sha1, key: secretKey)
             let encodedSigned = QN_GTM_Base64.string(byWebSafeEncoding: hmacData, padded: true)
             let token = "\(accessKey):\(encodedSigned!):\(String(describing: encodedPolicy))"
 //            userdefaults.setObject(token, forKey: "QNtoken")

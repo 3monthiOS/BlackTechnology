@@ -73,10 +73,6 @@
 		F24E9A3C1DEEBA0800A45EB8 /* gif131.gif in Resources */ = {isa = PBXBuildFile; fileRef = F24E9A3B1DEEBA0800A45EB8 /* gif131.gif */; };
 		F24E9A411DEED00E00A45EB8 /* uploadGetToken.m in Sources */ = {isa = PBXBuildFile; fileRef = F24E9A401DEED00E00A45EB8 /* uploadGetToken.m */; };
 		F25E22E91D9B9A1D00A0F0DA /* AppChatScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25E22E81D9B9A1D00A0F0DA /* AppChatScreenViewController.swift */; };
-		F25E746E1EAF3E68006DF8FF /* KGDrawerAnimating.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25E74671EAF3E68006DF8FF /* KGDrawerAnimating.swift */; };
-		F25E746F1EAF3E68006DF8FF /* KGDrawerSpringAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25E74681EAF3E68006DF8FF /* KGDrawerSpringAnimator.swift */; };
-		F25E74701EAF3E68006DF8FF /* KGDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25E74691EAF3E68006DF8FF /* KGDrawerView.swift */; };
-		F25E74711EAF3E68006DF8FF /* KGDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25E746A1EAF3E68006DF8FF /* KGDrawerViewController.swift */; };
 		F2666A8F1D879CCD00B2029E /* Myviewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2666A8E1D879CCD00B2029E /* Myviewcontroller.swift */; };
 		F2666A911D879CEE00B2029E /* FunctionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2666A901D879CEE00B2029E /* FunctionsViewController.swift */; };
 		F2666A941D87A42000B2029E /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2666A931D87A42000B2029E /* Notifications.swift */; };
@@ -272,11 +268,6 @@
 		F24E9A3F1DEED00E00A45EB8 /* uploadGetToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uploadGetToken.h; sourceTree = "<group>"; };
 		F24E9A401DEED00E00A45EB8 /* uploadGetToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = uploadGetToken.m; sourceTree = "<group>"; };
 		F25E22E81D9B9A1D00A0F0DA /* AppChatScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppChatScreenViewController.swift; sourceTree = "<group>"; };
-		F25E74671EAF3E68006DF8FF /* KGDrawerAnimating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KGDrawerAnimating.swift; sourceTree = "<group>"; };
-		F25E74681EAF3E68006DF8FF /* KGDrawerSpringAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KGDrawerSpringAnimator.swift; sourceTree = "<group>"; };
-		F25E74691EAF3E68006DF8FF /* KGDrawerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KGDrawerView.swift; sourceTree = "<group>"; };
-		F25E746A1EAF3E68006DF8FF /* KGDrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KGDrawerViewController.swift; sourceTree = "<group>"; };
-		F25E746B1EAF3E68006DF8FF /* KGFloatingDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGFloatingDrawer.h; sourceTree = "<group>"; };
 		F2666A8E1D879CCD00B2029E /* Myviewcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Myviewcontroller.swift; sourceTree = "<group>"; };
 		F2666A901D879CEE00B2029E /* FunctionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionsViewController.swift; sourceTree = "<group>"; };
 		F2666A931D87A42000B2029E /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
@@ -737,34 +728,6 @@
 			path = RC;
 			sourceTree = "<group>";
 		};
-		F25E74631EAF3E68006DF8FF /* KGFloatingDrawer */ = {
-			isa = PBXGroup;
-			children = (
-				F25E74651EAF3E68006DF8FF /* Pod */,
-			);
-			path = KGFloatingDrawer;
-			sourceTree = "<group>";
-		};
-		F25E74651EAF3E68006DF8FF /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				F25E74661EAF3E68006DF8FF /* Classes */,
-			);
-			path = Pod;
-			sourceTree = "<group>";
-		};
-		F25E74661EAF3E68006DF8FF /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				F25E74671EAF3E68006DF8FF /* KGDrawerAnimating.swift */,
-				F25E74681EAF3E68006DF8FF /* KGDrawerSpringAnimator.swift */,
-				F25E74691EAF3E68006DF8FF /* KGDrawerView.swift */,
-				F25E746A1EAF3E68006DF8FF /* KGDrawerViewController.swift */,
-				F25E746B1EAF3E68006DF8FF /* KGFloatingDrawer.h */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		F25F3F041DF7E18D00ACACB6 /* Photoalbum */ = {
 			isa = PBXGroup;
 			children = (
@@ -866,7 +829,6 @@
 		F27F5E3E1D8641EE00336915 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				F25E74631EAF3E68006DF8FF /* KGFloatingDrawer */,
 				F24E9A311DEEA77B00A45EB8 /* QNUtils.swift */,
 				F21437C31D98EEA9000E0CBF /* Session+extension.swift */,
 				F27F5E421D8641EE00336915 /* CommonFuntion.swift */,
@@ -1449,8 +1411,6 @@
 				F23481411EA5E6EE00CB84F2 /* Reachability.swift in Sources */,
 				F234813C1EA5E6EE00CB84F2 /* Swizzler.swift in Sources */,
 				F27F5E5A1D8641EE00336915 /* String+Size.swift in Sources */,
-				F25E74701EAF3E68006DF8FF /* KGDrawerView.swift in Sources */,
-				F25E746E1EAF3E68006DF8FF /* KGDrawerAnimating.swift in Sources */,
 				F27F5E561D8641EE00336915 /* JumpAnimationcontroller.swift in Sources */,
 				654B6ADA1D9D25DA00B46F6F /* MutableFilterViewController.swift in Sources */,
 				F2666A941D87A42000B2029E /* Notifications.swift in Sources */,
@@ -1461,7 +1421,6 @@
 				F28C54B41EA7646300209259 /* PEResizeControl.m in Sources */,
 				F28C54AC1EA7646300209259 /* PhotoBrowser.swift in Sources */,
 				F23481431EA5E6EE00CB84F2 /* RestError.swift in Sources */,
-				F25E746F1EAF3E68006DF8FF /* KGDrawerSpringAnimator.swift in Sources */,
 				F26871F31D9236D800611136 /* MJrefreshCollectionview.swift in Sources */,
 				F2D652CC1D7E94A90005824D /* ViewController.swift in Sources */,
 				F24E9A381DEEB18A00A45EB8 /* UploadPicturesView.swift in Sources */,
@@ -1519,7 +1478,6 @@
 				F2D54B251D93A692006DE294 /* TableViewHeaderCell.swift in Sources */,
 				F2666A8F1D879CCD00B2029E /* Myviewcontroller.swift in Sources */,
 				F2D768771E0A712C003A5936 /* Version.swift in Sources */,
-				F25E74711EAF3E68006DF8FF /* KGDrawerViewController.swift in Sources */,
 				F23481541EA5E6EE00CB84F2 /* UIColor+Extension.swift in Sources */,
 				F27F5E5F1D8641EE00336915 /* UIView+Swift.m in Sources */,
 				F2D690551DFE87DD0087328B /* QNPhotoController.swift in Sources */,

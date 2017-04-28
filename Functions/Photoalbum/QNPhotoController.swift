@@ -30,6 +30,7 @@ class QNPhotoController: APPviewcontroller {
         initcollectionMjrefresh()
         initCollectionview()
         initData()
+        QNUtils.getlistdata()
     }
     
     func initcollectionMjrefresh(){
