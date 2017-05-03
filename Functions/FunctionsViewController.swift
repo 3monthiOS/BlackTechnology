@@ -11,6 +11,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 import AlamofireObjectMapper
+import SwiftyGif
 
 class FunctionsViewController: APPviewcontroller {
     
@@ -18,7 +19,7 @@ class FunctionsViewController: APPviewcontroller {
     var collectionfoot: CollectionReusableViewFooter!
     var collectionHeader: UICollectionReusableView!
     
-    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","通讯录","上传图片","云相册","视频录制","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
+    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","通讯录","上传图片","云相册","视频录制","GIF","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         QNcheck()
@@ -35,6 +36,7 @@ class FunctionsViewController: APPviewcontroller {
         collectionView.noDataNotice = "无数据可加载"
         collectionView.refreshDelegate = self
         collectionView.configRefreshable(headerEnabled: true, footerEnabled: true)
+        contentView?.addSubview(collectionView)
     }
     func initCollectionview(){
         self.view.backgroundColor = rgb(242,245,249)
@@ -148,6 +150,11 @@ extension FunctionsViewController: UICollectionViewDelegate{
       let vc = VideoRecorderViewController()
       vc.hidesBottomBarWhenPushed = true
       navigationController?.pushViewController(vc, animated: true)
+    case 13:
+        let vc = GifDetailController()
+        vc.imageData = imageUrlArray
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
         default:
       break
         }

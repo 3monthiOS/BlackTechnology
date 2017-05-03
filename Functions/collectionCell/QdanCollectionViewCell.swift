@@ -42,7 +42,7 @@ class QdanCollectionViewCell: UICollectionViewCell {
                     locationfileiscache(str, complate: { (callback) in
                         if !callback.isEmpty{
                             guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}
-                            self.btn.image = UIImage.gifWithData(imageData)
+                            self.btn.setGifImage(UIImage(gifData: imageData, levelOfIntegrity: 1.0))
                         }else{
                             Log.info("我没有找到：————————\(str)")
                             //网络获取
@@ -50,7 +50,8 @@ class QdanCollectionViewCell: UICollectionViewCell {
                                 if Reachability.networkStatus != .notReachable {
                                     fileDownload([imagename], complate: { (isok, callbackData) in
                                         if isok{
-                                            self.btn.image = UIImage(gifData: callbackData[0])
+                                            self.btn.setGifImage(UIImage(gifData: callbackData[0], levelOfIntegrity: 1.0))
+//                                            self.btn.image = UIImage.gifWithData(callbackData[0])
                                         }
                                     })
                                 }

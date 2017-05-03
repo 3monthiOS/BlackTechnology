@@ -98,8 +98,8 @@ extension FirstViewController : ZHJtableviewDelgate{
     func didSelectRowAtIndexPath(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         if indexPath.row == 6{
             user.state = 0
-//            NSCache.setObject(user, forKey: .User)
-            alert("您以退出登录")
+            cache.setObject(user, forKey: CacheManager.Key.User.rawValue)
+            alert("您已退出登录")
         }
     }
 }

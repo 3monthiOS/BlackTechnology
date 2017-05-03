@@ -9,6 +9,7 @@
 import UIKit
 import IQKeyboardManagerSwift
 //import Swiften
+import SwiftyGif
 
 class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
 
@@ -43,7 +44,8 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
 //        view.layer.mask = maskLayer
         navigationController?.delegate = self
         self.title = "注册"
-        imageBG.image = UIImage(gifName: "gif131", levelOfIntegrity: 1)
+        let gifImage = UIImage(gifName: "gif131")
+        self.imageBG.setGifImage(gifImage)
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
         phoneNumber.returnKeyType = UIReturnKeyType.done
         getDBuser()

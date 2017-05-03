@@ -11,9 +11,8 @@ import UIKit
 import Alamofire
 //import CommonCrypto
 
-/*
-     index 转换 int
- */
+
+// MARK:   index 转换 int
 extension String
 {
     func nsRange(from range: Range<String.Index>) -> NSRange {
@@ -51,14 +50,13 @@ extension String {
     public var urlEncodingWithQueryAllowedCharacters: String {
         return self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? self
     }
-
     /// URL解码
     public var urlDecoded: String {
         return self.removingPercentEncoding ?? self
     }
 }
 
-// Alamofire 4 Swift 3 ParameterEncoding Custom
+// MARK: Alamofire 4 Swift 3 ParameterEncoding Custom
 extension String: ParameterEncoding {
     
     public func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
@@ -69,34 +67,7 @@ extension String: ParameterEncoding {
     
 }
 
-// MARK: Digest
-
-extension String {
-    public var md5: String {
-        let data = self.data
-        var digest = [UInt8](repeating: 0 , count: Int(CC_MD5_DIGEST_LENGTH))
-        let bytes = data.withUnsafeBytes {
-            [UInt8](UnsafeBufferPointer(start: $0, count: data.count))
-        }
-        CC_MD5(bytes, CC_LONG(data.count), &digest)
-        let hexBytes = digest.map { String(format: "%02hhx", $0) }
-        return hexBytes.joined(separator: "")
-    }
-    
-//    public var sha1: String {
-//        let data = self.data
-//        var digest = [UInt8](repeating: 0, count: Int(CC_SHA1_DIGEST_LENGTH))
-//        let bytes = data.withUnsafeBytes {
-//            [UInt8](UnsafeBufferPointer(start: $0, count: data.count))
-//        }
-//        CC_SHA1(bytes, CC_LONG(data.count), &digest)
-//        let hexBytes = digest.map { String(format: "%02hhx", $0) }
-//        return hexBytes.joined(separator: "")
-//    }
-}
-
 // MARK: Base64
-
 extension String {
     /// Base64编码
     public var base64Encoded: String {
@@ -216,7 +187,6 @@ extension String {
 }
 
 // MARK: Trim
-
 extension String {
     /// 删除前后空白符（包含空格、Tab、回车、换行符）
     public var trimmed: String {
@@ -225,7 +195,6 @@ extension String {
 }
 
 // MARK: Localized String
-
 extension String {
     public var localizedString: String {
         return NSLocalizedString(self, comment: "")

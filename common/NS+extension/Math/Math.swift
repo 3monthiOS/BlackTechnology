@@ -10,7 +10,7 @@ import UIKit
 
 class Math: NSObject {
 
-    // MARK: Radian & degree.
+    // MARK: Radian & degree. 弧度、学位。
     
     /**
      Convert radian to degree.
@@ -25,7 +25,7 @@ class Math: NSObject {
     }
     
     /**
-     Convert degree to radian.
+     Convert degree to radian. 度转换为弧度。
      
      - parameter degree: Degree.
      
@@ -36,7 +36,7 @@ class Math: NSObject {
         return ((degree) * .pi / 180.0);
     }
     
-    // MARK: Calculate radian.
+    // MARK: Calculate radian. 计算出弧度
     
     /**
      Radian value from math 'tan' function.
@@ -51,7 +51,7 @@ class Math: NSObject {
         return atan2(sideA, sideB)
     }
     
-    // MARK: Reset size.
+    // MARK: Reset size. 重设大小
     
     /**
      Get the new size with the fixed width.
@@ -68,7 +68,7 @@ class Math: NSObject {
     }
 
     /**
-     Get the new size with the fixed height.
+     Get the new size with the fixed height.  得到新的大小固定的高度。
      
      - parameter size:            Old size.
      - parameter withFixedHeight: The fixed width.
@@ -81,7 +81,7 @@ class Math: NSObject {
         return CGSize(width: newWidth, height: withFixedHeight)
     }
     
-    // MARK: Calculate once linear equation (Y = kX + b).
+    // MARK: Calculate once linear equation (Y = kX + b).  计算一次线性方程
     
     var k : CGFloat!
     var b : CGFloat!
