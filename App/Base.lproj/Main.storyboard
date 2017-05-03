@@ -12,7 +12,7 @@
         <!--聊天-->
         <scene sceneID="1xh-VT-nJc">
             <objects>
-                <navigationController id="XD2-yQ-oYn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ChatListviewcontrollernavigation" id="XD2-yQ-oYn" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="聊天" id="BYe-Hi-KVi"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oyo-DO-EXf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -29,7 +29,7 @@
         <!--我-->
         <scene sceneID="f2Y-SF-Wbf">
             <objects>
-                <navigationController id="21W-O6-20J" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Myviewcontrollernavigation" id="21W-O6-20J" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="2" title="我" id="Q4T-RU-VPt"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ze3-pH-aZI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -46,7 +46,7 @@
         <!--功能列表-->
         <scene sceneID="eo2-l1-GAK">
             <objects>
-                <navigationController id="Ats-RC-H2P" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FunctionsViewControllernavigation" id="Ats-RC-H2P" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="1" title="功能列表" id="obS-3i-4I9"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uxQ-MD-vPr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

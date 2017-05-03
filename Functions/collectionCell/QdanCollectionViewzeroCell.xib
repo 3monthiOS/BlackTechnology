@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -76,8 +76,8 @@
             </constraints>
             <connections>
                 <outlet property="imageviews" destination="SeF-eZ-gb7" id="o43-oK-8hO"/>
-                <outlet property="liftligh" destination="O3Q-mg-lpl" id="dhf-gd-Jel"/>
-                <outlet property="top" destination="Va6-Cs-q5e" id="zdg-wM-G9o"/>
+                <outlet property="liftlighConstraint" destination="O3Q-mg-lpl" id="zRe-us-EaZ"/>
+                <outlet property="topConstraint" destination="Va6-Cs-q5e" id="j3K-rm-2g6"/>
             </connections>
             <point key="canvasLocation" x="326" y="532"/>
         </collectionViewCell>

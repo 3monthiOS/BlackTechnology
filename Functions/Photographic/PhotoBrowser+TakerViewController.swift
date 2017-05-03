@@ -118,7 +118,7 @@ extension PhotoBrowser {
 			initCaptureSession()
 
 			// Init navbar
-            createBarButtonItemAtPosition(.right, Title: "取消", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(TakerViewController.handleCancelButtonTap(_:)))
+            let _ = createBarButtonItemAtPosition(.right, Title: "取消", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(TakerViewController.handleCancelButtonTap(_:)))
 
 			// Init Toolbar
 			let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)

@@ -12,9 +12,6 @@ import UIKit
 class QdanCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var bottrm: NSLayoutConstraint!
-    @IBOutlet weak var top: NSLayoutConstraint!
-    @IBOutlet weak var lift: NSLayoutConstraint!
-    @IBOutlet weak var right: NSLayoutConstraint!
     @IBOutlet weak var btn: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -53,7 +50,7 @@ class QdanCollectionViewCell: UICollectionViewCell {
                                 if Reachability.networkStatus != .notReachable {
                                     fileDownload([imagename], complate: { (isok, callbackData) in
                                         if isok{
-                                            self.btn.image = UIImage.gifWithData(callbackData[0])
+                                            self.btn.image = UIImage(gifData: callbackData[0])
                                         }
                                     })
                                 }

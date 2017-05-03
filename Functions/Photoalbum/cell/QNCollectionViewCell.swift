@@ -8,6 +8,7 @@
 
 import UIKit
 //import Swiften
+import SwiftyGif
 
 class QNCollectionViewCell: UICollectionViewCell {
     
@@ -41,7 +42,8 @@ class QNCollectionViewCell: UICollectionViewCell {
                     locationfileiscache(str, complate: { (callback) in
                         if !callback.isEmpty{
                             guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}
-                            self.imgview.image = UIImage.gifWithData(imageData)
+                            self.imgview.image =  UIImage(gifData: imageData)
+//                            self.imgview.image = UIImage.gifWithData(imageData)
                         }else{
                             Log.info("我没有找到：————————\(str)")
                             //网络获取
@@ -49,7 +51,8 @@ class QNCollectionViewCell: UICollectionViewCell {
                                 if Reachability.networkStatus != .notReachable {
                                     fileDownload([imagename], complate: { (isok, callbackData) in
                                         if isok{
-                                            self.imgview.image = UIImage.gifWithData(callbackData[0])
+                                            self.imgview.image =  UIImage(gifData: callbackData[0])
+//                                            self.imgview.image = UIImage.gifWithData(callbackData[0])
                                         }
                                     })
                                 }

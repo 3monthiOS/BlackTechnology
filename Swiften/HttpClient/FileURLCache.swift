@@ -145,7 +145,7 @@ open class FileURLCache: URLCache {
 			if hash.length < 32 {
 				return ""
 			}
-      var localUrl = "\(rootPath)\(hash[0]!)/\(hash[1...2])/\(hash[3..<32]!)"
+      var localUrl = "\(rootPath)\(hash[0]!)/\(String(describing: hash[1...2]))/\(hash[3..<32]!)"
       if localUrl.hasPrefix("file:/") {
         localUrl = localUrl.substring(from: localUrl.characters.index(localUrl.startIndex, offsetBy: 6))
       }

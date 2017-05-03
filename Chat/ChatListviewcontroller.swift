@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 import IQKeyboardManagerSwift
 import Alamofire
+//import Regex
+import RainbowSwift
+import SwiftOCR
+
 
 class ChatListviewcontroller: RCConversationListViewController {
     
@@ -39,6 +43,25 @@ class ChatListviewcontroller: RCConversationListViewController {
 
         initChatView()
         requestTest()
+        
+
+        
+//        let greeting = Regex("hello (world|universe|swift)")
+        
+//        if let subject = greeting.match("hello swift")?.captures[0] {
+//            print("ohai \(subject)")
+//        }
+        print("Red text".red)
+        print("Yellow background".onYellow)
+       
+        
+        Log.info(Device.version())
+        
+        let swiftOCRInstance   = SwiftOCR()
+        let image = UIImage(named:"WX20170428-174119@2x")
+        swiftOCRInstance.recognize(image!) {recognizedString in
+            print("_______________\(recognizedString)")
+        }
     }
     func initChatView(){
         IQKeyboardManager.sharedManager().enableAutoToolbar = false

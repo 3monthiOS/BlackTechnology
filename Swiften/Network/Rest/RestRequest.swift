@@ -63,7 +63,7 @@ open class RestRequest {
             builder(self, params, start, limit)
         } else {
             if let params = params {
-                updateParams(params)
+                let _ = updateParams(params)
             }
         }
         return self

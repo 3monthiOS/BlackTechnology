@@ -202,7 +202,7 @@ extension FunctionsViewController: SystemPhotoAlbumDelegate,PhotoBrowserDelegate
                 locationfileiscache(str, complate: { (callback) in
                     if !callback.isEmpty{
                         guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}
-                        img = UIImage.gifWithData(imageData)!
+                        img = UIImage(gifData: imageData)
                     }else{
 //                        Log.info("我没有找到：————————\(str)")
                         img = UIImage(named: "chat_image_load_failed")!

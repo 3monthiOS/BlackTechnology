@@ -224,7 +224,7 @@ extension PhotoBrowser {
 		}
 		// MARK: TOOLBAR Inti
 		func initToolBArs() {
-            createBarButtonItemAtPosition(.right, Title: "取消", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(PreviewController.handleCancelButtonTap(_:)))
+            let _ = createBarButtonItemAtPosition(.right, Title: "取消", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(PreviewController.handleCancelButtonTap(_:)))
             // Init Toolbar
             let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
             copyButton = UIBarButtonItem(title: "发送原图", style: .plain, target: self, action: #selector(PreviewController.handleConfirmButtonTap(_:)))

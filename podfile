@@ -15,9 +15,17 @@ target :App do
     pod 'IQKeyboardManagerSwift','4.0.8'
     pod 'RongCloudIMKit', '~> 2.7.0'
     pod 'MJRefresh'
-    pod 'BaiduMapKit'
+    pod 'BaiduMapKit', '~> 3.3.0'
     pod 'Qiniu', '~> 7.1'
     pod 'SnapKit', '~> 3.2.0'
+    #正则表达式
+    #pod 'STRegex', '~> 0.4.0'
+    #七彩字符串输出
+    pod 'RainbowSwift', '~> 2.0'
+    #GIF图片库
+    pod 'SwiftyGif'
+    #图片识别文字
+    pod 'SwiftOCR', '~> 1.0'
 end
 
 post_install do |installer|

@@ -118,7 +118,7 @@ extension uploadPicturesView: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,Phot
                 locationfileiscache(str, complate: { (callback) in
                     if !callback.isEmpty{
                         guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}
-                        img = UIImage.gifWithData(imageData)!
+                        img = UIImage(gifData: imageData)
                     }else{
                         //                        Log.info("我没有找到：————————\(str)")
                         img = UIImage(named: "chat_image_load_failed")!
@@ -141,7 +141,7 @@ extension uploadPicturesView: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,Phot
     }
     
     func numberOfPhotosInPhotoBrowser(_ photoBrowser: PhotoBrowser.PreviewController) -> Int {
-        return imageUrlArray.count ?? 0
+        return imageUrlArray.count 
     }
     
     func photoBrowser(_ viewController: UIViewController, didSelect selection: PhotoBrowser.Selection) {
