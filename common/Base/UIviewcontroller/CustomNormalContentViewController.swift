@@ -31,6 +31,11 @@ class APPviewcontroller: CustomViewController {
     var contentView    : UIView?
     var backgroundView : UIView?
     
+    // 有没有隐藏导航
+    var isHidden : Bool? {
+        get { return (self.navigationController?.isNavigationBarHidden)}
+    }
+    
     override func setup() {
         
         super.setup()
@@ -58,8 +63,7 @@ class APPviewcontroller: CustomViewController {
      Build titleView, please overwrite by subclass.
      */
     func buildTitleView() {
-        
-        titleView = UIView(frame : CGRect(x: 0, y: 0, width: width, height: 64))
+        titleView = UIView(frame : CGRect(x: 0, y: isHidden! ? 0 : -64, width: width, height: 64))
         view.addSubview(titleView!)
     }
     
@@ -67,8 +71,7 @@ class APPviewcontroller: CustomViewController {
      Build contentView, please overwrite by subclass.
      */
     func buildContentView() {
-        
-        contentView = UIView(frame : CGRect(x: 0, y: 64, width: width, height: height - 64))
+        contentView = UIView(frame : CGRect(x: 0, y: isHidden! ? 64 : 0, width: width, height: isHidden! ? height - 64 : height))
         view.addSubview(contentView!)
     }
     
@@ -76,8 +79,7 @@ class APPviewcontroller: CustomViewController {
      Build loadingView, please overwrite by subclass.
      */
     func buildLoadingView() {
-        
-        loadingView = UIView(frame : CGRect(x: 0, y: 64, width: width, height: height - 64))
+        loadingView = UIView(frame : CGRect(x: 0, y: isHidden! ? 64 : 0, width: width, height: isHidden! ? height - 64 : height))
         view.addSubview(loadingView!)
     }
     

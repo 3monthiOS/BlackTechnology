@@ -21,8 +21,8 @@ class GifViewController: APPviewcontroller {
     var _rewindTimer: Timer?
     var _forwardTimer: Timer?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func setup() {
+        super.setup()
         self.title = "GIF"
         contentView?.addSubview(imageView)
         contentView?.addSubview(playPauseButton)

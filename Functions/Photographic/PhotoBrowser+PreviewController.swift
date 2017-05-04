@@ -64,8 +64,8 @@ extension PhotoBrowser {
             
         }
         
-		override func viewDidLoad() {
-			super.viewDidLoad()
+        override func setup() {
+            super.setup()
 
 			automaticallyAdjustsScrollViewInsets = false
 			view.backgroundColor = backgroundColor

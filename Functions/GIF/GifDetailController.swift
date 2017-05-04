@@ -16,8 +16,8 @@ class GifDetailController: APPviewcontroller,UITableViewDelegate,UITableViewData
     var imageDatas : [UIImage] = []
     let gifManager = SwiftyGifManager(memoryLimit:100)
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func setup() {
+        super.setup()
         bindData()
         self.title = "Gif展示"
         if imageData == nil {self.imageData = [""]}

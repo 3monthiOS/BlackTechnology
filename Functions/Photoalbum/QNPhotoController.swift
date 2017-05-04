@@ -23,8 +23,8 @@ class QNPhotoController: APPviewcontroller {
             imageUrldt = url as? [String]
         }
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func setup() {
+        super.setup()
         
         self.title = "上传相册列表"
         initcollectionMjrefresh()

@@ -50,8 +50,8 @@ extension PhotoBrowser {
             return true
             
         }
-		override func viewDidLoad() {
-			super.viewDidLoad()
+        override func setup() {
+            super.setup()
 
 			title = "相机"
 

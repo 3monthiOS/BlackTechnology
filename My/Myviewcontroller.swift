@@ -21,8 +21,8 @@ class Myviewcontroller: APPviewcontroller{
         super.viewWillAppear(animated)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func setup() {
+        super.setup()
          self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationItem.title = "我"
