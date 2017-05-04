@@ -122,6 +122,7 @@
 		F27AE2001D928E09000E0509 /* QdanCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27AE1FA1D928E09000E0509 /* QdanCollectionViewCell.xib */; };
 		F27AE2011D928E09000E0509 /* QdanCollectionViewzeroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27AE1FB1D928E09000E0509 /* QdanCollectionViewzeroCell.swift */; };
 		F27AE2021D928E09000E0509 /* QdanCollectionViewzeroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27AE1FC1D928E09000E0509 /* QdanCollectionViewzeroCell.xib */; };
+		F283A9501EB9E5BD0012EE0D /* TableviewCoustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F283A94F1EB9E5BD0012EE0D /* TableviewCoustom.swift */; };
 		F28C54A71EA7646300209259 /* AlbumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54901EA7646300209259 /* AlbumTableViewController.swift */; };
 		F28C54A81EA7646300209259 /* PhotoBrowser+CropperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54911EA7646300209259 /* PhotoBrowser+CropperViewController.swift */; };
 		F28C54A91EA7646300209259 /* PhotoBrowser+GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54921EA7646300209259 /* PhotoBrowser+GridViewController.swift */; };
@@ -355,6 +356,7 @@
 		F27AE1FA1D928E09000E0509 /* QdanCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QdanCollectionViewCell.xib; sourceTree = "<group>"; };
 		F27AE1FB1D928E09000E0509 /* QdanCollectionViewzeroCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QdanCollectionViewzeroCell.swift; sourceTree = "<group>"; };
 		F27AE1FC1D928E09000E0509 /* QdanCollectionViewzeroCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QdanCollectionViewzeroCell.xib; sourceTree = "<group>"; };
+		F283A94F1EB9E5BD0012EE0D /* TableviewCoustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableviewCoustom.swift; sourceTree = "<group>"; };
 		F28C54901EA7646300209259 /* AlbumTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableViewController.swift; sourceTree = "<group>"; };
 		F28C54911EA7646300209259 /* PhotoBrowser+CropperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoBrowser+CropperViewController.swift"; sourceTree = "<group>"; };
 		F28C54921EA7646300209259 /* PhotoBrowser+GridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoBrowser+GridViewController.swift"; sourceTree = "<group>"; };
@@ -1113,6 +1115,7 @@
 		F2666A8D1D879C6F00B2029E /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				F283A94E1EB9E59B0012EE0D /* TableviewCoustom */,
 				F2BD8A2A1EB9BCF700AE3F06 /* GIF */,
 				657929B11EA8A5E10006F607 /* video */,
 				F28C548F1EA7646300209259 /* Photographic */,
@@ -1141,6 +1144,14 @@
 				F27AE1FC1D928E09000E0509 /* QdanCollectionViewzeroCell.xib */,
 			);
 			path = collectionCell;
+			sourceTree = "<group>";
+		};
+		F283A94E1EB9E59B0012EE0D /* TableviewCoustom */ = {
+			isa = PBXGroup;
+			children = (
+				F283A94F1EB9E5BD0012EE0D /* TableviewCoustom.swift */,
+			);
+			path = TableviewCoustom;
 			sourceTree = "<group>";
 		};
 		F28C548F1EA7646300209259 /* Photographic */ = {
@@ -1748,6 +1759,7 @@
 				F294B3491DFFDDB70055C8CB /* RetrieveMobileAddressbook.swift in Sources */,
 				F234814C1EA5E6EE00CB84F2 /* Cache.swift in Sources */,
 				F20F51FC1EB97D1800061BBE /* TYPagerController.m in Sources */,
+				F283A9501EB9E5BD0012EE0D /* TableviewCoustom.swift in Sources */,
 				F23481421EA5E6EE00CB84F2 /* Rest.swift in Sources */,
 				F20F52091EB97D1800061BBE /* UILabel+SizeToFit.swift in Sources */,
 				F2BD8A241EB9882900AE3F06 /* QNUtils.swift in Sources */,

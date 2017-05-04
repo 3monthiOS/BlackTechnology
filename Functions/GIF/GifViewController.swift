@@ -24,9 +24,11 @@ class GifViewController: APPviewcontroller {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "GIF"
+        contentView?.addSubview(imageView)
         contentView?.addSubview(playPauseButton)
         contentView?.addSubview(forwardButton)
         contentView?.addSubview(rewindButton)
+        
         self.imageView.delegate = self
         
         if let imgName = self.gifName {

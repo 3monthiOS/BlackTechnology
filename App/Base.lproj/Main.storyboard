@@ -93,7 +93,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OAJ-eY-aB4" customClass="CollectionMjResh" customModule="App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="12" id="Skc-5Y-zFM">
                                     <size key="itemSize" width="50" height="50"/>
@@ -111,7 +111,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="OAJ-eY-aB4" firstAttribute="top" secondItem="MLZ-My-jem" secondAttribute="top" id="9cb-ao-rO9"/>
-                            <constraint firstAttribute="bottom" secondItem="OAJ-eY-aB4" secondAttribute="bottom" id="H84-kH-nDd"/>
+                            <constraint firstAttribute="bottom" secondItem="OAJ-eY-aB4" secondAttribute="bottom" constant="44" id="H84-kH-nDd"/>
                             <constraint firstAttribute="trailing" secondItem="OAJ-eY-aB4" secondAttribute="trailing" id="aTV-W0-ks3"/>
                             <constraint firstItem="OAJ-eY-aB4" firstAttribute="leading" secondItem="MLZ-My-jem" secondAttribute="leading" id="e9P-4I-4Rq"/>
                         </constraints>
