@@ -14,6 +14,19 @@ class HomeTabBarController: UITabBarController,UITabBarControllerDelegate {
         super.viewDidLoad()
         self.delegate = self
         self.view.backgroundColor = UIColor.white
+        
+        let lauchImageView   = UIImageView(frame: self.view.bounds)
+        lauchImageView.image = AppleSystemService.launchImage()
+        view.addSubview(lauchImageView)
+        
+        UIView.animate(withDuration: 1, delay: 1, options: UIViewAnimationOptions(), animations: {
+            
+            lauchImageView.scale = 1.5
+            lauchImageView.alpha = 0
+            
+        }) { (finished) in
+            lauchImageView.removeFromSuperview()
+        }
     }
 
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
