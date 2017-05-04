@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+//        Thread.sleep(forTimeInterval: <#T##TimeInterval#>)
         let them = ThemeManager.currentTheme()
         ThemeManager.overrideApplyTheme(them)
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
@@ -62,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Checktheequipmentinformation()
         // 跳转
         gotoMainViewController()
+        
         return true
     }
     
@@ -383,7 +385,7 @@ extension AppDelegate: AppLoginSucessDelegate{
 }
 extension AppDelegate {
     func gotoMainViewController(){
-        if let userinfos: LoginUser = cache.object(forKey: CacheManager.Key.User.rawValue) {
+        if let userinfos: User = cache.object(forKey: CacheManager.Key.User.rawValue) {
             if let number = userinfos.state{
                 if number == 1 {
                     isok = true

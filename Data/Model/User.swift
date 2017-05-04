@@ -19,6 +19,8 @@ class User: Mappable {
     var uuid: String?
     // 用户状态码  1 代表登录
     var state: Int?
+    // 是不是第一次登陆
+    var one_t: Int?
     // 国籍
     var country: String?
     // 护照
@@ -61,6 +63,7 @@ class User: Mappable {
         appid <- map["appid"]
         uuid <- map["uuid"]
         state <- map["state"]
+        one_t <- map["one_t"]
         country <- map["country"]
         passport <- map["passport"]
         sex <- map["sex"]

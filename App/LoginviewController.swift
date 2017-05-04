@@ -201,6 +201,7 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
                         if userinfo.userphone == txtUser!.text{
                             if txtPwd?.text == userinfo.password {
                                 userinfo.state = 1
+                                userinfo.one_t = 1
                                 cache.setObject(userinfo, forKey: CacheManager.Key.User.rawValue)
                                 cache.setObject(userinfo, forKey: primaryKey) //更新用户状态
                                 user = userinfo

@@ -14,21 +14,27 @@ class HomeTabBarController: UITabBarController,UITabBarControllerDelegate {
         super.viewDidLoad()
         self.delegate = self
         self.view.backgroundColor = UIColor.white
-        
-        let lauchImageView   = UIImageView(frame: self.view.bounds)
-        lauchImageView.image = AppleSystemService.launchImage()
-        view.addSubview(lauchImageView)
-        
-        UIView.animate(withDuration: 1, delay: 1, options: UIViewAnimationOptions(), animations: {
-            
-            lauchImageView.scale = 1.5
-            lauchImageView.alpha = 0
-            
-        }) { (finished) in
-            lauchImageView.removeFromSuperview()
+        showQDT()
+    }
+    func showQDT(){
+        if let userinfos: User = cache.object(forKey: CacheManager.Key.User.rawValue){
+            if userinfos.one_t != 1 {
+                let lauchImageView   = UIImageView(frame: self.view.bounds)
+                lauchImageView.image = AppleSystemService.launchImage()
+                view.addSubview(lauchImageView)
+                UIView.animate(withDuration: 1, delay: 1, options: UIViewAnimationOptions(), animations: {
+                    lauchImageView.scale = 1.5
+                    lauchImageView.alpha = 0
+                }) { (finished) in
+                    lauchImageView.removeFromSuperview()
+                }
+            }
+            if let userinfos: User = cache.object(forKey: CacheManager.Key.User.rawValue){
+                userinfos.one_t = 0
+                cache.setObject(userinfos, forKey: CacheManager.Key.User.rawValue)
+            }
         }
     }
-
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         switch item.tag {
         case 0:
