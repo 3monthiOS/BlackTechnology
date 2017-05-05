@@ -15,6 +15,7 @@
 		65529C3A1D9E722A00ED3E1C /* CubeMap.c in Sources */ = {isa = PBXBuildFile; fileRef = 65529C391D9E722A00ED3E1C /* CubeMap.c */; };
 		657929B31EA8A5E10006F607 /* VideoRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657929B21EA8A5E10006F607 /* VideoRecorderViewController.swift */; };
 		F20C5E071EBB37D0001EA55E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20C5E051EBB37D0001EA55E /* LaunchScreen.storyboard */; };
+		F20F50CE1EBB44CE00DCC828 /* ShowTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F50CD1EBB44CE00DCC828 /* ShowTextModel.swift */; };
 		F20F51D61EB97D1800061BBE /* CustomAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F516C1EB97D1800061BBE /* CustomAnimation.swift */; };
 		F20F51D71EB97D1800061BBE /* SwiftLogoLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F516D1EB97D1800061BBE /* SwiftLogoLayer.swift */; };
 		F20F51D81EB97D1800061BBE /* JumpAnimationcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F516E1EB97D1800061BBE /* JumpAnimationcontroller.swift */; };
@@ -154,6 +155,9 @@
 		F294B3491DFFDDB70055C8CB /* RetrieveMobileAddressbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F294B3401DFFDDB70055C8CB /* RetrieveMobileAddressbook.swift */; };
 		F294B34A1DFFDDB70055C8CB /* UserIphoneNumbercell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F294B3411DFFDDB70055C8CB /* UserIphoneNumbercell.swift */; };
 		F294B34B1DFFDDB70055C8CB /* UserIphoneNumbercell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F294B3421DFFDDB70055C8CB /* UserIphoneNumbercell.xib */; };
+		F29BFBF61EBC569D00464D28 /* uploadPicturesTable.geojson in Resources */ = {isa = PBXBuildFile; fileRef = F29BFBF51EBC569D00464D28 /* uploadPicturesTable.geojson */; };
+		F29BFBF91EBC693D00464D28 /* ShowtextModelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29BFBF71EBC693D00464D28 /* ShowtextModelCell.swift */; };
+		F29BFBFA1EBC693D00464D28 /* ShowtextModelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F29BFBF81EBC693D00464D28 /* ShowtextModelCell.xib */; };
 		F2A65AE11EAF3B460010AF63 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A65AE01EAF3B460010AF63 /* LeftViewController.swift */; };
 		F2A65AE31EAF3B510010AF63 /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A65AE21EAF3B510010AF63 /* RightViewController.swift */; };
 		F2BD8A201EB984E400AE3F06 /* CustomNormalContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD8A1E1EB984E400AE3F06 /* CustomNormalContentViewController.swift */; };
@@ -229,6 +233,7 @@
 		7FEFAF43BC70671EDF9716E6 /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5A6087CE1A63B4E2D426C9 /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
 		F20C5E061EBB37D0001EA55E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F20F50CD1EBB44CE00DCC828 /* ShowTextModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowTextModel.swift; sourceTree = "<group>"; };
 		F20F51551EB976E300061BBE /* BaiduMapAPI_Map.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Map.framework; path = Pods/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Map.framework; sourceTree = "<group>"; };
 		F20F51571EB977F200061BBE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F20F51591EB977FD00061BBE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -394,6 +399,9 @@
 		F294B3401DFFDDB70055C8CB /* RetrieveMobileAddressbook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrieveMobileAddressbook.swift; sourceTree = "<group>"; };
 		F294B3411DFFDDB70055C8CB /* UserIphoneNumbercell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserIphoneNumbercell.swift; sourceTree = "<group>"; };
 		F294B3421DFFDDB70055C8CB /* UserIphoneNumbercell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserIphoneNumbercell.xib; sourceTree = "<group>"; };
+		F29BFBF51EBC569D00464D28 /* uploadPicturesTable.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = uploadPicturesTable.geojson; sourceTree = "<group>"; };
+		F29BFBF71EBC693D00464D28 /* ShowtextModelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowtextModelCell.swift; sourceTree = "<group>"; };
+		F29BFBF81EBC693D00464D28 /* ShowtextModelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowtextModelCell.xib; sourceTree = "<group>"; };
 		F2A65AE01EAF3B460010AF63 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		F2A65AE21EAF3B510010AF63 /* RightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
 		F2BD8A1E1EB984E400AE3F06 /* CustomNormalContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNormalContentViewController.swift; sourceTree = "<group>"; };
@@ -526,6 +534,16 @@
 				544049F072F8E3FA12FE0D85 /* Pods-App.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		F20F50CC1EBB44CE00DCC828 /* ShowTextHeight */ = {
+			isa = PBXGroup;
+			children = (
+				F20F50CD1EBB44CE00DCC828 /* ShowTextModel.swift */,
+				F29BFBF71EBC693D00464D28 /* ShowtextModelCell.swift */,
+				F29BFBF81EBC693D00464D28 /* ShowtextModelCell.xib */,
+			);
+			path = ShowTextHeight;
 			sourceTree = "<group>";
 		};
 		F20F51691EB97D1800061BBE /* common */ = {
@@ -1151,6 +1169,7 @@
 		F283A94E1EB9E59B0012EE0D /* TableviewCoustom */ = {
 			isa = PBXGroup;
 			children = (
+				F20F50CC1EBB44CE00DCC828 /* ShowTextHeight */,
 				F283A94F1EB9E5BD0012EE0D /* TableviewCoustom.swift */,
 			);
 			path = TableviewCoustom;
@@ -1196,7 +1215,7 @@
 		F28C98521E07D7BC00DACB18 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				F28C985E1E07D7D800DACB18 /* DB */,
+				F29BFBF01EBC1C8200464D28 /* DBfile */,
 				F28C98531E07D7BC00DACB18 /* Model */,
 			);
 			path = Data;
@@ -1212,13 +1231,6 @@
 				F231272A1EAEF80900FA0D74 /* TestModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		F28C985E1E07D7D800DACB18 /* DB */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DB;
 			sourceTree = "<group>";
 		};
 		F294B3361DFFDDB70055C8CB /* MobileAddressBook */ = {
@@ -1250,6 +1262,14 @@
 				F294B3401DFFDDB70055C8CB /* RetrieveMobileAddressbook.swift */,
 			);
 			path = retrieve;
+			sourceTree = "<group>";
+		};
+		F29BFBF01EBC1C8200464D28 /* DBfile */ = {
+			isa = PBXGroup;
+			children = (
+				F29BFBF51EBC569D00464D28 /* uploadPicturesTable.geojson */,
+			);
+			path = DBfile;
 			sourceTree = "<group>";
 		};
 		F2A65ADF1EAF3B360010AF63 /* drawer */ = {
@@ -1560,12 +1580,14 @@
 				F2D3A3E61E03A788007DE758 /* SecondViewController.xib in Resources */,
 				F2D6904C1DFE7A200087328B /* CollectionReusableHeadre.xib in Resources */,
 				F2D54B261D93A692006DE294 /* TableViewHeaderCell.xib in Resources */,
+				F29BFBFA1EBC693D00464D28 /* ShowtextModelCell.xib in Resources */,
 				F217F20A1D842B74000E3A0D /* RegisteredViewController.xib in Resources */,
 				F27AE2001D928E09000E0509 /* QdanCollectionViewCell.xib in Resources */,
 				F294B3461DFFDDB70055C8CB /* MObileFunction.xib in Resources */,
 				F294B34B1DFFDDB70055C8CB /* UserIphoneNumbercell.xib in Resources */,
 				F2FA2DA11DE808D000CE0A3C /* DownloadfileView.xib in Resources */,
 				F2BD8A361EB9BDCC00AE3F06 /* GifViewController.xib in Resources */,
+				F29BFBF61EBC569D00464D28 /* uploadPicturesTable.geojson in Resources */,
 				F24E9A3C1DEEBA0800A45EB8 /* gif131.gif in Resources */,
 				F2D690561DFE87DD0087328B /* QNPhotoController.xib in Resources */,
 				F28C54B31EA7646300209259 /* PEPhotoCropEditor.bundle in Resources */,
@@ -1724,6 +1746,7 @@
 				F2D6904B1DFE7A200087328B /* CollectionReusableHeadre.swift in Sources */,
 				F23481551EA5E6EE00CB84F2 /* UIImage+Extension.swift in Sources */,
 				F23481561EA5E6EE00CB84F2 /* UIView+Swizzle.swift in Sources */,
+				F20F50CE1EBB44CE00DCC828 /* ShowTextModel.swift in Sources */,
 				F2DFE7D51D82A20D00E5DC71 /* HomeTabBarController.swift in Sources */,
 				F20F52111EB97D1800061BBE /* UIView+Gradient.swift in Sources */,
 				F217F2091D842B74000E3A0D /* RegisteredViewController.swift in Sources */,
@@ -1763,6 +1786,7 @@
 				F294B3491DFFDDB70055C8CB /* RetrieveMobileAddressbook.swift in Sources */,
 				F234814C1EA5E6EE00CB84F2 /* Cache.swift in Sources */,
 				F20F51FC1EB97D1800061BBE /* TYPagerController.m in Sources */,
+				F29BFBF91EBC693D00464D28 /* ShowtextModelCell.swift in Sources */,
 				F283A9501EB9E5BD0012EE0D /* TableviewCoustom.swift in Sources */,
 				F23481421EA5E6EE00CB84F2 /* Rest.swift in Sources */,
 				F20F52091EB97D1800061BBE /* UILabel+SizeToFit.swift in Sources */,

@@ -30,7 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-//        Thread.sleep(forTimeInterval: <#T##TimeInterval#>)
         let them = ThemeManager.currentTheme()
         ThemeManager.overrideApplyTheme(them)
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
@@ -60,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // IQ 键盘
         IQKeyboardManager.sharedManager().enable = true
         // 运行手机的信息
-        Checktheequipmentinformation()
+        Log.info(Device.getVersionCode())
         // 跳转
         gotoMainViewController()
         

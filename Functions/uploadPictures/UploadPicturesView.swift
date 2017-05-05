@@ -9,7 +9,7 @@
 import UIKit
 //import Swiften
 
-class uploadPicturesView: UIViewController {
+class uploadPicturesView: APPviewcontroller {
 
     @IBOutlet weak var text: UITextField!
     @IBOutlet weak var showImageview: UIImageView!
@@ -30,8 +30,8 @@ class uploadPicturesView: UIViewController {
             }
         }
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func setup() {
+        super.setup()
         showImageview.contentMode = .scaleAspectFill
         showImageview.layer.masksToBounds = true
         // Do any additional setup after loading the view.
@@ -56,12 +56,47 @@ class uploadPicturesView: UIViewController {
                     self.text.text = url
                     self.imageUrlData.append(url)
                     self.saveUpdata("funcationupdateimageUrlData", value: self.imageUrlData)
+                    
                 case .failure( _):
                     Log.error("上传头像失败")
                 }
             }
         }
     }
+    func writefile(){ // 先读取后写入 File
+        let path: String = Bundle.main.path(forResource: "uploadPicturesTable", ofType: ".geojson")!
+        let nsUrl = NSURL(fileURLWithPath: path)
+        var jsonArray = [String: Any]()
+        var urlArray = [String]()
+        do {
+            let data: Data = try Data(contentsOf: nsUrl as URL)
+            jsonArray = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [String: Any]
+            print("json: \(jsonArray)")
+            urlArray = jsonArray["coordinates"] as! [String]
+        }
+        catch {
+            Log.info("云相册读取文件失败")
+        }
+
+        //  写入
+        urlArray.append("001")
+        jsonArray["coordinates"] = urlArray
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: jsonArray, options: JSONSerialization.WritingOptions.prettyPrinted)
+            var da = NSMutableData()
+            da = jsonData as! NSMutableData
+            Log.info("写入地址： \(path) 写入数据 \(jsonArray)")
+            if da.write(toFile: "uploadPicturesTable.geojson", atomically: true) {
+                Log.info("写入成功")
+            }
+//            try! jsonData.write(to: nsUrl as URL, options: Data.WritingOptions.noFileProtection)
+        }
+        catch {
+            Log.info("云相册写入文件失败")
+        }
+       
+    }
+    
     func saveUpdata(_ key: String,value: [String]){
         if !key.isEmpty{
             if !value.isEmpty{
@@ -72,6 +107,18 @@ class uploadPicturesView: UIViewController {
                 }
             }
         }
+    }
+    // MARK: Overwrite system methods.
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        enableInteractivePopGestureRecognizer = false
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        super.viewDidDisappear(animated)
+        enableInteractivePopGestureRecognizer = true
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -110,7 +157,7 @@ extension uploadPicturesView: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,Phot
     }
     
     func photoBrowser(_ photoBrowser: PhotoBrowser.PreviewController, photoModelAtIndex index: Int) -> PhotoBrowser.Model {
-        let url = imageUrlArray[index]
+        let url = getProjectJsonFile()[index]
         var img : UIImage?
         // 网络图片
         if !url.isEmpty{
@@ -141,7 +188,7 @@ extension uploadPicturesView: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,Phot
     }
     
     func numberOfPhotosInPhotoBrowser(_ photoBrowser: PhotoBrowser.PreviewController) -> Int {
-        return imageUrlArray.count 
+        return getProjectJsonFile().count 
     }
     
     func photoBrowser(_ viewController: UIViewController, didSelect selection: PhotoBrowser.Selection) {

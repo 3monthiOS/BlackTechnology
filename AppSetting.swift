@@ -17,11 +17,6 @@ let SCREEN_SCALE = UIScreen.main.scale
 /// 1个像素
 let SIZE_1PX = 1 / SCREEN_SCALE
 
-// MARK: - 字符串
-//网络GIF图片
-var imageUrlArray = ["http://ohc2uub90.bkt.clouddn.com/public/16-11-28/33057531.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/63784464.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/31166475.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/63869882.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/15652085.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/90098440.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/38827152.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/6871283.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/53000671.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/70368103.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/50374131.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/12350847.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/49087415.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/12596867.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/39233610.jpg","http://ohc2uub90.bkt.clouddn.com/public/16-11-28/61336725.jpg"]
-
-
 // MARK: - 网络部分
 /// App
 let API_PROTOCOL = "http:"

@@ -34,12 +34,6 @@ public func delay(_ seconds: UInt64, task: @escaping () -> Void) {
 
 /// 异步执行代码块（先非主线程执行，再返回主线程执行）
 public func async(_ backgroundTask: @escaping () -> AnyObject!, mainTask: @escaping (AnyObject?) -> Void) {
-//    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
-//        let result = backgroundTask()
-//        DispatchQueue.main.sync {
-//            mainTask(result)
-//        }
-//    }
     DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
         let result = backgroundTask()
         DispatchQueue.main.sync {
@@ -100,6 +94,21 @@ func prompt(_ message: String, title: String! = nil, text: String! = nil, placeh
     }
     UIViewController.topViewController?.present(controller, animated: true, completion: nil)
 }
+func getProjectJsonFile()-> [String]{
+    //从一个本地项目资源中读取data.Json文件
+    let path: String = Bundle.main.path(forResource: "uploadPicturesTable", ofType: ".geojson")!
+    let nsUrl = NSURL(fileURLWithPath: path)
+    //读取Json数据
+    do {
+        let data: Data = try Data(contentsOf: nsUrl as URL)
+        let jsonArray: [String] = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [String]
+        return jsonArray
+    }
+    catch {
+        Log.info("读取文件: uploadPicturesTable.geojson 失败")
+        return [""]
+    }
+}
 
 func locationfileiscache(_ fileName: String, complate:(_ callback: String)->Void){
     guard var cachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first else {
@@ -114,7 +123,6 @@ func locationfileiscache(_ fileName: String, complate:(_ callback: String)->Void
         // 快速枚举取出所有文件名
         for p in files {
             if p == fileName{
-//                Log.info("____找到的文件名字:\(p)")
                 path = cachePath.appendingFormat("/\(p)")
                 complate(path)
                 return
@@ -126,18 +134,6 @@ func locationfileiscache(_ fileName: String, complate:(_ callback: String)->Void
 func fileDownload(_ urlArray: [String],complate:@escaping ((_ isok: Bool,_ callbackData: [Data])->Void)){
     if Reachability.networkStatus == .notReachable {return}
     var dataArray = [Data]()
-    //  方法一 自定义下载文件的保存目录 同名文件竟被覆盖
-//    Alamofire.download(.GET, "http://www.hangge.com/blog/images/logo.png") {
-//        temporaryURL, response in
-//        let fileManager = NSFileManager.defaultManager()
-//        let directoryURL = fileManager.URLsForDirectory(.DocumentDirectory,
-//                                                        inDomains: .UserDomainMask)[0]
-//        let pathComponent = response.suggestedFilename
-//        
-//        return directoryURL.URLByAppendingPathComponent(pathComponent!)!
-//    }
-    
-    // 方式二
     for url in urlArray {
         if url.hasPrefix("http://") || url.hasPrefix("https://") {
             Alamofire.request(url).downloadProgress(queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.default), closure: { (Progress) in
@@ -193,82 +189,4 @@ func checkMobileReg(_ mobile: String) -> Bool {
     return regex.firstMatch(in: mobile, options: [],
                                     range: NSRange(location: 0, length: mobile.utf16.count))?.range.length != nil
     
-}
-func Checktheequipmentinformation(){
-    /*** Display the device version ***/
-    switch Device.version() {
-        /*** iPhone ***/
-    case .iPhone4:       print("It's an iPhone 4")
-    case .iPhone4S:      print("It's an iPhone 4S")
-    case .iPhone5:       print("It's an iPhone 5")
-    case .iPhone5C:      print("It's an iPhone 5C")
-    case .iPhone5S:      print("It's an iPhone 5S")
-    case .iPhone6:       print("It's an iPhone 6")
-    case .iPhone6S:      print("It's an iPhone 6S")
-    case .iPhone6Plus:   print("It's an iPhone 6 Plus")
-    case .iPhone6SPlus:  print("It's an iPhone 6 S Plus")
-    case .iPhoneSE:      print("It's an iPhone SE")
-    case .iPhone7:       print("It's an iPhone 7")
-    case .iPhone7Plus:   print("It's an iPhone 7 Plus")
-        
-        /*** iPad ***/
-    case .iPad1:         print("It's an iPad 1")
-    case .iPad2:         print("It's an iPad 2")
-    case .iPad3:         print("It's an iPad 3")
-    case .iPad4:         print("It's an iPad 4")
-    case .iPadAir:       print("It's an iPad Air")
-    case .iPadAir2:      print("It's an iPad Air 2")
-    case .iPadMini:      print("It's an iPad Mini")
-    case .iPadMini2:     print("It's an iPad Mini 2")
-    case .iPadMini3:     print("It's an iPad Mini 3")
-    case .iPadMini4:     print("It's an iPad Mini 4")
-    case .iPadPro:       print("It's an iPad Pro")
-        
-        /*** iPod ***/
-    case .iPodTouch1Gen: print("It's a iPod touch generation 1")
-    case .iPodTouch2Gen: print("It's a iPod touch generation 2")
-    case .iPodTouch3Gen: print("It's a iPod touch generation 3")
-    case .iPodTouch4Gen: print("It's a iPod touch generation 4")
-    case .iPodTouch5Gen: print("It's a iPod touch generation 5")
-    case .iPodTouch6Gen: print("It's a iPod touch generation 6")
-        
-        /*** Simulator ***/
-    case .Simulator:    print("It's a Simulator")
-        
-        /*** Unknown ***/
-    default:            print("It's an unknown device")
-    }
-    
-    /*** Display the device screen size ***/
-    switch Device.size() {
-    case .screen3_5Inch:  print("It's a 3.5 inch screen")
-    case .screen4Inch:    print("It's a 4 inch screen")
-    case .screen4_7Inch:  print("It's a 4.7 inch screen")
-    case .screen5_5Inch:  print("It's a 5.5 inch screen")
-    case .screen7_9Inch:  print("It's a 7.9 inch screen")
-    case .screen9_7Inch:  print("It's a 9.7 inch screen")
-    case .screen12_9Inch: print("It's a 12.9 inch screen")
-    default:              print("Unknown size")
-    }
-    
-    switch Device.type() {
-    case .iPod:         print("It's an iPod")
-    case .iPhone:       print("It's an iPhone")
-    case .iPad:         print("It's an iPad")
-    case .Simulator:    print("It's a Simulated device")
-    default:            print("Unknown device type")
-    }
-    
-    /*** Helpers ***/
-//    if Device.isEqualToScreenSize(Size.screen4Inch) {
-//        print("It's a 4 inch screen")
-//    }
-//    
-//    if Device.isLargerThanScreenSize(Size.screen4_7Inch) {
-//        print("Your device screen is larger than 4.7 inch")
-//    }
-//    
-//    if Device.isSmallerThanScreenSize(Size.screen4_7Inch) {
-//        print("Your device screen is smaller than 4.7 inch")
-//    }
 }

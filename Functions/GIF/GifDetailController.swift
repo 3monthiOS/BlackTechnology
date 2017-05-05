@@ -63,7 +63,18 @@ class GifDetailController: APPviewcontroller,UITableViewDelegate,UITableViewData
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    // MARK: Overwrite system methods.
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        enableInteractivePopGestureRecognizer = false
+    }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        super.viewDidDisappear(animated)
+        enableInteractivePopGestureRecognizer = true
+    }
 
     // MARK: - TableView Datasource
     

@@ -90,12 +90,12 @@ class FunctionsViewController: APPviewcontroller {
 extension FunctionsViewController: UICollectionViewDataSource{
   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageUrlArray.count
+        return getProjectJsonFile().count
     }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! QdanCollectionViewCell
-    cell.bindData(imageUrlArray,functionTitle: functionTitleData,atIndex :indexPath)
+    cell.bindData(getProjectJsonFile(),functionTitle: functionTitleData,atIndex :indexPath)
     return cell
   }
 }
@@ -152,7 +152,7 @@ extension FunctionsViewController: UICollectionViewDelegate{
       navigationController?.pushViewController(vc, animated: true)
     case 13:
         let vc = GifDetailController()
-        vc.imageData = imageUrlArray
+        vc.imageData = getProjectJsonFile()
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     case 14:
@@ -205,7 +205,7 @@ extension FunctionsViewController: SystemPhotoAlbumDelegate,PhotoBrowserDelegate
     }
     
     func photoBrowser(_ photoBrowser: PhotoBrowser.PreviewController, photoModelAtIndex index: Int) -> PhotoBrowser.Model {
-        let url = imageUrlArray[index]
+        let url = getProjectJsonFile()[index]
         var img : UIImage?
         // 网络图片
         if !url.isEmpty{
@@ -236,7 +236,7 @@ extension FunctionsViewController: SystemPhotoAlbumDelegate,PhotoBrowserDelegate
     }
     
     func numberOfPhotosInPhotoBrowser(_ photoBrowser: PhotoBrowser.PreviewController) -> Int {
-        return imageUrlArray.count 
+        return getProjectJsonFile().count 
     }
     
     func photoBrowser(_ viewController: UIViewController, didSelect selection: PhotoBrowser.Selection) {

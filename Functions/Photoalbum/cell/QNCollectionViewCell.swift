@@ -28,8 +28,22 @@ class QNCollectionViewCell: UICollectionViewCell {
       
         initButtonUI(imgview)
         imgview.contentMode = .scaleAspectFill
+        getfileData()
     }
-    
+    func getfileData(){
+        //从一个本地项目资源中读取data.Json文件
+        let path: String = Bundle.main.path(forResource: "uploadPicturesTable", ofType: ".geojson")!
+        let nsUrl = NSURL(fileURLWithPath: path)
+        //读取Json数据
+        do {
+            let data: Data = try Data(contentsOf: nsUrl as URL)
+            let jsonArray: [[String: AnyObject]] = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [[String: AnyObject]]
+            print("json: \(jsonArray)")
+        }
+        catch {
+            Log.info("云相册读取文件失败")
+        }
+    }
     func bindData(_ imageName: [String],functionTitle: [String], atIndex indexPath: IndexPath) {
         imgview.image = UIImage(named:"加载失败")
         index = indexPath
@@ -44,7 +58,6 @@ class QNCollectionViewCell: UICollectionViewCell {
                             guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}
                             self.imgview.setGifImage(UIImage(gifData: imageData))
                         }else{
-                            Log.info("我没有找到：————————\(str)")
                             //网络获取
                             if imagename.hasPrefix("http://") || imagename.hasPrefix("https://") {
                                 if Reachability.networkStatus != .notReachable {
