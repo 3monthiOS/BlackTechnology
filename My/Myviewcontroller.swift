@@ -30,7 +30,6 @@ class Myviewcontroller: APPviewcontroller{
         addPagerController()
         self.pagerController!.reloadData()
         self.pagerController?.moveToController(at: 0, animated: false)
-        
     }
     
     func addPagerController(){

@@ -15,7 +15,7 @@ target :App do
     pod 'IQKeyboardManagerSwift','4.0.8'
     pod 'RongCloudIMKit', '~> 2.7.0'
     pod 'MJRefresh'
-    pod 'BaiduMapKit', '~> 3.3.0'
+    pod 'BaiduMapKit'
     pod 'Qiniu', '~> 7.1'
     pod 'SnapKit', '~> 3.2.0'
     #正则表达式
@@ -26,6 +26,9 @@ target :App do
     pod 'SwiftyGif'
     #图片识别文字
     pod 'SwiftOCR', '~> 1.0'
+    #酷炫的label 样式
+    pod 'LTMorphingLabel'
+
 end
 
 post_install do |installer|

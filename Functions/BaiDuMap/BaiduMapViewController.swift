@@ -24,7 +24,7 @@ class BaiduMapViewController: UIViewController, BMKMapViewDelegate {
         mapView.gesturesEnabled = true
         mapView.isBuildingsEnabled = true
         mapView.isTrafficEnabled = false //路况图
-        
+        CreateSpreadSubutton()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -39,8 +39,43 @@ class BaiduMapViewController: UIViewController, BMKMapViewDelegate {
         mapView.delegate = nil  // 不用时，置nil
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    /**
+     创建侧边BTN
+     */
+    func CreateSpreadSubutton(){
+        let spreadButton = SpreadButton(image: UIImage(named: "powerButton"),
+                                        highlightImage: UIImage(named: "powerButton_highlight"),
+                                        position: CGPoint(x: 40, y: App_height - 154))
+        let btn1 = SpreadSubButton(backgroundImage: UIImage(named: "clock"),
+                                   highlightImage: UIImage(named: "clock_highlight")) { (index, sender) -> Void in
+                                    print("first button be clicked!!!")
+        }
+        
+        let btn2 = SpreadSubButton(backgroundImage: UIImage(named: "pencil"),
+                                   highlightImage: UIImage(named: "pencil_highlight")) { (index, sender) -> Void in
+                                    print("second button be clicked!!!")
+        }
+        spreadButton?.setSubButtons([nil,btn1, btn2, nil])
+        spreadButton?.mode = SpreadMode.spreadModeSickleSpread
+        spreadButton?.direction = SpreadDirection.spreadDirectionRightUp
+        spreadButton?.positionMode = SpreadPositionMode.spreadPositionModeFixed
+        
+        /*  and you can assign a newValue to change the default
+         spreadButton?.animationDuring = 0.2
+         spreadButton?.animationDuringClose = 0.25
+         spreadButton?.radius = 180
+         spreadButton?.coverAlpha = 0.3
+         spreadButton?.coverColor = UIColor.yellowColor()
+         spreadButton?.touchBorderMargin = 10.0
+         */
+        spreadButton?.buttonWillSpreadBlock = { print(" 111111 \($0.frame.maxY)") }
+        spreadButton?.buttonDidSpreadBlock = { _ in print("222222did spread") }
+        spreadButton?.buttonWillCloseBlock = { _ in print("333333333 will closed") }
+        spreadButton?.buttonDidCloseBlock = { _ in print("444444444  did closed") }
+        
+        if spreadButton != nil {
+            mapView?.addSubview(spreadButton!)
+        }
     }
+
 }

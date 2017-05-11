@@ -118,6 +118,8 @@ class ChatListviewcontroller: RCConversationListViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
 }
 
 // MARK: -- 请求测试

@@ -32,9 +32,9 @@ class TableviewCoustom: APPviewcontroller {
             self.sectionFirstLoad = true
             self.table.insertSections(IndexSet(integersIn: NSMakeRange(0, self.TypeArray.count).toRange()!), with: .fade)
         })
-
     }
     
+
     func ShowText(){
         func addText(_ string : String) {
             let model = ShowTextModel(string)
@@ -43,12 +43,7 @@ class TableviewCoustom: APPviewcontroller {
         
         addText("AFNetworking is a delightful networking library for iOS and Mac OS X. It's built on top of the Foundation URL Loading System, extending the powerful high-level networking abstractions built into Cocoa. It has a modular architecture with well-designed, feature-rich APIs that are a joy to use. Perhaps the most important feature of all, however, is the amazing community of developers who use and contribute to AFNetworking every day. AFNetworking powers some of the most popular and critically-acclaimed apps on the iPhone, iPad, and Mac. Choose AFNetworking for your next project, or migrate over your existing projects—you'll be happy you did!")
         
-        addText("黄色的树林里分出两条路，可惜我不能同时去涉足，我在那路口久久伫立，我向着一条路极目望去，直到它消失在丛林深处。但我却选了另外一条路，它荒草萋萋，十分幽寂，显得更诱人、更美丽，虽然在这两条小路上，都很少留下旅人的足迹，虽然那天清晨落叶满地，两条路都未经脚印污染。呵，留下一条路等改日再见！但我知道路径延绵无尽头，恐怕我难以再回返。也许多少年后在某个地方，我将轻声叹息把往事回顾，一片树林里分出两条路，而我选了人迹更少的一条，从此决定了我一生的道路。")
-        
         addText("★タクシー代がなかったので、家まで歩いて帰った。★もし事故が発生した场所、このレバーを引いて列车を止めてください。（丁）为了清楚地表示出一个短语或句节，其后须标逗号。如：★この薬を、夜寝る前に一度、朝起きてからもう一度、饮んでください。★私は、空を飞ぶ鸟のように、自由に生きて行きたいと思った。*****为了清楚地表示词语与词语间的关系，须标逗号。标注位置不同，有时会使句子的意思发生变化。如：★その人は大きな音にびっくりして、横から飞び出した子供にぶつかった。★その人は、大きな音にびっくりして横から飞び出した子供に、ぶつかった。")
-        
-        addText("Two roads diverged in a yellow wood, And sorry I could not travel both And be one traveler, long I stood And looked down one as far as I could To where it bent in the undergrowth; Then took the other, as just as fair, And having perhaps the better claim, Because it was grassy and wanted wear; Though as for that the passing there Had worn them really about the same, And both that morning equally lay In leaves no step had trodden black. Oh, I kept the first for another day! Yet knowing how way leads on to way, I doubted if I should ever come back. I shall be telling this with a sigh Somewhere ages and ages hence: Two roads diverged in a wood, and I- I took the one less traveled by, And that has made all the difference.")
-        
     }
     func panGesture(section :UIButton){
         if !TypeArray[section.tag] {
@@ -111,8 +106,9 @@ extension TableviewCoustom : UITableViewDataSource,UITableViewDelegate{
         let btn = UIButton(type: .custom)
         btn.frame = CGRect(x: 0, y: 0, width: App_width, height: 44)
         btn.tag = section
-        let str = "第" + "\(section)" + "区"
-        btn.setTitle(str, for: .normal)
+        let titleArray = ["cell展开收缩动画","其他动画"]
+//        let str = "第" + "\(section)" + "区"
+        btn.setTitle(titleArray[section], for: .normal)
         btn.backgroundColor = UIColor.gray.alpha(0.6)
         btn.addTarget(self, action: #selector(panGesture(section:)), for: .touchUpInside)
         return btn
@@ -138,7 +134,15 @@ extension TableviewCoustom : UITableViewDataSource,UITableViewDelegate{
             cell = UITableViewCell(style: .default, reuseIdentifier: identifile)
             cell?.selectionStyle = .none
         }
-        cell?.textLabel?.text = "这是第" + "\(indexPath.row)" + "行"
+        let titleArray = ["UIScrollView视差效果动画","图片碎片化mask动画"]
+        switch indexPath.row {
+        case 0:
+            cell?.textLabel?.text = titleArray[indexPath.row]
+        case 1:
+            cell?.textLabel?.text = titleArray[indexPath.row]
+        default:
+            cell?.textLabel?.text = "这是第" + "\(indexPath.row)" + "行"
+        }
         return cell!
     }
     
@@ -150,8 +154,32 @@ extension TableviewCoustom : UITableViewDataSource,UITableViewDelegate{
             
             return
         }
-        alert("坏淫好想你")
+        if indexPath.section == 1 {
+            switch indexPath.row {
+            case 0:
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+                let vc = FullTitleVisualEffectViewController()
+                self.navigationController?.pushViewController(vc, animated: false)
+                return
+            case 1:
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+                let vc = TransformFadeViewController()
+                self.navigationController?.pushViewController(vc, animated: false)
+                return
+            case 2:
+                let vc = wavesAnimationController()
+                self.navigationController?.pushViewController(vc, animated: false)
+                return
+                
+            default:
+                alert("坏淫好想你😘 (＠。ε。＠)")
+            }
+        }
+        
+        alert("坏淫好想你😘 (＠。ε。＠)")
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
 }

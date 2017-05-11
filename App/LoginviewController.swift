@@ -239,7 +239,7 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
     }
     //MARK:-----添加水印
     func addWatermark(){
-        imageBG.image = UIImage(named: "3")?.waterMarkedImage("要想生活过得去，朋友必须有小军").waterMarkedImage("☀️", corner: .topLeft, margin: CGPoint(x: 24,y: 28), waterMarkTextColor: UIColor.brown, waterMarkTextFont: UIFont.systemFont(ofSize: 45), backgroundColor: UIColor.clear)
+        imageBG.image = UIImage(named: "LoginBG.jpg")?.waterMarkedImage("要想生活过得去，朋友必须有小军").waterMarkedImage("☀️", corner: .topLeft, margin: CGPoint(x: 24,y: 28), waterMarkTextColor: UIColor.brown, waterMarkTextFont: UIFont.systemFont(ofSize: 45), backgroundColor: UIColor.clear)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

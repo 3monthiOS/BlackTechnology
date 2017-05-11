@@ -71,7 +71,7 @@ class APPviewcontroller: CustomViewController {
      Build contentView, please overwrite by subclass.
      */
     func buildContentView() {
-        contentView = UIView(frame : CGRect(x: 0, y: isHidden! ? 64 : 0, width: width, height: isHidden! ? height - 64 : height))
+        contentView = UIView(frame : CGRect(x: 0, y: isHidden! ? 64 : 0, width: width, height: isHidden! ? App_height - 64 : height))
         view.addSubview(contentView!)
     }
     
@@ -79,7 +79,7 @@ class APPviewcontroller: CustomViewController {
      Build loadingView, please overwrite by subclass.
      */
     func buildLoadingView() {
-        loadingView = UIView(frame : CGRect(x: 0, y: isHidden! ? 64 : 0, width: width, height: isHidden! ? height - 64 : height))
+        loadingView = UIView(frame : CGRect(x: 0, y: isHidden! ? 64 : 0, width: width, height: isHidden! ? App_height - 64 : height))
         view.addSubview(loadingView!)
     }
     
@@ -95,7 +95,8 @@ class APPviewcontroller: CustomViewController {
     func isCurrentViewControllerVisible() -> Bool {
         return self.view.window == nil ? false :true
     }
-}
+    
+    }
 
 
 

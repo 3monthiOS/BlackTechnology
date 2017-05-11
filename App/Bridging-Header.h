@@ -40,3 +40,6 @@
 // 我
 #import "TYTabButtonPagerController.h"
 #import "TYPagerController.h"
+// 侧边按钮
+#import "ZYSpreadButton.h"
+#import "ZYSpreadSubButton.h"

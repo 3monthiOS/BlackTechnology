@@ -111,11 +111,17 @@
 		F234815F1EA5E6EE00CB84F2 /* WebView+UserContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23481341EA5E6ED00CB84F2 /* WebView+UserContentController.swift */; };
 		F23481601EA5E6EE00CB84F2 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23481351EA5E6ED00CB84F2 /* WebView.swift */; };
 		F23EBAE91EBB2FE30061F5DD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F23EBAE81EBB2FE30061F5DD /* Images.xcassets */; };
+		F243CD2C1EC4206D001988D3 /* wavesAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F243CD2A1EC4206D001988D3 /* wavesAnimationController.swift */; };
+		F243CD2D1EC4206D001988D3 /* wavesAnimationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F243CD2B1EC4206D001988D3 /* wavesAnimationController.xib */; };
 		F24CE9F71EB345EC00FAB0D2 /* WX20170428-174119@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F24CE9F61EB345EC00FAB0D2 /* WX20170428-174119@2x.png */; };
 		F24E9A381DEEB18A00A45EB8 /* UploadPicturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E9A361DEEB18A00A45EB8 /* UploadPicturesView.swift */; };
 		F24E9A391DEEB18A00A45EB8 /* uploadPicturesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24E9A371DEEB18A00A45EB8 /* uploadPicturesView.xib */; };
 		F24E9A3C1DEEBA0800A45EB8 /* gif131.gif in Resources */ = {isa = PBXBuildFile; fileRef = F24E9A3B1DEEBA0800A45EB8 /* gif131.gif */; };
 		F24E9A411DEED00E00A45EB8 /* uploadGetToken.m in Sources */ = {isa = PBXBuildFile; fileRef = F24E9A401DEED00E00A45EB8 /* uploadGetToken.m */; };
+		F24F59151EC00F880077D913 /* CustomFullContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24F59141EC00F880077D913 /* CustomFullContentViewController.swift */; };
+		F24F59171EC00F970077D913 /* FullTitleVisualEffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24F59161EC00F970077D913 /* FullTitleVisualEffectViewController.swift */; };
+		F24F59191EC012A40077D913 /* MoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24F59181EC012A40077D913 /* MoreInfoView.swift */; };
+		F24F591C1EC021D20077D913 /* TransformFadeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24F591B1EC021D20077D913 /* TransformFadeViewController.swift */; };
 		F25E22E91D9B9A1D00A0F0DA /* AppChatScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25E22E81D9B9A1D00A0F0DA /* AppChatScreenViewController.swift */; };
 		F2666A8F1D879CCD00B2029E /* Myviewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2666A8E1D879CCD00B2029E /* Myviewcontroller.swift */; };
 		F2666A911D879CEE00B2029E /* FunctionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2666A901D879CEE00B2029E /* FunctionsViewController.swift */; };
@@ -160,6 +166,13 @@
 		F29BFBFA1EBC693D00464D28 /* ShowtextModelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F29BFBF81EBC693D00464D28 /* ShowtextModelCell.xib */; };
 		F2A65AE11EAF3B460010AF63 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A65AE01EAF3B460010AF63 /* LeftViewController.swift */; };
 		F2A65AE31EAF3B510010AF63 /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A65AE21EAF3B510010AF63 /* RightViewController.swift */; };
+		F2A81C5A1EC170B500771776 /* SpreadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A81C571EC170B500771776 /* SpreadButton.swift */; };
+		F2A81C5B1EC170B500771776 /* SpreadSubButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A81C581EC170B500771776 /* SpreadSubButton.swift */; };
+		F2A81C621EC170C500771776 /* ZYSpreadButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A81C5F1EC170C500771776 /* ZYSpreadButton.m */; };
+		F2A81C631EC170C500771776 /* ZYSpreadSubButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A81C611EC170C500771776 /* ZYSpreadSubButton.m */; };
+		F2A81C661EC192BA00771776 /* SweetAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A81C651EC192BA00771776 /* SweetAlert.swift */; };
+		F2A81C6A1EC19AA400771776 /* LTDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A81C681EC19AA400771776 /* LTDemoViewController.swift */; };
+		F2A81C6B1EC19AA400771776 /* LTDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A81C691EC19AA400771776 /* LTDemoViewController.xib */; };
 		F2BD8A201EB984E400AE3F06 /* CustomNormalContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD8A1E1EB984E400AE3F06 /* CustomNormalContentViewController.swift */; };
 		F2BD8A211EB984E400AE3F06 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD8A1F1EB984E400AE3F06 /* CustomViewController.swift */; };
 		F2BD8A241EB9882900AE3F06 /* QNUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD8A231EB9882900AE3F06 /* QNUtils.swift */; };
@@ -203,6 +216,7 @@
 		F2ED94611D86AF8E000C2E59 /* ChatListviewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ED94601D86AF8E000C2E59 /* ChatListviewcontroller.swift */; };
 		F2FA2DA01DE808D000CE0A3C /* DownloadfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FA2D9E1DE808D000CE0A3C /* DownloadfileView.swift */; };
 		F2FA2DA11DE808D000CE0A3C /* DownloadfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2FA2D9F1DE808D000CE0A3C /* DownloadfileView.xib */; };
+		F2FDE7EE1EC4280D007C0098 /* waveViewDrawrect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FDE7ED1EC4280D007C0098 /* waveViewDrawrect.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -349,12 +363,18 @@
 		F23481341EA5E6ED00CB84F2 /* WebView+UserContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebView+UserContentController.swift"; sourceTree = "<group>"; };
 		F23481351EA5E6ED00CB84F2 /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		F23EBAE81EBB2FE30061F5DD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F243CD2A1EC4206D001988D3 /* wavesAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wavesAnimationController.swift; sourceTree = "<group>"; };
+		F243CD2B1EC4206D001988D3 /* wavesAnimationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = wavesAnimationController.xib; sourceTree = "<group>"; };
 		F24CE9F61EB345EC00FAB0D2 /* WX20170428-174119@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "WX20170428-174119@2x.png"; path = "../WX20170428-174119@2x.png"; sourceTree = "<group>"; };
 		F24E9A361DEEB18A00A45EB8 /* UploadPicturesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadPicturesView.swift; sourceTree = "<group>"; };
 		F24E9A371DEEB18A00A45EB8 /* uploadPicturesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = uploadPicturesView.xib; sourceTree = "<group>"; };
 		F24E9A3B1DEEBA0800A45EB8 /* gif131.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gif131.gif; sourceTree = "<group>"; };
 		F24E9A3F1DEED00E00A45EB8 /* uploadGetToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uploadGetToken.h; sourceTree = "<group>"; };
 		F24E9A401DEED00E00A45EB8 /* uploadGetToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = uploadGetToken.m; sourceTree = "<group>"; };
+		F24F59141EC00F880077D913 /* CustomFullContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFullContentViewController.swift; sourceTree = "<group>"; };
+		F24F59161EC00F970077D913 /* FullTitleVisualEffectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullTitleVisualEffectViewController.swift; sourceTree = "<group>"; };
+		F24F59181EC012A40077D913 /* MoreInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoView.swift; sourceTree = "<group>"; };
+		F24F591B1EC021D20077D913 /* TransformFadeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformFadeViewController.swift; sourceTree = "<group>"; };
 		F25E22E81D9B9A1D00A0F0DA /* AppChatScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppChatScreenViewController.swift; sourceTree = "<group>"; };
 		F2666A8E1D879CCD00B2029E /* Myviewcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Myviewcontroller.swift; sourceTree = "<group>"; };
 		F2666A901D879CEE00B2029E /* FunctionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionsViewController.swift; sourceTree = "<group>"; };
@@ -404,6 +424,15 @@
 		F29BFBF81EBC693D00464D28 /* ShowtextModelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowtextModelCell.xib; sourceTree = "<group>"; };
 		F2A65AE01EAF3B460010AF63 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		F2A65AE21EAF3B510010AF63 /* RightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
+		F2A81C571EC170B500771776 /* SpreadButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreadButton.swift; sourceTree = "<group>"; };
+		F2A81C581EC170B500771776 /* SpreadSubButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpreadSubButton.swift; sourceTree = "<group>"; };
+		F2A81C5E1EC170C500771776 /* ZYSpreadButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSpreadButton.h; sourceTree = "<group>"; };
+		F2A81C5F1EC170C500771776 /* ZYSpreadButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSpreadButton.m; sourceTree = "<group>"; };
+		F2A81C601EC170C500771776 /* ZYSpreadSubButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSpreadSubButton.h; sourceTree = "<group>"; };
+		F2A81C611EC170C500771776 /* ZYSpreadSubButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSpreadSubButton.m; sourceTree = "<group>"; };
+		F2A81C651EC192BA00771776 /* SweetAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SweetAlert.swift; sourceTree = "<group>"; };
+		F2A81C681EC19AA400771776 /* LTDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTDemoViewController.swift; sourceTree = "<group>"; };
+		F2A81C691EC19AA400771776 /* LTDemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTDemoViewController.xib; sourceTree = "<group>"; };
 		F2BD8A1E1EB984E400AE3F06 /* CustomNormalContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNormalContentViewController.swift; sourceTree = "<group>"; };
 		F2BD8A1F1EB984E400AE3F06 /* CustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
 		F2BD8A231EB9882900AE3F06 /* QNUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNUtils.swift; sourceTree = "<group>"; };
@@ -454,6 +483,7 @@
 		F2ED94601D86AF8E000C2E59 /* ChatListviewcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListviewcontroller.swift; sourceTree = "<group>"; };
 		F2FA2D9E1DE808D000CE0A3C /* DownloadfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadfileView.swift; sourceTree = "<group>"; };
 		F2FA2D9F1DE808D000CE0A3C /* DownloadfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadfileView.xib; sourceTree = "<group>"; };
+		F2FDE7ED1EC4280D007C0098 /* waveViewDrawrect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = waveViewDrawrect.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -549,8 +579,10 @@
 		F20F51691EB97D1800061BBE /* common */ = {
 			isa = PBXGroup;
 			children = (
+				F2A81C641EC192BA00771776 /* SweetAlert */,
 				F20F51A11EB97D1800061BBE /* Theme.swift */,
 				F20F51811EB97D1800061BBE /* CommonFuntion.swift */,
+				F2A81C561EC16F4900771776 /* SpreadButton */,
 				F2BD8A251EB9885400AE3F06 /* Session+extension */,
 				F2BD8A221EB9882900AE3F06 /* QNTool */,
 				F20F516A1EB97D1800061BBE /* animation */,
@@ -1083,6 +1115,16 @@
 			path = Swiften;
 			sourceTree = "<group>";
 		};
+		F243CD291EC4206D001988D3 /*  wavesAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				F243CD2A1EC4206D001988D3 /* wavesAnimationController.swift */,
+				F243CD2B1EC4206D001988D3 /* wavesAnimationController.xib */,
+				F2FDE7ED1EC4280D007C0098 /* waveViewDrawrect.swift */,
+			);
+			path = " wavesAnimation";
+			sourceTree = "<group>";
+		};
 		F24E9A351DEEB16800A45EB8 /* uploadPictures */ = {
 			isa = PBXGroup;
 			children = (
@@ -1101,6 +1143,24 @@
 				F24E9A3B1DEEBA0800A45EB8 /* gif131.gif */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		F24F59131EC00F310077D913 /* AnimationsListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F24F59181EC012A40077D913 /* MoreInfoView.swift */,
+				F24F59141EC00F880077D913 /* CustomFullContentViewController.swift */,
+				F24F59161EC00F970077D913 /* FullTitleVisualEffectViewController.swift */,
+			);
+			path = AnimationsListViewController;
+			sourceTree = "<group>";
+		};
+		F24F591A1EC021C80077D913 /* TransformFadeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F24F591B1EC021D20077D913 /* TransformFadeViewController.swift */,
+			);
+			path = TransformFadeViewController;
 			sourceTree = "<group>";
 		};
 		F25E22E71D9B99ED00A0F0DA /* RC */ = {
@@ -1135,6 +1195,7 @@
 		F2666A8D1D879C6F00B2029E /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				F2A81C671EC19A9200771776 /* LTDemo */,
 				F283A94E1EB9E59B0012EE0D /* TableviewCoustom */,
 				F2BD8A2A1EB9BCF700AE3F06 /* GIF */,
 				657929B11EA8A5E10006F607 /* video */,
@@ -1169,6 +1230,9 @@
 		F283A94E1EB9E59B0012EE0D /* TableviewCoustom */ = {
 			isa = PBXGroup;
 			children = (
+				F243CD291EC4206D001988D3 /*  wavesAnimation */,
+				F24F591A1EC021C80077D913 /* TransformFadeViewController */,
+				F24F59131EC00F310077D913 /* AnimationsListViewController */,
 				F20F50CC1EBB44CE00DCC828 /* ShowTextHeight */,
 				F283A94F1EB9E5BD0012EE0D /* TableviewCoustom.swift */,
 			);
@@ -1280,6 +1344,36 @@
 			);
 			path = drawer;
 			sourceTree = SOURCE_ROOT;
+		};
+		F2A81C561EC16F4900771776 /* SpreadButton */ = {
+			isa = PBXGroup;
+			children = (
+				F2A81C5E1EC170C500771776 /* ZYSpreadButton.h */,
+				F2A81C5F1EC170C500771776 /* ZYSpreadButton.m */,
+				F2A81C601EC170C500771776 /* ZYSpreadSubButton.h */,
+				F2A81C611EC170C500771776 /* ZYSpreadSubButton.m */,
+				F2A81C571EC170B500771776 /* SpreadButton.swift */,
+				F2A81C581EC170B500771776 /* SpreadSubButton.swift */,
+			);
+			path = SpreadButton;
+			sourceTree = "<group>";
+		};
+		F2A81C641EC192BA00771776 /* SweetAlert */ = {
+			isa = PBXGroup;
+			children = (
+				F2A81C651EC192BA00771776 /* SweetAlert.swift */,
+			);
+			path = SweetAlert;
+			sourceTree = "<group>";
+		};
+		F2A81C671EC19A9200771776 /* LTDemo */ = {
+			isa = PBXGroup;
+			children = (
+				F2A81C681EC19AA400771776 /* LTDemoViewController.swift */,
+				F2A81C691EC19AA400771776 /* LTDemoViewController.xib */,
+			);
+			path = LTDemo;
+			sourceTree = "<group>";
 		};
 		F2BD8A1D1EB984E400AE3F06 /* UIviewcontroller */ = {
 			isa = PBXGroup;
@@ -1573,6 +1667,7 @@
 				F27AE1FE1D928E09000E0509 /* CollectionReusableViewHeadre.xib in Resources */,
 				F24CE9F71EB345EC00FAB0D2 /* WX20170428-174119@2x.png in Resources */,
 				F2BD8A321EB9BD9400AE3F06 /* GifDetailController.xib in Resources */,
+				F2A81C6B1EC19AA400771776 /* LTDemoViewController.xib in Resources */,
 				F23EBAE91EBB2FE30061F5DD /* Images.xcassets in Resources */,
 				F2D6904E1DFE7A200087328B /* QNCollectionViewCell.xib in Resources */,
 				F2BD8A3C1EB9C97500AE3F06 /* GIFCell.xib in Resources */,
@@ -1591,6 +1686,7 @@
 				F24E9A3C1DEEBA0800A45EB8 /* gif131.gif in Resources */,
 				F2D690561DFE87DD0087328B /* QNPhotoController.xib in Resources */,
 				F28C54B31EA7646300209259 /* PEPhotoCropEditor.bundle in Resources */,
+				F243CD2D1EC4206D001988D3 /* wavesAnimationController.xib in Resources */,
 				F2D652D41D7E94A90005824D /* Assets.xcassets in Resources */,
 				F2D652CF1D7E94A90005824D /* Main.storyboard in Resources */,
 			);
@@ -1666,8 +1762,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F231272B1EAEF80900FA0D74 /* TestModel.swift in Sources */,
+				F24F59191EC012A40077D913 /* MoreInfoView.swift in Sources */,
 				F234813B1EA5E6EE00CB84F2 /* Swiften.swift in Sources */,
 				F20F51FE1EB97D1800061BBE /* TYTabPagerController.m in Sources */,
+				F2FDE7EE1EC4280D007C0098 /* waveViewDrawrect.swift in Sources */,
 				F234814E1EA5E6EE00CB84F2 /* RealmCache.swift in Sources */,
 				F23481361EA5E6ED00CB84F2 /* App.swift in Sources */,
 				F2BD8A271EB9885400AE3F06 /* Session+extension.swift in Sources */,
@@ -1677,12 +1775,14 @@
 				F20F51E01EB97D1800061BBE /* Location.swift in Sources */,
 				F28C54B21EA7646300209259 /* PECropViewController.m in Sources */,
 				F20F52011EB97D1800061BBE /* UIBarItem+Swift.m in Sources */,
+				F24F591C1EC021D20077D913 /* TransformFadeViewController.swift in Sources */,
 				F27AE1FD1D928E09000E0509 /* CollectionReusableViewHeadre.swift in Sources */,
 				F20F51EB1EB97D1800061BBE /* EasingValue.swift in Sources */,
 				F2EBCD351EADEB4800EFD026 /* HttpClient.swift in Sources */,
 				F234815E1EA5E6EE00CB84F2 /* WebView+UIDelegate.swift in Sources */,
 				F23481451EA5E6EE00CB84F2 /* RestResponse.swift in Sources */,
 				F23481411EA5E6EE00CB84F2 /* Reachability.swift in Sources */,
+				F2A81C5A1EC170B500771776 /* SpreadButton.swift in Sources */,
 				F234813C1EA5E6EE00CB84F2 /* Swizzler.swift in Sources */,
 				F20F52001EB97D1800061BBE /* BackgroundLineView.swift in Sources */,
 				F20F51EA1EB97D1800061BBE /* Easing.swift in Sources */,
@@ -1703,6 +1803,7 @@
 				F2666A911D879CEE00B2029E /* FunctionsViewController.swift in Sources */,
 				F294B3451DFFDDB70055C8CB /* MObileFunction.swift in Sources */,
 				F20F51DA1EB97D1800061BBE /* MJrefreshCollectionview.swift in Sources */,
+				F243CD2C1EC4206D001988D3 /* wavesAnimationController.swift in Sources */,
 				F2A65AE11EAF3B460010AF63 /* LeftViewController.swift in Sources */,
 				F24E9A411DEED00E00A45EB8 /* uploadGetToken.m in Sources */,
 				F2D3A3E11E038E0D007DE758 /* FirstViewController.swift in Sources */,
@@ -1724,8 +1825,10 @@
 				F21437AC1D98D403000E0CBF /* BaiduMapViewController.swift in Sources */,
 				F20F52051EB97D1800061BBE /* UIFont+extension.swift in Sources */,
 				F28C985D1E07D7BC00DACB18 /* User.swift in Sources */,
+				F2A81C631EC170C500771776 /* ZYSpreadSubButton.m in Sources */,
 				F234815B1EA5E6EE00CB84F2 /* WebView+EmbedService.swift in Sources */,
 				F23481491EA5E6EE00CB84F2 /* Map+valueForKey.swift in Sources */,
+				F24F59171EC00F970077D913 /* FullTitleVisualEffectViewController.swift in Sources */,
 				F20F51D71EB97D1800061BBE /* SwiftLogoLayer.swift in Sources */,
 				F23481521EA5E6EE00CB84F2 /* CGRect+Extension.swift in Sources */,
 				F20F52171EB97D1800061BBE /* UIViewController+TopViewController.swift in Sources */,
@@ -1757,6 +1860,7 @@
 				F23481541EA5E6EE00CB84F2 /* UIColor+Extension.swift in Sources */,
 				F2D690551DFE87DD0087328B /* QNPhotoController.swift in Sources */,
 				F2D652D21D7E94A90005824D /* App.xcdatamodeld in Sources */,
+				F2A81C6A1EC19AA400771776 /* LTDemoViewController.swift in Sources */,
 				F234815A1EA5E6EE00CB84F2 /* WebViewController.swift in Sources */,
 				F234815F1EA5E6EE00CB84F2 /* WebView+UserContentController.swift in Sources */,
 				F20F51DD1EB97D1800061BBE /* MJrefreshTableview.swift in Sources */,
@@ -1768,12 +1872,14 @@
 				F20F51FD1EB97D1800061BBE /* TYTabButtonPagerController.m in Sources */,
 				F294B34A1DFFDDB70055C8CB /* UserIphoneNumbercell.swift in Sources */,
 				F234813D1EA5E6EE00CB84F2 /* UDID.swift in Sources */,
+				F2A81C621EC170C500771776 /* ZYSpreadButton.m in Sources */,
 				F20F52121EB97D1800061BBE /* UIView+HFZToast.swift in Sources */,
 				F234814B1EA5E6EE00CB84F2 /* RealmEntityManager.swift in Sources */,
 				F28C54AB1EA7646300209259 /* PhotoBrowser+TakerViewController.swift in Sources */,
 				F28C54AA1EA7646300209259 /* PhotoBrowser+PreviewController.swift in Sources */,
 				F20F51DE1EB97D1800061BBE /* UIScrollView+TopRefresh.m in Sources */,
 				F23481471EA5E6EE00CB84F2 /* NSDate+Extension.swift in Sources */,
+				F2A81C5B1EC170B500771776 /* SpreadSubButton.swift in Sources */,
 				F2DFE7D21D82A1B300E5DC71 /* LoginviewController.swift in Sources */,
 				F28C54AF1EA7646300209259 /* PhotoBrowserOptions.swift in Sources */,
 				F20F51E71EB97D1800061BBE /* Type.swift in Sources */,
@@ -1781,6 +1887,7 @@
 				F20F52071EB97D1800061BBE /* UIimage+Watermark.swift in Sources */,
 				F20F52041EB97D1800061BBE /* UIColor+HexColor.swift in Sources */,
 				F20F51E91EB97D1800061BBE /* ComplexEasingValue.swift in Sources */,
+				F2A81C661EC192BA00771776 /* SweetAlert.swift in Sources */,
 				F20F520D1EB97D1800061BBE /* TranformFadeView.swift in Sources */,
 				F2EBCD331EADEB4800EFD026 /* ContentType.swift in Sources */,
 				F294B3491DFFDDB70055C8CB /* RetrieveMobileAddressbook.swift in Sources */,
@@ -1799,6 +1906,7 @@
 				F234814A1EA5E6EE00CB84F2 /* Realm+Manager.swift in Sources */,
 				F2BD8A311EB9BD9400AE3F06 /* GifDetailController.swift in Sources */,
 				F234814D1EA5E6EE00CB84F2 /* LocalStorage.swift in Sources */,
+				F24F59151EC00F880077D913 /* CustomFullContentViewController.swift in Sources */,
 				F23481401EA5E6EE00CB84F2 /* NetworkManager.swift in Sources */,
 				F20F51E51EB97D1800061BBE /* Device.swift in Sources */,
 				F20F52131EB97D1800061BBE /* UIView+ScreensShot.swift in Sources */,
