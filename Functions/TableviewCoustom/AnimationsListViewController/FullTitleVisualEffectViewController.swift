@@ -26,7 +26,7 @@ class FullTitleVisualEffectViewController: CustomFullContentViewController, UISc
         self.contentView?.frame = CGRect(x: 0, y: 0, width: App_width, height: App_height)
 
         onceLinearEquation = Math((x : 0,                  imageViewX : -50),
-                                  (x : contentView!.width, imageViewX : 270 - 80))
+                                  (x : (contentView?.width)!, imageViewX : 270 - 80))
         pictures.append(UIImage(named: "1")!)
         pictures.append(UIImage(named: "2")!)
         pictures.append(UIImage(named: "3")!)

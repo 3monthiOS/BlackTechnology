@@ -134,14 +134,11 @@ extension TableviewCoustom : UITableViewDataSource,UITableViewDelegate{
             cell = UITableViewCell(style: .default, reuseIdentifier: identifile)
             cell?.selectionStyle = .none
         }
-        let titleArray = ["UIScrollView视差效果动画","图片碎片化mask动画"]
-        switch indexPath.row {
-        case 0:
+        let titleArray = ["UIScrollView视差效果动画","图片碎片化mask动画","绘制波浪动画"]
+        if indexPath.row <= titleArray.count - 1 {
             cell?.textLabel?.text = titleArray[indexPath.row]
-        case 1:
-            cell?.textLabel?.text = titleArray[indexPath.row]
-        default:
-            cell?.textLabel?.text = "这是第" + "\(indexPath.row)" + "行"
+        }else{
+             cell?.textLabel?.text = "这是第" + "\(indexPath.row)" + "行"
         }
         return cell!
     }

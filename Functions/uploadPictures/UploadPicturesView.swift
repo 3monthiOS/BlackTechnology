@@ -13,7 +13,8 @@ class uploadPicturesView: APPviewcontroller {
 
     @IBOutlet weak var text: UITextField!
     @IBOutlet weak var showImageview: UIImageView!
-    @IBOutlet weak var chouseBtn: UIButton!
+    @IBOutlet weak var PhotoAlbumBtn: UIButton!
+    @IBOutlet weak var cameraBtn: UIButton!
     @IBOutlet weak var uploadBtn: UIButton!
     
     //
@@ -34,7 +35,10 @@ class uploadPicturesView: APPviewcontroller {
         super.setup()
         showImageview.contentMode = .scaleAspectFill
         showImageview.layer.masksToBounds = true
-        // Do any additional setup after loading the view.
+        contentView?.addSubview(text)
+        contentView?.addSubview(cameraBtn)
+        contentView?.addSubview(PhotoAlbumBtn)
+        contentView?.addSubview(uploadBtn)
     }
 
     @IBAction func chouse(_ sender: AnyObject) {

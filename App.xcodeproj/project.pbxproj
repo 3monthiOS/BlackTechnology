@@ -122,6 +122,9 @@
 		F24F59171EC00F970077D913 /* FullTitleVisualEffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24F59161EC00F970077D913 /* FullTitleVisualEffectViewController.swift */; };
 		F24F59191EC012A40077D913 /* MoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24F59181EC012A40077D913 /* MoreInfoView.swift */; };
 		F24F591C1EC021D20077D913 /* TransformFadeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24F591B1EC021D20077D913 /* TransformFadeViewController.swift */; };
+		F25AF3C31ECBEA2C008057CB /* CEViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25AF3C21ECBEA2C008057CB /* CEViewExtension.swift */; };
+		F25AF3C71ECC237F008057CB /* RadiationTransformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25AF3C51ECC237F008057CB /* RadiationTransformationController.swift */; };
+		F25AF3C81ECC237F008057CB /* RadiationTransformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F25AF3C61ECC237F008057CB /* RadiationTransformationController.xib */; };
 		F25E22E91D9B9A1D00A0F0DA /* AppChatScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25E22E81D9B9A1D00A0F0DA /* AppChatScreenViewController.swift */; };
 		F2666A8F1D879CCD00B2029E /* Myviewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2666A8E1D879CCD00B2029E /* Myviewcontroller.swift */; };
 		F2666A911D879CEE00B2029E /* FunctionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2666A901D879CEE00B2029E /* FunctionsViewController.swift */; };
@@ -375,6 +378,9 @@
 		F24F59161EC00F970077D913 /* FullTitleVisualEffectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullTitleVisualEffectViewController.swift; sourceTree = "<group>"; };
 		F24F59181EC012A40077D913 /* MoreInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoView.swift; sourceTree = "<group>"; };
 		F24F591B1EC021D20077D913 /* TransformFadeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformFadeViewController.swift; sourceTree = "<group>"; };
+		F25AF3C21ECBEA2C008057CB /* CEViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEViewExtension.swift; sourceTree = "<group>"; };
+		F25AF3C51ECC237F008057CB /* RadiationTransformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadiationTransformationController.swift; sourceTree = "<group>"; };
+		F25AF3C61ECC237F008057CB /* RadiationTransformationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadiationTransformationController.xib; sourceTree = "<group>"; };
 		F25E22E81D9B9A1D00A0F0DA /* AppChatScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppChatScreenViewController.swift; sourceTree = "<group>"; };
 		F2666A8E1D879CCD00B2029E /* Myviewcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Myviewcontroller.swift; sourceTree = "<group>"; };
 		F2666A901D879CEE00B2029E /* FunctionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionsViewController.swift; sourceTree = "<group>"; };
@@ -419,7 +425,7 @@
 		F294B3401DFFDDB70055C8CB /* RetrieveMobileAddressbook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RetrieveMobileAddressbook.swift; sourceTree = "<group>"; };
 		F294B3411DFFDDB70055C8CB /* UserIphoneNumbercell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserIphoneNumbercell.swift; sourceTree = "<group>"; };
 		F294B3421DFFDDB70055C8CB /* UserIphoneNumbercell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserIphoneNumbercell.xib; sourceTree = "<group>"; };
-		F29BFBF51EBC569D00464D28 /* uploadPicturesTable.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = uploadPicturesTable.geojson; sourceTree = "<group>"; };
+		F29BFBF51EBC569D00464D28 /* uploadPicturesTable.geojson */ = {isa = PBXFileReference; fileEncoding = 1; lastKnownFileType = text; path = uploadPicturesTable.geojson; sourceTree = "<group>"; };
 		F29BFBF71EBC693D00464D28 /* ShowtextModelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowtextModelCell.swift; sourceTree = "<group>"; };
 		F29BFBF81EBC693D00464D28 /* ShowtextModelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowtextModelCell.xib; sourceTree = "<group>"; };
 		F2A65AE01EAF3B460010AF63 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
@@ -845,6 +851,7 @@
 		F20F51C31EB97D1800061BBE /* Uiview */ = {
 			isa = PBXGroup;
 			children = (
+				F25AF3C21ECBEA2C008057CB /* CEViewExtension.swift */,
 				F20F51C41EB97D1800061BBE /* CircleView */,
 				F20F51C61EB97D1800061BBE /* RotateView */,
 				F20F51C81EB97D1800061BBE /* TranformFadeView */,
@@ -1163,6 +1170,15 @@
 			path = TransformFadeViewController;
 			sourceTree = "<group>";
 		};
+		F25AF3C41ECC2361008057CB /* RadiationTransformation */ = {
+			isa = PBXGroup;
+			children = (
+				F25AF3C51ECC237F008057CB /* RadiationTransformationController.swift */,
+				F25AF3C61ECC237F008057CB /* RadiationTransformationController.xib */,
+			);
+			path = RadiationTransformation;
+			sourceTree = "<group>";
+		};
 		F25E22E71D9B99ED00A0F0DA /* RC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1195,6 +1211,7 @@
 		F2666A8D1D879C6F00B2029E /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				F25AF3C41ECC2361008057CB /* RadiationTransformation */,
 				F2A81C671EC19A9200771776 /* LTDemo */,
 				F283A94E1EB9E59B0012EE0D /* TableviewCoustom */,
 				F2BD8A2A1EB9BCF700AE3F06 /* GIF */,
@@ -1670,6 +1687,7 @@
 				F2A81C6B1EC19AA400771776 /* LTDemoViewController.xib in Resources */,
 				F23EBAE91EBB2FE30061F5DD /* Images.xcassets in Resources */,
 				F2D6904E1DFE7A200087328B /* QNCollectionViewCell.xib in Resources */,
+				F25AF3C81ECC237F008057CB /* RadiationTransformationController.xib in Resources */,
 				F2BD8A3C1EB9C97500AE3F06 /* GIFCell.xib in Resources */,
 				F2DFE7DA1D82B45900E5DC71 /* Login.storyboard in Resources */,
 				F2D3A3E61E03A788007DE758 /* SecondViewController.xib in Resources */,
@@ -1863,6 +1881,7 @@
 				F2A81C6A1EC19AA400771776 /* LTDemoViewController.swift in Sources */,
 				F234815A1EA5E6EE00CB84F2 /* WebViewController.swift in Sources */,
 				F234815F1EA5E6EE00CB84F2 /* WebView+UserContentController.swift in Sources */,
+				F25AF3C71ECC237F008057CB /* RadiationTransformationController.swift in Sources */,
 				F20F51DD1EB97D1800061BBE /* MJrefreshTableview.swift in Sources */,
 				F234815D1EA5E6EE00CB84F2 /* WebView+Proxy.swift in Sources */,
 				F234815C1EA5E6EE00CB84F2 /* WebView+NavigationDelegate.swift in Sources */,
@@ -1908,6 +1927,7 @@
 				F234814D1EA5E6EE00CB84F2 /* LocalStorage.swift in Sources */,
 				F24F59151EC00F880077D913 /* CustomFullContentViewController.swift in Sources */,
 				F23481401EA5E6EE00CB84F2 /* NetworkManager.swift in Sources */,
+				F25AF3C31ECBEA2C008057CB /* CEViewExtension.swift in Sources */,
 				F20F51E51EB97D1800061BBE /* Device.swift in Sources */,
 				F20F52131EB97D1800061BBE /* UIView+ScreensShot.swift in Sources */,
 				F294B3431DFFDDB70055C8CB /* MobileAddressBooks.swift in Sources */,

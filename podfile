@@ -12,7 +12,7 @@ target :App do
     pod 'SwiftyJSON', '~> 3.1'
 #    pod 'Toast-Swift', '~> 2.0.0'
 
-    pod 'IQKeyboardManagerSwift','4.0.8'
+    pod 'IQKeyboardManagerSwift'
     pod 'RongCloudIMKit', '~> 2.7.0'
     pod 'MJRefresh'
     pod 'BaiduMapKit'

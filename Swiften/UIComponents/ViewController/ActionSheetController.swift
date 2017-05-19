@@ -29,6 +29,7 @@ open class ActionSheetController: UIViewController {
             guard let view = view, let popupView = popupView else { return }
             let originFrame = popupView.frame
             popupView.frame = CGRect(origin: CGPoint(x: 0, y: view.bounds.size.height), size: originFrame.size)
+            
             UIView.animate(withDuration: 0.25, animations: {
                 view.backgroundColor = UIColor(rgba: 0x00000066)
                 popupView.alpha = 1
