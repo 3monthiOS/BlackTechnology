@@ -67,6 +67,7 @@
 		F21437AC1D98D403000E0CBF /* BaiduMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21437AB1D98D403000E0CBF /* BaiduMapViewController.swift */; };
 		F217F2091D842B74000E3A0D /* RegisteredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F217F2071D842B74000E3A0D /* RegisteredViewController.swift */; };
 		F217F20A1D842B74000E3A0D /* RegisteredViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F217F2081D842B74000E3A0D /* RegisteredViewController.xib */; };
+		F21A91191ECEF3D100951673 /* ToolsAnimation.plist in Resources */ = {isa = PBXBuildFile; fileRef = F21A91181ECEF3D100951673 /* ToolsAnimation.plist */; };
 		F23127291EAEF62600FA0D74 /* RequestAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23127281EAEF62600FA0D74 /* RequestAddress.swift */; };
 		F231272B1EAEF80900FA0D74 /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231272A1EAEF80900FA0D74 /* TestModel.swift */; };
 		F23481361EA5E6ED00CB84F2 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23480F81EA5E6ED00CB84F2 /* App.swift */; };
@@ -321,6 +322,7 @@
 		F21437AB1D98D403000E0CBF /* BaiduMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaiduMapViewController.swift; sourceTree = "<group>"; };
 		F217F2071D842B74000E3A0D /* RegisteredViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredViewController.swift; sourceTree = "<group>"; };
 		F217F2081D842B74000E3A0D /* RegisteredViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisteredViewController.xib; sourceTree = "<group>"; };
+		F21A91181ECEF3D100951673 /* ToolsAnimation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ToolsAnimation.plist; sourceTree = "<group>"; };
 		F23127281EAEF62600FA0D74 /* RequestAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestAddress.swift; sourceTree = "<group>"; };
 		F231272A1EAEF80900FA0D74 /* TestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
 		F23480F81EA5E6ED00CB84F2 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 		417EA5E53B6D031C110D375F /* AnimatedTabBar */ = {
 			isa = PBXGroup;
 			children = (
+				F21A91181ECEF3D100951673 /* ToolsAnimation.plist */,
 				F2C4338E1ECED0970038372C /* TabbarHomeController.swift */,
 				F26381F01ECEDC4900386AC8 /* ChatTabbarItem.swift */,
 				F26381F21ECEDCED00386AC8 /* MyTabbarItem.swift */,
@@ -1695,6 +1698,7 @@
 				F2D54B261D93A692006DE294 /* TableViewHeaderCell.xib in Resources */,
 				F29BFBFA1EBC693D00464D28 /* ShowtextModelCell.xib in Resources */,
 				F217F20A1D842B74000E3A0D /* RegisteredViewController.xib in Resources */,
+				F21A91191ECEF3D100951673 /* ToolsAnimation.plist in Resources */,
 				F27AE2001D928E09000E0509 /* QdanCollectionViewCell.xib in Resources */,
 				F294B3461DFFDDB70055C8CB /* MObileFunction.xib in Resources */,
 				F294B34B1DFFDDB70055C8CB /* UserIphoneNumbercell.xib in Resources */,

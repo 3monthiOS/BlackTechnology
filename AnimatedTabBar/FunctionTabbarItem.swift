@@ -20,7 +20,7 @@ class FunctionTabbarItem: RAMItemAnimation {
     @IBInspectable open var isDeselectAnimation: Bool = true
     
     /// path to array of image names from plist file
-    @IBInspectable open var imagesPath: String!
+    let imagesPath = "ToolsAnimation"
     
     override open func awakeFromNib() {
         
@@ -54,6 +54,8 @@ class FunctionTabbarItem: RAMItemAnimation {
      
      - parameter images: images for keyframe animation
      */
+    
+    
     open func setAnimationImages(_ images: Array<UIImage>) {
         var animationImages = Array<CGImage>()
         for image in images {
@@ -72,8 +74,9 @@ class FunctionTabbarItem: RAMItemAnimation {
      - parameter icon:      animating UITabBarItem icon
      - parameter textLabel: animating UITabBarItem textLabel
      */
-    override open func playAnimation(_ icon : UIImageView, textLabel : UILabel) {
-        
+    
+    
+    override func playAnimation(_ icon: UIImageView, textLabel: UILabel) {
         playFrameAnimation(icon, images:animationImages)
         textLabel.textColor = textSelectedColor
     }
@@ -86,7 +89,8 @@ class FunctionTabbarItem: RAMItemAnimation {
      - parameter defaultTextColor: default UITabBarItem text color
      - parameter defaultIconColor: default UITabBarItem icon color
      */
-    override open func deselectAnimation(_ icon : UIImageView, textLabel : UILabel, defaultTextColor : UIColor, defaultIconColor : UIColor) {
+    
+    override func deselectAnimation(_ icon: UIImageView, textLabel: UILabel, defaultTextColor: UIColor, defaultIconColor: UIColor) {
         if isDeselectAnimation {
             playFrameAnimation(icon, images:animationImages.reversed())
         }
@@ -94,16 +98,19 @@ class FunctionTabbarItem: RAMItemAnimation {
         textLabel.textColor = defaultTextColor
     }
     
+    
     /**
      Method call when TabBarController did load
      
      - parameter icon:      animating UITabBarItem icon
      - parameter textLabel: animating UITabBarItem textLabel
      */
-    override open func selectedState(_ icon : UIImageView, textLabel : UILabel) {
+    
+    override func selectedState(_ icon: UIImageView, textLabel: UILabel) {
         icon.image = selectedImage
         textLabel.textColor = textSelectedColor
     }
+    
     
     func playFrameAnimation(_ icon : UIImageView, images : Array<CGImage>) {
         let frameAnimation = CAKeyframeAnimation(keyPath: Constant.AnimationKeys.KeyFrame)
@@ -115,4 +122,5 @@ class FunctionTabbarItem: RAMItemAnimation {
         frameAnimation.fillMode = kCAFillModeForwards
         icon.layer.add(frameAnimation, forKey: nil)
     }
+    
 }
