@@ -39,6 +39,7 @@ class uploadPicturesView: APPviewcontroller {
         contentView?.addSubview(cameraBtn)
         contentView?.addSubview(PhotoAlbumBtn)
         contentView?.addSubview(uploadBtn)
+
     }
 
     @IBAction func chouse(_ sender: AnyObject) {

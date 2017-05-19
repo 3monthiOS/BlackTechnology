@@ -1,4 +1,4 @@
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
 
 target :App do
@@ -28,7 +28,7 @@ target :App do
     pod 'SwiftOCR', '~> 1.0'
     #酷炫的label 样式
     pod 'LTMorphingLabel'
-
+    pod 'RAMAnimatedTabBarController', '~> 2.2.0'
 end
 
 post_install do |installer|

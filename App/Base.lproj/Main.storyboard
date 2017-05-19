@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="41k-6P-G8q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="41k-6P-G8q">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -73,10 +72,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="聊天" id="yyT-qN-3g1"/>
+                    <tabBarItem key="tabBarItem" title="聊天" image="user_00084" id="yyT-qN-3g1" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="tJi-a5-KhJ" id="o3O-en-oA9"/>
+                        </connections>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="mjX-5q-fCV"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VdR-XK-8R3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="tJi-a5-KhJ" customClass="ChatTabbarItem" customModule="App" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1358" y="-1200"/>
         </scene>
@@ -116,6 +120,11 @@
                             <constraint firstItem="OAJ-eY-aB4" firstAttribute="leading" secondItem="MLZ-My-jem" secondAttribute="leading" id="e9P-4I-4Rq"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" tag="1" title="功能列表" image="drop" id="ca2-cT-3tt" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="bBt-nF-gP8" id="xBt-a9-iCu"/>
+                        </connections>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="ov4-Oi-1BM"/>
                     <connections>
                         <outlet property="collectionView" destination="OAJ-eY-aB4" id="S0U-zt-rwU"/>
@@ -126,6 +135,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dnd-2n-miI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="bBt-nF-gP8" customClass="FunctionTabbarItem" customModule="App" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1359" y="-538"/>
         </scene>
@@ -142,9 +152,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <tabBarItem key="tabBarItem" tag="2" title="我" image="Settings_00208" id="TFg-ri-p59" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <connections>
+                            <outlet property="animation" destination="b7y-qT-nHf" id="DQC-eu-Lfa"/>
+                        </connections>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="9rq-7g-5M7"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="b7y-qT-nHf" customClass="MyTabbarItem" customModule="App" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1357.5999999999999" y="167.76611694152925"/>
         </scene>
@@ -466,4 +482,9 @@
             <point key="canvasLocation" x="-217" y="-538"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Settings_00208" width="30" height="30"/>
+        <image name="drop" width="24" height="24"/>
+        <image name="user_00084" width="30" height="30"/>
+    </resources>
 </document>
