@@ -8,8 +8,6 @@
 
 import Foundation
 
-import RAMAnimatedTabBarController
-
 class MyTabbarItem: RAMItemAnimation {
     
     /**
@@ -61,7 +59,7 @@ class MyTabbarItem: RAMItemAnimation {
     
     func playBounceAnimation(_ icon : UIImageView) {
         
-        let bounceAnimation = CAKeyframeAnimation(keyPath: Constant.AnimationKeys.Scale)
+        let bounceAnimation = CAKeyframeAnimation(keyPath: Constants.AnimationKeys.Scale)
         bounceAnimation.values = [1.0 ,1.4, 0.9, 1.15, 0.95, 1.02, 1.0]
         bounceAnimation.duration = TimeInterval(duration)
         bounceAnimation.calculationMode = kCAAnimationCubic

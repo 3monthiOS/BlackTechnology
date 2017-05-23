@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RAMAnimatedTabBarController
 
 class TabbarHomeController: RAMAnimatedTabBarController {
 
@@ -54,4 +53,15 @@ class TabbarHomeController: RAMAnimatedTabBarController {
     }
     */
 
+}
+struct Constants {
+    
+    struct AnimationKeys {
+        
+        static let Scale     = "transform.scale"
+        static let Rotation    = "transform.rotation"
+        static let KeyFrame  = "contents"
+        static let PositionY = "position.y"
+        static let Opacity   = "opacity"
+    }
 }

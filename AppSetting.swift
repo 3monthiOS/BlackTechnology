@@ -45,14 +45,3 @@ let REGEXP_MOBILES = "^((13[0-9])|(14[4-7])|(15[0-9])|(17[0-9])|(18[0-9]))\\d{8}
 // MARK: - 本地key
 let USERGROUPOBJECTKEY = "USERGROUPOBJECTKEY.array.KEY"
 
-struct Constant {
-    
-    struct AnimationKeys {
-        
-        static let Scale     = "transform.scale"
-        static let Rotation    = "transform.rotation"
-        static let KeyFrame  = "contents"
-        static let PositionY = "position.y"
-        static let Opacity   = "opacity"
-    }
-}

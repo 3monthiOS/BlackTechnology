@@ -8,65 +8,8 @@
 
 import Foundation
 
-import RAMAnimatedTabBarController
 
 class FunctionTabbarItem: RAMItemAnimation {
-    
-    @nonobjc fileprivate var animationImages : Array<CGImage> = Array()
-    
-    var selectedImage : UIImage!
-    
-    /// A Boolean value indicated plaing revers animation when UITabBarItem unselected, if false image change immediately, defalut value true
-    @IBInspectable open var isDeselectAnimation: Bool = true
-    
-    /// path to array of image names from plist file
-    let imagesPath = "ToolsAnimation"
-    
-    override open func awakeFromNib() {
-        
-        guard let path = Bundle.main.path(forResource: imagesPath, ofType:"plist") else {
-            fatalError("don't found plist")
-        }
-        
-        guard case let animationImagesName as [String] = NSArray(contentsOfFile: path) else {
-            fatalError()
-        }
-        
-        createImagesArray(animationImagesName)
-        
-        // selected image
-        let selectedImageName = animationImagesName[animationImagesName.endIndex - 1]
-        selectedImage = UIImage(named: selectedImageName)
-    }
-    
-    func createImagesArray(_ imageNames : Array<String>) {
-        for name : String in imageNames {
-            if let image = UIImage(named: name)?.cgImage {
-                animationImages.append(image)
-            }
-        }
-    }
-    
-    // MARK: public
-    
-    /**
-     Set images for keyframe animation
-     
-     - parameter images: images for keyframe animation
-     */
-    
-    
-    open func setAnimationImages(_ images: Array<UIImage>) {
-        var animationImages = Array<CGImage>()
-        for image in images {
-            if let cgImage = image.cgImage {
-                animationImages.append(cgImage)
-            }
-        }
-        self.animationImages = animationImages
-    }
-    
-    // MARK: RAMItemAnimationProtocol
     
     /**
      Start animation, method call when UITabBarItem is selected
@@ -74,13 +17,17 @@ class FunctionTabbarItem: RAMItemAnimation {
      - parameter icon:      animating UITabBarItem icon
      - parameter textLabel: animating UITabBarItem textLabel
      */
-    
-    
-    override func playAnimation(_ icon: UIImageView, textLabel: UILabel) {
-        playFrameAnimation(icon, images:animationImages)
+    override open func playAnimation(_ icon : UIImageView, textLabel : UILabel) {
+        playMoveIconAnimation(icon, values:[icon.center.y as AnyObject, (icon.center.y + 4.0) as AnyObject])
+        playLabelAnimation(textLabel)
         textLabel.textColor = textSelectedColor
+        
+        if let iconImage = icon.image {
+            let renderImage = iconImage.withRenderingMode(.alwaysTemplate)
+            icon.image = renderImage
+            icon.tintColor = textSelectedColor
+        }
     }
-    
     /**
      Start animation, method call when UITabBarItem is unselected
      
@@ -89,15 +36,20 @@ class FunctionTabbarItem: RAMItemAnimation {
      - parameter defaultTextColor: default UITabBarItem text color
      - parameter defaultIconColor: default UITabBarItem icon color
      */
-    
-    override func deselectAnimation(_ icon: UIImageView, textLabel: UILabel, defaultTextColor: UIColor, defaultIconColor: UIColor) {
-        if isDeselectAnimation {
-            playFrameAnimation(icon, images:animationImages.reversed())
-        }
+    override open func deselectAnimation(_ icon : UIImageView, textLabel : UILabel, defaultTextColor : UIColor, defaultIconColor : UIColor) {
         
+        playMoveIconAnimation(icon, values:[(icon.center.y + 4.0) as AnyObject, icon.center.y as AnyObject])
+        playDeselectLabelAnimation(textLabel)
         textLabel.textColor = defaultTextColor
+        
+        if let iconImage = icon.image {
+            let renderMode = defaultIconColor.cgColor.alpha == 0 ? UIImageRenderingMode.alwaysOriginal :
+                UIImageRenderingMode.alwaysTemplate
+            let renderImage = iconImage.withRenderingMode(renderMode)
+            icon.image = renderImage
+            icon.tintColor = defaultIconColor
+        }
     }
-    
     
     /**
      Method call when TabBarController did load
@@ -105,22 +57,63 @@ class FunctionTabbarItem: RAMItemAnimation {
      - parameter icon:      animating UITabBarItem icon
      - parameter textLabel: animating UITabBarItem textLabel
      */
-    
-    override func selectedState(_ icon: UIImageView, textLabel: UILabel) {
-        icon.image = selectedImage
+    override open func selectedState(_ icon : UIImageView, textLabel : UILabel) {
+        
+        playMoveIconAnimation(icon, values:[(icon.center.y + 12.0) as AnyObject])
+        textLabel.alpha = 0
         textLabel.textColor = textSelectedColor
+        
+        if let iconImage = icon.image {
+            let renderImage = iconImage.withRenderingMode(.alwaysTemplate)
+            icon.image = renderImage
+            icon.tintColor = textSelectedColor
+        }
     }
     
-    
-    func playFrameAnimation(_ icon : UIImageView, images : Array<CGImage>) {
-        let frameAnimation = CAKeyframeAnimation(keyPath: Constant.AnimationKeys.KeyFrame)
-        frameAnimation.calculationMode = kCAAnimationDiscrete
-        frameAnimation.duration = TimeInterval(duration)
-        frameAnimation.values = images
-        frameAnimation.repeatCount = 1
-        frameAnimation.isRemovedOnCompletion = false
-        frameAnimation.fillMode = kCAFillModeForwards
-        icon.layer.add(frameAnimation, forKey: nil)
+    func playMoveIconAnimation(_ icon : UIImageView, values: [AnyObject]) {
+        
+        let yPositionAnimation = createAnimation(Constants.AnimationKeys.PositionY, values:values, duration:duration / 2)
+        
+        icon.layer.add(yPositionAnimation, forKey: nil)
     }
     
+    // MARK: select animation
+    
+    func playLabelAnimation(_ textLabel: UILabel) {
+        
+        let yPositionAnimation = createAnimation(Constants.AnimationKeys.PositionY, values:[textLabel.center.y as AnyObject, (textLabel.center.y - 60.0) as AnyObject], duration:duration)
+        yPositionAnimation.fillMode = kCAFillModeRemoved
+        yPositionAnimation.isRemovedOnCompletion = true
+        textLabel.layer.add(yPositionAnimation, forKey: nil)
+        
+        let scaleAnimation = createAnimation(Constants.AnimationKeys.Scale, values:[1.0 as AnyObject ,2.0 as AnyObject], duration:duration)
+        scaleAnimation.fillMode = kCAFillModeRemoved
+        scaleAnimation.isRemovedOnCompletion = true
+        textLabel.layer.add(scaleAnimation, forKey: nil)
+        
+        let opacityAnimation = createAnimation(Constants.AnimationKeys.Opacity, values:[1.0 as AnyObject ,0.0 as AnyObject], duration:duration)
+        textLabel.layer.add(opacityAnimation, forKey: nil)
+    }
+    
+    func createAnimation(_ keyPath: String, values: [AnyObject], duration: CGFloat)->CAKeyframeAnimation {
+        
+        let animation = CAKeyframeAnimation(keyPath: keyPath)
+        animation.values = values
+        animation.duration = TimeInterval(duration)
+        animation.calculationMode = kCAAnimationCubic
+        animation.fillMode = kCAFillModeForwards
+        animation.isRemovedOnCompletion = false
+        return animation
+    }
+    
+    // MARK: deselect animation
+    
+    func playDeselectLabelAnimation(_ textLabel: UILabel) {
+        
+        let yPositionAnimation = createAnimation(Constants.AnimationKeys.PositionY, values:[(textLabel.center.y + 15) as AnyObject, textLabel.center.y as AnyObject], duration:duration)
+        textLabel.layer.add(yPositionAnimation, forKey: nil)
+        
+        let opacityAnimation = createAnimation(Constants.AnimationKeys.Opacity, values:[0 as AnyObject, 1 as AnyObject], duration:duration)
+        textLabel.layer.add(opacityAnimation, forKey: nil)
+    }
 }
