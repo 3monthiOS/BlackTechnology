@@ -28,6 +28,7 @@ target :App do
     pod 'SwiftOCR', '~> 1.0'
     #酷炫的label 样式
     pod 'LTMorphingLabel'
+    pod 'StarWars', '~> 2.0'
 end
 
 post_install do |installer|

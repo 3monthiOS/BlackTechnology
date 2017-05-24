@@ -19,7 +19,7 @@ class FunctionsViewController: APPviewcontroller {
     var collectionfoot: CollectionReusableViewFooter!
     var collectionHeader: UICollectionReusableView!
     
-    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","通讯录","上传图片","云相册","视频录制","GIF","TableViewAnimation","LTDemo","放射变换","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
+    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","通讯录","上传图片","云相册","视频录制","GIF","TableViewAnimation","LTDemo","放射变换","转场动画","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         QNcheck()
@@ -167,6 +167,11 @@ extension FunctionsViewController: UICollectionViewDelegate{
         let vc = RadiationTransformationController()
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
+    case 17:
+        let storyboard = UIStoryboard(name: "starwars", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "IntroViewController") as! IntroViewController
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
         
         default:
       break
