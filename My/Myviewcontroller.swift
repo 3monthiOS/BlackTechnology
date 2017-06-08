@@ -17,8 +17,12 @@ class Myviewcontroller: APPviewcontroller{
     var pagerController:TYTabButtonPagerController?
     
 //    @IBOutlet weak var contentview: UIView!
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        delay(1) {
+            self.tabBarController?.hidesBottomBarWhenPushed = false
+        }
     }
     
     override func setup() {

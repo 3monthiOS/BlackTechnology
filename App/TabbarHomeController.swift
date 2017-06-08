@@ -9,34 +9,11 @@
 import UIKit
 
 class TabbarHomeController: RAMAnimatedTabBarController {
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        showQDT()
     }
 
-    func showQDT(){
-        if let userinfos: User = cache.object(forKey: CacheManager.Key.User.rawValue){
-            if userinfos.one_t != 1 {
-                let lauchImageView   = UIImageView(frame: self.view.bounds)
-                lauchImageView.image = AppleSystemService.launchImage()
-                view.addSubview(lauchImageView)
-                UIView.animate(withDuration: 1, delay: 1, options: UIViewAnimationOptions(), animations: {
-                    lauchImageView.scale = 1.5
-                    lauchImageView.alpha = 0
-                }) { (finished) in
-                    lauchImageView.removeFromSuperview()
-                }
-            }
-            if let userinfos: User = cache.object(forKey: CacheManager.Key.User.rawValue){
-                userinfos.one_t = 0
-                cache.setObject(userinfos, forKey: CacheManager.Key.User.rawValue)
-            }
-        }
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

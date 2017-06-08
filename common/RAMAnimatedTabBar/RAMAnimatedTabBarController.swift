@@ -159,6 +159,7 @@ extension  RAMAnimatedTabBarController {
     for item in items {
       if let iconView = item.iconView {
         iconView.icon.superview?.isHidden = isHidden
+        iconView.icon.superview?.superview?.bringSubview(toFront: iconView.icon.superview!)
       }
     }
     self.tabBar.isHidden = isHidden;
@@ -251,8 +252,37 @@ open class RAMAnimatedTabBarController: UITabBarController {
     self.didLoadView = true
     
     self.initializeContainers()
+    
+    showQDT()
+    // 通知 隐藏所有的inmage
+    self.addObserver(self, forKeyPath: "hidesBottomBarWhenPushed", options: .new, context: nil)
   }
-  
+    
+    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "hidesBottomBarWhenPushed" {
+            self.animationTabBarHidden(self.hidesBottomBarWhenPushed)
+        }
+    }
+
+    func showQDT(){
+        if let userinfos: User = cache.object(forKey: CacheManager.Key.User.rawValue){
+            if userinfos.one_t != 1 {
+                let lauchImageView   = UIImageView(frame: self.view.bounds)
+                lauchImageView.image = AppleSystemService.launchImage()
+                view.addSubview(lauchImageView)
+                UIView.animate(withDuration: 1, delay: 1, options: UIViewAnimationOptions(), animations: {
+                    lauchImageView.scale = 1.5
+                    lauchImageView.alpha = 0
+                }) { (finished) in
+                    lauchImageView.removeFromSuperview()
+                }
+            }
+            if let userinfos: User = cache.object(forKey: CacheManager.Key.User.rawValue){
+                userinfos.one_t = 0
+                cache.setObject(userinfos, forKey: CacheManager.Key.User.rawValue)
+            }
+        }
+    }
   fileprivate func initializeContainers() {
     if !self.didInit || !self.didLoadView {
       return
@@ -272,8 +302,8 @@ open class RAMAnimatedTabBarController: UITabBarController {
     }
     
     var index = 0
-    for ite in items {
-      guard let itemImage = ite.image else {
+    for item in (items as? [RAMAnimatedTabBarItem])! {
+      guard let itemImage = item.image else {
         fatalError("add image icon in UITabBarItem")
       }
       
@@ -282,7 +312,6 @@ open class RAMAnimatedTabBarController: UITabBarController {
       }
       container.tag = index
       
-      let item = ite as! RAMAnimatedTabBarItem
       let renderMode = item.iconColor.cgColor.alpha == 0 ? UIImageRenderingMode.alwaysOriginal :
         UIImageRenderingMode.alwaysTemplate
       

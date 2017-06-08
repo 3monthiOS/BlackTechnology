@@ -52,7 +52,7 @@ open class RAMFrameItemAnimation: RAMItemAnimation {
     let selectedImageName = animationImagesName[animationImagesName.endIndex - 1]
     selectedImage = UIImage(named: selectedImageName)
   }
-  
+    
   func createImagesArray(_ imageNames : Array<String>) {
     for name : String in imageNames {
       if let image = UIImage(named: name)?.cgImage {

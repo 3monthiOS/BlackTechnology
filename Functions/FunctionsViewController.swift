@@ -23,6 +23,9 @@ class FunctionsViewController: APPviewcontroller {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         QNcheck()
+        delay(1) { 
+            self.tabBarController?.hidesBottomBarWhenPushed = false
+        }
     }
     override func setup() {
         super.setup()
@@ -156,6 +159,10 @@ extension FunctionsViewController: UICollectionViewDelegate{
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     case 14:
+        
+        self.tabBarController?.hidesBottomBarWhenPushed = true
+        
+        self.tabBarController?.setNavigationBarHidden(true, animated: false)
         let vc = TableviewCoustom()
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
@@ -165,11 +172,14 @@ extension FunctionsViewController: UICollectionViewDelegate{
         navigationController?.pushViewController(vc, animated: true)
     case 16:
         let vc = RadiationTransformationController()
+        self.tabBarController?.hidesBottomBarWhenPushed = true
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     case 17:
         let storyboard = UIStoryboard(name: "starwars", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "IntroViewController") as! IntroViewController
+        
+        
         controller.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(controller, animated: true)
         

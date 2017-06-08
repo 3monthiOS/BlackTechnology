@@ -22,9 +22,14 @@ class ChatListviewcontroller: RCConversationListViewController {
     @IBOutlet weak var chatBGimage: UIImageView!
     var userId = ""
     let tokenArray = ["/7Ho4V0LAxqx1eeMZvJjIxEwXKiZajUg1lYnzbenGFogaU5Q8wQe3i4cPyJqgjLBrHIfKRaHVIyUG7tyo6E/Z1xb6BKkYi9r","E7V5pupiLPLwKarhAgnPFvyVRNEe+kEOk6zXm2XQoNOfjfi1kG/r4pLOfMim3fF1BmbWapvgkUY=","SaNRAdb1HvDSwXK/4Pejr6UNOrqEnO6vXv8cpipmaDmyq/6rAyPo0sCKcMwKe23s75GUDOcwZk7o2IyVY4SdeQ==","CJov2IWBq7H/CKoaiB9TQgIIlo0WhrAzzoatEDpPkLlXv74SI5Izo46/SCKfcn8Pqg1D6PXiDBY=","QPdoi2Ij1WZcLNpvo+PKIhEwXKiZajUg1lYnzbenGFogaU5Q8wQe3pwszl9J/nnfNFXN0ntL4ZVcW+gSpGIvaw=="]
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        delay(1) {
+            self.tabBarController?.hidesBottomBarWhenPushed = false
+        }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "聊天"
