@@ -115,7 +115,6 @@
 		F23EBAE91EBB2FE30061F5DD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F23EBAE81EBB2FE30061F5DD /* Images.xcassets */; };
 		F243CD2C1EC4206D001988D3 /* wavesAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F243CD2A1EC4206D001988D3 /* wavesAnimationController.swift */; };
 		F243CD2D1EC4206D001988D3 /* wavesAnimationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F243CD2B1EC4206D001988D3 /* wavesAnimationController.xib */; };
-		F24CE9F71EB345EC00FAB0D2 /* WX20170428-174119@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F24CE9F61EB345EC00FAB0D2 /* WX20170428-174119@2x.png */; };
 		F24E9A381DEEB18A00A45EB8 /* UploadPicturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E9A361DEEB18A00A45EB8 /* UploadPicturesView.swift */; };
 		F24E9A391DEEB18A00A45EB8 /* uploadPicturesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24E9A371DEEB18A00A45EB8 /* uploadPicturesView.xib */; };
 		F24E9A3C1DEEBA0800A45EB8 /* gif131.gif in Resources */ = {isa = PBXBuildFile; fileRef = F24E9A3B1DEEBA0800A45EB8 /* gif131.gif */; };
@@ -385,7 +384,6 @@
 		F23EBAE81EBB2FE30061F5DD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F243CD2A1EC4206D001988D3 /* wavesAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wavesAnimationController.swift; sourceTree = "<group>"; };
 		F243CD2B1EC4206D001988D3 /* wavesAnimationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = wavesAnimationController.xib; sourceTree = "<group>"; };
-		F24CE9F61EB345EC00FAB0D2 /* WX20170428-174119@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "WX20170428-174119@2x.png"; path = "../WX20170428-174119@2x.png"; sourceTree = "<group>"; };
 		F24E9A361DEEB18A00A45EB8 /* UploadPicturesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadPicturesView.swift; sourceTree = "<group>"; };
 		F24E9A371DEEB18A00A45EB8 /* uploadPicturesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = uploadPicturesView.xib; sourceTree = "<group>"; };
 		F24E9A3B1DEEBA0800A45EB8 /* gif131.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gif131.gif; sourceTree = "<group>"; };
@@ -1199,7 +1197,6 @@
 		F24E9A3A1DEEBA0800A45EB8 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				F24CE9F61EB345EC00FAB0D2 /* WX20170428-174119@2x.png */,
 				F24E9A3B1DEEBA0800A45EB8 /* gif131.gif */,
 			);
 			path = images;
@@ -1752,7 +1749,6 @@
 				F24E9A391DEEB18A00A45EB8 /* uploadPicturesView.xib in Resources */,
 				F27AE1FE1D928E09000E0509 /* CollectionReusableViewHeadre.xib in Resources */,
 				F25AD7C61ED522A500E475CF /* starwars.storyboard in Resources */,
-				F24CE9F71EB345EC00FAB0D2 /* WX20170428-174119@2x.png in Resources */,
 				F2BD8A321EB9BD9400AE3F06 /* GifDetailController.xib in Resources */,
 				F2A81C6B1EC19AA400771776 /* LTDemoViewController.xib in Resources */,
 				F23EBAE91EBB2FE30061F5DD /* Images.xcassets in Resources */,

@@ -34,13 +34,25 @@
                                         </constraints>
                                         <state key="normal" title="跳转"/>
                                         <connections>
-                                            <segue destination="pPn-Um-Orz" kind="show" id="V4r-bf-MWd"/>
+                                            <segue destination="Uhq-qp-LA0" kind="show" identifier="MainSettingjump" id="V4r-bf-MWd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O0v-ex-EII">
+                                        <rect key="frame" x="164.5" y="211.5" width="45" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="返回">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backbtn:" destination="Iyc-AT-VcB" eventType="touchUpInside" id="Ulz-IG-Obl"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="WOL-yP-Saq" firstAttribute="top" secondItem="O0v-ex-EII" secondAttribute="bottom" constant="40" id="LkE-8J-5BX"/>
                                     <constraint firstItem="WOL-yP-Saq" firstAttribute="centerY" secondItem="0FE-Zv-4dS" secondAttribute="centerY" id="OH2-T4-i2M"/>
+                                    <constraint firstItem="O0v-ex-EII" firstAttribute="centerX" secondItem="0FE-Zv-4dS" secondAttribute="centerX" id="ng8-qo-lfm"/>
                                     <constraint firstItem="WOL-yP-Saq" firstAttribute="centerX" secondItem="0FE-Zv-4dS" secondAttribute="centerX" id="vx7-8b-Prd"/>
                                 </constraints>
                             </view>
@@ -116,12 +128,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G5E-oU-2Lt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="M9C-fj-hbT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="194" y="260"/>
+            <point key="canvasLocation" x="1132" y="259.52023988005999"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="l6O-dQ-qUR">
             <objects>
                 <viewController id="Y6w-kh-UQE" customClass="SettingsViewController" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="htw-Rv-ZTk"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xnx-up-x0G"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vNX-QY-MQL">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="528"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -153,7 +169,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p7K-DY-8ca" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="967" y="259"/>
+            <point key="canvasLocation" x="1904.8" y="258.17091454272867"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7hZ-fy-xXc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uhq-qp-LA0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EmY-Qn-gUQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="pPn-Um-Orz" kind="relationship" relationship="rootViewController" id="iXe-k1-YlE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bk1-4e-kEf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="192.80000000000001" y="259.52023988005999"/>
         </scene>
     </scenes>
     <resources>

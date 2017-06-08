@@ -23,9 +23,12 @@ class FunctionsViewController: APPviewcontroller {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         QNcheck()
-        delay(1) { 
+        delay(UInt64(0.3)) {
             self.tabBarController?.hidesBottomBarWhenPushed = false
         }
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
     }
     override func setup() {
         super.setup()
@@ -132,7 +135,7 @@ extension FunctionsViewController: UICollectionViewDelegate{
       self.performSegue(withIdentifier: "complexFilter", sender: nil)
     case 3:
         let baidu = BaiduMapViewController()
-        baidu.hidesBottomBarWhenPushed = true
+        self.tabBarController?.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(baidu, animated: true)
     case 7:
         photobrowserAction(indexPath)
@@ -143,46 +146,37 @@ extension FunctionsViewController: UICollectionViewDelegate{
         call_openContact()
     case 10:
         let upload = uploadPicturesView()
-        upload.hidesBottomBarWhenPushed = true
+        self.tabBarController?.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(upload, animated: true)
     case 11:
         let upload = QNPhotoController()
-        upload.hidesBottomBarWhenPushed = true
+        self.tabBarController?.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(upload, animated: true)
     case 12:
       let vc = VideoRecorderViewController()
-      vc.hidesBottomBarWhenPushed = true
+      self.tabBarController?.hidesBottomBarWhenPushed = true
       navigationController?.pushViewController(vc, animated: true)
     case 13:
         let vc = GifDetailController()
         vc.imageData = getProjectJsonFile()
-        vc.hidesBottomBarWhenPushed = true
+        self.tabBarController?.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     case 14:
-        
         self.tabBarController?.hidesBottomBarWhenPushed = true
-        
-        self.tabBarController?.setNavigationBarHidden(true, animated: false)
         let vc = TableviewCoustom()
-        vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     case 15:
         let vc = LTDemoViewController()
-        vc.hidesBottomBarWhenPushed = true
+        self.tabBarController?.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     case 16:
         let vc = RadiationTransformationController()
         self.tabBarController?.hidesBottomBarWhenPushed = true
-        vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     case 17:
-        let storyboard = UIStoryboard(name: "starwars", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "IntroViewController") as! IntroViewController
-        
-        
-        controller.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(controller, animated: true)
-        
+        let controller = UIViewController.loadViewControllerFromStoryboard("starwars", storyboardID: "IntroViewController") as! IntroViewController
+        self.present(controller, animated: true, completion: nil)
+//        navigationController?.pushViewController(controller, animated: true)
         default:
       break
         }

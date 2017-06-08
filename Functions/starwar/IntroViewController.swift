@@ -13,6 +13,11 @@ class IntroViewController: UIViewController {
     
     
     
+    @IBAction func backbtn(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
     @IBAction func backToIntroViewContoller(_ segue: UIStoryboardSegue) {
     
     }
@@ -20,8 +25,11 @@ class IntroViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let destination = segue.destination
-//        destination.transitioningDelegate = self
+        if segue.identifier == "MainSettingjump" {
+            let destination = segue.destination // MainSettingjump
+            destination.transitioningDelegate = self
+        }
+        
     }
 }
 

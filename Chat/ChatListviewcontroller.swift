@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import IQKeyboardManagerSwift
 import Alamofire
-//import Regex
 import RainbowSwift
 import SwiftOCR
 
@@ -34,6 +33,7 @@ class ChatListviewcontroller: RCConversationListViewController {
         super.viewDidLoad()
         self.title = "聊天"
         let token = tokenArray[Int(arc4random()%4)]
+        
         RCIM.shared().connect(withToken: token,success: { (userId) -> Void in
             self.userId = userId!
             print("登陆成功。当前登录的用户ID：\(String(describing: userId))")
@@ -49,13 +49,6 @@ class ChatListviewcontroller: RCConversationListViewController {
         initChatView()
         requestTest()
         
-
-        
-//        let greeting = Regex("hello (world|universe|swift)")
-        
-//        if let subject = greeting.match("hello swift")?.captures[0] {
-//            print("ohai \(subject)")
-//        }
         print("Red text".red)
         print("Yellow background".onYellow)
        
@@ -63,7 +56,7 @@ class ChatListviewcontroller: RCConversationListViewController {
         Log.info(Device.version())
         
         let swiftOCRInstance   = SwiftOCR()
-        let image = UIImage(named:"WX20170428-174119@2x")
+        let image = UIImage(named:"test0")
         swiftOCRInstance.recognize(image!) {recognizedString in
             print("_______________\(recognizedString)")
         }

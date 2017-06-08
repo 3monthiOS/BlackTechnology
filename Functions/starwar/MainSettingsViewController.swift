@@ -17,25 +17,24 @@ class MainSettingsViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let animator = StarWarsGLAnimator()
-        animator.duration = 2
-        animator.spriteWidth = 8
-        transitioningDelegate = self
+//        let animator = StarWarsGLAnimator()
+//        animator.duration = 2
+//        animator.spriteWidth = 8
+//        transitioningDelegate = self
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let settings = segue.destination as? SettingsViewController {
             settingsViewController = settings
-           
         }
     }
     
 }
-extension MainSettingsViewController: UIViewControllerTransitioningDelegate {
-    
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return StarWarsGLAnimator()
-    }
-    
-}
+//extension MainSettingsViewController: UIViewControllerTransitioningDelegate {
+//    
+//    
+//    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        return StarWarsGLAnimator()
+//    }
+//    
+//}
