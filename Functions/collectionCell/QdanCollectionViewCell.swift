@@ -14,7 +14,7 @@ class QdanCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var bottrm: NSLayoutConstraint!
     @IBOutlet weak var btn: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    
+    var viewcontroller: FunctionsViewController? = nil
     var index: IndexPath?
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,7 +30,10 @@ class QdanCollectionViewCell: UICollectionViewCell {
         btn.contentMode = .scaleAspectFill
     }
     
-    func bindData(_ imageName: [String],functionTitle: [String], atIndex indexPath: IndexPath) {
+    func bindData(_ imageName: [String],functionTitle: [String], atIndex indexPath: IndexPath ,VC viewcontroller:UIViewController) {
+        self.viewcontroller = viewcontroller as? FunctionsViewController
+        // isAinmationStatus 监听这个状态 来决定是否开始动画
+        
         btn.image = UIImage(named:"加载失败")
         index = indexPath
         let imagename = imageName[(index?.row)!]
@@ -65,6 +68,21 @@ class QdanCollectionViewCell: UICollectionViewCell {
     func initButtonUI(_ btn: UIImageView) {
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 3
+    }
+    
+    // 是否开始动画
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "isAinmationStatus" {
+            if self.viewcontroller!.isAinmationStatus {
+                self.btn.startAnimatingGif()
+            }else{
+                self.btn.stopAnimatingGif()
+            }
+            
+        }
+    }
+    deinit {
+        self.removeObserver(self.viewcontroller!, forKeyPath: "isAinmationStatus", context: nil)
     }
 }
 

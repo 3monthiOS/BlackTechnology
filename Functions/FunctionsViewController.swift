@@ -18,6 +18,7 @@ class FunctionsViewController: APPviewcontroller {
     weak var collectionView: CollectionMjResh!
     var collectionfoot: CollectionReusableViewFooter!
     var collectionHeader: UICollectionReusableView!
+    dynamic var isAinmationStatus = true
     
     var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","通讯录","上传图片","云相册","视频录制","GIF","TableViewAnimation","LTDemo","放射变换","转场动画","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +35,7 @@ class FunctionsViewController: APPviewcontroller {
         super.setup()
         self.title = "功能列表"
         self.navigationController?.navigationBar.isTranslucent = false
+        
         initcollectionMjrefresh()
         initCollectionview()
         initData()
@@ -57,11 +59,19 @@ class FunctionsViewController: APPviewcontroller {
 
 //        layout.headerReferenceSize = CGSizeZero //CGSizeMake(App_width,44)
 //        layout.footerReferenceSize = CGSizeZero //CGSizeMake(App_width,80)
+        
+        
     }
     func initData(){
         
     }
-
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "isAinmationStatus" {
+            //            self.btn.stopAnimating()
+        }
+    }
+    
     //- openContact
     func call_openContact() {
         let controller = MobileAddressBooks()
@@ -101,11 +111,21 @@ extension FunctionsViewController: UICollectionViewDataSource{
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! QdanCollectionViewCell
-    cell.bindData(getProjectJsonFile(),functionTitle: functionTitleData,atIndex :indexPath)
+    self.addObserver(cell, forKeyPath: "isAinmationStatus", options: .new, context: nil)
+    cell.bindData(getProjectJsonFile(),functionTitle: functionTitleData,atIndex :indexPath, VC: self)
     return cell
   }
+  
 }
 
+extension FunctionsViewController: UIScrollViewDelegate{
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.isAinmationStatus = false
+    }
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        self.isAinmationStatus = true
+    }
+}
  //Mark: ------ UICollectionViewDelegate
 extension FunctionsViewController: UICollectionViewDelegate{
   //返回自定义HeadView或者FootView，我这里以headview为例
