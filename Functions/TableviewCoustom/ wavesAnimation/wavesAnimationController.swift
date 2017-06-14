@@ -54,6 +54,7 @@ extension wavesAnimationController: UITableViewDelegate{
         let y = scrollView.contentOffset.y
         Log.info("开始滑动\(y)")
         waveView.bigNumber = Double(y)
+        waveView.direction = .top
         waveView.setNeedsDisplay()
     }
     

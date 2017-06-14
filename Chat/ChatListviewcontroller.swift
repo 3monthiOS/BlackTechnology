@@ -31,7 +31,7 @@ class ChatListviewcontroller: RCConversationListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "聊天"
+//        self.title = "聊天"
         let token = tokenArray[Int(arc4random()%4)]
         
         RCIM.shared().connect(withToken: token,success: { (userId) -> Void in

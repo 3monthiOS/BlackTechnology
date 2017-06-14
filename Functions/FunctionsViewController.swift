@@ -33,7 +33,7 @@ class FunctionsViewController: APPviewcontroller {
     }
     override func setup() {
         super.setup()
-        self.title = "功能列表"
+//        self.title = "功能列表"
         self.navigationController?.navigationBar.isTranslucent = false
         
         initcollectionMjrefresh()
@@ -157,6 +157,11 @@ extension FunctionsViewController: UICollectionViewDelegate{
         let baidu = BaiduMapViewController()
         self.tabBarController?.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(baidu, animated: true)
+    case 5:
+        let baidu = RecordingVoiceController()
+        self.tabBarController?.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(baidu, animated: true)
+        
     case 7:
         photobrowserAction(indexPath)
     case 8:
