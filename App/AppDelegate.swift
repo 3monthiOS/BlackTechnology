@@ -14,7 +14,7 @@ import CoreLocation
 //import Swiften
 import RealmSwift
 import ObjectMapper
-
+import UserNotifications
 //let api = LDApiSettings()
 let cache = CacheManager(cachable: RealmCache(realm: Realm.sharedRealm))
 var user = User()
@@ -38,16 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        UMHelper.initSdkWithAppKey(UMENG_APPKEY, channelId: "", launchOptions: launchOptions)
         // 初始化融云
         initRCIM()
-        //推送处理1
-        if #available(iOS 8.0, *) {
-            //注册推送,用于iOS8以上系统
-            application.registerUserNotificationSettings(
-                UIUserNotificationSettings(types:[.alert, .badge, .sound], categories: nil))
-        } else {
-            //注册推送,用于iOS8以下系统
-            application.registerForRemoteNotifications(matching: [.badge, .alert, .sound])
-        }
-        
+      
+        registerNotification(application)
         // 初始化百度地图
         let mapManager = BMKMapManager()
         // 如果要关注网络及授权验证事件，请设定generalDelegate参数
@@ -65,8 +57,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    
-    
+    /// 注册本地和远程通知
+  private func registerNotification(_ application: UIApplication) {
+    //推送处理1
+    if #available(iOS 10.0, *) {
+      // 通知扩展按钮  有 普通和 带输入框 2个种类
+      // 点击按钮调用  UNUserNotificationCenter 的 didReceive response 代理
+      // 普通 和带输入框的有区分 在代理方法已经 写明  请移步 代理方法查看
+      let action =   UNNotificationAction(identifier: "normal", title: "测试1", options: .authenticationRequired)
+      let action1 = UNTextInputNotificationAction(identifier: "input", title: "回复", options: .destructive, textInputButtonTitle: "发送", textInputPlaceholder: "请回复")
+      let category = UNNotificationCategory(identifier: "category", actions: [action,action1], intentIdentifiers: [], options: .customDismissAction)
+      
+      let center =  UNUserNotificationCenter.current()
+      center.requestAuthorization(options: [.alert,.badge,.sound]) { (Bool, error) in
+        
+      }
+      center.setNotificationCategories([category])
+      center.delegate = self
+      application.registerForRemoteNotifications()
+    } else if #available(iOS 8.0, *) {
+      //注册推送,用于iOS8以上系统
+      // 通知扩展按钮  iOS9 以上  有 普通和 带输入框 2个种类 behavior属性控制
+      // 在锁屏的时候  收到通知 左滑通知 能看到按钮  点击对应调用 handle Action 的代理
+      // 带输入框 点击 调用的是 handle Action   withResponseInfo 的代理
+      // 本地 和远程同理
+      let action1 = UIMutableUserNotificationAction()
+      action1.title = "测试1"
+      action1.activationMode = .background
+      action1.identifier = "test1"
+      action1.isDestructive = false
+      
+      if #available(iOS 9.0, *) {
+        action1.behavior = .default
+      } else {
+        // Fallback on earlier versions
+      }
+      action1.isAuthenticationRequired = true
+      let category1 = UIMutableUserNotificationCategory()
+      category1.identifier = "category1"
+      category1.setActions([action1], for: .default)
+      
+      
+      application.registerUserNotificationSettings(
+        UIUserNotificationSettings(types:[.alert, .badge, .sound], categories: [category1]))
+      application.registerForRemoteNotifications()
+    } else {
+      //注册推送,用于iOS8以下系统
+      application.registerForRemoteNotifications(matching: [.badge, .alert, .sound])
+    }
+  }
+  
+  
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -420,6 +461,22 @@ extension AppDelegate {
             window?.makeKey()
         }
     }
+}
+@available(iOS 10.0, *)
+extension AppDelegate: UNUserNotificationCenterDelegate {
+  /// 在前台时收到本地推送时 需要如何通知
+  func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    completionHandler([.badge,.sound,.alert])
+  }
+  /// 后台的时候点击通知进入app
+  func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    if response is UNTextInputNotificationResponse {  // input action
+      
+    }else { //  default action
+      
+    }
+    completionHandler()
+  }
 }
 /*
  //        let launchView = UIViewController.viewControllerWithIdentifier("LaunchScreen", storyboardName: "LaunchScreen").view
