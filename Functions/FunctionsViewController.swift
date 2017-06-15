@@ -20,7 +20,7 @@ class FunctionsViewController: APPviewcontroller {
     var collectionHeader: UICollectionReusableView!
     dynamic var isAinmationStatus = true
     
-    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","通讯录","上传图片","云相册","视频录制","GIF","TableViewAnimation","LTDemo","放射变换","转场动画","本地通知","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
+    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","通讯录","上传图片","云相册","视频录制","GIF","TableViewAnimation","LTDemo","放射变换","转场动画","本地通知","UIStackView","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         QNcheck()
@@ -205,6 +205,13 @@ extension FunctionsViewController: UICollectionViewDelegate{
     case 18 :
       let vc = LocalNotificationVC()
       navigationController?.pushViewController(vc, animated: true)
+    case 19 :
+      if #available(iOS 9.0, *) {
+        let vc = StackViewTestVC()
+        navigationController?.pushViewController(vc, animated: true)
+      } else {
+        alert("请使用9.0 以上的系统！")
+      }      
         default:
       break
         }

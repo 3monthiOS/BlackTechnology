@@ -10,6 +10,7 @@
 		0DEA056F86E94ED63057A635 /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FEFAF43BC70671EDF9716E6 /* Pods_App.framework */; };
 		417EA11A1277F9AAB4FA0CB3 /* Array+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417EA751019F5709DD825F03 /* Array+Extenstion.swift */; };
 		650C6A2E1EF12A930017E48C /* LocalNotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C6A2D1EF12A930017E48C /* LocalNotificationVC.swift */; };
+		6543FBD01EF2898B009EDA78 /* StackViewTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6543FBCF1EF2898B009EDA78 /* StackViewTestVC.swift */; };
 		654B6AD91D9D25DA00B46F6F /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B6AD51D9D25DA00B46F6F /* FilterViewController.swift */; };
 		654B6ADA1D9D25DA00B46F6F /* MutableFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B6AD61D9D25DA00B46F6F /* MutableFilterViewController.swift */; };
 		654B6ADB1D9D25DA00B46F6F /* GradientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B6AD81D9D25DA00B46F6F /* GradientViewController.swift */; };
@@ -260,6 +261,7 @@
 		417EA751019F5709DD825F03 /* Array+Extenstion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extenstion.swift"; sourceTree = "<group>"; };
 		544049F072F8E3FA12FE0D85 /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
 		650C6A2D1EF12A930017E48C /* LocalNotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationVC.swift; sourceTree = "<group>"; };
+		6543FBCF1EF2898B009EDA78 /* StackViewTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackViewTestVC.swift; sourceTree = "<group>"; };
 		654B6AD51D9D25DA00B46F6F /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		654B6AD61D9D25DA00B46F6F /* MutableFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableFilterViewController.swift; sourceTree = "<group>"; };
 		654B6AD81D9D25DA00B46F6F /* GradientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientViewController.swift; sourceTree = "<group>"; };
@@ -596,6 +598,14 @@
 				650C6A2D1EF12A930017E48C /* LocalNotificationVC.swift */,
 			);
 			path = localNotofication;
+			sourceTree = "<group>";
+		};
+		6543FBCE1EF2897A009EDA78 /* stackView */ = {
+			isa = PBXGroup;
+			children = (
+				6543FBCF1EF2898B009EDA78 /* StackViewTestVC.swift */,
+			);
+			path = stackView;
 			sourceTree = "<group>";
 		};
 		654B6AD41D9D25DA00B46F6F /* Filter */ = {
@@ -1275,6 +1285,7 @@
 		F2666A8D1D879C6F00B2029E /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				6543FBCE1EF2897A009EDA78 /* stackView */,
 				650C6A2C1EF12A660017E48C /* localNotofication */,
 				F2F46F421EEE2B1700480A64 /* RecordingVoice */,
 				F26BAC851ED41388001A4AEC /* starwar */,
@@ -1984,6 +1995,7 @@
 				F20F51DD1EB97D1800061BBE /* MJrefreshTableview.swift in Sources */,
 				F234815D1EA5E6EE00CB84F2 /* WebView+Proxy.swift in Sources */,
 				F234815C1EA5E6EE00CB84F2 /* WebView+NavigationDelegate.swift in Sources */,
+				6543FBD01EF2898B009EDA78 /* StackViewTestVC.swift in Sources */,
 				F2BD8A201EB984E400AE3F06 /* CustomNormalContentViewController.swift in Sources */,
 				F2F46F451EEE2B3400480A64 /* RecordingVoiceController.swift in Sources */,
 				F2BD8A3B1EB9C97500AE3F06 /* GIFCell.swift in Sources */,
