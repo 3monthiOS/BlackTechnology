@@ -295,6 +295,8 @@ extension AppDelegate: BMKGeneralDelegate, BMKGeoCodeSearchDelegate {
                     Log.error("BMK: 反geo检索发送失败")
                     BaiduLocationManager.startLocationService()
                     searchingReverseGeoCode = false
+                } else {
+                    searcher.delegate = nil
                 }
             }
         }
