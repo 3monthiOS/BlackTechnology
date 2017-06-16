@@ -29,10 +29,10 @@ class LocalNotificationVC: UIViewController {
       let content = UNMutableNotificationContent()
       // 和注册通知时声明的category 的identifier 保持一样
       content.categoryIdentifier = "category"
-      content.title = "这是个标题"
-      content.subtitle = "这个是subtitle"
-      content.badge = 1
-      content.body = "这个是body ---esddfdgfdkgjflgjfl"
+      content.title = "APP提醒您，该写功能了"
+      content.subtitle = "功能模块"
+      content.badge = 5
+        content.body = "我希望有一天你也有这样的经历，为你所爱的人做你並不明白的事情。 ——乔纳森·萨.../n如果你获得了银牌，你总会被遗忘 如果赢了金牌 你会成为典范;不要忘记，你是怎么一步步走到今天的 --《摔跤吧，爸爸》"
       content.sound = UNNotificationSound.default()
       let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
       let requst = UNNotificationRequest(identifier: "test", content: content, trigger: trigger)
@@ -42,8 +42,8 @@ class LocalNotificationVC: UIViewController {
     } else {
       let local = UILocalNotification()
       // 和注册通知时声明的category 的identifier 保持一样
-      local.category = "category1"
-      local.alertBody = "这个是body ---sdssdsdasdasda"
+      local.category = "APP天气这么热，你何必要这么冷。"
+      local.alertBody = "你可以说拥有一切，也可以说一无所有。 《钢铁侠》"
       local.fireDate = Date(timeInterval: 10, since: Date())
       local.soundName = UILocalNotificationDefaultSoundName
       local.alertAction = "ok"

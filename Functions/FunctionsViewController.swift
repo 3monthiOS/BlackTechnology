@@ -201,9 +201,9 @@ extension FunctionsViewController: UICollectionViewDelegate{
     case 17:
         let controller = UIViewController.loadViewControllerFromStoryboard("starwars", storyboardID: "IntroViewController") as! IntroViewController
         self.present(controller, animated: true, completion: nil)
-//        navigationController?.pushViewController(controller, animated: true)
     case 18 :
       let vc = LocalNotificationVC()
+      self.tabBarController?.hidesBottomBarWhenPushed = true
       navigationController?.pushViewController(vc, animated: true)
         default:
       break
