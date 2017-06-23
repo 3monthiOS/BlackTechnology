@@ -10,6 +10,7 @@
 		0DEA056F86E94ED63057A635 /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FEFAF43BC70671EDF9716E6 /* Pods_App.framework */; };
 		417EA11A1277F9AAB4FA0CB3 /* Array+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417EA751019F5709DD825F03 /* Array+Extenstion.swift */; };
 		650C6A2E1EF12A930017E48C /* LocalNotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C6A2D1EF12A930017E48C /* LocalNotificationVC.swift */; };
+		653A240D1EFD192C001B7CD0 /* NativeShareTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A240C1EFD192C001B7CD0 /* NativeShareTestVC.swift */; };
 		6543FBD01EF2898B009EDA78 /* StackViewTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6543FBCF1EF2898B009EDA78 /* StackViewTestVC.swift */; };
 		654B6AD91D9D25DA00B46F6F /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B6AD51D9D25DA00B46F6F /* FilterViewController.swift */; };
 		654B6ADA1D9D25DA00B46F6F /* MutableFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B6AD61D9D25DA00B46F6F /* MutableFilterViewController.swift */; };
@@ -264,6 +265,7 @@
 		417EA751019F5709DD825F03 /* Array+Extenstion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extenstion.swift"; sourceTree = "<group>"; };
 		544049F072F8E3FA12FE0D85 /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
 		650C6A2D1EF12A930017E48C /* LocalNotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationVC.swift; sourceTree = "<group>"; };
+		653A240C1EFD192C001B7CD0 /* NativeShareTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeShareTestVC.swift; sourceTree = "<group>"; };
 		6543FBCF1EF2898B009EDA78 /* StackViewTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackViewTestVC.swift; sourceTree = "<group>"; };
 		654B6AD51D9D25DA00B46F6F /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		654B6AD61D9D25DA00B46F6F /* MutableFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableFilterViewController.swift; sourceTree = "<group>"; };
@@ -604,6 +606,14 @@
 				650C6A2D1EF12A930017E48C /* LocalNotificationVC.swift */,
 			);
 			path = localNotofication;
+			sourceTree = "<group>";
+		};
+		653A240B1EFD190F001B7CD0 /* nativeShare */ = {
+			isa = PBXGroup;
+			children = (
+				653A240C1EFD192C001B7CD0 /* NativeShareTestVC.swift */,
+			);
+			path = nativeShare;
 			sourceTree = "<group>";
 		};
 		6543FBCE1EF2897A009EDA78 /* stackView */ = {
@@ -1301,6 +1311,7 @@
 		F2666A8D1D879C6F00B2029E /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				653A240B1EFD190F001B7CD0 /* nativeShare */,
 				F250A2A41EFA060000F964A5 /* Share */,
 				6543FBCE1EF2897A009EDA78 /* stackView */,
 				650C6A2C1EF12A660017E48C /* localNotofication */,
@@ -2061,6 +2072,7 @@
 				F20F52091EB97D1800061BBE /* UILabel+SizeToFit.swift in Sources */,
 				F2BD8A241EB9882900AE3F06 /* QNUtils.swift in Sources */,
 				F20F52151EB97D1800061BBE /* UIView+Swift.m in Sources */,
+				653A240D1EFD192C001B7CD0 /* NativeShareTestVC.swift in Sources */,
 				F2D6904D1DFE7A200087328B /* QNCollectionViewCell.swift in Sources */,
 				F2EBCD321EADEB4800EFD026 /* ApiService.swift in Sources */,
 				F20F51FF1EB97D1800061BBE /* TYTabTitleViewCell.m in Sources */,
