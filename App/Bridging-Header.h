@@ -26,11 +26,10 @@
 #import "PECropViewController.h"
 #import "PECropView.h"
 //友盟
-//#import "UMSocial.h"
-//#import "UMSocialWechatHandler.h"
-//#import "UMSocialQQHandler.h"
-//#import "UMSocialSinaSSOHandler.h"
-//#import "WXApi.h"
+// U-Share核心SDK
+#import <UMSocialCore/UMSocialCore.h>
+// U-Share分享面板SDK，未添加分享面板SDK可将此行去掉
+#import <UShareUI/UShareUI.h>
 //融云
 //#import <RongIMLib/RongIMLib.h>
 #import <RongIMKit/RongIMKit.h>

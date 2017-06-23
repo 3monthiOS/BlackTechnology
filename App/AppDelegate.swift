@@ -29,18 +29,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     fileprivate var searchingReverseGeoCode = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+//MARK: 主题
         let them = ThemeManager.currentTheme()
         ThemeManager.overrideApplyTheme(them)
-        self.window = UIWindow.init(frame: UIScreen.main.bounds)
-        
-        //友盟初始化
-//        UMHelper.initSdkWithAppKey(UMENG_APPKEY, channelId: "", launchOptions: launchOptions)
-        // 初始化融云
+//        self.window = UIWindow.init(frame: UIScreen.main.bounds)
+//MARK: 初始化融云
         initRCIM()
       
         registerNotification(application)
-        // 初始化百度地图
+        //MARK: 初始化百度地图
         let mapManager = BMKMapManager()
         // 如果要关注网络及授权验证事件，请设定generalDelegate参数
         if !mapManager.start(BAIDU_KEY, generalDelegate: self) {
@@ -48,16 +45,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         Notifications.locationUpdated.addObserver(self, selector: #selector(locationUpdatedNotification(_:)), sender: nil)
-        // IQ 键盘
+        //MARK: IQ 键盘
         IQKeyboardManager.sharedManager().enable = true
-        // 运行手机的信息
+        //MARK: 运行手机的信息
         Log.info(Device.getVersionCode())
-        // 跳转
+        //MARK: 跳转
         gotoMainViewController()
         
         return true
     }
-    /// 注册本地和远程通知
+    //MARK: 注册本地和远程通知
   private func registerNotification(_ application: UIApplication) {
     //推送处理1
     if #available(iOS 10.0, *) {
@@ -137,35 +134,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BaiduLocationManager.startLocationService()//进入前台获取位置
         
     }
+    // no equiv. notification. return NO if the application can't open for some reason
+    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+        Log.info("AppDelegate: application open url \"\(url)");
+        //          BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
+        let result = UMSocialManager().handleOpen(url)
+        if !result {
+            Log.info("application openURL: \(url)")
+        }
+        return result
+    }
 
-    //分享 支付 回调  ios 8
+//MARK: -- 分享 支付 回调  ios 8
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-//        Log.info("AppDelegate: application open url \"\(url)\" from source application \"\(sourceApplication)\"");
-//        let result = UMSocialSnsService.handleOpenURL(url)
-//        if !result {
-//            Log.info("application openURL: \(url) \(sourceApplication)")
-//        } else {
-//            let notificationSheare = NSNotificationCenter.defaultCenter()
-//            notificationSheare.postNotificationName("photoSheare", object: nil)
-//        }
-//        return result
-        return true
+        Log.info("AppDelegate: application open url \"\(url)\" from source application \"\(String(describing: sourceApplication))\"");
+//          BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
+        let result = UMSocialManager().handleOpen(url)
+        if !result {
+            Log.info("application openURL: \(url) \(String(describing: sourceApplication))")
+        }
+        return result
     }
     
-    // iOS 9 以上请用这个
+    //MARK: iOS 9 以上请用这个
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey:Any]) -> Bool {
         Log.info("AppDelegate: ZHJ   application open url \"\(url)\" from source application")
-//        let result = UMSocialSnsService.handleOpenURL(url)
-//        if !result {
-//        } else {
-//            let notificationSheare = NSNotificationCenter.defaultCenter()
-//            notificationSheare.postNotificationName("photoSheare", object: nil)
-//        }
-//        return result
-        return true
+        let result = UMSocialManager().handleOpen(url)
+        if !result {
+            Log.info("application openURL: \(url)")
+        }
+        return result
     }
     
-    // MARK: - Core Data stack
+    //MARK: - Core Data stack
     
     lazy var applicationDocumentsDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "IndependentRegiment.zhj.App" in the application's documents Application Support directory.
@@ -212,7 +213,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return managedObjectContext
     }()
     
-    // MARK: - Core Data Saving support
+    //MARK: - Core Data Saving support
     
     func saveContext () {
         if managedObjectContext.hasChanges {
@@ -229,6 +230,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     //
 }
+//MARK: 融云
 extension AppDelegate: RCIMConnectionStatusDelegate, RCIMUserInfoDataSource, RCIMGroupInfoDataSource, RCIMReceiveMessageDelegate{
     func initRCIM(){
         RCIM.shared().initWithAppKey(RY_APPKEY)
@@ -315,7 +317,7 @@ extension AppDelegate: RCIMConnectionStatusDelegate, RCIMUserInfoDataSource, RCI
         }
     }
 }
-// MARK: - Location Service
+//MARK: - Location Service
 extension AppDelegate: BMKGeneralDelegate, BMKGeoCodeSearchDelegate {
     
     func locationUpdatedNotification(_ notification : Notification) {
@@ -419,12 +421,14 @@ extension AppDelegate: BMKGeneralDelegate, BMKGeoCodeSearchDelegate {
     }
     
 }
+//MARK: 登录代理
 extension AppDelegate: AppLoginSucessDelegate{
     func loginSucess(_ Viewcontroller: LoginviewController) {
         self.isok = true
         gotoMainViewController()
     }
 }
+//MARK: 扩展方法
 extension AppDelegate {
     func gotoMainViewController(){
         if let userinfos: User = cache.object(forKey: CacheManager.Key.User.rawValue) {
@@ -464,6 +468,7 @@ extension AppDelegate {
         }
     }
 }
+//MARK: 推送通知
 @available(iOS 10.0, *)
 extension AppDelegate: UNUserNotificationCenterDelegate {
   /// 在前台时收到本地推送时 需要如何通知
@@ -480,6 +485,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     completionHandler()
   }
 }
+//MARK: 视频
 /*
  //        let launchView = UIViewController.viewControllerWithIdentifier("LaunchScreen", storyboardName: "LaunchScreen").view
  //        let mainWindow = UIApplication.sharedApplication().keyWindow//获取到app的主屏幕

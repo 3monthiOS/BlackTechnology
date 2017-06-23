@@ -146,7 +146,7 @@ func fileDownload(_ urlArray: [String],complate:@escaping ((_ isok: Bool,_ callb
                                 fileName = dataName
                             }else{ fileName = url.substring(8)!}
                             let newPath = NSURL(fileURLWithPath: "\(path)/\(fileName)")
-                            Log.info("下载路径： \(newPath)____文件名称：\(fileName)")
+//                            Log.info("下载路径： \(newPath)____文件名称：\(fileName)")
                             let fileManager = FileManager.default
                             if ( fileManager.fileExists(atPath: newPath.path!) ) { // 如果存在则覆盖 此文件
                                 try? imageData.write(to: newPath as URL)
@@ -181,7 +181,7 @@ func RemoveSpecialCharacter(_ str: String) -> String {
     }
     return str
 }
-// Mark: -------- 手机号正则表达式
+//MARK: -------- 手机号正则表达式
 func checkMobileReg(_ mobile: String) -> Bool {
     let regex = try! NSRegularExpression(pattern: REGEXP_MOBILES,
                                          options: [.caseInsensitive])

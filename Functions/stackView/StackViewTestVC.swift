@@ -23,31 +23,30 @@ class StackViewTestVC: UIViewController {
       view.backgroundColor = UIColor.white
       btns()
       initTable()
-    initStackView()
+      initStackView()
       propertys = [".horizontal",".vertical"]
     }
 
   func initTable() {
-    let line1 = UIView(frame: CGRect(x: 0.0, y: 89.5, width: width, height: 0.5))
-      line1.backgroundColor = UIColor.black
-    let line2 = UIView(frame: CGRect(x: 0.0, y: 390, width: width, height: 0.5))
+    let line1 = UIView(frame: CGRect(x: 0.0, y: 33.5, width: width, height: 0.5))
+    let line2 = UIView(frame: CGRect(x: 0.0, y: 334, width: width, height: 0.5))
     line1.backgroundColor = UIColor.black
     line2.backgroundColor = UIColor.black
     view.addSubview(line1)
      view.addSubview(line2)
-    table = UITableView(frame: CGRect(x:0.0,y: 90.0 , width:width, height: 300), style: .plain )
+    table = UITableView(frame: CGRect(x:0.0,y: 34.0 , width:width, height: 300), style: .plain )
     table.dataSource = self
     table.delegate = self
     view.addSubview(table)
     table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
   }
   func initStackView() {
-    stack = UIStackView(frame: CGRect(x: 0.0, y: 390.5, width: width, height: height - 390.5))
+    stack = UIStackView(frame: CGRect(x: 0.0, y: 334.5, width: width, height: height - 334.5 - 64))
     stack.backgroundColor = UIColor.yellow
     stack.axis = .horizontal
-    stack.alignment = .center
+//    stack.alignment = .center
     stack.spacing = 10
-    stack.distribution = .fillProportionally
+//    stack.distribution = .fillProportionally
     view.addSubview(stack)
     (0...3).forEach { (i) in
       let label = UILabel()
@@ -65,7 +64,7 @@ class StackViewTestVC: UIViewController {
     (0..<3).forEach { (i) in
       let btn = UIButton(type: .custom)
       let space = (width - (80 * 3)) / 4
-      btn.center = CGPoint(x: space * CGFloat( i + 1) + 80.0 * ( CGFloat(i) + 0.5), y: 70)
+      btn.center = CGPoint(x: space * CGFloat( i + 1) + 80.0 * ( CGFloat(i) + 0.5), y: 14)
       btn.bounds = CGRect(x: 0,y:0,width: 80,height: 40)
       btn.setTitle(["axis", "distribution","alignment"][i], for: .normal)
       btn.setTitleColor(UIColor.black, for: .normal)

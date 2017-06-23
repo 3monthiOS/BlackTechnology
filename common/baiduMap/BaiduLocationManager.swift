@@ -22,7 +22,7 @@ class BaiduLocationManager {
     class LocationServiceDelegate: NSObject, BMKLocationServiceDelegate {
         
         func didUpdateUserHeading(_ userLocation: BMKUserLocation!) {
-            Log.info("BMK: heading is \(userLocation.heading)")
+//            Log.info("BMK: heading is \(userLocation.heading)")
         }
         
         func didUpdate (_ userLocation: BMKUserLocation!) {

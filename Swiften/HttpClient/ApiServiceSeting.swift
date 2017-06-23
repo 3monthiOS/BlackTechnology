@@ -28,22 +28,22 @@ class Api: ApiServiceDelegate {
     }
     
     func requestWillSend(_ apiService: ApiService, request: inout URLRequest) throws {
-        print(">>>>>>>>>>>>>> requestWillSend")
+        print(">>>>>>>>>>>>>> request Will Send")
         print(request.debugDescription)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        print("<<<<<<<<<<<<<< requestWillSend")
+//        print("<<<<<<<<<<<<<< requestWillSend")
     }
     
     func requestDidSend(_ apiService: ApiService, request: DataRequest) {
-        print(">>>>>>>>>>>>>> requestDidSend")
+        print(">>>>>>>>>>>>>> request Did Send")
         print(request.debugDescription)
-        print("<<<<<<<<<<<<<< requestDidSend")
+//        print("<<<<<<<<<<<<<< requestDidSend")
     }
     
     func responseDidReceive<T>(_ apiService: ApiService, response: ApiBaseResponse<T>) {
-        print(">>>>>>>>>>>>>> responseDidReceive")
+        print(">>>>>>>>>>>>>> response Did Receive")
         print(response.debugDescription)
-        print("<<<<<<<<<<<<<< responseDidReceive")
+//        print("<<<<<<<<<<<<<< responseDidReceive")
     }
     
     public static func api(_ path: String, defaultParameters parameters: Parameters? = nil) -> ApiService {

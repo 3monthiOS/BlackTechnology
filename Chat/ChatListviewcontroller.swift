@@ -11,7 +11,7 @@ import UIKit
 import IQKeyboardManagerSwift
 import Alamofire
 import RainbowSwift
-import SwiftOCR
+//import SwiftOCR
 
 
 class ChatListviewcontroller: RCConversationListViewController {
@@ -54,12 +54,12 @@ class ChatListviewcontroller: RCConversationListViewController {
        
         
         Log.info(Device.version())
-        
-        let swiftOCRInstance   = SwiftOCR()
-        let image = UIImage(named:"test0")
-        swiftOCRInstance.recognize(image!) {recognizedString in
-            print("_______________\(recognizedString)")
-        }
+        // SwiftOCR 使用例子 效果不好
+//        let swiftOCRInstance   = SwiftOCR()
+//        let image = UIImage(named:"test0")
+//        swiftOCRInstance.recognize(image!) {recognizedString in
+//            print("_______________\(recognizedString)")
+//        }
     }
     func initChatView(){
         IQKeyboardManager.sharedManager().enableAutoToolbar = false

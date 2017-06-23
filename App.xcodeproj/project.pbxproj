@@ -117,6 +117,7 @@
 		F23EBAE91EBB2FE30061F5DD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F23EBAE81EBB2FE30061F5DD /* Images.xcassets */; };
 		F243CD2C1EC4206D001988D3 /* wavesAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F243CD2A1EC4206D001988D3 /* wavesAnimationController.swift */; };
 		F243CD2D1EC4206D001988D3 /* wavesAnimationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F243CD2B1EC4206D001988D3 /* wavesAnimationController.xib */; };
+		F248736F1EF8C902006DEAB8 /* ShareObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F248736E1EF8C902006DEAB8 /* ShareObject.swift */; };
 		F24E9A381DEEB18A00A45EB8 /* UploadPicturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E9A361DEEB18A00A45EB8 /* UploadPicturesView.swift */; };
 		F24E9A391DEEB18A00A45EB8 /* uploadPicturesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F24E9A371DEEB18A00A45EB8 /* uploadPicturesView.xib */; };
 		F24E9A3C1DEEBA0800A45EB8 /* gif131.gif in Resources */ = {isa = PBXBuildFile; fileRef = F24E9A3B1DEEBA0800A45EB8 /* gif131.gif */; };
@@ -125,6 +126,8 @@
 		F24F59171EC00F970077D913 /* FullTitleVisualEffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24F59161EC00F970077D913 /* FullTitleVisualEffectViewController.swift */; };
 		F24F59191EC012A40077D913 /* MoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24F59181EC012A40077D913 /* MoreInfoView.swift */; };
 		F24F591C1EC021D20077D913 /* TransformFadeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24F591B1EC021D20077D913 /* TransformFadeViewController.swift */; };
+		F250A2A71EFA061900F964A5 /* ShareDomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F250A2A51EFA061900F964A5 /* ShareDomeController.swift */; };
+		F250A2A81EFA061900F964A5 /* ShareDomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F250A2A61EFA061900F964A5 /* ShareDomeController.xib */; };
 		F25AD7C61ED522A500E475CF /* starwars.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F25AD7C51ED522A500E475CF /* starwars.storyboard */; };
 		F25AF3C31ECBEA2C008057CB /* CEViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25AF3C21ECBEA2C008057CB /* CEViewExtension.swift */; };
 		F25AF3C71ECC237F008057CB /* RadiationTransformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25AF3C51ECC237F008057CB /* RadiationTransformationController.swift */; };
@@ -139,6 +142,7 @@
 		F26BAC921ED4155E001A4AEC /* MainSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26BAC901ED4155E001A4AEC /* MainSettingsViewController.swift */; };
 		F26BAC961ED41574001A4AEC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26BAC941ED41574001A4AEC /* SettingsViewController.swift */; };
 		F26BACA11ED42DBC001A4AEC /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26BACA01ED42DBC001A4AEC /* UIView+Extension.swift */; };
+		F2749E421EF7C92700B42417 /* SocialUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2749E411EF7C92700B42417 /* SocialUtils.swift */; };
 		F27AE1FD1D928E09000E0509 /* CollectionReusableViewHeadre.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27AE1F71D928E09000E0509 /* CollectionReusableViewHeadre.swift */; };
 		F27AE1FE1D928E09000E0509 /* CollectionReusableViewHeadre.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27AE1F81D928E09000E0509 /* CollectionReusableViewHeadre.xib */; };
 		F27AE1FF1D928E09000E0509 /* QdanCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27AE1F91D928E09000E0509 /* QdanCollectionViewCell.swift */; };
@@ -163,7 +167,6 @@
 		F28C54B51EA7646300209259 /* PhotoBrowser+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54A31EA7646300209259 /* PhotoBrowser+View.swift */; };
 		F28C54B61EA7646300209259 /* UIImage+PECrop.m in Sources */ = {isa = PBXBuildFile; fileRef = F28C54A51EA7646300209259 /* UIImage+PECrop.m */; };
 		F28C54B71EA7646300209259 /* SystemPhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54A61EA7646300209259 /* SystemPhotoAlbum.swift */; };
-		F28C98591E07D7BC00DACB18 /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C98541E07D7BC00DACB18 /* LoginUser.swift */; };
 		F28C985A1E07D7BC00DACB18 /* MappableBaseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C98551E07D7BC00DACB18 /* MappableBaseType.swift */; };
 		F28C985B1E07D7BC00DACB18 /* QNlistData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C98561E07D7BC00DACB18 /* QNlistData.swift */; };
 		F28C985D1E07D7BC00DACB18 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C98581E07D7BC00DACB18 /* User.swift */; };
@@ -390,6 +393,7 @@
 		F23EBAE81EBB2FE30061F5DD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F243CD2A1EC4206D001988D3 /* wavesAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wavesAnimationController.swift; sourceTree = "<group>"; };
 		F243CD2B1EC4206D001988D3 /* wavesAnimationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = wavesAnimationController.xib; sourceTree = "<group>"; };
+		F248736E1EF8C902006DEAB8 /* ShareObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareObject.swift; sourceTree = "<group>"; };
 		F24E9A361DEEB18A00A45EB8 /* UploadPicturesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadPicturesView.swift; sourceTree = "<group>"; };
 		F24E9A371DEEB18A00A45EB8 /* uploadPicturesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = uploadPicturesView.xib; sourceTree = "<group>"; };
 		F24E9A3B1DEEBA0800A45EB8 /* gif131.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gif131.gif; sourceTree = "<group>"; };
@@ -399,6 +403,8 @@
 		F24F59161EC00F970077D913 /* FullTitleVisualEffectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullTitleVisualEffectViewController.swift; sourceTree = "<group>"; };
 		F24F59181EC012A40077D913 /* MoreInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoView.swift; sourceTree = "<group>"; };
 		F24F591B1EC021D20077D913 /* TransformFadeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformFadeViewController.swift; sourceTree = "<group>"; };
+		F250A2A51EFA061900F964A5 /* ShareDomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareDomeController.swift; sourceTree = "<group>"; };
+		F250A2A61EFA061900F964A5 /* ShareDomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareDomeController.xib; sourceTree = "<group>"; };
 		F25AD7C51ED522A500E475CF /* starwars.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = starwars.storyboard; sourceTree = "<group>"; };
 		F25AF3C21ECBEA2C008057CB /* CEViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEViewExtension.swift; sourceTree = "<group>"; };
 		F25AF3C51ECC237F008057CB /* RadiationTransformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadiationTransformationController.swift; sourceTree = "<group>"; };
@@ -413,6 +419,7 @@
 		F26BAC901ED4155E001A4AEC /* MainSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSettingsViewController.swift; sourceTree = "<group>"; };
 		F26BAC941ED41574001A4AEC /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F26BACA01ED42DBC001A4AEC /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		F2749E411EF7C92700B42417 /* SocialUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialUtils.swift; sourceTree = "<group>"; };
 		F27AE1F71D928E09000E0509 /* CollectionReusableViewHeadre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionReusableViewHeadre.swift; sourceTree = "<group>"; };
 		F27AE1F81D928E09000E0509 /* CollectionReusableViewHeadre.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionReusableViewHeadre.xib; sourceTree = "<group>"; };
 		F27AE1F91D928E09000E0509 /* QdanCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QdanCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -442,7 +449,6 @@
 		F28C54A41EA7646300209259 /* UIImage+PECrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PECrop.h"; sourceTree = "<group>"; };
 		F28C54A51EA7646300209259 /* UIImage+PECrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PECrop.m"; sourceTree = "<group>"; };
 		F28C54A61EA7646300209259 /* SystemPhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemPhotoAlbum.swift; sourceTree = "<group>"; };
-		F28C98541E07D7BC00DACB18 /* LoginUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUser.swift; sourceTree = "<group>"; };
 		F28C98551E07D7BC00DACB18 /* MappableBaseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappableBaseType.swift; sourceTree = "<group>"; };
 		F28C98561E07D7BC00DACB18 /* QNlistData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNlistData.swift; sourceTree = "<group>"; };
 		F28C98581E07D7BC00DACB18 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -657,6 +663,7 @@
 		F20F51691EB97D1800061BBE /* common */ = {
 			isa = PBXGroup;
 			children = (
+				F2749E401EF7C92700B42417 /* ThirdShare */,
 				F20F51A11EB97D1800061BBE /* Theme.swift */,
 				F20F51811EB97D1800061BBE /* CommonFuntion.swift */,
 				F2AAFB3C1ED3DD6A00A22BB9 /* RAMAnimatedTabBar */,
@@ -1244,6 +1251,15 @@
 			path = TransformFadeViewController;
 			sourceTree = "<group>";
 		};
+		F250A2A41EFA060000F964A5 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				F250A2A51EFA061900F964A5 /* ShareDomeController.swift */,
+				F250A2A61EFA061900F964A5 /* ShareDomeController.xib */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
 		F25AF3C41ECC2361008057CB /* RadiationTransformation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1285,6 +1301,7 @@
 		F2666A8D1D879C6F00B2029E /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				F250A2A41EFA060000F964A5 /* Share */,
 				6543FBCE1EF2897A009EDA78 /* stackView */,
 				650C6A2C1EF12A660017E48C /* localNotofication */,
 				F2F46F421EEE2B1700480A64 /* RecordingVoice */,
@@ -1318,6 +1335,14 @@
 				F25AD7C51ED522A500E475CF /* starwars.storyboard */,
 			);
 			path = starwar;
+			sourceTree = "<group>";
+		};
+		F2749E401EF7C92700B42417 /* ThirdShare */ = {
+			isa = PBXGroup;
+			children = (
+				F2749E411EF7C92700B42417 /* SocialUtils.swift */,
+			);
+			path = ThirdShare;
 			sourceTree = "<group>";
 		};
 		F27AE1F61D928E09000E0509 /* collectionCell */ = {
@@ -1394,11 +1419,11 @@
 		F28C98531E07D7BC00DACB18 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F28C98541E07D7BC00DACB18 /* LoginUser.swift */,
 				F28C98551E07D7BC00DACB18 /* MappableBaseType.swift */,
 				F28C98561E07D7BC00DACB18 /* QNlistData.swift */,
 				F28C98581E07D7BC00DACB18 /* User.swift */,
 				F231272A1EAEF80900FA0D74 /* TestModel.swift */,
+				F248736E1EF8C902006DEAB8 /* ShareObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1785,6 +1810,7 @@
 				F24E9A391DEEB18A00A45EB8 /* uploadPicturesView.xib in Resources */,
 				F2F46F461EEE2B3400480A64 /* RecordingVoiceController.xib in Resources */,
 				F27AE1FE1D928E09000E0509 /* CollectionReusableViewHeadre.xib in Resources */,
+				F250A2A81EFA061900F964A5 /* ShareDomeController.xib in Resources */,
 				F25AD7C61ED522A500E475CF /* starwars.storyboard in Resources */,
 				F2BD8A321EB9BD9400AE3F06 /* GifDetailController.xib in Resources */,
 				F2A81C6B1EC19AA400771776 /* LTDemoViewController.xib in Resources */,
@@ -1923,6 +1949,7 @@
 				F24E9A381DEEB18A00A45EB8 /* UploadPicturesView.swift in Sources */,
 				F28C54B71EA7646300209259 /* SystemPhotoAlbum.swift in Sources */,
 				F23481381EA5E6ED00CB84F2 /* Functions.swift in Sources */,
+				F250A2A71EFA061900F964A5 /* ShareDomeController.swift in Sources */,
 				F2666A911D879CEE00B2029E /* FunctionsViewController.swift in Sources */,
 				F294B3451DFFDDB70055C8CB /* MObileFunction.swift in Sources */,
 				F20F51DA1EB97D1800061BBE /* MJrefreshCollectionview.swift in Sources */,
@@ -1961,7 +1988,6 @@
 				F234813A1EA5E6ED00CB84F2 /* Stringify.swift in Sources */,
 				F20F52141EB97D1800061BBE /* UIView+SetRect.swift in Sources */,
 				F28C54B51EA7646300209259 /* PhotoBrowser+View.swift in Sources */,
-				F28C98591E07D7BC00DACB18 /* LoginUser.swift in Sources */,
 				F28C54A71EA7646300209259 /* AlbumTableViewController.swift in Sources */,
 				F26BAC921ED4155E001A4AEC /* MainSettingsViewController.swift in Sources */,
 				F28C54A81EA7646300209259 /* PhotoBrowser+CropperViewController.swift in Sources */,
@@ -2009,6 +2035,7 @@
 				F28C54AB1EA7646300209259 /* PhotoBrowser+TakerViewController.swift in Sources */,
 				F28C54AA1EA7646300209259 /* PhotoBrowser+PreviewController.swift in Sources */,
 				F20F51DE1EB97D1800061BBE /* UIScrollView+TopRefresh.m in Sources */,
+				F2749E421EF7C92700B42417 /* SocialUtils.swift in Sources */,
 				F23481471EA5E6EE00CB84F2 /* NSDate+Extension.swift in Sources */,
 				F2A81C5B1EC170B500771776 /* SpreadSubButton.swift in Sources */,
 				F2DFE7D21D82A1B300E5DC71 /* LoginviewController.swift in Sources */,
@@ -2037,6 +2064,7 @@
 				F2D6904D1DFE7A200087328B /* QNCollectionViewCell.swift in Sources */,
 				F2EBCD321EADEB4800EFD026 /* ApiService.swift in Sources */,
 				F20F51FF1EB97D1800061BBE /* TYTabTitleViewCell.m in Sources */,
+				F248736F1EF8C902006DEAB8 /* ShareObject.swift in Sources */,
 				F28C54AE1EA7646300209259 /* PhotoBrowserExtensions.swift in Sources */,
 				F234814A1EA5E6EE00CB84F2 /* Realm+Manager.swift in Sources */,
 				F2BD8A311EB9BD9400AE3F06 /* GifDetailController.swift in Sources */,
@@ -2237,6 +2265,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/BaiduMapKit/BaiduMapKit",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					UM_Swift,
+					"DEBUG=1",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -2266,6 +2300,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/BaiduMapKit/BaiduMapKit",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					UM_Swift,
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

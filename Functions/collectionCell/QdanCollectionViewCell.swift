@@ -47,7 +47,7 @@ class QdanCollectionViewCell: UICollectionViewCell {
                             guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}
                             self.btn.setGifImage(UIImage(gifData: imageData, levelOfIntegrity: 1.0))
                         }else{
-                            Log.info("我没有找到：————————\(str)")
+//                            Log.info("我没有找到：————————\(str)")
                             //网络获取
                             if imagename.hasPrefix("http://") || imagename.hasPrefix("https://") {
                                 if Reachability.networkStatus != .notReachable {

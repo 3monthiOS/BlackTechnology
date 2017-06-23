@@ -20,7 +20,7 @@ class FunctionsViewController: APPviewcontroller {
     var collectionHeader: UICollectionReusableView!
     dynamic var isAinmationStatus = true
     
-    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","通讯录","上传图片","云相册","视频录制","GIF","TableViewAnimation","LTDemo","放射变换","转场动画","本地通知","UIStackView","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
+    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","通讯录","上传图片","云相册","视频录制","GIF","TableViewAnimation","LTDemo","放射变换","转场动画","本地通知","UIStackView","分享","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         QNcheck()
@@ -155,7 +155,7 @@ extension FunctionsViewController: UICollectionViewDelegate{
       self.performSegue(withIdentifier: "complexFilter", sender: nil)
     case 3:
         let baidu = BaiduMapViewController()
-        self.tabBarController?.hidesBottomBarWhenPushed = true
+        
         self.navigationController?.pushViewController(baidu, animated: true)
     case 5:
         let baidu = RecordingVoiceController()
@@ -171,39 +171,31 @@ extension FunctionsViewController: UICollectionViewDelegate{
         call_openContact()
     case 10:
         let upload = uploadPicturesView()
-        self.tabBarController?.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(upload, animated: true)
     case 11:
         let upload = QNPhotoController()
-        self.tabBarController?.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(upload, animated: true)
     case 12:
       let vc = VideoRecorderViewController()
-      self.tabBarController?.hidesBottomBarWhenPushed = true
       navigationController?.pushViewController(vc, animated: true)
     case 13:
         let vc = GifDetailController()
         vc.imageData = getProjectJsonFile()
-        self.tabBarController?.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     case 14:
-        self.tabBarController?.hidesBottomBarWhenPushed = true
         let vc = TableviewCoustom()
         navigationController?.pushViewController(vc, animated: true)
     case 15:
         let vc = LTDemoViewController()
-        self.tabBarController?.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     case 16:
         let vc = RadiationTransformationController()
-        self.tabBarController?.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     case 17:
         let controller = UIViewController.loadViewControllerFromStoryboard("starwars", storyboardID: "IntroViewController") as! IntroViewController
         self.present(controller, animated: true, completion: nil)
     case 18 :
       let vc = LocalNotificationVC()
-      self.tabBarController?.hidesBottomBarWhenPushed = true
       navigationController?.pushViewController(vc, animated: true)
     case 19 :
       if #available(iOS 9.0, *) {
@@ -211,10 +203,14 @@ extension FunctionsViewController: UICollectionViewDelegate{
         navigationController?.pushViewController(vc, animated: true)
       } else {
         alert("请使用9.0 以上的系统！")
-      }      
+      }
+    case 20:
+        let vc = ShareDomeController()
+        navigationController?.pushViewController(vc, animated: true)
         default:
       break
         }
+    self.tabBarController?.hidesBottomBarWhenPushed = true
     }
 }
 

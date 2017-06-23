@@ -41,7 +41,7 @@ extension Session {
     }
 
     /// 当前登录用户
-    var user: LoginUser? {
+    var user: User? {
 //        if let user: LoginUser = NSCache.objectForKey(.User) {
 //            return user
 //        }
