@@ -18,7 +18,7 @@ let width = UIScreen.main.bounds.width
       let lba = UILabel(frame:CGRect(x:0.0,y:350.0,width:width,height:30))
       lba.text = "点击view即可分享"
       lba.textColor = UIColor.black
-      view.addSubviews(lba)
+      view.addSubview(lba)
       
     }
 
