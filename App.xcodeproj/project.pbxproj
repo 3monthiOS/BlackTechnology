@@ -115,8 +115,6 @@
 		F234815E1EA5E6EE00CB84F2 /* WebView+UIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23481331EA5E6ED00CB84F2 /* WebView+UIDelegate.swift */; };
 		F234815F1EA5E6EE00CB84F2 /* WebView+UserContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23481341EA5E6ED00CB84F2 /* WebView+UserContentController.swift */; };
 		F23481601EA5E6EE00CB84F2 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23481351EA5E6ED00CB84F2 /* WebView.swift */; };
-		F23639041EFF938700733FE3 /* gaoangViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23639021EFF938700733FE3 /* gaoangViewController.swift */; };
-		F23639051EFF938700733FE3 /* gaoangViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23639031EFF938700733FE3 /* gaoangViewController.xib */; };
 		F23EBAE91EBB2FE30061F5DD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F23EBAE81EBB2FE30061F5DD /* Images.xcassets */; };
 		F243CD2C1EC4206D001988D3 /* wavesAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F243CD2A1EC4206D001988D3 /* wavesAnimationController.swift */; };
 		F243CD2D1EC4206D001988D3 /* wavesAnimationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F243CD2B1EC4206D001988D3 /* wavesAnimationController.xib */; };
@@ -394,8 +392,6 @@
 		F23481331EA5E6ED00CB84F2 /* WebView+UIDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebView+UIDelegate.swift"; sourceTree = "<group>"; };
 		F23481341EA5E6ED00CB84F2 /* WebView+UserContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebView+UserContentController.swift"; sourceTree = "<group>"; };
 		F23481351EA5E6ED00CB84F2 /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
-		F23639021EFF938700733FE3 /* gaoangViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gaoangViewController.swift; sourceTree = "<group>"; };
-		F23639031EFF938700733FE3 /* gaoangViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = gaoangViewController.xib; sourceTree = "<group>"; };
 		F23EBAE81EBB2FE30061F5DD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F243CD2A1EC4206D001988D3 /* wavesAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wavesAnimationController.swift; sourceTree = "<group>"; };
 		F243CD2B1EC4206D001988D3 /* wavesAnimationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = wavesAnimationController.xib; sourceTree = "<group>"; };
@@ -1336,8 +1332,6 @@
 				F21437AA1D98D3DB000E0CBF /* BaiDuMap */,
 				F27AE1F61D928E09000E0509 /* collectionCell */,
 				F2666A901D879CEE00B2029E /* FunctionsViewController.swift */,
-				F23639021EFF938700733FE3 /* gaoangViewController.swift */,
-				F23639031EFF938700733FE3 /* gaoangViewController.xib */,
 			);
 			name = Functions;
 			path = ../Functions;
@@ -1840,7 +1834,6 @@
 				F2D6904C1DFE7A200087328B /* CollectionReusableHeadre.xib in Resources */,
 				F2D54B261D93A692006DE294 /* TableViewHeaderCell.xib in Resources */,
 				F29BFBFA1EBC693D00464D28 /* ShowtextModelCell.xib in Resources */,
-				F23639051EFF938700733FE3 /* gaoangViewController.xib in Resources */,
 				F217F20A1D842B74000E3A0D /* RegisteredViewController.xib in Resources */,
 				F21A91191ECEF3D100951673 /* ToolsAnimation.plist in Resources */,
 				F27AE2001D928E09000E0509 /* QdanCollectionViewCell.xib in Resources */,
@@ -1978,7 +1971,6 @@
 				F2D3A3E11E038E0D007DE758 /* FirstViewController.swift in Sources */,
 				F20F520E1EB97D1800061BBE /* UIView+AnimationProperty.swift in Sources */,
 				F23481571EA5E6EE00CB84F2 /* UIView+Toast.swift in Sources */,
-				F23639041EFF938700733FE3 /* gaoangViewController.swift in Sources */,
 				F20F51F61EB97D1800061BBE /* Notifications.swift in Sources */,
 				F23481371EA5E6ED00CB84F2 /* DispatchQueue+Once.swift in Sources */,
 				F2ED94611D86AF8E000C2E59 /* ChatListviewcontroller.swift in Sources */,
