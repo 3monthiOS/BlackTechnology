@@ -12,14 +12,17 @@ class NativeShareTestVC: UIViewController {
 let width = UIScreen.main.bounds.width
     override func viewDidLoad() {
         super.viewDidLoad()
-      title = "原生分享"
-      view.backgroundColor = UIColor.white
-      
-      let lba = UILabel(frame:CGRect(x:0.0,y:350.0,width:width,height:30))
-      lba.text = "点击view即可分享"
-      lba.textColor = UIColor.black
-      view.addSubview(lba)
-      
+        title = "原生分享"
+        view.backgroundColor = UIColor.white
+        
+        let lba = UILabel()
+        lba.textAlignment = NSTextAlignment.center
+        lba.text = "点击view即可分享"
+        lba.textColor = UIColor.blue
+        view.addSubview(lba)
+        lba.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+        }
     }
 
   func nativeShare() {
@@ -29,10 +32,10 @@ let width = UIScreen.main.bounds.width
     let act =  UIActivityViewController(activityItems: [URL(string:"http://www.baidu.com")!], applicationActivities: [ccc])
     act.completionWithItemsHandler = {( a:UIActivityType?, b:Bool, p:[Any]?, e:Error?)  in
       
-      print(a,b,p,e)
+      print(a as Any,b,p as Any,e as Any)
       act.completionWithItemsHandler = nil
     }
-    // 在 iphone 上 只能 present 
+    // 在 iphone 上 只能 present
     // 在 iPad 上需要用 pop 的方式
     present(act, animated: true, completion: nil)
   }
