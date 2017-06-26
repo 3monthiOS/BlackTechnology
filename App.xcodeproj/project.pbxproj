@@ -12,6 +12,7 @@
 		650C6A2E1EF12A930017E48C /* LocalNotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650C6A2D1EF12A930017E48C /* LocalNotificationVC.swift */; };
 		653A240D1EFD192C001B7CD0 /* NativeShareTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653A240C1EFD192C001B7CD0 /* NativeShareTestVC.swift */; };
 		6543FBD01EF2898B009EDA78 /* StackViewTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6543FBCF1EF2898B009EDA78 /* StackViewTestVC.swift */; };
+		654813951F010BE70097D932 /* QRcodeAndBarCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654813941F010BE70097D932 /* QRcodeAndBarCodeVC.swift */; };
 		654B6AD91D9D25DA00B46F6F /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B6AD51D9D25DA00B46F6F /* FilterViewController.swift */; };
 		654B6ADA1D9D25DA00B46F6F /* MutableFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B6AD61D9D25DA00B46F6F /* MutableFilterViewController.swift */; };
 		654B6ADB1D9D25DA00B46F6F /* GradientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B6AD81D9D25DA00B46F6F /* GradientViewController.swift */; };
@@ -267,6 +268,7 @@
 		650C6A2D1EF12A930017E48C /* LocalNotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationVC.swift; sourceTree = "<group>"; };
 		653A240C1EFD192C001B7CD0 /* NativeShareTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeShareTestVC.swift; sourceTree = "<group>"; };
 		6543FBCF1EF2898B009EDA78 /* StackViewTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackViewTestVC.swift; sourceTree = "<group>"; };
+		654813941F010BE70097D932 /* QRcodeAndBarCodeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRcodeAndBarCodeVC.swift; sourceTree = "<group>"; };
 		654B6AD51D9D25DA00B46F6F /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		654B6AD61D9D25DA00B46F6F /* MutableFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableFilterViewController.swift; sourceTree = "<group>"; };
 		654B6AD81D9D25DA00B46F6F /* GradientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientViewController.swift; sourceTree = "<group>"; };
@@ -622,6 +624,14 @@
 				6543FBCF1EF2898B009EDA78 /* StackViewTestVC.swift */,
 			);
 			path = stackView;
+			sourceTree = "<group>";
+		};
+		654813931F010BC20097D932 /* QRcode */ = {
+			isa = PBXGroup;
+			children = (
+				654813941F010BE70097D932 /* QRcodeAndBarCodeVC.swift */,
+			);
+			path = QRcode;
 			sourceTree = "<group>";
 		};
 		654B6AD41D9D25DA00B46F6F /* Filter */ = {
@@ -1311,6 +1321,7 @@
 		F2666A8D1D879C6F00B2029E /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				654813931F010BC20097D932 /* QRcode */,
 				653A240B1EFD190F001B7CD0 /* nativeShare */,
 				F250A2A41EFA060000F964A5 /* Share */,
 				6543FBCE1EF2897A009EDA78 /* stackView */,
@@ -1955,6 +1966,7 @@
 				F28C54B41EA7646300209259 /* PEResizeControl.m in Sources */,
 				F2AAFB461ED3DD6A00A22BB9 /* RAMBadge.swift in Sources */,
 				F28C54AC1EA7646300209259 /* PhotoBrowser.swift in Sources */,
+				654813951F010BE70097D932 /* QRcodeAndBarCodeVC.swift in Sources */,
 				F23481431EA5E6EE00CB84F2 /* RestError.swift in Sources */,
 				F20F51D81EB97D1800061BBE /* JumpAnimationcontroller.swift in Sources */,
 				F24E9A381DEEB18A00A45EB8 /* UploadPicturesView.swift in Sources */,
