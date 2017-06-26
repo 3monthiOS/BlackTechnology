@@ -12,14 +12,19 @@ class QRcodeAndBarCodeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-      title = "二维码和条形码"
-view.backgroundColor = UIColor.white
-      let QRcodeImage = UIImageView(frame: CGRect(x: 0.0,y,120,width: 200,height: 200))
-      QRcodeImage.image = QRcode()
-      view.addSubview(QRcodeImage)
-      let barCodeImage = UIImageView(frame: CGRect(x: 10.0,y,350,width: view.bounds.width - 20,height: 80))
-       barCodeImage.image = barCode()
-      view.addSubview(barCodeImage)
+        title = "二维码和条形码"
+        view.backgroundColor = UIColor.white
+        
+        let QRcodeImage = UIImageView(frame: CGRect(x: 0.0,y:120,width: 200,height: 200))
+        QRcodeImage.image = QRcode()
+        view.addSubview(QRcodeImage)
+        QRcodeImage.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+        }
+        
+        let barCodeImage = UIImageView(frame: CGRect(x: 10.0,y:350,width: view.bounds.width - 20,height: 80))
+        barCodeImage.image = barCode()
+        view.addSubview(barCodeImage)
     }
   func QRcode()-> UIImage {
     let  ciimg = generateQRCodeImage("www.baidu.com")
