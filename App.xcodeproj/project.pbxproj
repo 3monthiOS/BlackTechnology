@@ -350,6 +350,7 @@
 		F217F2071D842B74000E3A0D /* RegisteredViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredViewController.swift; sourceTree = "<group>"; };
 		F217F2081D842B74000E3A0D /* RegisteredViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisteredViewController.xib; sourceTree = "<group>"; };
 		F21A91181ECEF3D100951673 /* ToolsAnimation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ToolsAnimation.plist; sourceTree = "<group>"; };
+		F22127BF1F03D13400A2A75D /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		F23127281EAEF62600FA0D74 /* RequestAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestAddress.swift; sourceTree = "<group>"; };
 		F231272A1EAEF80900FA0D74 /* TestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
 		F23480F81EA5E6ED00CB84F2 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -1610,6 +1611,7 @@
 		F2D652C81D7E94A90005824D /* App */ = {
 			isa = PBXGroup;
 			children = (
+				F22127BF1F03D13400A2A75D /* App.entitlements */,
 				F2DFE7D61D82AE9100E5DC71 /* Login */,
 				F2666A8D1D879C6F00B2029E /* Functions */,
 				F2666A8C1D879C6100B2029E /* My */,
@@ -1784,6 +1786,11 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = N7NUK7WYR6;
 						LastSwiftMigration = 0830;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					F2D652DC1D7E94A90005824D = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -2277,9 +2284,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CA5A6087CE1A63B4E2D426C9 /* Pods-App.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = NO;
@@ -2303,7 +2311,7 @@
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = IndependentRegiment.zhj.App;
+				PRODUCT_BUNDLE_IDENTIFIER = IndependentRegiment.BT.App;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -2314,9 +2322,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 544049F072F8E3FA12FE0D85 /* Pods-App.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = N7NUK7WYR6;
@@ -2338,7 +2347,7 @@
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = IndependentRegiment.zhj.App;
+				PRODUCT_BUNDLE_IDENTIFIER = IndependentRegiment.BT.App;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

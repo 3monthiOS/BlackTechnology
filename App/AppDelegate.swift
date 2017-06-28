@@ -47,8 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Notifications.locationUpdated.addObserver(self, selector: #selector(locationUpdatedNotification(_:)), sender: nil)
         //MARK: IQ 键盘
         IQKeyboardManager.sharedManager().enable = true
-        //MARK: 运行手机的信息
-        Log.info(Device.getVersionCode())
+        // MARK: -- 输出设备信息
+        Log.info(Device.version())
         //MARK: 跳转
         gotoMainViewController()
         
