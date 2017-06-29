@@ -84,14 +84,14 @@ class ChatListviewcontroller: RCConversationListViewController {
             RCConversationType.ConversationType_PUBLICSERVICE.rawValue
             ])
         if let array = sessionArray as? [RCConversation] {
-            RCIM.shared().clearGroupUserInfoCache()
-            RCIM.shared().clearGroupInfoCache()
+//            RCIM.shared().clearGroupUserInfoCache()
+//            RCIM.shared().clearGroupInfoCache()
             for object in array {
                 Log.info("会话id：\(object.targetId) 会话类型\(object.conversationType) 绘画标题:\(object.conversationTitle)")
-                let groups = RCGroup()
-                groups.groupName = object.conversationTitle
-                groups.portraitUri = "http://static.open-open.com/news/uploadImg/20160107/20160107084321_658.png"
-                RCIM.shared().refreshGroupInfoCache(groups, withGroupId: object.targetId)
+//                let groups = RCGroup()
+//                groups.groupName = object.conversationTitle
+//                groups.portraitUri = "http://static.open-open.com/news/uploadImg/20160107/20160107084321_658.png"
+//                RCIM.shared().refreshGroupInfoCache(groups, withGroupId: object.targetId)
             }
             RCIM.shared().globalNavigationBarTintColor = UIColor.red
             
