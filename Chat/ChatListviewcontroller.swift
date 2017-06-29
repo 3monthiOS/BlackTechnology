@@ -23,7 +23,7 @@ class ChatListviewcontroller: RCConversationListViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        delay(1) {
+        delay(0) {
             self.tabBarController?.hidesBottomBarWhenPushed = false
         }
     }
