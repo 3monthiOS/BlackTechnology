@@ -432,6 +432,7 @@ extension AppDelegate: AppLoginSucessDelegate{
 extension AppDelegate {
     func gotoMainViewController(){
         if let userinfos: User = cache.object(forKey: CacheManager.Key.User.rawValue) {
+            user = userinfos // 获取缓存的 用户对象
             if let number = userinfos.state{
                 if number == 1 {
                     isok = true
