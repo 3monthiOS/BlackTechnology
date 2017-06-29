@@ -169,7 +169,7 @@
         <!--渐变-->
         <scene sceneID="eaO-PM-aR2">
             <objects>
-                <viewController storyboardIdentifier="GradientViewController" title="滤镜" hidesBottomBarWhenPushed="YES" id="zUd-m4-nk0" userLabel="渐变" customClass="GradientViewController" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GradientViewController" title="滤镜" id="zUd-m4-nk0" userLabel="渐变" customClass="GradientViewController" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4nX-GZ-bul"/>
                         <viewControllerLayoutGuide type="bottom" id="HN4-Kc-yql"/>
@@ -228,7 +228,7 @@
         <!--滤镜-->
         <scene sceneID="cow-5D-OjZ">
             <objects>
-                <viewController storyboardIdentifier="FilterViewController" title="滤镜" hidesBottomBarWhenPushed="YES" id="doQ-x5-aka" userLabel="滤镜" customClass="FilterViewController" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FilterViewController" title="滤镜" id="doQ-x5-aka" userLabel="滤镜" customClass="FilterViewController" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7UJ-mN-wkd"/>
                         <viewControllerLayoutGuide type="bottom" id="m6a-dM-va1"/>
@@ -332,7 +332,7 @@
         <!--复杂滤镜-->
         <scene sceneID="hBI-sz-ghZ">
             <objects>
-                <viewController storyboardIdentifier="MutableFilterViewController" title="复杂滤镜" hidesBottomBarWhenPushed="YES" id="zup-iZ-mMf" userLabel="复杂滤镜" customClass="MutableFilterViewController" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MutableFilterViewController" title="复杂滤镜" id="zup-iZ-mMf" userLabel="复杂滤镜" customClass="MutableFilterViewController" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mgw-I9-Adf"/>
                         <viewControllerLayoutGuide type="bottom" id="ro2-gN-a70"/>
