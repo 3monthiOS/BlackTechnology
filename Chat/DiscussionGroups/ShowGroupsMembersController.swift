@@ -17,8 +17,17 @@ class ShowGroupsMembersController: UIViewController {
         super.viewDidLoad()
     }
     
+    func quchong(array:[String])-> Array<String>{
+//        let quchong =  ["zhj","CB","CB0","ZW","ZW0","HH","CB","ZW","zhj"]
+        let results = array.reduce([String]()) { (result, it) -> [String] in
+            return  !result.contains(it) ? result + [it]  : result
+        }
+        return results
+    }
+    
     @IBAction func back(_ sender: Any) {
         self.dismiss(animated: true) {
+            if self.userIDArray.count == 6{return}
             let result = Array(Set(self.userIDArray[6...self.userIDArray.count-1]))
             prompt("请输入讨论组名称", title: "创建讨论组", text: "", placeholder: "请输入", completion: { (str) in
                 RCIM.shared().createDiscussion(str!, userIdList: result, success: { (RCDiscussio) in

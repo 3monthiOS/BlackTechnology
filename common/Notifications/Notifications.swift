@@ -37,9 +37,9 @@ struct Notifications {
 		
         func post(_ object: AnyObject? = nil, userInfo: [AnyHashable: Any]? = nil) {
 			if object == nil {
-				Log.info("@N>\(name) nil")
+//				Log.info("@N>\(name) nil")
 			} else {
-				Log.info("@N>\(name) \(object!)")
+//				Log.info("@N>\(name) \(object!)")
 			}
 			async {
 				notificationCenter.post(name: Notification.Name(rawValue: self.name), object: object, userInfo: userInfo)

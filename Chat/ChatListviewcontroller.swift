@@ -84,9 +84,17 @@ class ChatListviewcontroller: RCConversationListViewController {
             RCConversationType.ConversationType_PUBLICSERVICE.rawValue
             ])
         if let array = sessionArray as? [RCConversation] {
+            RCIM.shared().clearGroupUserInfoCache()
+            RCIM.shared().clearGroupInfoCache()
             for object in array {
                 Log.info("会话id：\(object.targetId) 会话类型\(object.conversationType) 绘画标题:\(object.conversationTitle)")
+                let groups = RCGroup()
+                groups.groupName = object.conversationTitle
+                groups.portraitUri = "http://static.open-open.com/news/uploadImg/20160107/20160107084321_658.png"
+                RCIM.shared().refreshGroupInfoCache(groups, withGroupId: object.targetId)
             }
+            RCIM.shared().globalNavigationBarTintColor = UIColor.red
+            
 //            RCIM.shared().quitDiscussion(array[1].targetId, success: { (groups) in
 //                Log.info("退出成功---\(String(describing: groups?.discussionName))")
 //            }) { (error) in
@@ -132,31 +140,6 @@ class ChatListviewcontroller: RCConversationListViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-}
-// MARK: -- 连接状态监听器  如果使用的 IMLib 通过 setRCConnectionStatusChangeDelegate 方法来设置连接状态的监听。
-extension ChatListviewcontroller: RCIMConnectionStatusDelegate{
-    func onRCIMConnectionStatusChanged(_ status: RCConnectionStatus) {
-        switch status {
-        case .ConnectionStatus_Connected:
-            toast("连接成功", duration: nil, position: ToastPosition.bottom, title: "提示", image: UIImage(gifName: "gif131"))
-        case .ConnectionStatus_NETWORK_UNAVAILABLE:
-            toast("当前网络不可用",position: ToastPosition.bottom)
-        case .ConnectionStatus_Cellular_3G_4G:
-            toast("当前设备切换到 3G 或 4G 高速网络",position: ToastPosition.bottom)
-        case .ConnectionStatus_WIFI:
-            toast("当前设备切换到 WIFI 网络",position: ToastPosition.bottom)
-        case .ConnectionStatus_KICKED_OFFLINE_BY_OTHER_CLIENT:
-            toast("当前用户在其他设备上登录，此设备被踢下线",position: ToastPosition.bottom)
-        case .ConnectionStatus_TOKEN_INCORRECT:
-            toast("Token无效",position: ToastPosition.bottom)
-        case .ConnectionStatus_DISCONN_EXCEPTION:
-            toast("与服务器的连接已断开",position: ToastPosition.bottom)
-        case .ConnectionStatus_SignUp:
-            toast("已注销",position: ToastPosition.bottom)
-        default:
-            return
-        }
     }
 }
 
