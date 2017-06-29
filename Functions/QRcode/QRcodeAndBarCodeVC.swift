@@ -14,10 +14,10 @@ class QRcodeAndBarCodeVC: UIViewController {
         super.viewDidLoad()
       title = "二维码和条形码"
 view.backgroundColor = UIColor.white
-      let QRcodeImage = UIImageView(frame: CGRect(x: 0.0,y,120,width: 200,height: 200))
+      let QRcodeImage = UIImageView(frame: CGRect(x: 0.0,y:120,width: 200,height: 200))
       QRcodeImage.image = QRcode()
       view.addSubview(QRcodeImage)
-      let barCodeImage = UIImageView(frame: CGRect(x: 10.0,y,350,width: view.bounds.width - 20,height: 80))
+      let barCodeImage = UIImageView(frame: CGRect(x: 10.0,y:350,width: view.bounds.width - 20,height: 80))
        barCodeImage.image = barCode()
       view.addSubview(barCodeImage)
     }
