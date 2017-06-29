@@ -242,6 +242,7 @@ extension AppDelegate: RCIMConnectionStatusDelegate, RCIMUserInfoDataSource, RCI
         RCIM.shared().userInfoDataSource = self
         //设置群组信息提供者，需要提供正确的群组信息，否则SDK无法显示群组头像、群名称和本地通知
         RCIM.shared().groupInfoDataSource = self
+        
     }
     //推送处理2
     @available(iOS 8.0, *)
@@ -272,40 +273,55 @@ extension AppDelegate: RCIMConnectionStatusDelegate, RCIMUserInfoDataSource, RCI
     
     //监听连接状态变化
     func onRCIMConnectionStatusChanged(_ status: RCConnectionStatus) {
-        print("RCConnectionStatus = \(status.rawValue)")
+        switch status {
+        case .ConnectionStatus_Connected:
+            toast("连接成功", duration: nil, position: ToastPosition.bottom, title: "提示", image: UIImage(named: "appIcon1"))
+        case .ConnectionStatus_NETWORK_UNAVAILABLE:
+            toast("当前网络不可用",position: ToastPosition.bottom)
+        case .ConnectionStatus_Cellular_3G_4G:
+            toast("当前设备切换到 3G 或 4G 高速网络",position: ToastPosition.bottom)
+        case .ConnectionStatus_WIFI:
+            toast("当前设备切换到 WIFI 网络",position: ToastPosition.bottom)
+        case .ConnectionStatus_KICKED_OFFLINE_BY_OTHER_CLIENT:
+            toast("当前用户在其他设备上登录，此设备被踢下线",position: ToastPosition.bottom)
+        case .ConnectionStatus_TOKEN_INCORRECT:
+            toast("Token无效",position: ToastPosition.bottom)
+        case .ConnectionStatus_DISCONN_EXCEPTION:
+            toast("与服务器的连接已断开",position: ToastPosition.bottom)
+        case .ConnectionStatus_SignUp:
+            toast("已注销",position: ToastPosition.bottom)
+        default:
+            return
+        }
     }
     
     //用户信息提供者。您需要在completion中返回userId对应的用户信息，SDK将根据您提供的信息显示头像和用户名
     func getUserInfo(withUserId userId: String!, completion: ((RCUserInfo?) -> Void)!) {
-        print("用户信息提供者，getUserInfoWithUserId:\(userId)")
-        
+//        print("用户信息提供者，getUserInfoWithUserId:\(userId)")
+        RCIM.shared().clearUserInfoCache()
         //简单的示例，根据userId获取对应的用户信息并返回
         //建议您在本地做一个缓存，只有缓存没有该用户信息的情况下，才去您的服务器获取，以提高用户体验
-        if (userId == "me") {
-            //如果您提供的头像地址是http连接，在iOS9以上的系统中，请设置使用http，否则无法正常显示
-            //具体可以参考Info.plist中"App Transport Security Settings->Allow Arbitrary Loads"
-            completion(RCUserInfo(userId: userId, name: "我的名字", portrait: "http://www.rongcloud.cn/images/newVersion/logo/baixing.png"))
-        } else if (userId == "you") {
-            completion(RCUserInfo(userId: userId, name: "你的名字", portrait: "http://www.rongcloud.cn/images/newVersion/logo/qichezc.png"))
-        } else {
+        if (userId == "CB") {
+            // 15249685697: cb , 012345678910：CB0 , 13968034167 :ZW ,15225147792 : GF ,18336093422: zhj1214,00000000000 :ZW0
+            completion(RCUserInfo(userId: userId, name: "常博", portrait: "http://img2.a0bi.com/upload/ttq/20160924/1474720730902.jpg"))
+        } else if (userId == "ZW") {
+            completion(RCUserInfo(userId: userId, name: "宗wei", portrait: "http://www.itotii.com/wp-content/uploads/2016/09/07/1473228073_GdOpxKrS.jpg"))
+        } else if (userId == "zhj1214"){
+            completion(RCUserInfo(userId: userId, name: "小军", portrait: "http://img3.a0bi.com/upload/ttq/20160924/1474720548478.jpg"))
+        }else if (userId == "GF"){
+            completion(RCUserInfo(userId: userId, name: "高芳", portrait:"http://www.soideas.cn/uploads/allimg/120612/3-www.soideas.cn1206120HQ5.jpg"))
+        }else{
             let imageUrl = ["http://img3.a0bi.com/upload/ttq/20160924/1474720548478.jpg","http://img2.a0bi.com/upload/ttq/20160924/1474720730902.jpg","http://www.itotii.com/wp-content/uploads/2016/09/07/1473228073_GdOpxKrS.jpg","http://img2.a0bi.com/upload/ttq/20160924/1474706687409.jpg","http://www.soideas.cn/uploads/allimg/120612/3-www.soideas.cn1206120HQ5.jpg"]
-            completion(RCUserInfo(userId: userId, name: "unknown", portrait:imageUrl[Int(arc4random()%4)]))
+            completion(RCUserInfo(userId: userId, name: "叫小军给你起名字", portrait:imageUrl[Int(arc4random()%4)]))
         }
     }
     
     //群组信息提供者。您需要在Block中返回groupId对应的群组信息，SDK将根据您提供的信息显示头像和群组名
     func getGroupInfo(withGroupId groupId: String!, completion: ((RCGroup?) -> Void)!) {
-        print("群组信息提供者，getGroupInfoWithGroupId:\(groupId)")
-        
+        print("群组信息提供者，  这里要做缓存 保存一下讨论组 id  和 名称 :\(groupId)")
         //简单的示例，根据groupId获取对应的群组信息并返回
         //建议您在本地做一个缓存，只有缓存没有该群组信息的情况下，才去您的服务器获取，以提高用户体验
-        if (groupId == "group01") {
-            //如果您提供的头像地址是http连接，在iOS9以上的系统中，请设置使用http，否则无法正常显示
-            //具体可以参考Info.plist中"App Transport Security Settings->Allow Arbitrary Loads"
-            completion(RCGroup(groupId: groupId, groupName: "第一个群", portraitUri: "http://www.rongcloud.cn/images/newVersion/logo/aipai.png"))
-        } else {
-            completion(RCGroup(groupId: groupId, groupName: "unknown", portraitUri: "http://www.rongcloud.cn/images/newVersion/logo/qiugongl.png"))
-        }
+        completion(RCGroup(groupId: groupId, groupName: "讨论组", portraitUri: "http://static.open-open.com/news/uploadImg/20160107/20160107084321_658.png"))
     }
     
     //监听消息接收
