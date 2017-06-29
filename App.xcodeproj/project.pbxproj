@@ -210,6 +210,10 @@
 		F2BD8A3B1EB9C97500AE3F06 /* GIFCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD8A391EB9C97500AE3F06 /* GIFCell.swift */; };
 		F2BD8A3C1EB9C97500AE3F06 /* GIFCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2BD8A3A1EB9C97500AE3F06 /* GIFCell.xib */; };
 		F2C4338F1ECED0970038372C /* TabbarHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C4338E1ECED0970038372C /* TabbarHomeController.swift */; };
+		F2C4F3931F0496770067DBCE /* ShowGroupsMembersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C4F3911F0496770067DBCE /* ShowGroupsMembersController.swift */; };
+		F2C4F3941F0496770067DBCE /* ShowGroupsMembersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2C4F3921F0496770067DBCE /* ShowGroupsMembersController.xib */; };
+		F2C4F3981F049E640067DBCE /* mebersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C4F3961F049E640067DBCE /* mebersCell.swift */; };
+		F2C4F3991F049E640067DBCE /* mebersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2C4F3971F049E640067DBCE /* mebersCell.xib */; };
 		F2D289AB1D856C420059D289 /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D289AA1D856C420059D289 /* AppSetting.swift */; };
 		F2D3A3E11E038E0D007DE758 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D3A3DF1E038E0D007DE758 /* FirstViewController.swift */; };
 		F2D3A3E21E038E0D007DE758 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D3A3E01E038E0D007DE758 /* FirstViewController.xib */; };
@@ -350,6 +354,7 @@
 		F217F2071D842B74000E3A0D /* RegisteredViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredViewController.swift; sourceTree = "<group>"; };
 		F217F2081D842B74000E3A0D /* RegisteredViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisteredViewController.xib; sourceTree = "<group>"; };
 		F21A91181ECEF3D100951673 /* ToolsAnimation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ToolsAnimation.plist; sourceTree = "<group>"; };
+		F22127BF1F03D13400A2A75D /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		F23127281EAEF62600FA0D74 /* RequestAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestAddress.swift; sourceTree = "<group>"; };
 		F231272A1EAEF80900FA0D74 /* TestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
 		F23480F81EA5E6ED00CB84F2 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -496,6 +501,10 @@
 		F2BD8A391EB9C97500AE3F06 /* GIFCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFCell.swift; sourceTree = "<group>"; };
 		F2BD8A3A1EB9C97500AE3F06 /* GIFCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GIFCell.xib; sourceTree = "<group>"; };
 		F2C4338E1ECED0970038372C /* TabbarHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabbarHomeController.swift; path = ../App/TabbarHomeController.swift; sourceTree = "<group>"; };
+		F2C4F3911F0496770067DBCE /* ShowGroupsMembersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowGroupsMembersController.swift; sourceTree = "<group>"; };
+		F2C4F3921F0496770067DBCE /* ShowGroupsMembersController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowGroupsMembersController.xib; sourceTree = "<group>"; };
+		F2C4F3961F049E640067DBCE /* mebersCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mebersCell.swift; sourceTree = "<group>"; };
+		F2C4F3971F049E640067DBCE /* mebersCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mebersCell.xib; sourceTree = "<group>"; };
 		F2D289AA1D856C420059D289 /* AppSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSetting.swift; sourceTree = SOURCE_ROOT; };
 		F2D3A3DF1E038E0D007DE758 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		F2D3A3E01E038E0D007DE758 /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
@@ -1572,6 +1581,25 @@
 			path = GIF;
 			sourceTree = "<group>";
 		};
+		F2C4F3901F04963B0067DBCE /* DiscussionGroups */ = {
+			isa = PBXGroup;
+			children = (
+				F2C4F3951F049E4B0067DBCE /* cell */,
+				F2C4F3911F0496770067DBCE /* ShowGroupsMembersController.swift */,
+				F2C4F3921F0496770067DBCE /* ShowGroupsMembersController.xib */,
+			);
+			path = DiscussionGroups;
+			sourceTree = "<group>";
+		};
+		F2C4F3951F049E4B0067DBCE /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				F2C4F3961F049E640067DBCE /* mebersCell.swift */,
+				F2C4F3971F049E640067DBCE /* mebersCell.xib */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 		F2D54B221D93A672006DE294 /* tableview */ = {
 			isa = PBXGroup;
 			children = (
@@ -1610,6 +1638,7 @@
 		F2D652C81D7E94A90005824D /* App */ = {
 			isa = PBXGroup;
 			children = (
+				F22127BF1F03D13400A2A75D /* App.entitlements */,
 				F2DFE7D61D82AE9100E5DC71 /* Login */,
 				F2666A8D1D879C6F00B2029E /* Functions */,
 				F2666A8C1D879C6100B2029E /* My */,
@@ -1686,6 +1715,7 @@
 		F2ED945D1D86AF45000C2E59 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				F2C4F3901F04963B0067DBCE /* DiscussionGroups */,
 				F25E22E71D9B99ED00A0F0DA /* RC */,
 				F2ED94601D86AF8E000C2E59 /* ChatListviewcontroller.swift */,
 			);
@@ -1784,7 +1814,15 @@
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = P7C635S3S2;
 						LastSwiftMigration = 0830;
+
 						ProvisioningStyle = Manual;
+
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+
 					};
 					F2D652DC1D7E94A90005824D = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1830,6 +1868,7 @@
 				F20F51DC1EB97D1800061BBE /* LDNoDataNoticeView.xib in Resources */,
 				F2D3A3E21E038E0D007DE758 /* FirstViewController.xib in Resources */,
 				F294B3441DFFDDB70055C8CB /* MobileAddressBooks.xib in Resources */,
+				F2C4F3991F049E640067DBCE /* mebersCell.xib in Resources */,
 				F24E9A391DEEB18A00A45EB8 /* uploadPicturesView.xib in Resources */,
 				F2F46F461EEE2B3400480A64 /* RecordingVoiceController.xib in Resources */,
 				F27AE1FE1D928E09000E0509 /* CollectionReusableViewHeadre.xib in Resources */,
@@ -1853,6 +1892,7 @@
 				F294B34B1DFFDDB70055C8CB /* UserIphoneNumbercell.xib in Resources */,
 				F2FA2DA11DE808D000CE0A3C /* DownloadfileView.xib in Resources */,
 				F2BD8A361EB9BDCC00AE3F06 /* GifViewController.xib in Resources */,
+				F2C4F3941F0496770067DBCE /* ShowGroupsMembersController.xib in Resources */,
 				F29BFBF61EBC569D00464D28 /* uploadPicturesTable.geojson in Resources */,
 				F24E9A3C1DEEBA0800A45EB8 /* gif131.gif in Resources */,
 				F2D690561DFE87DD0087328B /* QNPhotoController.xib in Resources */,
@@ -2086,6 +2126,7 @@
 				F2BD8A241EB9882900AE3F06 /* QNUtils.swift in Sources */,
 				F20F52151EB97D1800061BBE /* UIView+Swift.m in Sources */,
 				653A240D1EFD192C001B7CD0 /* NativeShareTestVC.swift in Sources */,
+				F2C4F3931F0496770067DBCE /* ShowGroupsMembersController.swift in Sources */,
 				F2D6904D1DFE7A200087328B /* QNCollectionViewCell.swift in Sources */,
 				F2EBCD321EADEB4800EFD026 /* ApiService.swift in Sources */,
 				F20F51FF1EB97D1800061BBE /* TYTabTitleViewCell.m in Sources */,
@@ -2124,6 +2165,7 @@
 				F28C54B61EA7646300209259 /* UIImage+PECrop.m in Sources */,
 				F20F51D91EB97D1800061BBE /* AppleSystemService.swift in Sources */,
 				F2EBCD381EADFD7F00EFD026 /* ApiServiceSeting.swift in Sources */,
+				F2C4F3981F049E640067DBCE /* mebersCell.swift in Sources */,
 				65529C351D9E66CE00ED3E1C /* MutableFilterMoreViewController.swift in Sources */,
 				F23481531EA5E6EE00CB84F2 /* LoadingIndicator.swift in Sources */,
 				F28C54A91EA7646300209259 /* PhotoBrowser+GridViewController.swift in Sources */,
@@ -2278,9 +2320,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CA5A6087CE1A63B4E2D426C9 /* Pods-App.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -2305,7 +2348,7 @@
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = IndependentRegiment.zhj.App;
+				PRODUCT_BUNDLE_IDENTIFIER = IndependentRegiment.BT.App;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e51e310a-ae84-4e41-b9bb-ad7a392e987a";
 				PROVISIONING_PROFILE_SPECIFIER = "XC: *";
@@ -2318,9 +2361,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 544049F072F8E3FA12FE0D85 /* Pods-App.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = "";
@@ -2342,7 +2386,7 @@
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = IndependentRegiment.zhj.App;
+				PRODUCT_BUNDLE_IDENTIFIER = IndependentRegiment.BT.App;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Bridging-Header.h";

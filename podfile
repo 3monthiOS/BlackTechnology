@@ -12,7 +12,11 @@ target :App do
     pod 'SwiftyJSON', '~> 3.1'
 #    pod 'Toast-Swift', '~> 2.0.0'
     pod 'IQKeyboardManagerSwift'
-    pod 'RongCloudIMKit', '~> 2.7.0'
+    
+    pod 'RongCloudIM/IMLib', '~> 2.8.12'
+    pod 'RongCloudIM/IMKit', '~> 2.8.12'
+#    pod 'RongCloudIM', '~> 2.8.12'
+
     pod 'MJRefresh'
     pod 'BaiduMapKit'
     pod 'Qiniu', '~> 7.1'
@@ -38,7 +42,8 @@ target :App do
     pod 'UMengUShare/Social/ReducedSina'
     # 集成支付宝
     pod 'UMengUShare/Social/AlipayShare'
-    
+    # 阿里解析
+    pod 'HandyJSON'
 end
 
 post_install do |installer|

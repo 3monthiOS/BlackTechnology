@@ -47,7 +47,14 @@ class User: Mappable {
     var createTime: Double?
     
     // 融云 组 id
-    var groupid: Int?
+    var rcGroupid: String?
+    // 融云 token
+    var rcToken: String?
+    // 融云 name
+    var rcName: String?
+    // 融云 userid
+    var rcUserId: String?
+    
 
     init() {
 
@@ -76,7 +83,10 @@ class User: Mappable {
         nickname <- map["nickname"]
         password <- map["password"]
         createTime <- map["createTime"]
-        groupid <- map["groupid"]
+        rcGroupid <- map["rcGroupid"]
+        rcToken <- map["rcToken"]
+        rcName <- map["rcName"]
+        rcUserId <- map["rcUserId"]
         
     }
 
