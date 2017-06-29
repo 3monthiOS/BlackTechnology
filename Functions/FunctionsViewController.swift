@@ -212,6 +212,7 @@ extension FunctionsViewController: UICollectionViewDelegate{
       navigationController?.pushViewController(vc, animated: true)
     case 22 :
       let vc = QRcodeAndBarCodeVC()
+     
       navigationController?.pushViewController(vc, animated: true)
         default:
       break

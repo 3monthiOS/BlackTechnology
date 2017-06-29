@@ -156,12 +156,13 @@ extension  RAMAnimatedTabBarController {
     guard let items = tabBar.items as? [RAMAnimatedTabBarItem] else {
       fatalError("items must inherit RAMAnimatedTabBarItem")
     }
-    for item in items {
-      if let iconView = item.iconView {
-        iconView.icon.superview?.isHidden = isHidden
-        iconView.icon.superview?.superview?.bringSubview(toFront: iconView.icon.superview!)
-      }
-    }
+//    for item in items {
+//      if let iconView = item.iconView {
+//        iconView.icon.superview?.isHidden = isHidden
+//        
+//        iconView.icon.superview?.superview?.bringSubview(toFront: view)
+//      }
+//    }
     self.tabBar.isHidden = isHidden;
   }
   
@@ -252,7 +253,7 @@ open class RAMAnimatedTabBarController: UITabBarController {
     self.didLoadView = true
     
     self.initializeContainers()
-    
+    self.delegate = self
     showQDT()
     // 通知 隐藏所有的inmage
     self.addObserver(self, forKeyPath: "hidesBottomBarWhenPushed", options: .new, context: nil)
@@ -425,7 +426,8 @@ open class RAMAnimatedTabBarController: UITabBarController {
     viewContainer.backgroundColor = UIColor.clear // for test
     viewContainer.translatesAutoresizingMaskIntoConstraints = false
     viewContainer.isExclusiveTouch = true
-    view.addSubview(viewContainer)
+    
+    tabBar.addSubview(viewContainer)
     
     // add gesture
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(RAMAnimatedTabBarController.tapHandler(_:)))
@@ -436,7 +438,7 @@ open class RAMAnimatedTabBarController: UITabBarController {
     let constY = NSLayoutConstraint(item: viewContainer,
                                     attribute: NSLayoutAttribute.bottom,
                                     relatedBy: NSLayoutRelation.equal,
-                                    toItem: view,
+                                    toItem: tabBar,
                                     attribute: NSLayoutAttribute.bottom,
                                     multiplier: 1,
                                     constant: 0)
@@ -498,5 +500,37 @@ open class RAMAnimatedTabBarController: UITabBarController {
         navVC.popToRootViewController(animated: true)
       }
     }
+  }
+}
+
+extension RAMAnimatedTabBarController: UITabBarControllerDelegate {
+  public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+    let items = tabBar.items! as! [RAMAnimatedTabBarItem]
+    for index in 0..<items.count {
+      if selectedIndex != index {
+        
+        let deselectItem = items[index]
+        
+        let containerPrevious : UIView = deselectItem.iconView!.icon.superview!
+        containerPrevious.backgroundColor = items[index].bgDefaultColor
+        
+        deselectItem.deselectAnimation()
+//        selectedIndex = gestureView.tag
+       
+        
+      } else if selectedIndex == index {
+        let animationItem : RAMAnimatedTabBarItem = items[index]
+        animationItem.playAnimation()
+        
+       
+        
+        let container : UIView = animationItem.iconView!.icon.superview!
+        container.backgroundColor = items[index].bgSelectedColor
+//        if let navVC = self.viewControllers![selectedIndex] as? UINavigationController {
+//          navVC.popToRootViewController(animated: true)
+//        }
+      }
+    }
+    
   }
 }
