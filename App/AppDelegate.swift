@@ -298,7 +298,7 @@ extension AppDelegate: RCIMConnectionStatusDelegate, RCIMUserInfoDataSource, RCI
     //用户信息提供者。您需要在completion中返回userId对应的用户信息，SDK将根据您提供的信息显示头像和用户名
     func getUserInfo(withUserId userId: String!, completion: ((RCUserInfo?) -> Void)!) {
 //        print("用户信息提供者，getUserInfoWithUserId:\(userId)")
-        RCIM.shared().clearUserInfoCache()
+//        RCIM.shared().clearUserInfoCache()
         //简单的示例，根据userId获取对应的用户信息并返回
         //建议您在本地做一个缓存，只有缓存没有该用户信息的情况下，才去您的服务器获取，以提高用户体验
         if (userId == "CB") {
