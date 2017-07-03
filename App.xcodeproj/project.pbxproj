@@ -152,6 +152,8 @@
 		F27AE2011D928E09000E0509 /* QdanCollectionViewzeroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27AE1FB1D928E09000E0509 /* QdanCollectionViewzeroCell.swift */; };
 		F27AE2021D928E09000E0509 /* QdanCollectionViewzeroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27AE1FC1D928E09000E0509 /* QdanCollectionViewzeroCell.xib */; };
 		F283A9501EB9E5BD0012EE0D /* TableviewCoustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F283A94F1EB9E5BD0012EE0D /* TableviewCoustom.swift */; };
+		F284FE2D1F09DD010046CDA0 /* RCsetingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F284FE2B1F09DD010046CDA0 /* RCsetingsController.swift */; };
+		F284FE2E1F09DD010046CDA0 /* RCsetingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F284FE2C1F09DD010046CDA0 /* RCsetingsController.xib */; };
 		F28C54A71EA7646300209259 /* AlbumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54901EA7646300209259 /* AlbumTableViewController.swift */; };
 		F28C54A81EA7646300209259 /* PhotoBrowser+CropperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54911EA7646300209259 /* PhotoBrowser+CropperViewController.swift */; };
 		F28C54A91EA7646300209259 /* PhotoBrowser+GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54921EA7646300209259 /* PhotoBrowser+GridViewController.swift */; };
@@ -436,6 +438,8 @@
 		F27AE1FB1D928E09000E0509 /* QdanCollectionViewzeroCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QdanCollectionViewzeroCell.swift; sourceTree = "<group>"; };
 		F27AE1FC1D928E09000E0509 /* QdanCollectionViewzeroCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QdanCollectionViewzeroCell.xib; sourceTree = "<group>"; };
 		F283A94F1EB9E5BD0012EE0D /* TableviewCoustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableviewCoustom.swift; sourceTree = "<group>"; };
+		F284FE2B1F09DD010046CDA0 /* RCsetingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCsetingsController.swift; sourceTree = "<group>"; };
+		F284FE2C1F09DD010046CDA0 /* RCsetingsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RCsetingsController.xib; sourceTree = "<group>"; };
 		F28C54901EA7646300209259 /* AlbumTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableViewController.swift; sourceTree = "<group>"; };
 		F28C54911EA7646300209259 /* PhotoBrowser+CropperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoBrowser+CropperViewController.swift"; sourceTree = "<group>"; };
 		F28C54921EA7646300209259 /* PhotoBrowser+GridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoBrowser+GridViewController.swift"; sourceTree = "<group>"; };
@@ -1027,6 +1031,8 @@
 				F2D3A3E01E038E0D007DE758 /* FirstViewController.xib */,
 				F2D3A3E31E03A788007DE758 /* SecondViewController.swift */,
 				F2D3A3E41E03A788007DE758 /* SecondViewController.xib */,
+				F284FE2B1F09DD010046CDA0 /* RCsetingsController.swift */,
+				F284FE2C1F09DD010046CDA0 /* RCsetingsController.xib */,
 			);
 			path = viewcontrollers;
 			sourceTree = "<group>";
@@ -1880,6 +1886,7 @@
 				F2DFE7DA1D82B45900E5DC71 /* Login.storyboard in Resources */,
 				F2D3A3E61E03A788007DE758 /* SecondViewController.xib in Resources */,
 				F2D6904C1DFE7A200087328B /* CollectionReusableHeadre.xib in Resources */,
+				F284FE2E1F09DD010046CDA0 /* RCsetingsController.xib in Resources */,
 				F2D54B261D93A692006DE294 /* TableViewHeaderCell.xib in Resources */,
 				F29BFBFA1EBC693D00464D28 /* ShowtextModelCell.xib in Resources */,
 				F217F20A1D842B74000E3A0D /* RegisteredViewController.xib in Resources */,
@@ -2122,6 +2129,7 @@
 				F20F52091EB97D1800061BBE /* UILabel+SizeToFit.swift in Sources */,
 				F2BD8A241EB9882900AE3F06 /* QNUtils.swift in Sources */,
 				F20F52151EB97D1800061BBE /* UIView+Swift.m in Sources */,
+				F284FE2D1F09DD010046CDA0 /* RCsetingsController.swift in Sources */,
 				653A240D1EFD192C001B7CD0 /* NativeShareTestVC.swift in Sources */,
 				F2C4F3931F0496770067DBCE /* ShowGroupsMembersController.swift in Sources */,
 				F2D6904D1DFE7A200087328B /* QNCollectionViewCell.swift in Sources */,

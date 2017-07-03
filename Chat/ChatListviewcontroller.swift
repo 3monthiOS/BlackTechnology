@@ -18,8 +18,6 @@ class ChatListviewcontroller: RCConversationListViewController {
     var request : ApiService?
     
     @IBOutlet weak var chatBGimage: UIImageView!
-    // 15249685697: cb , 012345678910：CB0 , 13968034167 :ZW ,15225147792 : GF ,18336093422: zhj1214,00000000000 :ZW0
-    let tokenArray = ["18336093422":"/7Ho4V0LAxqx1eeMZvJjIxEwXKiZajUg1lYnzbenGFogaU5Q8wQe3i4cPyJqgjLBrHIfKRaHVIyUG7tyo6E/Z1xb6BKkYi9r","15249685697":"E7V5pupiLPLwKarhAgnPFvyVRNEe+kEOk6zXm2XQoNOfjfi1kG/r4pLOfMim3fF1BmbWapvgkUY=","012345678910":"SaNRAdb1HvDSwXK/4Pejr6UNOrqEnO6vXv8cpipmaDmyq/6rAyPo0sCKcMwKe23s75GUDOcwZk7o2IyVY4SdeQ==","13968034167":"CJov2IWBq7H/CKoaiB9TQgIIlo0WhrAzzoatEDpPkLlXv74SI5Izo46/SCKfcn8Pqg1D6PXiDBY=","00000000000":"QPdoi2Ij1WZcLNpvo+PKIhEwXKiZajUg1lYnzbenGFogaU5Q8wQe3pwszl9J/nnfNFXN0ntL4ZVcW+gSpGIvaw==","15225147792":"LTNPDKoMc06ryzJSygT/e6UNOrqEnO6vXv8cpipmaDk7dLOTy3QFRAwVIhTyu7UORvISmSVEhPUNtzeXCPO/sg=="]
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -35,7 +33,7 @@ class ChatListviewcontroller: RCConversationListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let token = tokenArray[user.userphone!] ?? tokenArray["012345678910"]
+        let token = RCtokenArray[user.userphone!] ?? RCtokenArray["012345678910"]
         // MARK: -- 用户登录
         RCIM.shared().connect(withToken: token,success: { (userId) -> Void in
             user.rcUserId = userId!
@@ -57,7 +55,6 @@ class ChatListviewcontroller: RCConversationListViewController {
     // MARK: -- 导航栏 添加讨论组、单聊按钮
     func createCurrentNagationBaritem() {
         let _ = createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.right, Title: "单聊", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(privateChat))
-        let _ = createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.left, Title: "创建讨论组", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(createDiscussionGroupsChat))
     }
     // MARK: -- 会话类型展示
     func initChatView(){
@@ -73,9 +70,9 @@ class ChatListviewcontroller: RCConversationListViewController {
         self.setCollectionConversationType([RCConversationType.ConversationType_CHATROOM.rawValue,
             RCConversationType.ConversationType_SYSTEM.rawValue])
     }
-    // MARK: -- 创建讨论组
+    // MARK: -- 获取到所有的会话列表
     func quitGroupsmembers(){
-        let sessionArray = RCIMClient.shared().getConversationList([
+        let _ = RCIMClient.shared().getConversationList([
             RCConversationType.ConversationType_PRIVATE.rawValue,
             RCConversationType.ConversationType_DISCUSSION.rawValue,
             RCConversationType.ConversationType_GROUP.rawValue,
@@ -83,16 +80,15 @@ class ChatListviewcontroller: RCConversationListViewController {
             RCConversationType.ConversationType_APPSERVICE.rawValue,
             RCConversationType.ConversationType_PUBLICSERVICE.rawValue
             ])
-        if let array = sessionArray as? [RCConversation] {
-//            RCIM.shared().clearGroupUserInfoCache()
-//            RCIM.shared().clearGroupInfoCache()
-            for object in array {
-                Log.info("会话id：\(object.targetId) 会话类型\(object.conversationType) 绘画标题:\(object.conversationTitle)")
+//        if let array = sessionArray as? [RCConversation] {
+
+//            for object in array {
+//                Log.info("会话id：\(object.targetId) 会话类型\(object.conversationType) 绘画标题:\(object.conversationTitle)")
 //                let groups = RCGroup()
 //                groups.groupName = object.conversationTitle
 //                groups.portraitUri = "http://static.open-open.com/news/uploadImg/20160107/20160107084321_658.png"
 //                RCIM.shared().refreshGroupInfoCache(groups, withGroupId: object.targetId)
-            }
+//            }
             RCIM.shared().globalNavigationBarTintColor = UIColor.red
             
 //            RCIM.shared().quitDiscussion(array[1].targetId, success: { (groups) in
@@ -100,22 +96,9 @@ class ChatListviewcontroller: RCConversationListViewController {
 //            }) { (error) in
 //                Log.info("退出讨论组失败\(error)")
 //            }
-        }
+//        }
     }
 
-    // MARK: -- 创建讨论组
-    func createDiscussionGroupsChat(){
-        var userarray = [User]()
-        for u in tokenArray {
-            let userobj = User()
-            userobj.userphone = u.key
-            userobj.rcToken = u.value
-            userarray.append(userobj)
-        }
-        let membervc = ShowGroupsMembersController()
-        membervc.userData = userarray
-        self.navigationController?.present(membervc, animated: false, completion: nil)
-    }
     // MARK: -- 单聊
     func privateChat() {
         //打开会话界面

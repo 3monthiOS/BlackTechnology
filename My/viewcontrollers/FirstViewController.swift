@@ -11,7 +11,7 @@ import UIKit
 class FirstViewController: UIViewController {
 
     @IBOutlet weak var zhjtable: ZHJtableview!
-    var dataArray = ["2","8","2","3","4","5","6","7","8","9","1","2"]
+    var dataArray = [["2","8","2","3","4","5","6","7","8","9","1","2"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class FirstViewController: UIViewController {
 //        configureTable()
     }
     func initZHJtableview(){
-        zhjtable.tableveiwData = dataArray as [AnyObject]
+        zhjtable.tableveiwData = dataArray
         zhjtable.needRefreshControl = [true,true]
         zhjtable.delgate = self
         zhjtable.dataSources = self
@@ -59,6 +59,7 @@ class FirstViewController: UIViewController {
         blurImageView.image = blurImage
         view.addSubview(blurImageView)
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -68,7 +69,7 @@ class FirstViewController: UIViewController {
 extension FirstViewController : ZHJtableviewDelgate{
     func bindtableViewRefresh(_ tableView: TableViewMjResh, refreshDataWithType refreshType: TableViewMjResh.RefreshType) {
         // 这里是下拉刷新的回调 用于请求数据
-        dataArray.append(String(arc4random()%100))
+        dataArray[0].append(String(arc4random()%100))
         tableView.endRefreshing(num: dataArray.count, count: 1)
     }
     func bindCellData(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell? {
@@ -89,7 +90,7 @@ extension FirstViewController : ZHJtableviewDelgate{
         if cell == nil{
             cell = UITableViewCell(style: UITableViewCellStyle.value2,reuseIdentifier: identifier)
         }
-        cell?.textLabel?.text = dataArray[indexPath.row]
+        cell?.textLabel?.text = dataArray[indexPath.section][indexPath.row]
         if indexPath.row == 6{
             cell?.textLabel?.text = "退出登录"
         }

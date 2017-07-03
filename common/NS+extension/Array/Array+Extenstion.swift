@@ -5,6 +5,7 @@
 
 import Foundation
 
+// MARK: --
 extension Array{
     subscript (safe index: Int) ->Element? {
         return (0..<count).contains(index) ? self[index] : nil
@@ -25,5 +26,12 @@ extension Array{
                 self[index] = value
             }
         }
+    }
+}
+
+// MARK: -- IndexSet
+extension IndexSet {
+    func bs_indexPathsForSection(_ section: Int) -> [IndexPath] {
+        return self.map { IndexPath(item: $0, section: section) }
     }
 }

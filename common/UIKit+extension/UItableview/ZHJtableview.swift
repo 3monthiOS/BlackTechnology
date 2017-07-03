@@ -29,12 +29,16 @@ class ZHJtableview: TableViewMjResh {
             }
         }
     }
-    var tableveiwData: [AnyObject]?
+    var tableveiwData: [[Any]]?{
+        didSet{
+            UnpackData()
+        }
+    }
     
     var canEditRow:Bool = false
     var needRefreshControl:[Bool] = [false,false]
-    var heraerViewheight = CGFloat.leastNormalMagnitude
-    var footerViewheight = CGFloat.leastNormalMagnitude
+    var heraerViewheight = 0.0
+    var footerViewheight = 0.0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,10 +51,10 @@ class ZHJtableview: TableViewMjResh {
         self.configRefreshable(headerEnabled: isok[0], footerEnabled: isok[1])
     }
     func UnpackData(){
-        if let tableveiwData = tableveiwData {
-            self.tableveiwData = tableveiwData
-        }else{
-            alert("数据不完整,不能构建页面")
+        guard let _ = tableveiwData else {
+            self.tableveiwData = [[""]]
+            alert("tableveiwData没有初始化,不能构建页面")
+            return
         }
     }
 }
@@ -64,8 +68,11 @@ extension ZHJtableview : MJTableViewRefreshDelegate{
 //MARK:------- UITableViewDataSource
 extension ZHJtableview: UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return (tableveiwData?.count)!
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableveiwData!.count
+        return tableveiwData![section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,25 +91,24 @@ extension ZHJtableview: UITableViewDelegate{
         if let heagerview = dataSources?.bindHeaderView?(tableView, viewForHeaderInSection: section){
             return heagerview
         }else{
-            let view =  UIView()
-            view.frame = CGRect(x: 0, y: 0, width: App_width + 25, height: 20)
-            return view
+            return UIView()
         }
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return heraerViewheight
+        if section == 0 {
+            return CGFloat(heraerViewheight)
+        }
+        return 0
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if let footerview = dataSources?.bindFooterView?(tableView, viewForFooterInSection: section){
             return footerview
         }else{
-            let view =  UIView()
-            view.backgroundColor? = UIColor.red
-            return view
+            return UIView()
         }
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return footerViewheight
+        return CGFloat(footerViewheight)
     }
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return canEditRow
