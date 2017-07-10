@@ -26,8 +26,17 @@ class QRcodeAndBarCodeVC: UIViewController {
         let barCodeImage = UIImageView(frame: CGRect(x: 10.0,y:350,width: view.bounds.width - 20,height: 80))
         barCodeImage.image = barCode()
         view.addSubview(barCodeImage)
-
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "另一个", style: .plain, target: self, action: #selector(goAnotherQRVC))
+        
     }
+    
+    func goAnotherQRVC() {
+        let board = UIStoryboard(name: "QRcodeSB", bundle: nil)
+        let VC = board.instantiateViewController(withIdentifier: "ProduceViewController")
+        self.navigationController?.pushViewController(VC, animated: true)
+    }
+    
   func QRcode()-> UIImage {
     let  ciimg = generateQRCodeImage("www.baidu.com")
     return resizeCode(image: ciimg,size: CGSize(width: 200, height: 200))
@@ -45,6 +54,7 @@ class QRcodeAndBarCodeVC: UIViewController {
     return filter!.outputImage!
   }
   
+    //条码
   func generateBarCodeImage(_ code: String) -> CIImage {
     let data = code.data(using: String.Encoding.ascii)
     let filter: CIFilter? = CIFilter(name: "CICode128BarcodeGenerator")

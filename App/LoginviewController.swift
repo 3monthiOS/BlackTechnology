@@ -188,8 +188,10 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
     }
     //MARK: -- 登录注册 事件
     func registeredClick(_ btn: UIButton){
+                
         if btn.tag == 11{// 注册
-            self.navigationController?.pushViewController(RegisteredViewController(), animated: true)
+            
+            self.navigationController?.pushViewController(RegisteredViewController(nibName: "RegisteredViewController", bundle: nil), animated: true)
         }else{// 登录
             if !checkMobileReg((txtUser?.text)!){alert("请输入正确的手机号");return}
             if userkeyArray.count == 0 {
