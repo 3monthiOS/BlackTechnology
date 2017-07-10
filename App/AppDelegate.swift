@@ -29,7 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     fileprivate var searchingReverseGeoCode = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-//MARK: 主题
+
+        self.debugInformationTest()
+
         let them = ThemeManager.currentTheme()
         ThemeManager.overrideApplyTheme(them)
 //        self.window = UIWindow.init(frame: UIScreen.main.bounds)
@@ -229,6 +231,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     //
+    
+    //UIDebuggingInformationOverlay
+    
+    func debugInformationTest() {
+        let ovwerlayClass = NSClassFromString("UIDebuggingInformationOverlay") as? UIWindow.Type
+        
+        _ = ovwerlayClass?.perform(NSSelectorFromString("prepareDebuggingOverlay"))
+        //参考:http://www.jianshu.com/p/4dd369c9ec56
+    }
+    
 }
 //MARK: 融云
 extension AppDelegate: RCIMConnectionStatusDelegate, RCIMUserInfoDataSource, RCIMGroupInfoDataSource, RCIMReceiveMessageDelegate{
