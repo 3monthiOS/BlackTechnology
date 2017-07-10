@@ -27,6 +27,7 @@ class RCsetingsController: UIViewController {
         setingTableview.delgate = self
         setingTableview.dataSources = self
         setingTableview.heraerViewheight = 55
+        setingTableview.footerViewheight = 1
     }
     // MARK: -- 创建讨论组
     func createDiscussionGroupsChat(){
@@ -43,7 +44,11 @@ class RCsetingsController: UIViewController {
     }
     
     func showFriends(){
-        dataArray = [["张三","李四","王麻子","小二","王五","的撒多","单身的"],["创建讨论组","清除融云缓存"]]
+        if dataArray[0].count>1 {
+            dataArray = [[],["创建讨论组","清除融云缓存"]]
+        }else{
+            dataArray = [["张三","李四","王麻子","小二","王五","的撒多","单身的"],["创建讨论组","清除融云缓存"]]
+        }
         setingTableview.tableveiwData = dataArray
         setingTableview.reloadData()
 //        self.setingTableview.reloadSections(IndexSet(integersIn: NSMakeRange(0, 1).toRange()!), with: .fade)
@@ -51,7 +56,7 @@ class RCsetingsController: UIViewController {
 }
 
 //MARK:------- MJ
-extension RCsetingsController : ZHJtableviewDelgate{
+extension RCsetingsController: ZHJtableviewDelgate {
     func bindtableViewRefresh(_ tableView: TableViewMjResh, refreshDataWithType refreshType: TableViewMjResh.RefreshType) {
         // 这里是下拉刷新的回调 用于请求数据
         tableView.endRefreshing(num: dataArray.count, count: 1)
@@ -63,6 +68,8 @@ extension RCsetingsController : ZHJtableviewDelgate{
             cell = UITableViewCell(style: UITableViewCellStyle.value2,reuseIdentifier: identifier)
             cell?.selectionStyle = .none
         }
+        cell?.textLabel?.textColor = UIColor.gray
+        cell?.textLabel?.font = UIFont.systemFont(ofSize: 15.0)
         cell?.textLabel?.text = dataArray[indexPath.section][indexPath.row]
         return cell
     }
@@ -85,17 +92,19 @@ extension RCsetingsController: ZHJtableviewDataSource{
     func bindHeaderView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let view = UIView(frame: CGRect(x: 0, y: 0, width: Width(), height: 55))
+            view.backgroundColor = rgb(220, 220, 220)
             let btn = UIButton(type: .custom)
             view.addSubview(btn)
-            btn.frame = CGRect(x: 0, y: 0, width: Width(), height: 55)
+            btn.frame = CGRect(x: 12, y: 0, width: Width(), height: 55)
             btn.addTarget(self, action: #selector(showFriends), for: .touchUpInside)
             btn.titleLabel?.textAlignment = .left
+            btn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
             btn.setTitle("好友列表", for: .normal)
             btn.setTitleColor(UIColor.black, for: .normal)
             
             return view
         }else{
-            return UIView()
+            return nil
         }
     }
 }

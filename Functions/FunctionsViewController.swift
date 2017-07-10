@@ -33,7 +33,6 @@ class FunctionsViewController: APPviewcontroller {
     }
     override func setup() {
         super.setup()
-        self.title = "功能列表"
         self.navigationController?.navigationBar.isTranslucent = false
         
         initcollectionMjrefresh()

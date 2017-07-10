@@ -64,7 +64,7 @@ class Myviewcontroller: APPviewcontroller{
         self.pagerController = pager
         self.pagerController?.view.backgroundColor = UIColor.groupTableViewBackground
         
-        pager.view.snp_makeConstraints { (make) in
+        pager.view.snp.makeConstraints { (make) in
             make.left.equalTo(self.view)
             make.right.equalTo(self.view)
             make.top.equalTo(self.view)
@@ -148,7 +148,7 @@ extension Myviewcontroller: TYPagerControllerDataSource{
     }
     
     func pagerController(_ pagerController: TYPagerController!, titleFor index: Int) -> String! {
-        let name = ["第一个","第二个","第三个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个"]
+        let name = ["第一个","融云","第三个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个"]
         let titlename = name[index]
         return titlename
     }

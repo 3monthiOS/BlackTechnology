@@ -135,6 +135,7 @@
 		F25AF3C71ECC237F008057CB /* RadiationTransformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25AF3C51ECC237F008057CB /* RadiationTransformationController.swift */; };
 		F25AF3C81ECC237F008057CB /* RadiationTransformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F25AF3C61ECC237F008057CB /* RadiationTransformationController.xib */; };
 		F25E22E91D9B9A1D00A0F0DA /* AppChatScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25E22E81D9B9A1D00A0F0DA /* AppChatScreenViewController.swift */; };
+		F25F52371F134C780091C7E0 /* ALYPhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25F52351F134C780091C7E0 /* ALYPhotoController.swift */; };
 		F26381F11ECEDC4900386AC8 /* ChatTabbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26381F01ECEDC4900386AC8 /* ChatTabbarItem.swift */; };
 		F26381F31ECEDCED00386AC8 /* MyTabbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26381F21ECEDCED00386AC8 /* MyTabbarItem.swift */; };
 		F26381F51ECEDCFD00386AC8 /* FunctionTabbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26381F41ECEDCFD00386AC8 /* FunctionTabbarItem.swift */; };
@@ -421,6 +422,7 @@
 		F25AF3C51ECC237F008057CB /* RadiationTransformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadiationTransformationController.swift; sourceTree = "<group>"; };
 		F25AF3C61ECC237F008057CB /* RadiationTransformationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadiationTransformationController.xib; sourceTree = "<group>"; };
 		F25E22E81D9B9A1D00A0F0DA /* AppChatScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppChatScreenViewController.swift; sourceTree = "<group>"; };
+		F25F52351F134C780091C7E0 /* ALYPhotoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALYPhotoController.swift; sourceTree = "<group>"; };
 		F26381F01ECEDC4900386AC8 /* ChatTabbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTabbarItem.swift; sourceTree = "<group>"; };
 		F26381F21ECEDCED00386AC8 /* MyTabbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTabbarItem.swift; sourceTree = "<group>"; };
 		F26381F41ECEDCFD00386AC8 /* FunctionTabbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionTabbarItem.swift; sourceTree = "<group>"; };
@@ -1318,6 +1320,7 @@
 				F2D690441DFE7A200087328B /* cell */,
 				F2D690531DFE87DD0087328B /* QNPhotoController.swift */,
 				F2D690541DFE87DD0087328B /* QNPhotoController.xib */,
+				F25F52351F134C780091C7E0 /* ALYPhotoController.swift */,
 			);
 			path = Photoalbum;
 			sourceTree = "<group>";
@@ -1936,7 +1939,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		32F335A404EDC93686839C60 /* [CP] Copy Pods Resources */ = {
@@ -2095,6 +2098,7 @@
 				F2BD8A3B1EB9C97500AE3F06 /* GIFCell.swift in Sources */,
 				F23481511EA5E6EE00CB84F2 /* CALayer+Extension.swift in Sources */,
 				F20F51FD1EB97D1800061BBE /* TYTabButtonPagerController.m in Sources */,
+				F25F52371F134C780091C7E0 /* ALYPhotoController.swift in Sources */,
 				F294B34A1DFFDDB70055C8CB /* UserIphoneNumbercell.swift in Sources */,
 				F234813D1EA5E6EE00CB84F2 /* UDID.swift in Sources */,
 				F2A81C621EC170C500771776 /* ZYSpreadButton.m in Sources */,

@@ -17,6 +17,9 @@ class QNPhotoController: APPviewcontroller {
     @IBOutlet weak var photocollectionview: CollectionMjResh!
     
     var imageUrldt: [String]?
+    
+    var data = [Data]()
+    
     override func viewWillAppear(_ animated: Bool) {
         //        viewWillAppear(animated)
         if let url = session.object(forKey: "funcationupdateimageUrlData"){
@@ -29,8 +32,9 @@ class QNPhotoController: APPviewcontroller {
         self.title = "上传相册列表"
         initcollectionMjrefresh()
         initCollectionview()
-        initData()
-        QNUtils.getlistdata()
+//        initData()
+//        QNUtils.getlistdata()
+
     }
     
     func initcollectionMjrefresh(){
@@ -52,7 +56,14 @@ class QNPhotoController: APPviewcontroller {
         //        layout.footerReferenceSize = CGSizeZero //CGSizeMake(App_width,80)
     }
     func initData(){
+        // 获取数据
         
+        ALY?.uploadObjectAsync()
+        
+//        ALY?.downloadObjectAsync(callBack: { (d) in
+//            self.data.append(d)
+//            self.photocollectionview.refreshData()
+//        })
     }
     
     
@@ -67,17 +78,15 @@ class QNPhotoController: APPviewcontroller {
 extension QNPhotoController: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let imageUrldt = imageUrldt{
-            return imageUrldt.count
-        }
-        return 0
+        return data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! QNCollectionViewCell
-        if let imageUrldt = imageUrldt{
-            cell.bindData(imageUrldt,functionTitle: [""],atIndex :indexPath)
-        }
+//        if let imageUrldt = imageUrldt{
+//            cell.bindData(imageUrldt,functionTitle: [""],atIndex :indexPath)
+//        }
+        cell.imgview.image = UIImage(data: data[indexPath.row])
         return cell
     }
 }

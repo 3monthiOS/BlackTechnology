@@ -44,6 +44,8 @@ target :App do
     pod 'UMengUShare/Social/AlipayShare'
     # 阿里解析
     pod 'HandyJSON'
+    # 阿里对象存储
+    pod 'AliyunOSSiOS'
 end
 
 post_install do |installer|

@@ -15,9 +15,11 @@ import CoreLocation
 import RealmSwift
 import ObjectMapper
 import UserNotifications
+import AliyunOSSiOS
 //let api = LDApiSettings()
 let cache = CacheManager(cachable: RealmCache(realm: Realm.sharedRealm))
 var user = User()
+var ALY: ALYPhotoTool?
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -33,6 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let them = ThemeManager.currentTheme()
         ThemeManager.overrideApplyTheme(them)
 //        self.window = UIWindow.init(frame: UIScreen.main.bounds)
+        
+//MARK: 阿里云初始化各种设置
+        ALY = ALYPhotoTool.shared
+ 
 //MARK: 初始化融云
         initRCIM()
       

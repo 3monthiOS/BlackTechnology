@@ -1,0 +1,37 @@
+{\rtf1\ansi\ansicpg936\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;\f1\fnil\fcharset0 HelveticaNeue;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red35\green35\blue35;\red115\green138\blue4;\red244\green244\blue244;
+\red83\green104\blue112;\red165\green119\blue5;\red37\green146\blue134;\red33\green118\blue199;\red189\green54\blue19;
+}
+{\*\expandedcolortbl;;\cssrgb\c18431\c18431\c18431;\cssrgb\c52157\c60000\c0;\cssrgb\c96471\c96471\c96471;
+\cssrgb\c39608\c48235\c51373;\cssrgb\c70980\c53725\c0;\cssrgb\c16471\c63137\c59608;\cssrgb\c14902\c54510\c82353;\cssrgb\c79608\c29412\c8627;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\qc\partightenfactor0
+
+\f0\b\fs40 \cf2 \expnd0\expndtw0\kerning0
+\'c4\'a3\'b7\'c2\'d6\'aa\'ba\'f5\'bf\'cd\'bb\'a7\'b6\'cb\'a3\'ac\'b6\'af\'cc\'ac\'b5\'c4
+\f1  Threshold
+\f0 \'d4\'a4\'bc\'d3\'d4\'d8\'cd\'f8\'c2\'e7\'ca\'fd\'be\'dd
+\f2\b0\fs24 \cf3 \cb4 \
+\pard\pardeftab720\partightenfactor0
+\cf3 let\cf5  threshold:   \cf6 CGFloat\cf5  = \cf7 0.7\cf5 \
+\cf3 let\cf5  itemPerPage: \cf6 CGFloat\cf5  = \cf7 10\cf5 \
+\cf3 var\cf5  currentPage: \cf6 CGFloat\cf5  = \cf7 0\cf5 \
+\
+\cf3 override\cf5  \cf3 func\cf5  \cf8 scrollViewDidScroll\cf5 (\cf7 _\cf5  scrollView: UIScrollView) \{\
+    \cf3 let\cf5  current = scrollView.contentOffset.y + scrollView.frame.size.height\
+    \cf3 let\cf5  total = scrollView.contentSize.height\
+    \cf3 let\cf5  ratio = current / total\
+\
+    \cf3 let\cf5  needRead = itemPerPage * threshold + currentPage * itemPerPage\
+    \cf3 let\cf5  totalItem = itemPerPage * (currentPage + \cf7 1\cf5 )\
+    \cf3 let\cf5  newThreshold = needRead / totalItem\
+\
+    \cf3 if\cf5  ratio >= newThreshold \{\
+        currentPage += \cf7 1\cf5 \
+        \cf8 print\cf5 (\cf7 "Request page \cf9 \\(currentPage)\cf7  from server."\cf5 )\
+    \}\
+\}}

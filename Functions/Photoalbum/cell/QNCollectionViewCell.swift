@@ -28,7 +28,7 @@ class QNCollectionViewCell: UICollectionViewCell {
       
         initButtonUI(imgview)
         imgview.contentMode = .scaleAspectFill
-        getfileData()
+//        getfileData()
     }
     func getfileData(){
         //从一个本地项目资源中读取data.Json文件

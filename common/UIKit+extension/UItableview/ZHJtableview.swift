@@ -37,8 +37,8 @@ class ZHJtableview: TableViewMjResh {
     
     var canEditRow:Bool = false
     var needRefreshControl:[Bool] = [false,false]
-    var heraerViewheight = 0.0
-    var footerViewheight = 0.0
+    var heraerViewheight = 1.0
+    var footerViewheight = 1.0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -91,24 +91,27 @@ extension ZHJtableview: UITableViewDelegate{
         if let heagerview = dataSources?.bindHeaderView?(tableView, viewForHeaderInSection: section){
             return heagerview
         }else{
-            return UIView()
+            return nil
         }
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return CGFloat(heraerViewheight)
-        }
-        return 0
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if let footerview = dataSources?.bindFooterView?(tableView, viewForFooterInSection: section){
             return footerview
         }else{
-            return UIView()
+            return nil
         }
     }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if let _ = dataSources?.bindHeaderView?(tableView, viewForHeaderInSection: section){
+            return CGFloat(heraerViewheight)
+        }
+        return CGFloat.leastNormalMagnitude
+    }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return CGFloat(footerViewheight)
+        if let _ = dataSources?.bindFooterView?(tableView, viewForFooterInSection: section){
+            return CGFloat(footerViewheight)
+        }
+        return CGFloat.leastNormalMagnitude
     }
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return canEditRow
