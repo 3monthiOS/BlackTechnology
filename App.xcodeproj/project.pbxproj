@@ -19,6 +19,8 @@
 		65529C351D9E66CE00ED3E1C /* MutableFilterMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65529C341D9E66CE00ED3E1C /* MutableFilterMoreViewController.swift */; };
 		65529C3A1D9E722A00ED3E1C /* CubeMap.c in Sources */ = {isa = PBXBuildFile; fileRef = 65529C391D9E722A00ED3E1C /* CubeMap.c */; };
 		657929B31EA8A5E10006F607 /* VideoRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657929B21EA8A5E10006F607 /* VideoRecorderViewController.swift */; };
+		DBDB956D1F1368780079BB4C /* QRcodeSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBDB956C1F1368780079BB4C /* QRcodeSB.storyboard */; };
+		DBDB956F1F1368DC0079BB4C /* ProduceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDB956E1F1368DC0079BB4C /* ProduceViewController.swift */; };
 		F20C5E071EBB37D0001EA55E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20C5E051EBB37D0001EA55E /* LaunchScreen.storyboard */; };
 		F20F50CE1EBB44CE00DCC828 /* ShowTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F50CD1EBB44CE00DCC828 /* ShowTextModel.swift */; };
 		F20F51D61EB97D1800061BBE /* CustomAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F516C1EB97D1800061BBE /* CustomAnimation.swift */; };
@@ -283,6 +285,8 @@
 		657929B21EA8A5E10006F607 /* VideoRecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoRecorderViewController.swift; sourceTree = "<group>"; };
 		7FEFAF43BC70671EDF9716E6 /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5A6087CE1A63B4E2D426C9 /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
+		DBDB956C1F1368780079BB4C /* QRcodeSB.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QRcodeSB.storyboard; sourceTree = "<group>"; };
+		DBDB956E1F1368DC0079BB4C /* ProduceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProduceViewController.swift; sourceTree = "<group>"; };
 		F20C5E061EBB37D0001EA55E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F20F50CD1EBB44CE00DCC828 /* ShowTextModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowTextModel.swift; sourceTree = "<group>"; };
 		F20F51551EB976E300061BBE /* BaiduMapAPI_Map.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Map.framework; path = Pods/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Map.framework; sourceTree = "<group>"; };
@@ -643,6 +647,8 @@
 			isa = PBXGroup;
 			children = (
 				654813941F010BE70097D932 /* QRcodeAndBarCodeVC.swift */,
+				DBDB956E1F1368DC0079BB4C /* ProduceViewController.swift */,
+				DBDB956C1F1368780079BB4C /* QRcodeSB.storyboard */,
 			);
 			path = QRcode;
 			sourceTree = "<group>";
@@ -1818,7 +1824,7 @@
 				TargetAttributes = {
 					F2D652C51D7E94A90005824D = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = N7NUK7WYR6;
+						DevelopmentTeam = 2VV5X9X6HK;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1888,6 +1894,7 @@
 				F2D6904C1DFE7A200087328B /* CollectionReusableHeadre.xib in Resources */,
 				F284FE2E1F09DD010046CDA0 /* RCsetingsController.xib in Resources */,
 				F2D54B261D93A692006DE294 /* TableViewHeaderCell.xib in Resources */,
+				DBDB956D1F1368780079BB4C /* QRcodeSB.storyboard in Resources */,
 				F29BFBFA1EBC693D00464D28 /* ShowtextModelCell.xib in Resources */,
 				F217F20A1D842B74000E3A0D /* RegisteredViewController.xib in Resources */,
 				F21A91191ECEF3D100951673 /* ToolsAnimation.plist in Resources */,
@@ -1936,7 +1943,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		32F335A404EDC93686839C60 /* [CP] Copy Pods Resources */ = {
@@ -2065,6 +2072,7 @@
 				F20F51E81EB97D1800061BBE /* Version.swift in Sources */,
 				F23481581EA5E6EE00CB84F2 /* ActionSheetController.swift in Sources */,
 				F23481591EA5E6EE00CB84F2 /* UIViewController+Extension.swift in Sources */,
+				DBDB956F1F1368DC0079BB4C /* ProduceViewController.swift in Sources */,
 				F20F51DB1EB97D1800061BBE /* LDNoDataNoticeView.swift in Sources */,
 				F2EBCD361EADEB4800EFD026 /* JerseyEncoding.swift in Sources */,
 				F26381F31ECEDCED00386AC8 /* MyTabbarItem.swift in Sources */,
@@ -2333,7 +2341,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = N7NUK7WYR6;
+				DEVELOPMENT_TEAM = 2VV5X9X6HK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2373,7 +2381,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = N7NUK7WYR6;
+				DEVELOPMENT_TEAM = 2VV5X9X6HK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
