@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Produce View Controller-->
+        <scene sceneID="6Ji-1Z-P2x">
+            <objects>
+                <viewController storyboardIdentifier="ProduceViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BlV-nn-Fyf" customClass="ProduceViewController" customModule="App" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rbM-bM-JWO"/>
+                        <viewControllerLayoutGuide type="bottom" id="8h1-vG-YAU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KSS-Pv-b4x">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AtZ-5u-Cfs">
+                                <rect key="frame" x="0.0" y="20" width="375" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="gvk-ih-nM7"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BlV-nn-Fyf" id="DHD-lc-Caz"/>
+                                </connections>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Ng-7I-8rx">
+                                <rect key="frame" x="0.0" y="146" width="375" height="521"/>
+                            </imageView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WgB-N9-Ncz">
+                                <rect key="frame" x="7" y="80" width="109" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="ZwG-2J-MEY"/>
+                                    <constraint firstAttribute="width" constant="109" id="kQr-WI-f7x"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="二维码"/>
+                                    <segment title="条形码"/>
+                                </segments>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XLA-Lz-5gA">
+                                <rect key="frame" x="7" y="116" width="306" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="DAm-MQ-Zey"/>
+                                    <constraint firstAttribute="width" constant="306" id="Q1f-lO-qk1"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="普通"/>
+                                    <segment title="彩色"/>
+                                    <segment title="带logo"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="AtZ-5u-Cfs" firstAttribute="leading" secondItem="KSS-Pv-b4x" secondAttribute="leading" id="0fF-Yo-RLj"/>
+                            <constraint firstItem="AtZ-5u-Cfs" firstAttribute="top" secondItem="rbM-bM-JWO" secondAttribute="bottom" id="D8q-EK-NSg"/>
+                            <constraint firstItem="WgB-N9-Ncz" firstAttribute="top" secondItem="AtZ-5u-Cfs" secondAttribute="bottom" id="XQ7-zO-jbq"/>
+                            <constraint firstItem="7Ng-7I-8rx" firstAttribute="top" secondItem="AtZ-5u-Cfs" secondAttribute="bottom" constant="66" id="ZOv-aa-Bd1"/>
+                            <constraint firstAttribute="trailing" secondItem="AtZ-5u-Cfs" secondAttribute="trailing" id="af8-BB-ByI"/>
+                            <constraint firstItem="7Ng-7I-8rx" firstAttribute="leading" secondItem="KSS-Pv-b4x" secondAttribute="leading" id="asf-V3-cf7"/>
+                            <constraint firstItem="XLA-Lz-5gA" firstAttribute="top" secondItem="WgB-N9-Ncz" secondAttribute="bottom" constant="8" id="cC9-dV-KBC"/>
+                            <constraint firstItem="XLA-Lz-5gA" firstAttribute="leading" secondItem="KSS-Pv-b4x" secondAttribute="leading" constant="7" id="sjB-S7-r2v"/>
+                            <constraint firstAttribute="trailing" secondItem="7Ng-7I-8rx" secondAttribute="trailing" id="v1b-kO-NBM"/>
+                            <constraint firstItem="WgB-N9-Ncz" firstAttribute="leading" secondItem="KSS-Pv-b4x" secondAttribute="leading" constant="7" id="vV8-tR-A7o"/>
+                            <constraint firstItem="8h1-vG-YAU" firstAttribute="top" secondItem="7Ng-7I-8rx" secondAttribute="bottom" id="zOV-7T-VSE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="QRCodeTypeSeg" destination="XLA-Lz-5gA" id="hWt-70-BdW"/>
+                        <outlet property="imageView" destination="7Ng-7I-8rx" id="9If-66-rrq"/>
+                        <outlet property="seg" destination="WgB-N9-Ncz" id="QDn-6h-xM7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h4B-97-pk0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1748" y="122.78860569715144"/>
+        </scene>
+    </scenes>
+</document>
