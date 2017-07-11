@@ -27,12 +27,12 @@ func rgb(_ red: UInt32, _ green: UInt32, _ blue: UInt32) -> UIColor {
 func rgb(_ hex: UInt32) -> UIColor {
     return rgba(hex << 8 | 0xFF)
 }
-/// 延迟执行代码
+//MARK:  延迟执行代码
 public func delay(_ seconds: UInt64, task: @escaping () -> Void) {
     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(seconds * NSEC_PER_SEC)) / Double(NSEC_PER_SEC), execute: task)
 }
 
-/// 异步执行代码块（先非主线程执行，再返回主线程执行）
+//MARK: 异步执行代码块（先非主线程执行，再返回主线程执行）
 public func async(_ backgroundTask: @escaping () -> AnyObject!, mainTask: @escaping (AnyObject?) -> Void) {
     DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
         let result = backgroundTask()
@@ -42,16 +42,16 @@ public func async(_ backgroundTask: @escaping () -> AnyObject!, mainTask: @escap
     }
 }
 
-/// 异步执行代码块（主线程执行）
+//MARK:  异步执行代码块（主线程执行）
 public func async(_ mainTask: @escaping () -> Void) {
     DispatchQueue.main.async(execute: mainTask)
 }
 
-/// 顺序执行代码块（在队列中执行）
+//MARK:  顺序执行代码块（在队列中执行）
 public func sync(_ task: () -> Void) {
     DispatchQueue(label: "com.catorv.LockQueue", attributes: []).sync(execute: task)
 }
-
+//MARK: alert提示框
 func alert(_ message: String, title: String! = nil, completion: (() -> Void)? = nil) {
     let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
     controller.addAction(UIAlertAction(title: "我知道了", style: .default) { action in
@@ -73,7 +73,7 @@ func confirm(_ message: String, title: String! = nil, completion: @escaping (Boo
         })
     UIViewController.topViewController?.present(controller, animated: true, completion: nil)
 }
-
+//MARK: 带textfiled的提示框
 func prompt(_ message: String, title: String! = nil, text: String! = nil, placeholder: String! = nil, completion: @escaping (String?) -> Void) {
     let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
     controller.addAction(UIAlertAction(title: "取消", style: .cancel) { action in
@@ -94,8 +94,22 @@ func prompt(_ message: String, title: String! = nil, text: String! = nil, placeh
     }
     UIViewController.topViewController?.present(controller, animated: true, completion: nil)
 }
+//MARK: 保存图片到本地
+func baocunphotoLocation(data: Data?,img: UIImage?)-> Bool{
+    let fileManager = FileManager.default
+    let cachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
+    if let data = data {
+        fileManager.createFile(atPath: cachePath!, contents: data, attributes: nil)
+    } else if let image = img {
+        let imgdata = UIImageJPEGRepresentation(image.zz_normalizedImage(), 0.9)
+        fileManager.createFile(atPath: cachePath!, contents: imgdata, attributes: nil)
+    } else {
+        return false
+    }
+    return true
+}
+//MARK: 从一个本地项目资源中读取data.Json文件
 func getProjectJsonFile()-> [String]{
-    //从一个本地项目资源中读取data.Json文件
     let path: String = Bundle.main.path(forResource: "uploadPicturesTable", ofType: ".geojson")!
     let nsUrl = NSURL(fileURLWithPath: path)
     //读取Json数据
@@ -110,6 +124,7 @@ func getProjectJsonFile()-> [String]{
     }
 }
 
+//MARK: 根据文件名 查找目录下指定文件
 func locationfileiscache(_ fileName: String, complate:(_ callback: String)->Void){
     guard var cachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first else {
         complate("")
@@ -131,6 +146,8 @@ func locationfileiscache(_ fileName: String, complate:(_ callback: String)->Void
     }
     complate("")
 }
+
+//MARK:   文件下载
 func fileDownload(_ urlArray: [String],complate:@escaping ((_ isok: Bool,_ callbackData: [Data])->Void)){
     if Reachability.networkStatus == .notReachable {return}
     var dataArray = [Data]()
@@ -174,6 +191,7 @@ func fileDownload(_ urlArray: [String],complate:@escaping ((_ isok: Bool,_ callb
         }
     }
 }
+//MARK:  字符串过滤
 func RemoveSpecialCharacter(_ str: String) -> String {
     let range = str.rangeOfCharacter(from: CharacterSet(charactersIn: "-,.？、% ~￥#&<>《》()[]{}【】^@/￡¤|§¨「」『』￠￢￣~@#&*（）——+|《》$_€"))
     if range != nil {

@@ -34,7 +34,7 @@ let QINIU_URL_STATIC = "http://ohc2uub90.bkt.clouddn.com/"
 let QINIU_URL_MEDIA = "http://pili-media.huacehuaban.com/"
 
 // MARK: - 阿里云存储
-
+let ALY_BucketName = "zhj1214"
 let ALY_endpoint = "http://oss-cn-hangzhou.aliyuncs.com"
 let ALY_AccessKey = "LTAIAzsdrmtOnBFs"
 let ALY_SecretKey = "PgoU9Q107rCVBZP8Uz0CurvYTB2R5W"

@@ -49,9 +49,9 @@ struct QNUtils {
         return "\(uid)\(String(Int(Date().timeIntervalSince1970))).mp4"
     }
     
+    // MARK: -  获取七牛的 资源列举  暂时有问题
     static func getlistdata(){
         //        bucket=<UrlEncodedBucket>&marker=<Marker>&limit=<Limit>&prefix=<UrlEncodedPrefix>&delimiter=<UrlEncodedDelimiter>
-
 //        zhj1214=
         let bucket = "zhj1214" // ?bucket=\(bucket.urlEncoded)  ?bucket=zhj1214
         let url = "http://rsf.qbox.me/list"
@@ -60,12 +60,10 @@ struct QNUtils {
             if response.result.isSuccess {
                 Log.info("\(response)")
             }
-            
         }
-        
-    
         Log.info(url)
     }
+    // MARK: -  上传
     static func putData(_ data: Data, withKey key: String, token: String,resourceType: ResourceType, isQuiet: Bool = false,completion: @escaping (UploadResult) -> Void) {
         let config = QNConfiguration.build { (builder: QNConfigurationBuilder!) in
             builder.setZone(QNZone.zone0())
@@ -141,6 +139,7 @@ struct QNUtils {
      将 AccessKey、encode_signed 和 encoded 用 “:” 连接起来,得到如下的UploadToken:
      faXFztmwdVEgWAVRM4Q7KQJYh85yBX3MjliJt6YJ:JSyU-zCDaHZVskCbyOg-cvGUzNU=:eyJzY29wZSI6InpoajEyMTQiLCJkZWFkbGluZSI6MTQ4MDcwNTU3NH0=
      */
+    // MARK: - 获取 token
     static func generateToken(_ overdue: Bool = false) -> String{
         let accessKey = "faXFztmwdVEgWAVRM4Q7KQJYh85yBX3MjliJt6YJ", secretKey = "76tJyg9XLZ1p1z62eAgxyjifh4_kW8Rr_kPleKQo" , bucketName = "zhj1214"
         if overdue {

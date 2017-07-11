@@ -271,7 +271,7 @@ extension FunctionsViewController: SystemPhotoAlbumDelegate,PhotoBrowserDelegate
                         img = UIImage(gifData: imageData)
                     }else{
 //                        Log.info("我没有找到：————————\(str)")
-                        img = UIImage(named: "chat_image_load_failed")!
+                        img = UIImage(named: "Placeholder Image")!
                     }
                 })
             }
@@ -280,7 +280,7 @@ extension FunctionsViewController: SystemPhotoAlbumDelegate,PhotoBrowserDelegate
         var image = UIImage()
         let data = try? Data(contentsOf: URL(fileURLWithPath: url))
         if data == nil {
-            image = UIImage(named: "chat_image_load_failed")!
+            image = UIImage(named: "Placeholder Image")!
         }else{
             image = UIImage(data: data!)!
         }

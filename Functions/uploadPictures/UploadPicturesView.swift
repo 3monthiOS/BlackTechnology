@@ -21,16 +21,7 @@ class uploadPicturesView: APPviewcontroller {
     fileprivate var avatarKey = "key"
     fileprivate var avatarData : Data?
     var user: User?
-    var imageUrlData: [String] = []{
-        willSet{
-            if session.object(forKey: "funcationupdateimageUrlData") != nil{
-                imageUrlData = session.object(forKey: "funcationupdateimageUrlData") as! [String]
-            }else{
-                imageUrlData = [""]
-                imageUrlData = session.setObject(imageUrlData as AnyObject, forKey: "funcationupdateimageUrlData") as! [String]
-            }
-        }
-    }
+    
     override func setup() {
         super.setup()
         showImageview.contentMode = .scaleAspectFill
@@ -50,23 +41,34 @@ class uploadPicturesView: APPviewcontroller {
     }
     
     @IBAction func uploadimage(_ sender: AnyObject) {
-        let token = QNUtils.generateToken()
         if let data = avatarData {
-            let key = avatarKey
-            QNUtils.putData(data, withKey: key, token: token, resourceType: .image) { (result) in
-                switch result {
-                case .success(let url, _, _):
-                    //更新用户表
-                    Log.error("上传成功\(url)")
-                    self.text.text = url
-                    self.imageUrlData.append(url)
-                    self.saveUpdata("funcationupdateimageUrlData", value: self.imageUrlData)
-                    
-                case .failure( _):
-                    Log.error("上传头像失败")
+//            let _ = SweetAlert().showAlert("加载", subTitle: "正在加载", style: AlertStyle.none)
+//            let _ = SweetAlert().showAlert(<#T##title: String##String#>, subTitle: <#T##String?#>, style: <#T##AlertStyle#>, buttonTitle: <#T##String#>, buttonColor: <#T##UIColor#>, otherButtonTitle: <#T##String?#>, action: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
+//                .showFail("你到达了未知星球，正在给你重新连接请稍等...",superView: self.view, tap: {
+//                SwiftSpinner.hide(self.view, completion: {
+//                    self.fetchData()
+//                })
+//            })
+            
+            // 上传图片
+            prompt("为了上传文件规范，请为上传文件重命名（加上文件.后缀扩展名），才能上传。", title: "上传文件", text: "", placeholder: "请输入上传文件名称") { (callback) in
+                if let name = callback {
+                    ALY?.uploadObjectAsync(fileName: name, data: data, callback: { (url) in
+                        self.text.text = url
+                        Log.info("上传成功，获取的链接：\(url)")
+//                        SweetAlert().cleanUpAlert()
+                    })
+                    alert("请等待几秒钟，看到url则上传成功")
                 }
             }
+        } else {
+          alert("请选择上传的图片")
         }
+        //  上传本地文件
+//        locationfileiscache(fileName, complate: { (path) in // 根据文件名字找到文件路径 生成data
+//            put.uploadingData = NSData(contentsOfFile: path)! as Data
+//            uploadData(obj: put, fileName: fileName, callback: callback)
+//        })
     }
     func writefile(){ // 先读取后写入 File
         let path: String = Bundle.main.path(forResource: "uploadPicturesTable", ofType: ".geojson")!
@@ -165,7 +167,7 @@ extension uploadPicturesView: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,Phot
         let url = getProjectJsonFile()[index]
         var img : UIImage?
         // 网络图片
-        if !url.isEmpty{
+        if !url.isEmpty {
             if let str = url.components(separatedBy: "/").last{
                 locationfileiscache(str, complate: { (callback) in
                     if !callback.isEmpty{
@@ -173,7 +175,7 @@ extension uploadPicturesView: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,Phot
                         img = UIImage(gifData: imageData)
                     }else{
                         //                        Log.info("我没有找到：————————\(str)")
-                        img = UIImage(named: "chat_image_load_failed")!
+                        img = UIImage(named: "Placeholder Image")!
                     }
                 })
             }
@@ -182,7 +184,7 @@ extension uploadPicturesView: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,Phot
         var image = UIImage()
         let data = try? Data(contentsOf: URL(fileURLWithPath: url))
         if data == nil {
-            image = UIImage(named: "chat_image_load_failed")!
+            image = UIImage(named: "Placeholder Image")!
         }else{
             image = UIImage(data: data!)!
         }
@@ -220,6 +222,36 @@ extension uploadPicturesView: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,Phot
     }
 }
 
+/**   七牛上传
+ let token = QNUtils.generateToken()
+ if let data = avatarData {
+ let key = avatarKey
+ QNUtils.putData(data, withKey: key, token: token, resourceType: .image) { (result) in
+ switch result {
+ case .success(let url, _, _):
+ //更新用户表
+ Log.error("上传成功\(url)")
+ self.text.text = url
+ self.imageUrlData.append(url)
+ self.saveUpdata("funcationupdateimageUrlData", value: self.imageUrlData)
+ 
+ case .failure( _):
+ Log.error("上传头像失败")
+ }
+ }
+ }
 
+ var imageUrlData: [String] = []{
+ willSet{
+ if session.object(forKey: "funcationupdateimageUrlData") != nil{
+ imageUrlData = session.object(forKey: "funcationupdateimageUrlData") as! [String]
+ }else{
+ imageUrlData = [""]
+ imageUrlData = session.setObject(imageUrlData as AnyObject, forKey: "funcationupdateimageUrlData") as! [String]
+ }
+ }
+ }
+ 
+ */
 
 

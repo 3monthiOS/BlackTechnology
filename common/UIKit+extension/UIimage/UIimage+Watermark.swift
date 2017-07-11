@@ -56,4 +56,17 @@ extension UIImage{
         
         return waterMarkedImage!
     }
+    
+    func zz_normalizedImage() -> UIImage {
+        if imageOrientation == .up {
+            return self
+        }
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        draw(in: CGRect(origin: CGPoint.zero, size: size))
+        let normalizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return normalizedImage!;
+    }
 }

@@ -30,47 +30,62 @@ class ALYPhotoTool {
     }
     
     // MARK: -- 异步上传
-    func uploadObjectAsync(){
+    func uploadObjectAsync(fileName:String,data: Data?,callback:@escaping (String)->()){
         let put = OSSPutObjectRequest()
-        put.bucketName = "zhj1214"
-        put.objectKey = "大榕树.jpg"
-        let image = UIImage(named: "大榕树")
-        image?.contentType = .JPEG
-        put.uploadingData = image!.data! as Data
-        put.contentType = "image/jpg"
+        put.bucketName = ALY_BucketName
+        put.objectKey = fileName //"大榕树.jpg"
+        if let data = data  {
+            put.uploadingData = data
+        } else {
+          alert("上传数据为空")
+            return
+        }
+        if fileName.hasSuffix(".jpg") || fileName.hasSuffix(".jpeg") {
+            put.contentType = "image/jpg"
+        } else if fileName.hasSuffix(".png"){
+            put.contentType = "image/png"
+        } else if fileName.hasSuffix(".gif"){
+            put.contentType = "image/gif"
+        }
         
-        // 设置回调参数 {"mimeType":${mimeType},"size":${size}}
-//        put.callbackParam = ["callbackUrl":ALY_endpoint,"callbackBody":["mimeType":"${mimeType}","size":"${size}"]]
+        // 设置回调参数 回调内容将返回给设置的url {"mimeType":${mimeType},"size":${size}}
+        //        put.callbackParam = ["callbackUrl":ALY_endpoint,"callbackBody":["mimeType":"${mimeType}","size":"${size}"]]
         
         let putTask = client?.putObject(put)
         put.uploadProgress = { (bytesSent,totalByteSent,totalBytesExpectedToSend)  in
             //            int64_t bytesSent, int64_t totalByteSent, int64_t totalBytesExpectedToSend
-            Log.info("上传 \(bytesSent)\(totalByteSent)\(totalBytesExpectedToSend)")
+//            Log.info("上传 \(bytesSent)\(totalByteSent)\(totalBytesExpectedToSend)")
         }
-        let url = client?.presignConstrainURLWithzhj1214("zhj1214", withObjectKey: "大榕树.jpg")
-        client?.presignConstrainURL(withBucketName: "zhj1214", withObjectKey: "大榕树", withExpirationInterval: 36000)
-        
         putTask?.continue({ (task: OSSTask) -> Any? in
             if (task.error != nil) {
-                Log.info("上传出错\(task.error!)")
-                return "上传出错"
+                alert("上传出错\(task.error!)")
             } else {
                 let getResult = task.result as? OSSPutObjectResult
+                // 生成 资源链接
+                let url = self.client?.presignConstrainURLWithzhj1214(ALY_BucketName, withObjectKey: fileName)
+                callback(url!)
                 Log.info("上传成功\(String(describing: getResult?.serverReturnJsonString))----- \(String(describing: getResult?.eTag))")
-                return "上传成功"
             }
+            return nil
         })
-      
     }
-   
     
     // 异步下载
-    func downloadObjectAsync(callBack:@escaping (Data)->()) {
+    func downloadObjectAsync(fileName: String, callBack:@escaping (Data)->()) {
+        locationfileiscache(fileName) { (path) in
+            if !path.isEmpty {
+                if !path.isEmpty{
+                    guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: path)) else {return}
+                    callBack(imageData)
+                    return
+                }
+            }
+        }
         var data = Data()
         let request = OSSGetObjectRequest()
-        request.bucketName = "zhj1214"
-        request.objectKey = "照片墙.gif"
-        request.xOssProcess = "image/resize,m_lfit,w_100,h_100"
+        request.bucketName = ALY_BucketName
+        request.objectKey = fileName //"照片墙.gif" 带上扩展名
+        request.xOssProcess = "image/resize,m_lfit,w_100,h_100" // 当文件类型为图片时必选
 //        request.downloadProgress = { (bytesSent,totalByteSent,totalBytesExpectedToSend)  in
 //            //            int64_t bytesSent, int64_t totalByteSent, int64_t totalBytesExpectedToSend
 //            Log.info("下载 \(bytesSent)\(totalByteSent)\(totalBytesExpectedToSend)")
@@ -78,17 +93,56 @@ class ALYPhotoTool {
         let gettask = client?.getObject(request)
         gettask?.continue({ (task: OSSTask) -> Any? in
             if (task.error != nil) {
-                Log.info("sssssssssssss\(task.error!)")
+                callBack(UIImage(named: "Placeholder Image")!.data! as Data)
+                Log.debug("文件\(fileName) 下载时出错： \(task.error!)")
             } else {
                 let getobj = task.result as? OSSGetObjectResult
                 data = (getobj?.downloadedData)!
                 callBack(data)
-                Log.info("sssssssssssss\(String(describing: getobj?.objectMeta))")
+                if baocunphotoLocation(data: data, img: nil) { // 保存到本地 不用重复下载
+                     Log.info("图片缓存保存成功")
+                }else {
+                    Log.info("图片保存失败")
+                }
+                Log.info("下载成功： \(String(describing: getobj?.objectMeta))")
             }
             return nil
         })
     }
     
+    // 资源列举
+    func getBucketListData(callback:@escaping ([Any])->()){
+        let getBucket = OSSGetBucketRequest()
+        getBucket.bucketName = ALY_BucketName
+        getBucket.delimiter = "";
+        getBucket.prefix = "";
+        
+        let list = client?.getBucket(getBucket)
+        list?.continue({ (task) -> Any? in
+            if (task.error != nil){
+                Log.info("列举出错\(String(describing: task.error))")
+            } else {
+                let getobj = task.result as? OSSGetBucketResult
+                /**{ 返回格式
+                 ETag = "\"D70C1D0652AB96647556AF6ECBEA2D22\"";
+                 Key = "\U5927\U6995\U6811.jpg";
+                 LastModified = "2017-07-10T09:24:41.000Z";
+                 Owner =     {
+                 DisplayName = 1945599651705522;
+                 ID = 1945599651705522;
+                 };
+                 Size = 1617222;
+                 StorageClass = Standard;
+                 Type = Normal;
+                 }
+                 */
+//                Log.info("下载成功： \(String(describing: getobj?.contents))")
+                callback((getobj?.contents)!)
+            }
+            return nil
+        })
+        
+    }
     // 断点续传
 //    - (void)resumableUpload {
 //    __block NSString * recordKey;
@@ -174,3 +228,4 @@ class ALYPhotoTool {
     
  
 }
+

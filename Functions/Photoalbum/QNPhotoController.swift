@@ -16,25 +16,23 @@ class QNPhotoController: APPviewcontroller {
     
     @IBOutlet weak var photocollectionview: CollectionMjResh!
     
-    var imageUrldt: [String]?
+    var fileName = [String]()
     
-    var data = [Data]()
-    
-    override func viewWillAppear(_ animated: Bool) {
-        //        viewWillAppear(animated)
-        if let url = session.object(forKey: "funcationupdateimageUrlData"){
-            imageUrldt = url as? [String]
+    var data = [Data](){
+        didSet{
+            if fileName.count == data.count {
+                photocollectionview.refreshData()
+            }
         }
     }
+
     override func setup() {
         super.setup()
         
         self.title = "上传相册列表"
         initcollectionMjrefresh()
         initCollectionview()
-//        initData()
-//        QNUtils.getlistdata()
-
+        initData()
     }
     
     func initcollectionMjrefresh(){
@@ -45,7 +43,6 @@ class QNPhotoController: APPviewcontroller {
     }
     func initCollectionview(){
         self.view.backgroundColor = rgb(242,245,249)
-        
         //注册一个cell
         photocollectionview.register(UINib(nibName: "QNCollectionViewCell",bundle: nil), forCellWithReuseIdentifier: "cell")
         //注册一个headView
@@ -56,16 +53,24 @@ class QNPhotoController: APPviewcontroller {
         //        layout.footerReferenceSize = CGSizeZero //CGSizeMake(App_width,80)
     }
     func initData(){
-        // 获取数据
-        
-        ALY?.uploadObjectAsync()
-        
-//        ALY?.downloadObjectAsync(callBack: { (d) in
-//            self.data.append(d)
-//            self.photocollectionview.refreshData()
-//        })
+        ALY?.getBucketListData(callback: { (content:[Any]) in
+            self.fileName = [String]()
+            for obj in content as! Array<Dictionary<String,Any>> {
+                if let name = obj["Key"] as? String {
+                    self.fileName.append(name)
+                }
+            }
+            self.downfile(array: self.fileName)
+        })
     }
-    
+    func downfile(array:[String]){
+        for name in array {
+            // 下载
+            ALY?.downloadObjectAsync(fileName: name, callBack: { (d) in
+                self.data.append(d)
+            })
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -87,6 +92,7 @@ extension QNPhotoController: UICollectionViewDataSource{
 //            cell.bindData(imageUrldt,functionTitle: [""],atIndex :indexPath)
 //        }
         cell.imgview.image = UIImage(data: data[indexPath.row])
+        cell.titleLabel.text = fileName[indexPath.row]
         return cell
     }
 }

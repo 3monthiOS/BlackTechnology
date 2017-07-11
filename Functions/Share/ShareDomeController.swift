@@ -105,7 +105,7 @@ extension ShareDomeController: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,Pho
                         guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}
                         img = UIImage(gifData: imageData)
                     }else{
-                        img = UIImage(named: "chat_image_load_failed")!
+                        img = UIImage(named: "Placeholder Image")!
                     }
                 })
             }
@@ -114,7 +114,7 @@ extension ShareDomeController: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,Pho
         var image = UIImage()
         let data = try? Data(contentsOf: URL(fileURLWithPath: url))
         if data == nil {
-            image = UIImage(named: "chat_image_load_failed")!
+            image = UIImage(named: "Placeholder Image")!
         }else{
             image = UIImage(data: data!)!
         }
