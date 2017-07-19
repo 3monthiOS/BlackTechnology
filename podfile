@@ -18,7 +18,9 @@ target :App do
 #    pod 'RongCloudIM', '~> 2.8.12'
 
     pod 'MJRefresh'
-    pod 'BaiduMapKit'
+    # 定位
+    pod 'SwiftLocation'
+#    pod 'BaiduMapKit'
     pod 'Qiniu', '~> 7.1'
     pod 'SnapKit', '~> 3.2.0'
     #正则表达式

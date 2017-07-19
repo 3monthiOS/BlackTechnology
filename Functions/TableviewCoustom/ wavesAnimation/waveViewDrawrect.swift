@@ -96,8 +96,9 @@ class waveViewDrawrect: UIView {
         default:
             path.addLine(to: CGPoint(x: 0, y: rect.size.height))
         }
-        // 把你豁出来的所有线 加到这个画图工具上，让它给你画出来
+        // 把你豁出来的所有线 加到这个画图工具上，合并路径，连接起点和终点，让它给你画出来
         context?.addPath(path)
+        // 绘制路径
         context?.fillPath()
         //开始画
         context?.drawPath(using: .stroke)

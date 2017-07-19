@@ -17,11 +17,9 @@ class uploadPicturesView: APPviewcontroller {
     @IBOutlet weak var cameraBtn: UIButton!
     @IBOutlet weak var uploadBtn: UIButton!
     
-    //
     fileprivate var avatarKey = "key"
     fileprivate var avatarData : Data?
-    var user: User?
-    
+ 
     override func setup() {
         super.setup()
         showImageview.contentMode = .scaleAspectFill
@@ -30,7 +28,6 @@ class uploadPicturesView: APPviewcontroller {
         contentView?.addSubview(cameraBtn)
         contentView?.addSubview(PhotoAlbumBtn)
         contentView?.addSubview(uploadBtn)
-
     }
 
     @IBAction func chouse(_ sender: AnyObject) {
@@ -42,23 +39,18 @@ class uploadPicturesView: APPviewcontroller {
     
     @IBAction func uploadimage(_ sender: AnyObject) {
         if let data = avatarData {
-//            let _ = SweetAlert().showAlert("加载", subTitle: "正在加载", style: AlertStyle.none)
-//            let _ = SweetAlert().showAlert(<#T##title: String##String#>, subTitle: <#T##String?#>, style: <#T##AlertStyle#>, buttonTitle: <#T##String#>, buttonColor: <#T##UIColor#>, otherButtonTitle: <#T##String?#>, action: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
-//                .showFail("你到达了未知星球，正在给你重新连接请稍等...",superView: self.view, tap: {
-//                SwiftSpinner.hide(self.view, completion: {
-//                    self.fetchData()
-//                })
-//            })
-            
             // 上传图片
-            prompt("为了上传文件规范，请为上传文件重命名（加上文件.后缀扩展名），才能上传。", title: "上传文件", text: "", placeholder: "请输入上传文件名称") { (callback) in
+            prompt("为了上传文件规范，请为上传文件重命名（加上文件.后缀扩展名），才能上传。", title: "上传文件", text: "", placeholder: "请输入上传文件名称去掉末尾空格") { (callback) in
                 if let name = callback {
-                    ALY?.uploadObjectAsync(fileName: name, data: data, callback: { (url) in
-                        self.text.text = url
+                    ALY?.uploadObjectAsync(fileName: name, data: data, callback: { [weak self](url) in
+                        async({ 
+                            self?.text.text = url
+                            loader.removeLoader()
+                        })
                         Log.info("上传成功，获取的链接：\(url)")
-//                        SweetAlert().cleanUpAlert()
+                        
                     })
-                    alert("请等待几秒钟，看到url则上传成功")
+                    loader = WavesLoader.showLoader(with: path())
                 }
             }
         } else {
@@ -70,6 +62,7 @@ class uploadPicturesView: APPviewcontroller {
 //            uploadData(obj: put, fileName: fileName, callback: callback)
 //        })
     }
+    
     func writefile(){ // 先读取后写入 File
         let path: String = Bundle.main.path(forResource: "uploadPicturesTable", ofType: ".geojson")!
         let nsUrl = NSURL(fileURLWithPath: path)

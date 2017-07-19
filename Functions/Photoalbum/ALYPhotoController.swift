@@ -232,7 +232,7 @@ extension OSSClient {
   
   func presignConstrainURLWithzhj1214(_ bucketName: String, withObjectKey key: String) -> String {
     var resource: String = "/\(bucketName)/\(key)"
-    let expires: String = "\(NSDate.oss_clockSkewFixed().timeIntervalSince1970 + 3600)"
+    let expires: String = "\(UInt64(NSDate.oss_clockSkewFixed().timeIntervalSince1970 + 3600))"
     var wholeSign: String? = nil
     var token: OSSFederationToken? = nil
     if credentialProvider is OSSFederationCredentialProvider {
@@ -260,7 +260,7 @@ extension OSSClient {
     
     let splitResult: [String] = wholeSign?.components(separatedBy: ":") ?? []
     if splitResult.isEmpty {return ""}
-    if splitResult.count != 2 || splitResult.first!.hasPrefix("OSS ") {
+    if splitResult.count != 2 || !splitResult.first!.hasPrefix("OSS ") {
       return ""
     }
     let accessKey: String = splitResult.first!.substring(4)!
@@ -271,71 +271,10 @@ extension OSSClient {
     if OSSUtil.isOssOriginBucketHost(host!) {
       host = "\(bucketName).\(host!)"
     }
-    var stringURL: String = "\(endpointURL?.scheme ?? "")://\(host!)/\(OSSUtil.encodeURL(key))?OSSAccessKeyId=\(OSSUtil.encodeURL(accessKey))&Expires=\(expires)&Signature=\(OSSUtil.encodeURL(signature))"
+    var stringURL: String = "\(endpointURL?.scheme ?? "")://\(host!)/\(OSSUtil.encodeURL(key)!)?OSSAccessKeyId=\(OSSUtil.encodeURL(accessKey)!)&Expires=\(expires)&Signature=\(OSSUtil.encodeURL(signature)!)"
     if (credentialProvider is OSSFederationCredentialProvider) || (credentialProvider is OSSStsTokenCredentialProvider) {
-      stringURL = "\(stringURL)&security-token=\(OSSUtil.encodeURL(token?.tToken ?? ""))"
+      stringURL = "\(stringURL)&security-token=\(OSSUtil.encodeURL(token?.tToken ?? "")!)"
     }
     return stringURL
   }
-  /*
-   - (NSString *)presignConstrainURLWithzhj1214:(NSString *)bucketName
-   withObjectKey:(NSString *)objectKey{
-   
-   NSString * resource = [NSString stringWithFormat:@"/%@/%@", bucketName, objectKey];
-   NSString * expires = [@((int64_t)[[NSDate oss_clockSkewFixedDate] timeIntervalSince1970] + 3600) stringValue];
-   NSString * wholeSign = nil;
-   OSSFederationToken * token = nil;
-   NSError * error = nil;
-   
-   if ([self.credentialProvider isKindOfClass:[OSSFederationCredentialProvider class]]) {
-   token = [(OSSFederationCredentialProvider *)self.credentialProvider getToken:&error];
-   if (error) {
-   return "";
-   }
-   } else if ([self.credentialProvider isKindOfClass:[OSSStsTokenCredentialProvider class]]) {
-   token = [(OSSStsTokenCredentialProvider *)self.credentialProvider getToken];
-   }
-   
-   if ([self.credentialProvider isKindOfClass:[OSSFederationCredentialProvider class]]
-   || [self.credentialProvider isKindOfClass:[OSSStsTokenCredentialProvider class]]) {
-   resource = [NSString stringWithFormat:@"%@?security-token=%@", resource, token.tToken];
-   NSString * string2sign = [NSString stringWithFormat:@"GET\n\n\n%@\n%@", expires, resource];
-   wholeSign = [OSSUtil sign:string2sign withToken:token];
-   } else {
-   NSString * string2sign = [NSString stringWithFormat:@"GET\n\n\n%@\n%@", expires, resource];
-   wholeSign = [self.credentialProvider sign:string2sign error:&error];
-   if (error) {
-   return "";
-   }
-   }
-   
-   NSArray * splitResult = [wholeSign componentsSeparatedByString:@":"];
-   if ([splitResult count] != 2
-   || ![((NSString *)[splitResult objectAtIndex:0]) hasPrefix:@"OSS "]) {
-   return "";
-   }
-   NSString * accessKey = [(NSString *)[splitResult objectAtIndex:0] substringFromIndex:4];
-   NSString * signature = [splitResult objectAtIndex:1];
-   
-   NSURL * endpointURL = [NSURL URLWithString:self.endpoint];
-   NSString * host = endpointURL.host;
-   if ([OSSUtil isOssOriginBucketHost:host]) {
-   host = [NSString stringWithFormat:@"%@.%@", bucketName, host];
-   }
-   NSString * stringURL = [NSString stringWithFormat:@"%@://%@/%@?OSSAccessKeyId=%@&Expires=%@&Signature=%@",
-   endpointURL.scheme,
-   host,
-   [OSSUtil encodeURL:objectKey],
-   [OSSUtil encodeURL:accessKey],
-   expires,
-   [OSSUtil encodeURL:signature]];
-   
-   if ([self.credentialProvider isKindOfClass:[OSSFederationCredentialProvider class]]
-   || [self.credentialProvider isKindOfClass:[OSSStsTokenCredentialProvider class]]) {
-   stringURL = [NSString stringWithFormat:@"%@&security-token=%@", stringURL, [OSSUtil encodeURL:token.tToken]];
-   }
-   return stringURL;
-   }
-   
-   */
 }

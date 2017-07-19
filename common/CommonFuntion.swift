@@ -208,3 +208,7 @@ func checkMobileReg(_ mobile: String) -> Bool {
                                     range: NSRange(location: 0, length: mobile.utf16.count))?.range.length != nil
     
 }
+//MARK: -------- HUB 图案
+func path() -> CGPath{
+    return Paths.githubPath()
+}

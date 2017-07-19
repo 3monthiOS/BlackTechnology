@@ -16,9 +16,11 @@ import RealmSwift
 import ObjectMapper
 import UserNotifications
 import AliyunOSSiOS
-//let api = LDApiSettings()
+
+let locationUser = locationServiceUser.sharedInstance
 let cache = CacheManager(cachable: RealmCache(realm: Realm.sharedRealm))
 var user = User()
+var loader: FillableLoader = WavesLoader.showLoader(with: path())
 var ALY: ALYPhotoTool?
 
 @UIApplicationMain
@@ -31,93 +33,97 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     fileprivate var searchingReverseGeoCode = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
+        
         self.debugInformationTest()
-
+        
         let them = ThemeManager.currentTheme()
         ThemeManager.overrideApplyTheme(them)
-//        self.window = UIWindow.init(frame: UIScreen.main.bounds)
+        //        self.window = UIWindow.init(frame: UIScreen.main.bounds)
         
-//MARK: 阿里云初始化各种设置
+        //MARK: 阿里云初始化各种设置
         ALY = ALYPhotoTool.shared
- 
-//MARK: 初始化融云
-        initRCIM()
-      
-        registerNotification(application)
-        //MARK: 初始化百度地图
-        let mapManager = BMKMapManager()
-        // 如果要关注网络及授权验证事件，请设定generalDelegate参数
-        if !mapManager.start(BAIDU_KEY, generalDelegate: self) {
-            Log.error("BMK: baidu map manager start failed!")
-        }
         
-        Notifications.locationUpdated.addObserver(self, selector: #selector(locationUpdatedNotification(_:)), sender: nil)
+        //MARK: 初始化融云
+        initRCIM()
+        registerNotification(application)
+        
+        //MARK: 初始化百度地图
+        //        let mapManager = BMKMapManager()
+        // 如果要关注网络及授权验证事件，请设定generalDelegate参数
+        //        if !mapManager.start(BAIDU_KEY, generalDelegate: self) {
+        //            Log.error("BMK: baidu map manager start failed!")
+        //        }
+        //        Notifications.locationUpdated.addObserver(self, selector: #selector(locationUpdatedNotification(_:)), sender: nil)
+        
+        locationUser.LocationMonitoringUser()
+        
         //MARK: IQ 键盘
         IQKeyboardManager.sharedManager().enable = true
+        
         // MARK: -- 输出设备信息
         Log.info(Device.version())
+        
         //MARK: 跳转
         gotoMainViewController()
         
         return true
     }
     //MARK: 注册本地和远程通知
-  private func registerNotification(_ application: UIApplication) {
-    //推送处理1
-    if #available(iOS 10.0, *) {
-      // 通知扩展按钮  有 普通和 带输入框 2个种类
-      // 点击按钮调用  UNUserNotificationCenter 的 didReceive response 代理
-      // 普通 和带输入框的有区分 在代理方法已经 写明  请移步 代理方法查看
-      let action =   UNNotificationAction(identifier: "normal", title: "测试1", options: .authenticationRequired)
-      let action1 = UNTextInputNotificationAction(identifier: "input", title: "回复", options: .destructive, textInputButtonTitle: "发送", textInputPlaceholder: "请回复")
-      let category = UNNotificationCategory(identifier: "category", actions: [action,action1], intentIdentifiers: [], options: .customDismissAction)
-      
-      let center =  UNUserNotificationCenter.current()
-      center.requestAuthorization(options: [.alert,.badge,.sound]) { (Bool, error) in
-        
-      }
-      center.setNotificationCategories([category])
-      center.delegate = self
-      application.registerForRemoteNotifications()
-    } else if #available(iOS 8.0, *) {
-      //注册推送,用于iOS8以上系统
-      // 通知扩展按钮  iOS9 以上  有 普通和 带输入框 2个种类 behavior属性控制
-      // 在锁屏的时候  收到通知 左滑通知 能看到按钮  点击对应调用 handle Action 的代理
-      // 带输入框 点击 调用的是 handle Action   withResponseInfo 的代理
-      // 本地 和远程同理
-      let action1 = UIMutableUserNotificationAction()
-      action1.title = "测试1"
-      action1.activationMode = .background
-      action1.identifier = "test1"
-      action1.isDestructive = false
-      
-      if #available(iOS 9.0, *) {
-        action1.behavior = .default
-      } else {
-        // Fallback on earlier versions
-      }
-      action1.isAuthenticationRequired = true
-      let category1 = UIMutableUserNotificationCategory()
-      category1.identifier = "category1"
-      category1.setActions([action1], for: .default)
-      
-      
-      application.registerUserNotificationSettings(
-        UIUserNotificationSettings(types:[.alert, .badge, .sound], categories: [category1]))
-      application.registerForRemoteNotifications()
-    } else {
-      //注册推送,用于iOS8以下系统
-      application.registerForRemoteNotifications(matching: [.badge, .alert, .sound])
+    private func registerNotification(_ application: UIApplication) {
+        //推送处理1
+        if #available(iOS 10.0, *) {
+            // 通知扩展按钮  有 普通和 带输入框 2个种类
+            // 点击按钮调用  UNUserNotificationCenter 的 didReceive response 代理
+            // 普通 和带输入框的有区分 在代理方法已经 写明  请移步 代理方法查看
+            let action =   UNNotificationAction(identifier: "normal", title: "测试1", options: .authenticationRequired)
+            let action1 = UNTextInputNotificationAction(identifier: "input", title: "回复", options: .destructive, textInputButtonTitle: "发送", textInputPlaceholder: "请回复")
+            let category = UNNotificationCategory(identifier: "category", actions: [action,action1], intentIdentifiers: [], options: .customDismissAction)
+            
+            let center =  UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert,.badge,.sound]) { (Bool, error) in
+                
+            }
+            center.setNotificationCategories([category])
+            center.delegate = self
+            application.registerForRemoteNotifications()
+        } else if #available(iOS 8.0, *) {
+            //注册推送,用于iOS8以上系统
+            // 通知扩展按钮  iOS9 以上  有 普通和 带输入框 2个种类 behavior属性控制
+            // 在锁屏的时候  收到通知 左滑通知 能看到按钮  点击对应调用 handle Action 的代理
+            // 带输入框 点击 调用的是 handle Action   withResponseInfo 的代理
+            // 本地 和远程同理
+            let action1 = UIMutableUserNotificationAction()
+            action1.title = "测试1"
+            action1.activationMode = .background
+            action1.identifier = "test1"
+            action1.isDestructive = false
+            
+            if #available(iOS 9.0, *) {
+                action1.behavior = .default
+            } else {
+                // Fallback on earlier versions
+            }
+            action1.isAuthenticationRequired = true
+            let category1 = UIMutableUserNotificationCategory()
+            category1.identifier = "category1"
+            category1.setActions([action1], for: .default)
+            
+            
+            application.registerUserNotificationSettings(
+                UIUserNotificationSettings(types:[.alert, .badge, .sound], categories: [category1]))
+            application.registerForRemoteNotifications()
+        } else {
+            //注册推送,用于iOS8以下系统
+            application.registerForRemoteNotifications(matching: [.badge, .alert, .sound])
+        }
     }
-  }
-  
-  
+    
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
-
+    
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
@@ -129,7 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        BaiduLocationManager.stopLocationService()
+        //        BaiduLocationManager.stopLocationService()
         Notifications.timerChatMessageUpdate.post("end" as AnyObject)
     }
     
@@ -139,7 +145,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Notifications.timerChatMessageUpdate.post("star" as AnyObject)
         
         application.applicationIconBadgeNumber = 0
-        BaiduLocationManager.startLocationService()//进入前台获取位置
+        //        BaiduLocationManager.startLocationService()//进入前台获取位置
         
     }
     // no equiv. notification. return NO if the application can't open for some reason
@@ -152,11 +158,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return result
     }
-
-//MARK: -- 分享 支付 回调  ios 8
+    
+    //MARK: -- 分享 支付 回调  ios 8
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         Log.info("AppDelegate: application open url \"\(url)\" from source application \"\(String(describing: sourceApplication))\"");
-//          BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
+        //          BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
         let result = UMSocialManager().handleOpen(url)
         if !result {
             Log.info("application openURL: \(url) \(String(describing: sourceApplication))")
@@ -209,7 +215,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
             abort()
         }
-        
         return coordinator
     }()
     
@@ -315,7 +320,7 @@ extension AppDelegate: RCIMConnectionStatusDelegate, RCIMUserInfoDataSource, RCI
     
     //用户信息提供者。您需要在completion中返回userId对应的用户信息，SDK将根据您提供的信息显示头像和用户名
     func getUserInfo(withUserId userId: String!, completion: ((RCUserInfo?) -> Void)!) {
-//        print("用户信息提供者，getUserInfoWithUserId:\(userId)")
+        //        print("用户信息提供者，getUserInfoWithUserId:\(userId)")
         //简单的示例，根据userId获取对应的用户信息并返回
         //建议您在本地做一个缓存，只有缓存没有该用户信息的情况下，才去您的服务器获取，以提高用户体验
         if (userId == "CB") {
@@ -349,110 +354,6 @@ extension AppDelegate: RCIMConnectionStatusDelegate, RCIMUserInfoDataSource, RCI
             print("收到一条消息")
         }
     }
-}
-//MARK: - Location Service
-extension AppDelegate: BMKGeneralDelegate, BMKGeoCodeSearchDelegate {
-    
-    func locationUpdatedNotification(_ notification : Notification) {
-        if let location = notification.object as? CLLocation {
-            let coord = location.coordinate
-            
-            let searcher = BMKGeoCodeSearch()
-            searcher.delegate = self
-            
-            let reverseGeoCodeSearchOption = BMKReverseGeoCodeOption()
-            reverseGeoCodeSearchOption.reverseGeoPoint = coord
-            
-            if !searchingReverseGeoCode {
-                searchingReverseGeoCode = true
-                BaiduLocationManager.stopLocationService()
-                
-                if !searcher.reverseGeoCode(reverseGeoCodeSearchOption) {
-                    Log.error("BMK: 反geo检索发送失败")
-                    BaiduLocationManager.startLocationService()
-                    searchingReverseGeoCode = false
-                } else {
-                    searcher.delegate = nil
-                }
-            }
-        }
-    }
-    
-    func onGetReverseGeoCodeResult(_ searcher: BMKGeoCodeSearch!, result: BMKReverseGeoCodeResult!, errorCode error: BMKSearchErrorCode) {
-        searchingReverseGeoCode = false
-        switch error {
-        case BMK_SEARCH_NO_ERROR:
-            let coord = result.location
-            let locObj = Location(lat: coord.latitude, lng: coord.longitude)
-            // Location name
-            locObj.locName = result.addressDetail.streetName
-            // province
-            locObj.province = result.addressDetail.province
-            // district
-            locObj.district = result.addressDetail.district
-            // Street address
-            locObj.street = result.addressDetail.streetName + result.addressDetail.streetNumber
-            locObj.city = result.addressDetail.city
-            session.city = locObj.city
-            Log.info("城市：\(String(describing: locObj.city))")
-            // Zip code
-            
-            Log.info("BMK ReverseGeoCodeResult: \(result.addressDetail.province) \(result.addressDetail.city) \(result.addressDetail.district) \(result.addressDetail.streetName) \(result.addressDetail.streetNumber) 商业圈： \(result.businessCircle) 经度：\(result.location.longitude) 维度：\(result.location.latitude) 地址周边POI信息，成员类型为BMKPoiInfo \(result.poiList)")
-            
-            Log.info("place update: \(locObj.locName ?? "") in \(locObj.city ?? "")")
-            locObj.lasttime = Date().timestamp
-//            cache.setObject(Mapper(). toJSONString(locObj.city), forKey: CacheManager.Key.Location.rawValue)
-//            cache[.Location] = Mapper().toJSONString(locObj)
-            Notifications.placeUpdated.post(locObj)
-            
-            return
-            
-        case BMK_SEARCH_AMBIGUOUS_KEYWORD:
-            Log.error("BMK: 检索词有岐义")
-        case BMK_SEARCH_AMBIGUOUS_ROURE_ADDR:
-            Log.error("BMK: 检索地址有岐义")
-        case BMK_SEARCH_NOT_SUPPORT_BUS:
-            Log.error("BMK: 该城市不支持公交搜索")
-        case BMK_SEARCH_NOT_SUPPORT_BUS_2CITY:
-            Log.error("BMK: 不支持跨城市公交")
-        case BMK_SEARCH_RESULT_NOT_FOUND:
-            Log.error("BMK: 没有找到检索结果")
-        case BMK_SEARCH_ST_EN_TOO_NEAR:
-            Log.error("BMK: 起终点太近")
-        case BMK_SEARCH_KEY_ERROR:
-            Log.error("BMK: key错误")
-        case BMK_SEARCH_NETWOKR_ERROR:
-            Log.error("BMK: 网络连接错误")
-        case BMK_SEARCH_NETWOKR_TIMEOUT:
-            Log.error("BMK: 网络连接超时")
-        case BMK_SEARCH_PERMISSION_UNFINISHED:
-            Log.error("BMK: 还未完成鉴权，请在鉴权通过后重试")
-        default:
-            Log.error("BMK: 未知错误")
-        }
-        
-        BaiduLocationManager.startLocationService()
-    }
-    
-    //MARK: - BMKGeneralDelegate
-    
-    func onGetNetworkState(_ iError: Int32) {
-        if (0 == iError) {
-            Log.info("BMK: baidu联网成功")
-        } else {
-            Log.error("BMK: baidu联网失败，错误代码：Error \(iError)")
-        }
-    }
-    
-    func onGetPermissionState(_ iError: Int32) {
-        if (0 == iError) {
-            Log.info("BMK: baidu授权成功")
-            BaiduLocationManager.startLocationService()
-        } else {
-            Log.error("BMK: 授权失败，错误代码：Error \(iError)")
-        }
-    }
-    
 }
 //MARK: 登录代理
 extension AppDelegate: AppLoginSucessDelegate{
@@ -505,19 +406,19 @@ extension AppDelegate {
 //MARK: 推送通知
 @available(iOS 10.0, *)
 extension AppDelegate: UNUserNotificationCenterDelegate {
-  /// 在前台时收到本地推送时 需要如何通知
-  func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-    completionHandler([.badge,.sound,.alert])
-  }
-  /// 后台的时候点击通知进入app
-  func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-    if response is UNTextInputNotificationResponse {  // input action
-      
-    }else { //  default action
-      
+    /// 在前台时收到本地推送时 需要如何通知
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.badge,.sound,.alert])
     }
-    completionHandler()
-  }
+    /// 后台的时候点击通知进入app
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        if response is UNTextInputNotificationResponse {  // input action
+            
+        }else { //  default action
+            
+        }
+        completionHandler()
+    }
 }
 //MARK: 视频
 /*
@@ -544,3 +445,109 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
  //        self.Login = UIViewController.loadViewControllerFromStoryboard("Login", storyboardID: "LoginviewController") as? LoginviewController
  //        window?.rootViewController = self.Login
  */
+
+//MARK: - Location Service
+//extension AppDelegate: BMKGeneralDelegate, BMKGeoCodeSearchDelegate {
+//
+//    func locationUpdatedNotification(_ notification : Notification) {
+//        if let location = notification.object as? CLLocation {
+//            let coord = location.coordinate
+//
+//            let searcher = BMKGeoCodeSearch()
+//            searcher.delegate = self
+//
+//            let reverseGeoCodeSearchOption = BMKReverseGeoCodeOption()
+//            reverseGeoCodeSearchOption.reverseGeoPoint = coord
+//
+//            if !searchingReverseGeoCode {
+//                searchingReverseGeoCode = true
+//                BaiduLocationManager.stopLocationService()
+//
+//                if !searcher.reverseGeoCode(reverseGeoCodeSearchOption) {
+//                    Log.error("BMK: 反geo检索发送失败")
+//                    BaiduLocationManager.startLocationService()
+//                    searchingReverseGeoCode = false
+//                } else {
+//                    searcher.delegate = nil
+//                }
+//            }
+//        }
+//    }
+//
+//    func onGetReverseGeoCodeResult(_ searcher: BMKGeoCodeSearch!, result: BMKReverseGeoCodeResult!, errorCode error: BMKSearchErrorCode) {
+//        searchingReverseGeoCode = false
+//        switch error {
+//        case BMK_SEARCH_NO_ERROR:
+//            let coord = result.location
+//            let locObj = Location(lat: coord.latitude, lng: coord.longitude)
+//            // Location name
+//            locObj.locName = result.addressDetail.streetName
+//            // province
+//            locObj.province = result.addressDetail.province
+//            // district
+//            locObj.district = result.addressDetail.district
+//            // Street address
+//            locObj.street = result.addressDetail.streetName + result.addressDetail.streetNumber
+//            locObj.city = result.addressDetail.city
+//            session.city = locObj.city
+//            Log.info("城市：\(String(describing: locObj.city))")
+//            // Zip code
+//
+//            Log.info("BMK ReverseGeoCodeResult: \(result.addressDetail.province) \(result.addressDetail.city) \(result.addressDetail.district) \(result.addressDetail.streetName) \(result.addressDetail.streetNumber) 商业圈： \(result.businessCircle) 经度：\(result.location.longitude) 维度：\(result.location.latitude) 地址周边POI信息，成员类型为BMKPoiInfo \(result.poiList)")
+//
+//            Log.info("place update: \(locObj.locName ?? "") in \(locObj.city ?? "")")
+//            locObj.lasttime = Date().timestamp
+////            cache.setObject(Mapper(). toJSONString(locObj.city), forKey: CacheManager.Key.Location.rawValue)
+////            cache[.Location] = Mapper().toJSONString(locObj)
+//            Notifications.placeUpdated.post(locObj)
+//
+//            return
+//
+//        case BMK_SEARCH_AMBIGUOUS_KEYWORD:
+//            Log.error("BMK: 检索词有岐义")
+//        case BMK_SEARCH_AMBIGUOUS_ROURE_ADDR:
+//            Log.error("BMK: 检索地址有岐义")
+//        case BMK_SEARCH_NOT_SUPPORT_BUS:
+//            Log.error("BMK: 该城市不支持公交搜索")
+//        case BMK_SEARCH_NOT_SUPPORT_BUS_2CITY:
+//            Log.error("BMK: 不支持跨城市公交")
+//        case BMK_SEARCH_RESULT_NOT_FOUND:
+//            Log.error("BMK: 没有找到检索结果")
+//        case BMK_SEARCH_ST_EN_TOO_NEAR:
+//            Log.error("BMK: 起终点太近")
+//        case BMK_SEARCH_KEY_ERROR:
+//            Log.error("BMK: key错误")
+//        case BMK_SEARCH_NETWOKR_ERROR:
+//            Log.error("BMK: 网络连接错误")
+//        case BMK_SEARCH_NETWOKR_TIMEOUT:
+//            Log.error("BMK: 网络连接超时")
+//        case BMK_SEARCH_PERMISSION_UNFINISHED:
+//            Log.error("BMK: 还未完成鉴权，请在鉴权通过后重试")
+//        default:
+//            Log.error("BMK: 未知错误")
+//        }
+//
+//        BaiduLocationManager.startLocationService()
+//    }
+//
+//    //MARK: - BMKGeneralDelegate
+//
+//    func onGetNetworkState(_ iError: Int32) {
+//        if (0 == iError) {
+//            Log.info("BMK: baidu联网成功")
+//        } else {
+//            Log.error("BMK: baidu联网失败，错误代码：Error \(iError)")
+//        }
+//    }
+//
+//    func onGetPermissionState(_ iError: Int32) {
+//        if (0 == iError) {
+//            Log.info("BMK: baidu授权成功")
+//            BaiduLocationManager.startLocationService()
+//        } else {
+//            Log.error("BMK: 授权失败，错误代码：Error \(iError)")
+//        }
+//    }
+//
+//}
+

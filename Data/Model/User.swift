@@ -21,18 +21,24 @@ class User: Mappable {
     var state: Int?
     // 是不是第一次登陆
     var one_t: Int?
-    // 国籍
-    var country: String?
     // 护照
     var passport: String?
     // 性别
     var sex: String?
     // 年龄
     var age = 0
+    // 国籍
+    var country: String?
     // 省份
     var province: String?
     // 所在城市
     var city: String?
+    // 区县
+    var SubLocality: String?
+    // 街道
+    var Thoroughfare: String?
+    // 详细地址
+    var FormattedAddressLines: String?
     // 用户图标
     var headImgURL: String?
     // 账户

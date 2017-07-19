@@ -153,9 +153,9 @@ extension FunctionsViewController: UICollectionViewDelegate{
     case 2:
       self.performSegue(withIdentifier: "complexFilter", sender: nil)
     case 3:
-        let baidu = BaiduMapViewController()
-        
-        self.navigationController?.pushViewController(baidu, animated: true)
+        alert("地图SDK太大暂时取消")
+//        let baidu = BaiduMapViewController()
+//        self.navigationController?.pushViewController(baidu, animated: true)
     case 5:
         let baidu = RecordingVoiceController()
         self.tabBarController?.hidesBottomBarWhenPushed = true

@@ -22,6 +22,7 @@ class QNPhotoController: APPviewcontroller {
         didSet{
             if fileName.count == data.count {
                 photocollectionview.refreshData()
+                loader.removeLoader()
             }
         }
     }
@@ -53,21 +54,27 @@ class QNPhotoController: APPviewcontroller {
         //        layout.footerReferenceSize = CGSizeZero //CGSizeMake(App_width,80)
     }
     func initData(){
+//        WavesLoader.showLoader(with: path())
+        loader.showLoader()
         ALY?.getBucketListData(callback: { (content:[Any]) in
-            self.fileName = [String]()
+            var nameArray = [String]()
             for obj in content as! Array<Dictionary<String,Any>> {
                 if let name = obj["Key"] as? String {
-                    self.fileName.append(name)
+                    nameArray.append(name)
                 }
             }
-            self.downfile(array: self.fileName)
+            self.downfile(array: nameArray)
         })
     }
     func downfile(array:[String]){
+        self.fileName = [String]()
         for name in array {
             // 下载
             ALY?.downloadObjectAsync(fileName: name, callBack: { (d) in
-                self.data.append(d)
+                async({ 
+                    self.fileName.append(name)
+                    self.data.append(d)
+                })
             })
         }
     }
@@ -76,8 +83,6 @@ class QNPhotoController: APPviewcontroller {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
 }
 //Mark: ------ UICollectionViewDataSource
 extension QNPhotoController: UICollectionViewDataSource{

@@ -76,7 +76,6 @@ class RetrieveMobileAddressbook: NSObject {
         return ""
     }
 
-
 	// MARK: -  返回排序好的字符拼音
 	func ReturnSortChineseArrar(_ stringArr: [String]) -> [RetrieveMobileAddressbook] {
 		var chineseStringsArray = [RetrieveMobileAddressbook]()
