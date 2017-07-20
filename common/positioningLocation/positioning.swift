@@ -42,7 +42,7 @@ class locationServiceUser {
             }
         }
     }
-    var timeoutNumber = 0
+    private var timeoutNumber = 0
     //    private init() {}
     
     //MARK: 根据 精度 地址获取的位置
@@ -81,12 +81,13 @@ class locationServiceUser {
     func PositiveGeocoding(location: CLLocation){
         //        let loc = CLLocation(latitude: 31.04560000, longitude: 121.39970000) po placemarks[0].addressDictionary
         Location.getPlacemark(forLocation: location,  timeout: 60, success: { [weak self] placemarks in
+            let dic = placemarks.first?.addressDictionary
             self?.FormattedAddressLines = (placemarks.first?.addressDictionary?["FormattedAddressLines"] as! [String])[0]  // 详细地址
-            self?.Country = (placemarks.first?.addressDictionary?["Country"] as! String) // 国家
-            self?.State = (placemarks.first?.addressDictionary?["State"] as! String) // 城市
-            self?.SubLocality = (placemarks.first?.addressDictionary?["SubLocality"] as! String) // 区县
-            self?.Thoroughfare = (placemarks.first?.addressDictionary?["Thoroughfare"] as! String) // 街道
-            self?.SubThoroughfare = (placemarks.first?.addressDictionary?["SubThoroughfare"] as! String) // 街道牌号
+            self?.Country = dic?["Country"] as! String // 国家
+            self?.State = dic?["State"] as! String // 城市
+            self?.SubLocality = dic?["SubLocality"] as! String // 区县
+            self?.Thoroughfare = dic?["Thoroughfare"] as! String // 街道
+            self?.SubThoroughfare = dic?["SubThoroughfare"] as! String // 街道牌号
             if self?.FormattedAddressLines == "地址未知" {
                 self?.timeoutNumber += 1
                 self?.LocationMonitoringUser()
@@ -94,7 +95,7 @@ class locationServiceUser {
                 self?.timeoutNumber = 0
             }
         }) { error in
-            toast("未找到此地址\(error)")
+            print("未找到此地址\(error)")
             self.timeoutNumber += 1
             self.LocationMonitoringUser()
         }

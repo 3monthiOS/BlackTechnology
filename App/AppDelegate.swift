@@ -55,8 +55,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //        }
         //        Notifications.locationUpdated.addObserver(self, selector: #selector(locationUpdatedNotification(_:)), sender: nil)
         
-        locationUser.LocationMonitoringUser()
+        if #available(iOS 9.0, *) {
+            locationUser.LocationMonitoringUser()
+        } else {
+            LocationManager.sharedInstance.startUpdateLocation()
+        }
         
+        
+        
+        Log.debug(LocationManager.sharedInstance.address)
         //MARK: IQ 键盘
         IQKeyboardManager.sharedManager().enable = true
         

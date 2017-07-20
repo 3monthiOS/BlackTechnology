@@ -12,11 +12,10 @@ target :App do
     pod 'SwiftyJSON', '~> 3.1'
 #    pod 'Toast-Swift', '~> 2.0.0'
     pod 'IQKeyboardManagerSwift'
-    
+    # 融云
     pod 'RongCloudIM/IMLib', '~> 2.8.12'
     pod 'RongCloudIM/IMKit', '~> 2.8.12'
 #    pod 'RongCloudIM', '~> 2.8.12'
-
     pod 'MJRefresh'
     # 定位
     pod 'SwiftLocation'
@@ -48,6 +47,8 @@ target :App do
     pod 'HandyJSON'
     # 阿里对象存储
     pod 'AliyunOSSiOS'
+    # 日历
+#    pod 'FSCalendar'
 end
 
 post_install do |installer|

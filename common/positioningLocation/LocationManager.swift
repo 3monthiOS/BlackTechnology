@@ -39,7 +39,15 @@ class LocationManager: NSObject {
   
   static let sharedInstance = LocationManager()
   fileprivate var _locationManager: CLLocationManager!
-  var address: String!
+    var address: String = "" {
+        didSet{
+            if let userinfos: User = cache.object(forKey: CacheManager.Key.User.rawValue) {
+                user = userinfos
+                user.FormattedAddressLines = address
+                Log.info(user.FormattedAddressLines)
+            }
+        }
+    }
   var addressHandle: locationAddress?
   var hasGetAddress: Bool = false
   
@@ -48,7 +56,7 @@ class LocationManager: NSObject {
     _locationManager = CLLocationManager()
   }
   
-  private func startUpdateLocation() {
+    func startUpdateLocation() {
     
     if !CLLocationManager.locationServicesEnabled() {
       let alert = UIAlertController(title: "定位服务当前可能尚未打开，请设置打开！", message: "", preferredStyle: .alert)
@@ -80,20 +88,20 @@ class LocationManager: NSObject {
       _locationManager.startUpdatingLocation()
     }
   }
-  private func toSetting() {
-    let url = URL(string: "prefs:root=LOCATION_SERVICES")
-    if #available(iOS 10.0, *) {
-      UIApplication.shared.open(url, options: [:], completionHandler: nil)
-    } else {
-      UIApplication.shared.open(url)
+    private func toSetting() {
+        let url = URL(string: "prefs:root=LOCATION_SERVICES")
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url!)
+        }
     }
-  }
   
   private func stopUpdateLocation() {
     _locationManager.stopUpdatingLocation()
   }
   
-  private func getReverseGeocodeWithCoordiate(_ coordiate:CLLocationCoordinate2D) {
+  fileprivate func getReverseGeocodeWithCoordiate(_ coordiate:CLLocationCoordinate2D) {
     let geocoder = CLGeocoder()
     let location = CLLocation(latitude: coordiate.latitude, longitude: coordiate.longitude)
     geocoder.reverseGeocodeLocation(location) { (placemarks, error) -> Void in
@@ -105,9 +113,9 @@ class LocationManager: NSObject {
         guard let _ = placemark else { return }
         self.address = placemark!.name!
         self.hasGetAddress = true
-        addressHandle?(address)
+        self.addressHandle?(self.address)
       }
-      stopUpdateLocation()
+      self.stopUpdateLocation()
     }
   }
 }
