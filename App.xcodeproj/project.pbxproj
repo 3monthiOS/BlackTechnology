@@ -19,6 +19,7 @@
 		654B6ADB1D9D25DA00B46F6F /* GradientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B6AD81D9D25DA00B46F6F /* GradientViewController.swift */; };
 		65529C351D9E66CE00ED3E1C /* MutableFilterMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65529C341D9E66CE00ED3E1C /* MutableFilterMoreViewController.swift */; };
 		65529C3A1D9E722A00ED3E1C /* CubeMap.c in Sources */ = {isa = PBXBuildFile; fileRef = 65529C391D9E722A00ED3E1C /* CubeMap.c */; };
+		655707B21F60F7D70083613D /* DynamicBallVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655707B11F60F7D70083613D /* DynamicBallVC.swift */; };
 		657929B31EA8A5E10006F607 /* VideoRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657929B21EA8A5E10006F607 /* VideoRecorderViewController.swift */; };
 		F20C5E071EBB37D0001EA55E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F20C5E051EBB37D0001EA55E /* LaunchScreen.storyboard */; };
 		F20F50CE1EBB44CE00DCC828 /* ShowTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F50CD1EBB44CE00DCC828 /* ShowTextModel.swift */; };
@@ -294,6 +295,7 @@
 		654B6AD81D9D25DA00B46F6F /* GradientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientViewController.swift; sourceTree = "<group>"; };
 		65529C341D9E66CE00ED3E1C /* MutableFilterMoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableFilterMoreViewController.swift; sourceTree = "<group>"; };
 		65529C391D9E722A00ED3E1C /* CubeMap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CubeMap.c; sourceTree = "<group>"; };
+		655707B11F60F7D70083613D /* DynamicBallVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicBallVC.swift; sourceTree = "<group>"; };
 		657929B21EA8A5E10006F607 /* VideoRecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoRecorderViewController.swift; sourceTree = "<group>"; };
 		7FEFAF43BC70671EDF9716E6 /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5A6087CE1A63B4E2D426C9 /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
@@ -693,6 +695,14 @@
 				654B6AD81D9D25DA00B46F6F /* GradientViewController.swift */,
 			);
 			path = Gradient;
+			sourceTree = "<group>";
+		};
+		655707B01F60F7BE0083613D /* DynamicBall */ = {
+			isa = PBXGroup;
+			children = (
+				655707B11F60F7D70083613D /* DynamicBallVC.swift */,
+			);
+			path = DynamicBall;
 			sourceTree = "<group>";
 		};
 		657929B11EA8A5E10006F607 /* video */ = {
@@ -1377,6 +1387,7 @@
 		F2666A8D1D879C6F00B2029E /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				655707B01F60F7BE0083613D /* DynamicBall */,
 				F2770E031F46736B00B2ECE6 /* RoastingViewController */,
 				654813931F010BC20097D932 /* QRcode */,
 				653A240B1EFD190F001B7CD0 /* nativeShare */,
@@ -2011,7 +2022,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		32F335A404EDC93686839C60 /* [CP] Copy Pods Resources */ = {
@@ -2178,6 +2189,7 @@
 				F2F46F451EEE2B3400480A64 /* RecordingVoiceController.swift in Sources */,
 				F2BD8A3B1EB9C97500AE3F06 /* GIFCell.swift in Sources */,
 				F23481511EA5E6EE00CB84F2 /* CALayer+Extension.swift in Sources */,
+				655707B21F60F7D70083613D /* DynamicBallVC.swift in Sources */,
 				F20F51FD1EB97D1800061BBE /* TYTabButtonPagerController.m in Sources */,
 				F25F52371F134C780091C7E0 /* ALYPhotoController.swift in Sources */,
 				F294B34A1DFFDDB70055C8CB /* UserIphoneNumbercell.swift in Sources */,

@@ -37,11 +37,11 @@ class QRcodeAndBarCodeVC: UIViewController {
         self.navigationController?.pushViewController(VC, animated: true)
     }
     
-  func QRcode()-> UIImage {
+  func QRcode() -> UIImage {
     let  ciimg = generateQRCodeImage("www.baidu.com")
     return resizeCode(image: ciimg,size: CGSize(width: 200, height: 200))
   }
-  func barCode()-> UIImage {
+  func barCode() -> UIImage {
     let  ciimg = generateBarCodeImage("122333434")
     return resizeCode(image: ciimg,size: CGSize(width: view.bounds.width - 20, height: 80))
   }

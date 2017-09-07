@@ -19,7 +19,7 @@ class FunctionsViewController: APPviewcontroller {
     var collectionfoot: CollectionReusableViewFooter!
     var collectionHeader: UICollectionReusableView!
     dynamic var isAinmationStatus = true
-    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","通讯录","上传图片","云相册","视频录制","GIF","TableViewAnimation","LTDemo","放射变换","转场动画","本地通知","UIStackView","分享","原生分享","二维码和条形码","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
+    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","通讯录","上传图片","云相册","视频录制","GIF","TableViewAnimation","LTDemo","放射变换","转场动画","本地通知","UIStackView","分享","原生分享","二维码和条形码","动态球","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
     
     var temArray = [QdanCollectionViewCell]()
     
@@ -214,7 +214,9 @@ extension FunctionsViewController: UICollectionViewDelegate{
         case 22 :
             let vc = QRcodeAndBarCodeVC()
             navigationController?.pushViewController(vc, animated: true)
-        
+        case 23 :
+          let vc = DynamicBallVC()
+          navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }
