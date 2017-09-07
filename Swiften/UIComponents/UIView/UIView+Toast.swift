@@ -326,6 +326,7 @@ public extension UIView {
 
         objc_setAssociatedObject(self, &ToastKeys.ActivityView, toast, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 
+        self.isUserInteractionEnabled = false
         self.addSubview(toast)
 
         UIView.animate(withDuration: ToastManager.shared.style.fadeDuration, delay: 0.0, options: .curveEaseOut, animations: { () -> Void in

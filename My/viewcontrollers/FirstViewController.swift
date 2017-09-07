@@ -97,6 +97,7 @@ extension FirstViewController : ZHJtableviewDelgate{
         return cell
     }
     func didSelectRowAtIndexPath(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+        
         if indexPath.row == 6{
             user.state = 0
             user.one_t = 1

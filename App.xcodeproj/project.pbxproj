@@ -148,6 +148,8 @@
 		F26BAC961ED41574001A4AEC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26BAC941ED41574001A4AEC /* SettingsViewController.swift */; };
 		F26BACA11ED42DBC001A4AEC /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26BACA01ED42DBC001A4AEC /* UIView+Extension.swift */; };
 		F2749E421EF7C92700B42417 /* SocialUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2749E411EF7C92700B42417 /* SocialUtils.swift */; };
+		F2770E021F46730400B2ECE6 /* AYScrollerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F2770E011F46730400B2ECE6 /* AYScrollerLabel.m */; };
+		F2770E051F46738100B2ECE6 /* RoastingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2770E041F46738100B2ECE6 /* RoastingViewController.swift */; };
 		F27AE1FD1D928E09000E0509 /* CollectionReusableViewHeadre.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27AE1F71D928E09000E0509 /* CollectionReusableViewHeadre.swift */; };
 		F27AE1FE1D928E09000E0509 /* CollectionReusableViewHeadre.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27AE1F81D928E09000E0509 /* CollectionReusableViewHeadre.xib */; };
 		F27AE1FF1D928E09000E0509 /* QdanCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27AE1F91D928E09000E0509 /* QdanCollectionViewCell.swift */; };
@@ -445,6 +447,9 @@
 		F26BAC941ED41574001A4AEC /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F26BACA01ED42DBC001A4AEC /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		F2749E411EF7C92700B42417 /* SocialUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialUtils.swift; sourceTree = "<group>"; };
+		F2770E001F46730400B2ECE6 /* AYScrollerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AYScrollerLabel.h; path = ../../AYScrollerLabel.h; sourceTree = "<group>"; };
+		F2770E011F46730400B2ECE6 /* AYScrollerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AYScrollerLabel.m; path = ../../AYScrollerLabel.m; sourceTree = "<group>"; };
+		F2770E041F46738100B2ECE6 /* RoastingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoastingViewController.swift; sourceTree = "<group>"; };
 		F27AE1F71D928E09000E0509 /* CollectionReusableViewHeadre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionReusableViewHeadre.swift; sourceTree = "<group>"; };
 		F27AE1F81D928E09000E0509 /* CollectionReusableViewHeadre.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionReusableViewHeadre.xib; sourceTree = "<group>"; };
 		F27AE1F91D928E09000E0509 /* QdanCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QdanCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1372,6 +1377,7 @@
 		F2666A8D1D879C6F00B2029E /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				F2770E031F46736B00B2ECE6 /* RoastingViewController */,
 				654813931F010BC20097D932 /* QRcode */,
 				653A240B1EFD190F001B7CD0 /* nativeShare */,
 				F250A2A41EFA060000F964A5 /* Share */,
@@ -1416,6 +1422,17 @@
 				F2749E411EF7C92700B42417 /* SocialUtils.swift */,
 			);
 			path = ThirdShare;
+			sourceTree = "<group>";
+		};
+		F2770E031F46736B00B2ECE6 /* RoastingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F2770E001F46730400B2ECE6 /* AYScrollerLabel.h */,
+				F2770E011F46730400B2ECE6 /* AYScrollerLabel.m */,
+				F2770E041F46738100B2ECE6 /* RoastingViewController.swift */,
+			);
+			name = RoastingViewController;
+			path = vgbhjnkm;
 			sourceTree = "<group>";
 		};
 		F27AE1F61D928E09000E0509 /* collectionCell */ = {
@@ -2086,6 +2103,7 @@
 				F2D3A3E11E038E0D007DE758 /* FirstViewController.swift in Sources */,
 				F20F520E1EB97D1800061BBE /* UIView+AnimationProperty.swift in Sources */,
 				F23481571EA5E6EE00CB84F2 /* UIView+Toast.swift in Sources */,
+				F2770E021F46730400B2ECE6 /* AYScrollerLabel.m in Sources */,
 				F20F51F61EB97D1800061BBE /* Notifications.swift in Sources */,
 				F23481371EA5E6ED00CB84F2 /* DispatchQueue+Once.swift in Sources */,
 				F2ED94611D86AF8E000C2E59 /* ChatListviewcontroller.swift in Sources */,
@@ -2132,6 +2150,7 @@
 				F26BACA11ED42DBC001A4AEC /* UIView+Extension.swift in Sources */,
 				F2D6904B1DFE7A200087328B /* CollectionReusableHeadre.swift in Sources */,
 				F29A8FAE1F1DED36009E63E3 /* SpikeLoader.swift in Sources */,
+				F2770E051F46738100B2ECE6 /* RoastingViewController.swift in Sources */,
 				F23481551EA5E6EE00CB84F2 /* UIImage+Extension.swift in Sources */,
 				F23481561EA5E6EE00CB84F2 /* UIView+Swizzle.swift in Sources */,
 				F20F50CE1EBB44CE00DCC828 /* ShowTextModel.swift in Sources */,

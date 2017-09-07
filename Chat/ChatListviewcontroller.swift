@@ -131,10 +131,13 @@ class ChatListviewcontroller: RCConversationListViewController {
 extension ChatListviewcontroller{
     
     func requestTest(){
-        HttpClient.default.adapter = AccessTokenAdapter()
-        HttpClient.defaultEncoding = JerseyEncoding.default
-        HttpClient.errorFieldName = "msg"
-        testParam()
+        
+        
+        
+//        HttpClient.default.adapter = AccessTokenAdapter()
+//        HttpClient.defaultEncoding = JerseyEncoding.default
+//        HttpClient.errorFieldName = "msg"
+//        testParam()
     }
     
     func testParam() {

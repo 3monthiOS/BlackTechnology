@@ -16,6 +16,7 @@ class QdanCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     var viewcontroller: FunctionsViewController? = nil
     var index: IndexPath?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
       self.clipsToBounds = false
@@ -33,8 +34,7 @@ class QdanCollectionViewCell: UICollectionViewCell {
     func bindData(_ imageName: [String],functionTitle: [String], atIndex indexPath: IndexPath ,VC viewcontroller:UIViewController) {
         self.viewcontroller = viewcontroller as? FunctionsViewController
         // isAinmationStatus 监听这个状态 来决定是否开始动画
-        
-        btn.image = UIImage(named:"加载失败")
+        Log.info("加载第\(indexPath.row)行")
         index = indexPath
         let imagename = imageName[(index?.row)!]
         btn.contentMode = .scaleAspectFill
@@ -46,14 +46,15 @@ class QdanCollectionViewCell: UICollectionViewCell {
                         if !callback.isEmpty{
                             guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}
                             self.btn.setGifImage(UIImage(gifData: imageData, levelOfIntegrity: 1.0))
+//                            self.btn.stopAnimatingGif()
                         }else{
-//                            Log.info("我没有找到：————————\(str)")
                             //网络获取
                             if imagename.hasPrefix("http://") || imagename.hasPrefix("https://") {
                                 if Reachability.networkStatus != .notReachable {
                                     fileDownload([imagename], complate: { (isok, callbackData) in
                                         if isok{
                                             self.btn.setGifImage(UIImage(gifData: callbackData[0], levelOfIntegrity: 1.0))
+//                                            self.btn.stopAnimatingGif()
 //                                            self.btn.image = UIImage.gifWithData(callbackData[0])
                                         }
                                     })
@@ -74,15 +75,15 @@ class QdanCollectionViewCell: UICollectionViewCell {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "isAinmationStatus" {
             if self.viewcontroller!.isAinmationStatus {
-                self.btn.startAnimatingGif()
+                Log.info("第\(String(describing: index?.row))行开始动画")
+//                self.btn.startAnimatingGif()
             }else{
                 self.btn.stopAnimatingGif()
             }
-            
         }
     }
     deinit {
-        self.removeObserver(self.viewcontroller!, forKeyPath: "isAinmationStatus", context: nil)
+        self.viewcontroller?.removeObserver(self, forKeyPath: "isAinmationStatus", context: nil)
     }
 }
 

@@ -104,6 +104,27 @@ struct QNUtils {
         Log.info("最后的key___      \(accesstoken)")
         return accesstoken
     }
+    
+    // 七牛验证
+    func QNcheck(){
+//        let box = QNUtils.getaccesskey()
+//        let headers = [
+//            "Authorization": "QBox \(box)",
+//            "Content-Type": "application/x-www-form-urlencoded",
+//            ]
+//        Log.info("+++++++++++++____________\(String(describing: headers["Authorization"]))")
+//        //http://rsf.qbox.me/list?bucket=zhj1214
+//        let bucket = "zhj1214"
+//        Alamofire.request(.POST, "http://rsf.qbox.me/list?", parameters: ["bucket":bucket], encoding: .URL, headers: headers).responseJSON { (response) in
+//            if response.result.isSuccess{
+//                Log.info("成功----------\(response.response)----\(response.response?.allHeaderFields)-\(response.data)-\(response.result)-\(response.debugDescription)-\(response.description)")
+//            }else{
+//                Log.info("失败------\(response.result.error)")
+//            }
+//        }
+    }
+
+    
     /*                                          上传凭证
     # 假设有如下的管理请求：
     AccessKey = "MY_ACCESS_KEY"
