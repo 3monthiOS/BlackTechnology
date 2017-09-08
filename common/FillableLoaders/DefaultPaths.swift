@@ -19,6 +19,7 @@ struct Paths {
         bezierPath.addCurve(to: CGPoint(x: 238, y: 329), controlPoint1: CGPoint(x: 216.51, y: 377), controlPoint2: CGPoint(x: 238, y: 355.51))
         bezierPath.addCurve(to: CGPoint(x: 190, y: 281), controlPoint1: CGPoint(x: 238, y: 302.49), controlPoint2: CGPoint(x: 216.51, y: 281))
         bezierPath.close()
+        
         bezierPath.move(to: CGPoint(x: 209.52, y: 320.32))
         bezierPath.addCurve(to: CGPoint(x: 209.55, y: 321.55), controlPoint1: CGPoint(x: 209.54, y: 320.73), controlPoint2: CGPoint(x: 209.55, y: 321.14))
         bezierPath.addCurve(to: CGPoint(x: 182.65, y: 348.44), controlPoint1: CGPoint(x: 209.55, y: 334.04), controlPoint2: CGPoint(x: 200.04, y: 348.44))
@@ -95,4 +96,63 @@ struct Paths {
         bezierPath.miterLimit = 4;
         return bezierPath.cgPath
     }
+    
+    static func getZhangath() -> CGPath {
+        let bezierPath = UIBezierPath()
+        bezierPath.move(to: CGPoint(x: -100, y: 0))
+        bezierPath.addCurve(to: CGPoint(x: -20, y: 0), controlPoint1: CGPoint(x: -60, y: 0), controlPoint2: CGPoint(x: 0, y: 0))
+        bezierPath.addCurve(to: CGPoint(x: -20, y: 40), controlPoint1: CGPoint(x: -20, y: 10), controlPoint2: CGPoint(x: -20, y: 30))
+        bezierPath.addCurve(to: CGPoint(x: -100, y: 40), controlPoint1: CGPoint(x: -40, y: 40), controlPoint2: CGPoint(x: -80, y: 40))
+        bezierPath.addCurve(to: CGPoint(x: -100, y: 120), controlPoint1: CGPoint(x: -100, y: 50), controlPoint2: CGPoint(x: -100, y: 100))
+        bezierPath.addCurve(to: CGPoint(x: -20, y: 120), controlPoint1: CGPoint(x: -60, y: 120), controlPoint2: CGPoint(x: -40, y: 120))
+        bezierPath.addCurve(to: CGPoint(x: -20, y: 160), controlPoint1: CGPoint(x: -20, y: 130), controlPoint2: CGPoint(x: -20, y: 150))
+        bezierPath.addCurve(to: CGPoint(x: -100, y: 160), controlPoint1: CGPoint(x: 9-100, y: 160), controlPoint2: CGPoint(x: -40, y: 160))
+        bezierPath.addCurve(to: CGPoint(x: -100, y: 180), controlPoint1: CGPoint(x: -100, y: 165), controlPoint2: CGPoint(x: -100, y: 170))
+        bezierPath.addCurve(to: CGPoint(x: 0, y: 180), controlPoint1: CGPoint(x: 3-100, y: 180), controlPoint2: CGPoint(x: -40, y: 180))
+        bezierPath.addCurve(to: CGPoint(x: 0, y: 100), controlPoint1: CGPoint(x: 0, y: 180), controlPoint2: CGPoint(x: 0, y: 150))
+        
+        bezierPath.addCurve(to: CGPoint(x: -80, y: 100), controlPoint1: CGPoint(x: -40, y: 100), controlPoint2: CGPoint(x: 3-100, y: 100))
+        bezierPath.addCurve(to: CGPoint(x: -80, y: 60), controlPoint1: CGPoint(x: -80, y: 90), controlPoint2: CGPoint(x: -80, y: 75))
+        bezierPath.addCurve(to: CGPoint(x: 0, y: 60), controlPoint1: CGPoint(x: -40, y: 60), controlPoint2: CGPoint(x: -20, y: 60))
+        bezierPath.addCurve(to: CGPoint(x: 0, y: -20), controlPoint1: CGPoint(x: 0, y: 50), controlPoint2: CGPoint(x: 0, y: 30))
+        
+        bezierPath.addCurve(to: CGPoint(x: -100, y: -20), controlPoint1: CGPoint(x: -40, y: -20), controlPoint2: CGPoint(x: -70, y: -20))
+        bezierPath.close()
+        
+        bezierPath.move(to: CGPoint(x: 60, y: -20))
+        bezierPath.addCurve(to: CGPoint(x: 60, y: 70), controlPoint1: CGPoint(x: 60, y: 20), controlPoint2: CGPoint(x: 60, y: 50))
+        bezierPath.addCurve(to: CGPoint(x: 20, y: 70), controlPoint1: CGPoint(x: 50, y: 70), controlPoint2: CGPoint(x: 40, y: 70))
+        bezierPath.addCurve(to: CGPoint(x: 20, y: 90), controlPoint1: CGPoint(x: 20, y: 80), controlPoint2: CGPoint(x: 20, y: 85))
+        bezierPath.addCurve(to: CGPoint(x: 60, y: 90), controlPoint1: CGPoint(x: 30, y: 90), controlPoint2: CGPoint(x: 50, y: 90))
+        bezierPath.addCurve(to: CGPoint(x: 60, y: 180), controlPoint1: CGPoint(x: 60, y: 120), controlPoint2: CGPoint(x: 60, y: 160))
+        bezierPath.addCurve(to: CGPoint(x: 120, y: 180), controlPoint1: CGPoint(x: 80, y: 180), controlPoint2: CGPoint(x: 100, y: 180))
+        bezierPath.addCurve(to: CGPoint(x: 120, y: 160), controlPoint1: CGPoint(x: 120, y: 175), controlPoint2: CGPoint(x: 120, y: 170))
+        bezierPath.addCurve(to: CGPoint(x: 80, y: 160), controlPoint1: CGPoint(x: 110, y: 160), controlPoint2: CGPoint(x: 90, y: 160))
+        bezierPath.addCurve(to: CGPoint(x: 80, y: 145), controlPoint1: CGPoint(x: 80, y: 155), controlPoint2: CGPoint(x: 80, y: 150))
+        
+        bezierPath.addCurve(to: CGPoint(x: 120, y: 145), controlPoint1: CGPoint(x: 90, y: 145), controlPoint2: CGPoint(x: 110, y: 145))
+        bezierPath.addCurve(to: CGPoint(x: 120, y: 125), controlPoint1: CGPoint(x: 120, y: 135), controlPoint2: CGPoint(x: 120, y: 130))
+        bezierPath.addCurve(to: CGPoint(x: 80, y: 125), controlPoint1: CGPoint(x: 110, y: 125), controlPoint2: CGPoint(x: 90, y: 125))
+        bezierPath.addCurve(to: CGPoint(x: 80, y: 90), controlPoint1: CGPoint(x: 80, y: 110), controlPoint2: CGPoint(x: 80, y: 100))
+        
+        bezierPath.addCurve(to: CGPoint(x: 120, y: 90), controlPoint1: CGPoint(x: 90, y: 90), controlPoint2: CGPoint(x: 110, y: 90))
+        bezierPath.addCurve(to: CGPoint(x: 120, y: 70), controlPoint1: CGPoint(x: 120, y: 80), controlPoint2: CGPoint(x: 120, y: 75))
+        bezierPath.addCurve(to: CGPoint(x: 80, y: 70), controlPoint1: CGPoint(x: 110, y: 70), controlPoint2: CGPoint(x: 90, y: 70))
+        
+        bezierPath.addCurve(to: CGPoint(x: 80, y: 35), controlPoint1: CGPoint(x: 80, y: 60), controlPoint2: CGPoint(x: 80, y: 40))
+
+        bezierPath.addCurve(to: CGPoint(x: 120, y: 35), controlPoint1: CGPoint(x: 90, y: 35), controlPoint2: CGPoint(x: 110, y: 35))
+        bezierPath.addCurve(to: CGPoint(x: 120, y: 15), controlPoint1: CGPoint(x: 120, y: 30), controlPoint2: CGPoint(x: 120, y: 20))
+        bezierPath.addCurve(to: CGPoint(x: 80, y: 15), controlPoint1: CGPoint(x: 110, y: 15), controlPoint2: CGPoint(x: 90, y: 15))
+
+        bezierPath.addCurve(to: CGPoint(x: 80, y: -20), controlPoint1: CGPoint(x: 80, y: 10), controlPoint2: CGPoint(x: 80, y: 0))
+
+        
+        bezierPath.close()
+        
+        
+        bezierPath.miterLimit = 3;
+        return bezierPath.cgPath
+    }
+    
 }

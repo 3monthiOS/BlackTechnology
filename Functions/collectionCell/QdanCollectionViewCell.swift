@@ -34,7 +34,7 @@ class QdanCollectionViewCell: UICollectionViewCell {
     func bindData(_ imageName: [String],functionTitle: [String], atIndex indexPath: IndexPath ,VC viewcontroller:UIViewController) {
         self.viewcontroller = viewcontroller as? FunctionsViewController
         // isAinmationStatus 监听这个状态 来决定是否开始动画
-        Log.info("加载第\(indexPath.row)行")
+//        Log.info("加载第\(indexPath.row)行")
         index = indexPath
         let imagename = imageName[(index?.row)!]
         btn.contentMode = .scaleAspectFill
@@ -75,8 +75,8 @@ class QdanCollectionViewCell: UICollectionViewCell {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "isAinmationStatus" {
             if self.viewcontroller!.isAinmationStatus {
-                Log.info("第\(String(describing: index?.row))行开始动画")
-//                self.btn.startAnimatingGif()
+//                Log.info("第\(String(describing: index?.row))行开始动画")
+                self.btn.startAnimatingGif()
             }else{
                 self.btn.stopAnimatingGif()
             }

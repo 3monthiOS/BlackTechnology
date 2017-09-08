@@ -25,7 +25,8 @@ open class FillableLoader: UIView, CAAnimationDelegate {
     open var duration: TimeInterval = 10.0
 
     /// Loader background height (Default:  ScreenHeight/6 + 30)
-    open var rectSize: CGFloat = UIScreen.main.bounds.height/6 + 36
+//    open var rectSize: CGFloat = UIScreen.main.bounds.height/6 + 36
+    open var rectSize: CGFloat = UIScreen.main.bounds.height
 
     /// A Boolean value that determines whether the loader should have a swing effect while going up (Default: true)
     open var swing: Bool = true

@@ -51,6 +51,7 @@ class ChatListviewcontroller: RCConversationListViewController {
         createCurrentNagationBaritem()
         // MARK: -- 请求测试
 //        requestTest()
+        
     }
     // MARK: -- 导航栏 添加讨论组、单聊按钮
     func createCurrentNagationBaritem() {

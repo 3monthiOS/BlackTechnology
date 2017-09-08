@@ -210,5 +210,6 @@ func checkMobileReg(_ mobile: String) -> Bool {
 }
 //MARK: -------- HUB 图案
 func path() -> CGPath{
-    return Paths.githubPath()
+    return Paths.getZhangath()
+//    return Paths.githubPath()
 }

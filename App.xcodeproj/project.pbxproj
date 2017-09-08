@@ -72,6 +72,11 @@
 		F20F52161EB97D1800061BBE /* Uiviewcontroller+storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F51D41EB97D1800061BBE /* Uiviewcontroller+storyboard.swift */; };
 		F20F52171EB97D1800061BBE /* UIViewController+TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F51D51EB97D1800061BBE /* UIViewController+TopViewController.swift */; };
 		F21437AC1D98D403000E0CBF /* BaiduMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21437AB1D98D403000E0CBF /* BaiduMapViewController.swift */; };
+		F21715851F623ECB00AD33E6 /* SotrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21715841F623ECB00AD33E6 /* SotrViewController.swift */; };
+		F21715891F623ED300AD33E6 /* SortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21715871F623ED300AD33E6 /* SortView.swift */; };
+		F217158B1F623F2500AD33E6 /* Sort.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F217158A1F623F2500AD33E6 /* Sort.storyboard */; };
+		F217158E1F623F9E00AD33E6 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = F217158C1F623F9E00AD33E6 /* Sort.swift */; };
+		F217158F1F623F9E00AD33E6 /* SortClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F217158D1F623F9E00AD33E6 /* SortClass.swift */; };
 		F217F2091D842B74000E3A0D /* RegisteredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F217F2071D842B74000E3A0D /* RegisteredViewController.swift */; };
 		F217F20A1D842B74000E3A0D /* RegisteredViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F217F2081D842B74000E3A0D /* RegisteredViewController.xib */; };
 		F21A91191ECEF3D100951673 /* ToolsAnimation.plist in Resources */ = {isa = PBXBuildFile; fileRef = F21A91181ECEF3D100951673 /* ToolsAnimation.plist */; };
@@ -369,6 +374,11 @@
 		F20F51D41EB97D1800061BBE /* Uiviewcontroller+storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Uiviewcontroller+storyboard.swift"; sourceTree = "<group>"; };
 		F20F51D51EB97D1800061BBE /* UIViewController+TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+TopViewController.swift"; sourceTree = "<group>"; };
 		F21437AB1D98D403000E0CBF /* BaiduMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaiduMapViewController.swift; sourceTree = "<group>"; };
+		F21715841F623ECB00AD33E6 /* SotrViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SotrViewController.swift; sourceTree = "<group>"; };
+		F21715871F623ED300AD33E6 /* SortView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortView.swift; sourceTree = "<group>"; };
+		F217158A1F623F2500AD33E6 /* Sort.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Sort.storyboard; sourceTree = "<group>"; };
+		F217158C1F623F9E00AD33E6 /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
+		F217158D1F623F9E00AD33E6 /* SortClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortClass.swift; sourceTree = "<group>"; };
 		F217F2071D842B74000E3A0D /* RegisteredViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisteredViewController.swift; sourceTree = "<group>"; };
 		F217F2081D842B74000E3A0D /* RegisteredViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisteredViewController.xib; sourceTree = "<group>"; };
 		F21A91181ECEF3D100951673 /* ToolsAnimation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ToolsAnimation.plist; sourceTree = "<group>"; };
@@ -1065,6 +1075,19 @@
 			path = BaiDuMap;
 			sourceTree = "<group>";
 		};
+		F21715831F623E8B00AD33E6 /* Sotr */ = {
+			isa = PBXGroup;
+			children = (
+				F217158C1F623F9E00AD33E6 /* Sort.swift */,
+				F217158D1F623F9E00AD33E6 /* SortClass.swift */,
+				F217158A1F623F2500AD33E6 /* Sort.storyboard */,
+				F21715871F623ED300AD33E6 /* SortView.swift */,
+				F21715841F623ECB00AD33E6 /* SotrViewController.swift */,
+			);
+			name = Sotr;
+			path = sotr;
+			sourceTree = "<group>";
+		};
 		F23096921E0298CE001ACE00 /* viewcontrollers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1387,6 +1410,7 @@
 		F2666A8D1D879C6F00B2029E /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				F21715831F623E8B00AD33E6 /* Sotr */,
 				655707B01F60F7BE0083613D /* DynamicBall */,
 				F2770E031F46736B00B2ECE6 /* RoastingViewController */,
 				654813931F010BC20097D932 /* QRcode */,
@@ -1989,6 +2013,7 @@
 				F28C54B31EA7646300209259 /* PEPhotoCropEditor.bundle in Resources */,
 				F243CD2D1EC4206D001988D3 /* wavesAnimationController.xib in Resources */,
 				F2D652D41D7E94A90005824D /* Assets.xcassets in Resources */,
+				F217158B1F623F2500AD33E6 /* Sort.storyboard in Resources */,
 				F2D652CF1D7E94A90005824D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2141,6 +2166,7 @@
 				F23481521EA5E6EE00CB84F2 /* CGRect+Extension.swift in Sources */,
 				F2AAFB4B1ED3DD6A00A22BB9 /* RAMRotationAnimation.swift in Sources */,
 				F20F52171EB97D1800061BBE /* UIViewController+TopViewController.swift in Sources */,
+				F21715851F623ECB00AD33E6 /* SotrViewController.swift in Sources */,
 				F234813A1EA5E6ED00CB84F2 /* Stringify.swift in Sources */,
 				F20F52141EB97D1800061BBE /* UIView+SetRect.swift in Sources */,
 				F28C54B51EA7646300209259 /* PhotoBrowser+View.swift in Sources */,
@@ -2156,6 +2182,7 @@
 				F23481581EA5E6EE00CB84F2 /* ActionSheetController.swift in Sources */,
 				F23481591EA5E6EE00CB84F2 /* UIViewController+Extension.swift in Sources */,
 				F20F51DB1EB97D1800061BBE /* LDNoDataNoticeView.swift in Sources */,
+				F217158E1F623F9E00AD33E6 /* Sort.swift in Sources */,
 				F2EBCD361EADEB4800EFD026 /* JerseyEncoding.swift in Sources */,
 				F26381F31ECEDCED00386AC8 /* MyTabbarItem.swift in Sources */,
 				F26BACA11ED42DBC001A4AEC /* UIView+Extension.swift in Sources */,
@@ -2193,6 +2220,7 @@
 				F20F51FD1EB97D1800061BBE /* TYTabButtonPagerController.m in Sources */,
 				F25F52371F134C780091C7E0 /* ALYPhotoController.swift in Sources */,
 				F294B34A1DFFDDB70055C8CB /* UserIphoneNumbercell.swift in Sources */,
+				F21715891F623ED300AD33E6 /* SortView.swift in Sources */,
 				F234813D1EA5E6EE00CB84F2 /* UDID.swift in Sources */,
 				F2A81C621EC170C500771776 /* ZYSpreadButton.m in Sources */,
 				F20F52121EB97D1800061BBE /* UIView+HFZToast.swift in Sources */,
@@ -2205,6 +2233,7 @@
 				F2A81C5B1EC170B500771776 /* SpreadSubButton.swift in Sources */,
 				F2DFE7D21D82A1B300E5DC71 /* LoginviewController.swift in Sources */,
 				F28C54AF1EA7646300209259 /* PhotoBrowserOptions.swift in Sources */,
+				F217158F1F623F9E00AD33E6 /* SortClass.swift in Sources */,
 				F20F51E71EB97D1800061BBE /* Type.swift in Sources */,
 				F234814F1EA5E6EE00CB84F2 /* Session.swift in Sources */,
 				F20F52071EB97D1800061BBE /* UIimage+Watermark.swift in Sources */,
