@@ -41,7 +41,11 @@ class QdanCollectionViewCell: UICollectionViewCell {
         self.titleLabel.text = functionTitle[(self.index?.row)!]
         async {
             if !imagename.isEmpty{
-                if let str = imagename.components(separatedBy: "/").last{
+                if var str = imagename.components(separatedBy: "/").last{
+                    if let ImgName = str.components(separatedBy: "?").first{
+                        str = ImgName// 由于之前图片来源不一样所以这样 操作
+                    }
+                    Log.info("根据什么照图片----\(str)")
                     locationfileiscache(str, complate: { (callback) in
                         if !callback.isEmpty{
                             guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}
@@ -67,6 +71,7 @@ class QdanCollectionViewCell: UICollectionViewCell {
         }
     }
     func initButtonUI(_ btn: UIImageView) {
+        self.btn.updateCurrentImage()
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 3
     }

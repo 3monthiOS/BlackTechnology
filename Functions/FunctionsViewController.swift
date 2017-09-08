@@ -103,7 +103,7 @@ extension FunctionsViewController: UIScrollViewDelegate{
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if self.isAinmationStatus == false {return}
         self.isAinmationStatus = false
-         Log.info("\(String(describing:  self.collectionView.indexPathsForVisibleItems))这个cell 是可见的最后一个")
+//         Log.info("\(String(describing:  self.collectionView.indexPathsForVisibleItems))这个cell 是可见的最后一个")
     }
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if self.isAinmationStatus == true {return}

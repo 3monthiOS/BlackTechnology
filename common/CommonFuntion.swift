@@ -161,6 +161,9 @@ func fileDownload(_ urlArray: [String],complate:@escaping ((_ isok: Bool,_ callb
                             var  fileName = ""
                             if let dataName = url.components(separatedBy: "/").last{
                                 fileName = dataName
+                                if let ImgName = fileName.components(separatedBy: "?").first{
+                                    fileName = ImgName// 由于之前图片来源不一样所以这样 操作
+                                }
                             }else{ fileName = url.substring(8)!}
                             let newPath = NSURL(fileURLWithPath: "\(path)/\(fileName)")
 //                            Log.info("下载路径： \(newPath)____文件名称：\(fileName)")
