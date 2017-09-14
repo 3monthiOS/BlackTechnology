@@ -13,7 +13,7 @@ class QdanCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var bottrm: NSLayoutConstraint!
     @IBOutlet weak var btn: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel: ZHJRunningLight!
     var viewcontroller: FunctionsViewController? = nil
     var index: IndexPath?
     
@@ -29,6 +29,12 @@ class QdanCollectionViewCell: UICollectionViewCell {
       
         initButtonUI(btn)
         btn.contentMode = .scaleAspectFill
+        let cellwidth = (App_width - 24 - 24)/4
+        titleLabel.zhjSize = CGSize(width: cellwidth, height: 15)
+        titleLabel.bgColor = UIColor.white
+        titleLabel.textColor = rgb(198, 198, 198)
+//        titleLabel.width = self.contentView.bounds.width  这里的这个空间宽度不对
+//        titleLabel.slidingSpeed = 0.1
     }
     
     func bindData(_ imageName: [String],functionTitle: [String], atIndex indexPath: IndexPath ,VC viewcontroller:UIViewController) {
@@ -38,7 +44,8 @@ class QdanCollectionViewCell: UICollectionViewCell {
         index = indexPath
         let imagename = imageName[(index?.row)!]
         btn.contentMode = .scaleAspectFill
-        self.titleLabel.text = functionTitle[(self.index?.row)!]
+        self.titleLabel.zhj_setTextAndFont(text: functionTitle[(self.index?.row)!], font: UIFont.systemFont(ofSize: 9.0))
+        
         async {
             if !imagename.isEmpty{
                 if var str = imagename.components(separatedBy: "/").last{

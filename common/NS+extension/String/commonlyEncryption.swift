@@ -133,53 +133,24 @@ extension String  {
 // MARK: -- string 字体高度、宽度
 extension String {
     
-    func heightWithFontSize(_ fontSize: CGFloat, width: CGFloat) -> CGFloat {
-        return heightWithFont(UIFont.systemFont(ofSize: fontSize), width: width)
-    }
-    
-    func heightWithFont(_ font: UIFont, width: CGFloat) -> CGFloat {
-        let size = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+    func WithStrigFontSize(_ font: UIFont?,sizeFont: CGFloat?, width: CGFloat?) -> CGSize {
+        var strFont: UIFont?
+        if let font = font {
+            strFont = font
+        } else {
+            strFont = UIFont.systemFont(ofSize: sizeFont!)
+        }
+        let size = CGSize(width: width ?? CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = .byWordWrapping;
-        let attributes = [NSFontAttributeName:font,
+        let attributes = [NSFontAttributeName:strFont ?? UIFont.systemFont(ofSize: 15.0),
                           NSParagraphStyleAttributeName:paragraphStyle.copy()]
         
         let text = self as NSString
         let rect = text.boundingRect(with: size, options:.usesLineFragmentOrigin, attributes: attributes, context:nil)
-        return rect.size.height
+        return rect.size
     }
     
-    func widthWithFontSize(_ fontSize: CGFloat) -> CGFloat {
-        return widthWithFont(UIFont.systemFont(ofSize: fontSize))
-    }
-    
-    func widthWithFont(_ font: UIFont) -> CGFloat {
-        let size = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineBreakMode = .byWordWrapping;
-        let attributes = [NSFontAttributeName:font,
-                          NSParagraphStyleAttributeName:paragraphStyle.copy()]
-        
-        let text = self as NSString
-        let rect = text.boundingRect(with: size, options:.usesLineFragmentOrigin, attributes: attributes, context:nil)
-        return rect.size.width
-    }
-    /**
-     Get the height with font.
-     
-     - parameter font:       The font.
-     - parameter fixedWidth: The fixed width.
-     
-     - returns: The height.
-     */
-    func HeightWithFont(coustom font : UIFont = UIFont.systemFont(ofSize: 18)) -> CGFloat {
-        
-        let string = "One"
-        let size   = CGSize(width: 200, height: CGFloat.greatestFiniteMagnitude)
-        let text   = string as NSString
-        let rect   = text.boundingRect(with: size, options:.usesLineFragmentOrigin, attributes: [NSFontAttributeName : font], context:nil)
-        
-        return rect.size.height
-    }
+   
     
 }

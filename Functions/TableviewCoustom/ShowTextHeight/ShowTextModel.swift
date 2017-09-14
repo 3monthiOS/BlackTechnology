@@ -23,7 +23,7 @@ class ShowTextModel: NSObject {
         self.HeightWithData()
     }
     func HeightWithData(){
-        expendStringHeight = (inputString?.heightWithFont(UIFont.HeitiSC(15), width: Width()))!
-        normalStringHeight = 6 + (inputString?.HeightWithFont(coustom: UIFont.HeitiSC(16)))! * CGFloat(3) + 6
+        expendStringHeight = (inputString?.WithStrigFontSize(nil, sizeFont: 15.0, width: Width()))?.height
+        normalStringHeight = 6 + (inputString?.WithStrigFontSize(nil, sizeFont: 16.0, width: nil).height)! * CGFloat(3) + 6
     }
 }

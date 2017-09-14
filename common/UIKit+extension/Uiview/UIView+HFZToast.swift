@@ -308,8 +308,8 @@ extension UIView {
             
             // size the title label according to the length of the text
             let maxSizeTitle = CGSize(width: (self.bounds.size.width * HRToastMaxWidth) - imageWidth, height: self.bounds.size.height * HRToastMaxHeight);
-            let expectedWidth = min(maxSizeTitle.width, msg!.widthWithFontSize(HRToastFontSize) + HRToastHorizontalMargin * 2)
-            let expectedHeight = title!.heightWithFontSize(HRToastFontSize, width: expectedWidth)
+            let expectedWidth = min(maxSizeTitle.width, msg!.WithStrigFontSize(nil, sizeFont: HRToastFontSize, width: nil).width + HRToastHorizontalMargin * 2)
+            let expectedHeight = title!.WithStrigFontSize(nil, sizeFont: HRToastFontSize, width: expectedWidth).height
             titleLabel!.frame = CGRect(x: 0.0, y: 0.0, width: expectedWidth, height: expectedHeight)
         }
         
@@ -325,8 +325,8 @@ extension UIView {
             msgLabel!.text = msg
             
             let maxSizeMessage = CGSize(width: (self.bounds.size.width * HRToastMaxWidth) - imageWidth, height: self.bounds.size.height * HRToastMaxHeight)
-            let expectedWidth = min(maxSizeMessage.width, msg!.widthWithFontSize(HRToastFontSize) + HRToastHorizontalMargin * 2)
-            let expectedHeight = msg!.heightWithFontSize(HRToastFontSize, width: expectedWidth)
+            let expectedWidth = min(maxSizeMessage.width, msg!.WithStrigFontSize(nil, sizeFont: HRToastFontSize, width: nil).width + HRToastHorizontalMargin * 2)
+            let expectedHeight = msg!.WithStrigFontSize(nil, sizeFont: HRToastFontSize, width: expectedWidth).height
             msgLabel!.frame = CGRect(x: 0.0, y: 0.0, width: expectedWidth, height: expectedHeight)
         }
         

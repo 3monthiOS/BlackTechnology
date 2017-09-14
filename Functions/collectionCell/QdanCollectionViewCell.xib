@@ -22,28 +22,25 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Le3-lC-sn9">
                         <rect key="frame" x="0.0" y="0.0" width="140" height="160"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123456" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVc-vQ-a2H">
-                                <rect key="frame" x="4" y="134" width="132" height="27"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="加载失败" translatesAutoresizingMaskIntoConstraints="NO" id="5n3-JS-FNU">
                                 <rect key="frame" x="4" y="4" width="132" height="132"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="5n3-JS-FNU" secondAttribute="height" multiplier="1:1" id="N5I-73-Udr"/>
                                 </constraints>
                             </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ByS-ec-uWV" customClass="ZHJRunningLight" customModule="App" customModuleProvider="target">
+                                <rect key="frame" x="4" y="134" width="132" height="25"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="iVc-vQ-a2H" firstAttribute="leading" secondItem="Le3-lC-sn9" secondAttribute="leading" constant="4" id="3SD-nv-UVS"/>
-                            <constraint firstAttribute="trailing" secondItem="iVc-vQ-a2H" secondAttribute="trailing" constant="4" id="Ayd-J7-vPl"/>
+                            <constraint firstAttribute="bottom" secondItem="ByS-ec-uWV" secondAttribute="bottom" constant="1" id="GGA-Za-ogV"/>
+                            <constraint firstItem="ByS-ec-uWV" firstAttribute="top" secondItem="5n3-JS-FNU" secondAttribute="bottom" constant="-2" id="KcT-BV-iwO"/>
+                            <constraint firstAttribute="trailing" secondItem="ByS-ec-uWV" secondAttribute="trailing" constant="4" id="OEo-Pp-ESM"/>
+                            <constraint firstItem="ByS-ec-uWV" firstAttribute="leading" secondItem="Le3-lC-sn9" secondAttribute="leading" constant="4" id="Qmu-Go-Ucb"/>
                             <constraint firstAttribute="trailing" secondItem="5n3-JS-FNU" secondAttribute="trailing" constant="4" id="ZNO-lp-NZ8"/>
-                            <constraint firstItem="iVc-vQ-a2H" firstAttribute="top" secondItem="5n3-JS-FNU" secondAttribute="bottom" constant="-2" id="bia-Fz-5CJ"/>
                             <constraint firstItem="5n3-JS-FNU" firstAttribute="leading" secondItem="Le3-lC-sn9" secondAttribute="leading" constant="4" id="eZ4-wC-v6h"/>
                             <constraint firstItem="5n3-JS-FNU" firstAttribute="top" secondItem="Le3-lC-sn9" secondAttribute="top" constant="4" id="xzr-XE-aGt"/>
-                            <constraint firstAttribute="bottom" secondItem="iVc-vQ-a2H" secondAttribute="bottom" constant="-1" id="zgT-qD-gXm"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -57,9 +54,9 @@
             </constraints>
             <connections>
                 <outlet property="btn" destination="5n3-JS-FNU" id="yEI-Gf-EmG"/>
-                <outlet property="titleLabel" destination="iVc-vQ-a2H" id="J1U-cL-qBa"/>
+                <outlet property="titleLabel" destination="ByS-ec-uWV" id="kJ1-9v-NNa"/>
             </connections>
-            <point key="canvasLocation" x="23" y="-62"/>
+            <point key="canvasLocation" x="-391" y="-105"/>
         </collectionViewCell>
     </objects>
     <resources>

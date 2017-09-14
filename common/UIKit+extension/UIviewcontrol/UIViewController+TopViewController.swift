@@ -130,7 +130,7 @@ extension UIViewController {
             button.titleEdgeInsets = buttonTitleEDG
         }
         button.imageEdgeInsets = buttonImageEDG
-        button.frame = CGRect(x: 0, y: 0, width: ((normalImage?.size.width ?? 0 ) == 0 ? 18 : (normalImage?.size.width ?? 0)) + Title.widthWithFontSize(17.0), height: 44)
+        button.frame = CGRect(x: 0, y: 0, width: ((normalImage?.size.width ?? 0 ) == 0 ? 18 : (normalImage?.size.width ?? 0)) + Title.WithStrigFontSize(nil, sizeFont: 17.0, width: nil).width, height: 44)
         if let selector = action {
             button.addTarget(self, action: selector, for: .touchUpInside)
         }

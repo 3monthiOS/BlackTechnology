@@ -154,14 +154,15 @@
 		F26BAC961ED41574001A4AEC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26BAC941ED41574001A4AEC /* SettingsViewController.swift */; };
 		F26BACA11ED42DBC001A4AEC /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26BACA01ED42DBC001A4AEC /* UIView+Extension.swift */; };
 		F2749E421EF7C92700B42417 /* SocialUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2749E411EF7C92700B42417 /* SocialUtils.swift */; };
-		F2770E021F46730400B2ECE6 /* AYScrollerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F2770E011F46730400B2ECE6 /* AYScrollerLabel.m */; };
-		F2770E051F46738100B2ECE6 /* RoastingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2770E041F46738100B2ECE6 /* RoastingViewController.swift */; };
+		F27606021F6A79CB004E78FB /* AYScrollerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F27606001F6A79CB004E78FB /* AYScrollerLabel.m */; };
+		F27606031F6A79CB004E78FB /* ZHJRunningLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27606011F6A79CB004E78FB /* ZHJRunningLight.swift */; };
 		F27AE1FD1D928E09000E0509 /* CollectionReusableViewHeadre.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27AE1F71D928E09000E0509 /* CollectionReusableViewHeadre.swift */; };
 		F27AE1FE1D928E09000E0509 /* CollectionReusableViewHeadre.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27AE1F81D928E09000E0509 /* CollectionReusableViewHeadre.xib */; };
 		F27AE1FF1D928E09000E0509 /* QdanCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27AE1F91D928E09000E0509 /* QdanCollectionViewCell.swift */; };
 		F27AE2001D928E09000E0509 /* QdanCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27AE1FA1D928E09000E0509 /* QdanCollectionViewCell.xib */; };
 		F27AE2011D928E09000E0509 /* QdanCollectionViewzeroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27AE1FB1D928E09000E0509 /* QdanCollectionViewzeroCell.swift */; };
 		F27AE2021D928E09000E0509 /* QdanCollectionViewzeroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27AE1FC1D928E09000E0509 /* QdanCollectionViewzeroCell.xib */; };
+		F27B9B831F67BC4C00DAA671 /* UIButton+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27B9B821F67BC4C00DAA671 /* UIButton+extension.swift */; };
 		F283A9501EB9E5BD0012EE0D /* TableviewCoustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F283A94F1EB9E5BD0012EE0D /* TableviewCoustom.swift */; };
 		F284FE2D1F09DD010046CDA0 /* RCsetingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F284FE2B1F09DD010046CDA0 /* RCsetingsController.swift */; };
 		F284FE2E1F09DD010046CDA0 /* RCsetingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F284FE2C1F09DD010046CDA0 /* RCsetingsController.xib */; };
@@ -217,6 +218,25 @@
 		F2AAFB4A1ED3DD6A00A22BB9 /* RAMItemAnimationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AAFB421ED3DD6A00A22BB9 /* RAMItemAnimationProtocol.swift */; };
 		F2AAFB4B1ED3DD6A00A22BB9 /* RAMRotationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AAFB431ED3DD6A00A22BB9 /* RAMRotationAnimation.swift */; };
 		F2AAFB4C1ED3DD6A00A22BB9 /* RAMTransitionItemAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AAFB441ED3DD6A00A22BB9 /* RAMTransitionItemAnimations.swift */; };
+		F2AD25EF1F68D12200F9D003 /* GCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD25EE1F68D12200F9D003 /* GCD.swift */; };
+		F2AD25F31F68D19200F9D003 /* GCDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD25F11F68D19200F9D003 /* GCDController.swift */; };
+		F2AD25F41F68D19200F9D003 /* GCDtese.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2AD25F21F68D19200F9D003 /* GCDtese.storyboard */; };
+		F2AD26101F69366200F9D003 /* CEContentCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD25F91F69366100F9D003 /* CEContentCollectionView.swift */; };
+		F2AD26111F69366200F9D003 /* CEContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD25FA1F69366100F9D003 /* CEContentCollectionViewCell.swift */; };
+		F2AD26121F69366200F9D003 /* CEThemeDataSourceProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD25FC1F69366100F9D003 /* CEThemeDataSourceProtocal.swift */; };
+		F2AD26131F69366200F9D003 /* DataSourceTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD25FD1F69366100F9D003 /* DataSourceTools.swift */; };
+		F2AD26141F69366200F9D003 /* CEMenuScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD25FF1F69366100F9D003 /* CEMenuScrollController.swift */; };
+		F2AD26151F69366200F9D003 /* CEMenuCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD26011F69366100F9D003 /* CEMenuCollectionView.swift */; };
+		F2AD26161F69366200F9D003 /* CEMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD26021F69366100F9D003 /* CEMenuCollectionViewCell.swift */; };
+		F2AD26171F69366200F9D003 /* CEMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD26031F69366100F9D003 /* CEMenuView.swift */; };
+		F2AD26181F69366200F9D003 /* CESelectThemeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD26051F69366200F9D003 /* CESelectThemeController.swift */; };
+		F2AD26191F69366200F9D003 /* CEThemeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD26071F69366200F9D003 /* CEThemeCollectionView.swift */; };
+		F2AD261A1F69366200F9D003 /* CEFirstHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD26091F69366200F9D003 /* CEFirstHeaderCollectionReusableView.swift */; };
+		F2AD261B1F69366200F9D003 /* CEHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD260A1F69366200F9D003 /* CEHeaderCollectionReusableView.swift */; };
+		F2AD261C1F69366200F9D003 /* CEThemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD260B1F69366200F9D003 /* CEThemeCollectionViewCell.swift */; };
+		F2AD261D1F69366200F9D003 /* CECloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD260D1F69366200F9D003 /* CECloseButton.swift */; };
+		F2AD261E1F69366200F9D003 /* CEThemeEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD260E1F69366200F9D003 /* CEThemeEditButton.swift */; };
+		F2AD261F1F69366200F9D003 /* CEThemeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD260F1F69366200F9D003 /* CEThemeLabel.swift */; };
 		F2BD8A201EB984E400AE3F06 /* CustomNormalContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD8A1E1EB984E400AE3F06 /* CustomNormalContentViewController.swift */; };
 		F2BD8A211EB984E400AE3F06 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD8A1F1EB984E400AE3F06 /* CustomViewController.swift */; };
 		F2BD8A241EB9882900AE3F06 /* QNUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD8A231EB9882900AE3F06 /* QNUtils.swift */; };
@@ -459,15 +479,16 @@
 		F26BAC941ED41574001A4AEC /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F26BACA01ED42DBC001A4AEC /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		F2749E411EF7C92700B42417 /* SocialUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialUtils.swift; sourceTree = "<group>"; };
-		F2770E001F46730400B2ECE6 /* AYScrollerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AYScrollerLabel.h; path = ../../AYScrollerLabel.h; sourceTree = "<group>"; };
-		F2770E011F46730400B2ECE6 /* AYScrollerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AYScrollerLabel.m; path = ../../AYScrollerLabel.m; sourceTree = "<group>"; };
-		F2770E041F46738100B2ECE6 /* RoastingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoastingViewController.swift; sourceTree = "<group>"; };
+		F27605FF1F6A79CB004E78FB /* AYScrollerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYScrollerLabel.h; sourceTree = "<group>"; };
+		F27606001F6A79CB004E78FB /* AYScrollerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYScrollerLabel.m; sourceTree = "<group>"; };
+		F27606011F6A79CB004E78FB /* ZHJRunningLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZHJRunningLight.swift; sourceTree = "<group>"; };
 		F27AE1F71D928E09000E0509 /* CollectionReusableViewHeadre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionReusableViewHeadre.swift; sourceTree = "<group>"; };
 		F27AE1F81D928E09000E0509 /* CollectionReusableViewHeadre.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionReusableViewHeadre.xib; sourceTree = "<group>"; };
 		F27AE1F91D928E09000E0509 /* QdanCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QdanCollectionViewCell.swift; sourceTree = "<group>"; };
 		F27AE1FA1D928E09000E0509 /* QdanCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QdanCollectionViewCell.xib; sourceTree = "<group>"; };
 		F27AE1FB1D928E09000E0509 /* QdanCollectionViewzeroCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QdanCollectionViewzeroCell.swift; sourceTree = "<group>"; };
 		F27AE1FC1D928E09000E0509 /* QdanCollectionViewzeroCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QdanCollectionViewzeroCell.xib; sourceTree = "<group>"; };
+		F27B9B821F67BC4C00DAA671 /* UIButton+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+extension.swift"; sourceTree = "<group>"; };
 		F283A94F1EB9E5BD0012EE0D /* TableviewCoustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableviewCoustom.swift; sourceTree = "<group>"; };
 		F284FE2B1F09DD010046CDA0 /* RCsetingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCsetingsController.swift; sourceTree = "<group>"; };
 		F284FE2C1F09DD010046CDA0 /* RCsetingsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RCsetingsController.xib; sourceTree = "<group>"; };
@@ -530,6 +551,25 @@
 		F2AAFB421ED3DD6A00A22BB9 /* RAMItemAnimationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAMItemAnimationProtocol.swift; sourceTree = "<group>"; };
 		F2AAFB431ED3DD6A00A22BB9 /* RAMRotationAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAMRotationAnimation.swift; sourceTree = "<group>"; };
 		F2AAFB441ED3DD6A00A22BB9 /* RAMTransitionItemAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAMTransitionItemAnimations.swift; sourceTree = "<group>"; };
+		F2AD25EE1F68D12200F9D003 /* GCD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCD.swift; sourceTree = "<group>"; };
+		F2AD25F11F68D19200F9D003 /* GCDController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDController.swift; sourceTree = "<group>"; };
+		F2AD25F21F68D19200F9D003 /* GCDtese.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GCDtese.storyboard; sourceTree = "<group>"; };
+		F2AD25F91F69366100F9D003 /* CEContentCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEContentCollectionView.swift; sourceTree = "<group>"; };
+		F2AD25FA1F69366100F9D003 /* CEContentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEContentCollectionViewCell.swift; sourceTree = "<group>"; };
+		F2AD25FC1F69366100F9D003 /* CEThemeDataSourceProtocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeDataSourceProtocal.swift; sourceTree = "<group>"; };
+		F2AD25FD1F69366100F9D003 /* DataSourceTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceTools.swift; sourceTree = "<group>"; };
+		F2AD25FF1F69366100F9D003 /* CEMenuScrollController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEMenuScrollController.swift; sourceTree = "<group>"; };
+		F2AD26011F69366100F9D003 /* CEMenuCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEMenuCollectionView.swift; sourceTree = "<group>"; };
+		F2AD26021F69366100F9D003 /* CEMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEMenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		F2AD26031F69366100F9D003 /* CEMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEMenuView.swift; sourceTree = "<group>"; };
+		F2AD26051F69366200F9D003 /* CESelectThemeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CESelectThemeController.swift; sourceTree = "<group>"; };
+		F2AD26071F69366200F9D003 /* CEThemeCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeCollectionView.swift; sourceTree = "<group>"; };
+		F2AD26091F69366200F9D003 /* CEFirstHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEFirstHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		F2AD260A1F69366200F9D003 /* CEHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		F2AD260B1F69366200F9D003 /* CEThemeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeCollectionViewCell.swift; sourceTree = "<group>"; };
+		F2AD260D1F69366200F9D003 /* CECloseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CECloseButton.swift; sourceTree = "<group>"; };
+		F2AD260E1F69366200F9D003 /* CEThemeEditButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeEditButton.swift; sourceTree = "<group>"; };
+		F2AD260F1F69366200F9D003 /* CEThemeLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CEThemeLabel.swift; sourceTree = "<group>"; };
 		F2BD8A1E1EB984E400AE3F06 /* CustomNormalContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNormalContentViewController.swift; sourceTree = "<group>"; };
 		F2BD8A1F1EB984E400AE3F06 /* CustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
 		F2BD8A231EB9882900AE3F06 /* QNUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNUtils.swift; sourceTree = "<group>"; };
@@ -747,6 +787,8 @@
 			children = (
 				F20F51A11EB97D1800061BBE /* Theme.swift */,
 				F20F51811EB97D1800061BBE /* CommonFuntion.swift */,
+				F27605FE1F6A797A004E78FB /* ZHJRunningLight */,
+				F2AD25ED1F68D0F700F9D003 /* GCD */,
 				F23B3EC11F1EF66800EA099F /* positioningLocation */,
 				F29A8FA21F1DEB62009E63E3 /* FillableLoaders */,
 				F2749E401EF7C92700B42417 /* ThirdShare */,
@@ -961,6 +1003,7 @@
 			children = (
 				F20F51B31EB97D1800061BBE /* UIButton+Swift.h */,
 				F20F51B41EB97D1800061BBE /* UIButton+Swift.m */,
+				F27B9B821F67BC4C00DAA671 /* UIButton+extension.swift */,
 			);
 			path = UIButton;
 			sourceTree = "<group>";
@@ -1410,9 +1453,10 @@
 		F2666A8D1D879C6F00B2029E /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				F2AD25F71F69366100F9D003 /* CEScrollMenue */,
+				F2AD25F01F68D16200F9D003 /* GCD */,
 				F21715831F623E8B00AD33E6 /* Sotr */,
 				655707B01F60F7BE0083613D /* DynamicBall */,
-				F2770E031F46736B00B2ECE6 /* RoastingViewController */,
 				654813931F010BC20097D932 /* QRcode */,
 				653A240B1EFD190F001B7CD0 /* nativeShare */,
 				F250A2A41EFA060000F964A5 /* Share */,
@@ -1459,15 +1503,14 @@
 			path = ThirdShare;
 			sourceTree = "<group>";
 		};
-		F2770E031F46736B00B2ECE6 /* RoastingViewController */ = {
+		F27605FE1F6A797A004E78FB /* ZHJRunningLight */ = {
 			isa = PBXGroup;
 			children = (
-				F2770E001F46730400B2ECE6 /* AYScrollerLabel.h */,
-				F2770E011F46730400B2ECE6 /* AYScrollerLabel.m */,
-				F2770E041F46738100B2ECE6 /* RoastingViewController.swift */,
+				F27605FF1F6A79CB004E78FB /* AYScrollerLabel.h */,
+				F27606001F6A79CB004E78FB /* AYScrollerLabel.m */,
+				F27606011F6A79CB004E78FB /* ZHJRunningLight.swift */,
 			);
-			name = RoastingViewController;
-			path = vgbhjnkm;
+			path = ZHJRunningLight;
 			sourceTree = "<group>";
 		};
 		F27AE1F61D928E09000E0509 /* collectionCell */ = {
@@ -1656,6 +1699,110 @@
 				F2AAFB441ED3DD6A00A22BB9 /* RAMTransitionItemAnimations.swift */,
 			);
 			path = RAMAnimatedTabBar;
+			sourceTree = "<group>";
+		};
+		F2AD25ED1F68D0F700F9D003 /* GCD */ = {
+			isa = PBXGroup;
+			children = (
+				F2AD25EE1F68D12200F9D003 /* GCD.swift */,
+			);
+			path = GCD;
+			sourceTree = "<group>";
+		};
+		F2AD25F01F68D16200F9D003 /* GCD */ = {
+			isa = PBXGroup;
+			children = (
+				F2AD25F11F68D19200F9D003 /* GCDController.swift */,
+				F2AD25F21F68D19200F9D003 /* GCDtese.storyboard */,
+			);
+			path = GCD;
+			sourceTree = "<group>";
+		};
+		F2AD25F71F69366100F9D003 /* CEScrollMenue */ = {
+			isa = PBXGroup;
+			children = (
+				F2AD25F81F69366100F9D003 /* CEContentCollectionView */,
+				F2AD25FB1F69366100F9D003 /* CEDataSource */,
+				F2AD25FE1F69366100F9D003 /* CEMenuScrollController */,
+				F2AD26001F69366100F9D003 /* CEScrollMenue */,
+				F2AD26041F69366100F9D003 /* CESelectTheme */,
+			);
+			path = CEScrollMenue;
+			sourceTree = "<group>";
+		};
+		F2AD25F81F69366100F9D003 /* CEContentCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				F2AD25F91F69366100F9D003 /* CEContentCollectionView.swift */,
+				F2AD25FA1F69366100F9D003 /* CEContentCollectionViewCell.swift */,
+			);
+			path = CEContentCollectionView;
+			sourceTree = "<group>";
+		};
+		F2AD25FB1F69366100F9D003 /* CEDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				F2AD25FC1F69366100F9D003 /* CEThemeDataSourceProtocal.swift */,
+				F2AD25FD1F69366100F9D003 /* DataSourceTools.swift */,
+			);
+			path = CEDataSource;
+			sourceTree = "<group>";
+		};
+		F2AD25FE1F69366100F9D003 /* CEMenuScrollController */ = {
+			isa = PBXGroup;
+			children = (
+				F2AD25FF1F69366100F9D003 /* CEMenuScrollController.swift */,
+			);
+			path = CEMenuScrollController;
+			sourceTree = "<group>";
+		};
+		F2AD26001F69366100F9D003 /* CEScrollMenue */ = {
+			isa = PBXGroup;
+			children = (
+				F2AD26011F69366100F9D003 /* CEMenuCollectionView.swift */,
+				F2AD26021F69366100F9D003 /* CEMenuCollectionViewCell.swift */,
+				F2AD26031F69366100F9D003 /* CEMenuView.swift */,
+			);
+			path = CEScrollMenue;
+			sourceTree = "<group>";
+		};
+		F2AD26041F69366100F9D003 /* CESelectTheme */ = {
+			isa = PBXGroup;
+			children = (
+				F2AD26051F69366200F9D003 /* CESelectThemeController.swift */,
+				F2AD26061F69366200F9D003 /* CESelectThemeViews */,
+			);
+			path = CESelectTheme;
+			sourceTree = "<group>";
+		};
+		F2AD26061F69366200F9D003 /* CESelectThemeViews */ = {
+			isa = PBXGroup;
+			children = (
+				F2AD26071F69366200F9D003 /* CEThemeCollectionView.swift */,
+				F2AD26081F69366200F9D003 /* ReusableViews */,
+				F2AD260C1F69366200F9D003 /* SubViews */,
+			);
+			path = CESelectThemeViews;
+			sourceTree = "<group>";
+		};
+		F2AD26081F69366200F9D003 /* ReusableViews */ = {
+			isa = PBXGroup;
+			children = (
+				F2AD26091F69366200F9D003 /* CEFirstHeaderCollectionReusableView.swift */,
+				F2AD260A1F69366200F9D003 /* CEHeaderCollectionReusableView.swift */,
+				F2AD260B1F69366200F9D003 /* CEThemeCollectionViewCell.swift */,
+			);
+			path = ReusableViews;
+			sourceTree = "<group>";
+		};
+		F2AD260C1F69366200F9D003 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				F2AD260D1F69366200F9D003 /* CECloseButton.swift */,
+				F2AD260E1F69366200F9D003 /* CEThemeEditButton.swift */,
+				F2AD260F1F69366200F9D003 /* CEThemeLabel.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		F2BD8A1D1EB984E400AE3F06 /* UIviewcontroller */ = {
@@ -2011,6 +2158,7 @@
 				F24E9A3C1DEEBA0800A45EB8 /* gif131.gif in Resources */,
 				F2D690561DFE87DD0087328B /* QNPhotoController.xib in Resources */,
 				F28C54B31EA7646300209259 /* PEPhotoCropEditor.bundle in Resources */,
+				F2AD25F41F68D19200F9D003 /* GCDtese.storyboard in Resources */,
 				F243CD2D1EC4206D001988D3 /* wavesAnimationController.xib in Resources */,
 				F2D652D41D7E94A90005824D /* Assets.xcassets in Resources */,
 				F217158B1F623F2500AD33E6 /* Sort.storyboard in Resources */,
@@ -2094,11 +2242,13 @@
 				F20F51FE1EB97D1800061BBE /* TYTabPagerController.m in Sources */,
 				F2FDE7EE1EC4280D007C0098 /* waveViewDrawrect.swift in Sources */,
 				F234814E1EA5E6EE00CB84F2 /* RealmCache.swift in Sources */,
+				F2AD261D1F69366200F9D003 /* CECloseButton.swift in Sources */,
 				F23481361EA5E6ED00CB84F2 /* App.swift in Sources */,
 				F2BD8A271EB9885400AE3F06 /* Session+extension.swift in Sources */,
 				F20F51FB1EB97D1800061BBE /* Theme.swift in Sources */,
 				F294B3471DFFDDB70055C8CB /* MobileAddres.swift in Sources */,
 				F23481481EA5E6EE00CB84F2 /* String+Extension.swift in Sources */,
+				F2AD26101F69366200F9D003 /* CEContentCollectionView.swift in Sources */,
 				F20F51E01EB97D1800061BBE /* Location.swift in Sources */,
 				F28C54B21EA7646300209259 /* PECropViewController.m in Sources */,
 				F20F52011EB97D1800061BBE /* UIBarItem+Swift.m in Sources */,
@@ -2123,6 +2273,8 @@
 				F2AAFB461ED3DD6A00A22BB9 /* RAMBadge.swift in Sources */,
 				F28C54AC1EA7646300209259 /* PhotoBrowser.swift in Sources */,
 				654813951F010BE70097D932 /* QRcodeAndBarCodeVC.swift in Sources */,
+				F2AD26181F69366200F9D003 /* CESelectThemeController.swift in Sources */,
+				F2AD261C1F69366200F9D003 /* CEThemeCollectionViewCell.swift in Sources */,
 				F23481431EA5E6EE00CB84F2 /* RestError.swift in Sources */,
 				F20F51D81EB97D1800061BBE /* JumpAnimationcontroller.swift in Sources */,
 				F24E9A381DEEB18A00A45EB8 /* UploadPicturesView.swift in Sources */,
@@ -2138,14 +2290,16 @@
 				F26381F51ECEDCFD00386AC8 /* FunctionTabbarItem.swift in Sources */,
 				F2D3A3E11E038E0D007DE758 /* FirstViewController.swift in Sources */,
 				F20F520E1EB97D1800061BBE /* UIView+AnimationProperty.swift in Sources */,
+				F2AD26131F69366200F9D003 /* DataSourceTools.swift in Sources */,
 				F23481571EA5E6EE00CB84F2 /* UIView+Toast.swift in Sources */,
-				F2770E021F46730400B2ECE6 /* AYScrollerLabel.m in Sources */,
 				F20F51F61EB97D1800061BBE /* Notifications.swift in Sources */,
 				F23481371EA5E6ED00CB84F2 /* DispatchQueue+Once.swift in Sources */,
 				F2ED94611D86AF8E000C2E59 /* ChatListviewcontroller.swift in Sources */,
+				F27606031F6A79CB004E78FB /* ZHJRunningLight.swift in Sources */,
 				F23481441EA5E6EE00CB84F2 /* RestRequest.swift in Sources */,
 				F25E22E91D9B9A1D00A0F0DA /* AppChatScreenViewController.swift in Sources */,
 				F20F51E61EB97D1800061BBE /* Size.swift in Sources */,
+				F2AD261F1F69366200F9D003 /* CEThemeLabel.swift in Sources */,
 				F28C985B1E07D7BC00DACB18 /* QNlistData.swift in Sources */,
 				F2BD8A291EB9888500AE3F06 /* commonlyEncryption.swift in Sources */,
 				F26381F11ECEDC4900386AC8 /* ChatTabbarItem.swift in Sources */,
@@ -2160,6 +2314,7 @@
 				F28C985D1E07D7BC00DACB18 /* User.swift in Sources */,
 				F2A81C631EC170C500771776 /* ZYSpreadSubButton.m in Sources */,
 				F234815B1EA5E6EE00CB84F2 /* WebView+EmbedService.swift in Sources */,
+				F2AD26141F69366200F9D003 /* CEMenuScrollController.swift in Sources */,
 				F23481491EA5E6EE00CB84F2 /* Map+valueForKey.swift in Sources */,
 				F24F59171EC00F970077D913 /* FullTitleVisualEffectViewController.swift in Sources */,
 				F20F51D71EB97D1800061BBE /* SwiftLogoLayer.swift in Sources */,
@@ -2169,6 +2324,7 @@
 				F21715851F623ECB00AD33E6 /* SotrViewController.swift in Sources */,
 				F234813A1EA5E6ED00CB84F2 /* Stringify.swift in Sources */,
 				F20F52141EB97D1800061BBE /* UIView+SetRect.swift in Sources */,
+				F27B9B831F67BC4C00DAA671 /* UIButton+extension.swift in Sources */,
 				F28C54B51EA7646300209259 /* PhotoBrowser+View.swift in Sources */,
 				F28C54A71EA7646300209259 /* AlbumTableViewController.swift in Sources */,
 				F26BAC921ED4155E001A4AEC /* MainSettingsViewController.swift in Sources */,
@@ -2179,19 +2335,22 @@
 				F2D3A3E51E03A788007DE758 /* SecondViewController.swift in Sources */,
 				650019771F1F5D6700D835E0 /* LocationManager.swift in Sources */,
 				F20F51E81EB97D1800061BBE /* Version.swift in Sources */,
+				F2AD26171F69366200F9D003 /* CEMenuView.swift in Sources */,
 				F23481581EA5E6EE00CB84F2 /* ActionSheetController.swift in Sources */,
+				F2AD25F31F68D19200F9D003 /* GCDController.swift in Sources */,
 				F23481591EA5E6EE00CB84F2 /* UIViewController+Extension.swift in Sources */,
 				F20F51DB1EB97D1800061BBE /* LDNoDataNoticeView.swift in Sources */,
+				F27606021F6A79CB004E78FB /* AYScrollerLabel.m in Sources */,
 				F217158E1F623F9E00AD33E6 /* Sort.swift in Sources */,
 				F2EBCD361EADEB4800EFD026 /* JerseyEncoding.swift in Sources */,
 				F26381F31ECEDCED00386AC8 /* MyTabbarItem.swift in Sources */,
 				F26BACA11ED42DBC001A4AEC /* UIView+Extension.swift in Sources */,
 				F2D6904B1DFE7A200087328B /* CollectionReusableHeadre.swift in Sources */,
 				F29A8FAE1F1DED36009E63E3 /* SpikeLoader.swift in Sources */,
-				F2770E051F46738100B2ECE6 /* RoastingViewController.swift in Sources */,
 				F23481551EA5E6EE00CB84F2 /* UIImage+Extension.swift in Sources */,
 				F23481561EA5E6EE00CB84F2 /* UIView+Swizzle.swift in Sources */,
 				F20F50CE1EBB44CE00DCC828 /* ShowTextModel.swift in Sources */,
+				F2AD261B1F69366200F9D003 /* CEHeaderCollectionReusableView.swift in Sources */,
 				F20F52111EB97D1800061BBE /* UIView+Gradient.swift in Sources */,
 				F217F2091D842B74000E3A0D /* RegisteredViewController.swift in Sources */,
 				F2D289AB1D856C420059D289 /* AppSetting.swift in Sources */,
@@ -2209,10 +2368,13 @@
 				F29A8FAB1F1DED36009E63E3 /* FillableLoader.swift in Sources */,
 				F25AF3C71ECC237F008057CB /* RadiationTransformationController.swift in Sources */,
 				F20F51DD1EB97D1800061BBE /* MJrefreshTableview.swift in Sources */,
+				F2AD26111F69366200F9D003 /* CEContentCollectionViewCell.swift in Sources */,
 				F234815D1EA5E6EE00CB84F2 /* WebView+Proxy.swift in Sources */,
+				F2AD26161F69366200F9D003 /* CEMenuCollectionViewCell.swift in Sources */,
 				F234815C1EA5E6EE00CB84F2 /* WebView+NavigationDelegate.swift in Sources */,
 				6543FBD01EF2898B009EDA78 /* StackViewTestVC.swift in Sources */,
 				F2BD8A201EB984E400AE3F06 /* CustomNormalContentViewController.swift in Sources */,
+				F2AD261A1F69366200F9D003 /* CEFirstHeaderCollectionReusableView.swift in Sources */,
 				F2F46F451EEE2B3400480A64 /* RecordingVoiceController.swift in Sources */,
 				F2BD8A3B1EB9C97500AE3F06 /* GIFCell.swift in Sources */,
 				F23481511EA5E6EE00CB84F2 /* CALayer+Extension.swift in Sources */,
@@ -2229,6 +2391,7 @@
 				F28C54AA1EA7646300209259 /* PhotoBrowser+PreviewController.swift in Sources */,
 				F20F51DE1EB97D1800061BBE /* UIScrollView+TopRefresh.m in Sources */,
 				F2749E421EF7C92700B42417 /* SocialUtils.swift in Sources */,
+				F2AD261E1F69366200F9D003 /* CEThemeEditButton.swift in Sources */,
 				F23481471EA5E6EE00CB84F2 /* NSDate+Extension.swift in Sources */,
 				F2A81C5B1EC170B500771776 /* SpreadSubButton.swift in Sources */,
 				F2DFE7D21D82A1B300E5DC71 /* LoginviewController.swift in Sources */,
@@ -2236,9 +2399,11 @@
 				F217158F1F623F9E00AD33E6 /* SortClass.swift in Sources */,
 				F20F51E71EB97D1800061BBE /* Type.swift in Sources */,
 				F234814F1EA5E6EE00CB84F2 /* Session.swift in Sources */,
+				F2AD25EF1F68D12200F9D003 /* GCD.swift in Sources */,
 				F20F52071EB97D1800061BBE /* UIimage+Watermark.swift in Sources */,
 				F20F52041EB97D1800061BBE /* UIColor+HexColor.swift in Sources */,
 				F20F51E91EB97D1800061BBE /* ComplexEasingValue.swift in Sources */,
+				F2AD26151F69366200F9D003 /* CEMenuCollectionView.swift in Sources */,
 				F2A81C661EC192BA00771776 /* SweetAlert.swift in Sources */,
 				F20F520D1EB97D1800061BBE /* TranformFadeView.swift in Sources */,
 				F2AAFB4C1ED3DD6A00A22BB9 /* RAMTransitionItemAnimations.swift in Sources */,
@@ -2246,6 +2411,7 @@
 				F294B3491DFFDDB70055C8CB /* RetrieveMobileAddressbook.swift in Sources */,
 				F234814C1EA5E6EE00CB84F2 /* Cache.swift in Sources */,
 				F26BAC8E1ED4151C001A4AEC /* IntroViewController.swift in Sources */,
+				F2AD26121F69366200F9D003 /* CEThemeDataSourceProtocal.swift in Sources */,
 				F20F51FC1EB97D1800061BBE /* TYPagerController.m in Sources */,
 				F2AAFB4A1ED3DD6A00A22BB9 /* RAMItemAnimationProtocol.swift in Sources */,
 				F29BFBF91EBC693D00464D28 /* ShowtextModelCell.swift in Sources */,
@@ -2283,6 +2449,7 @@
 				F2EBCD341EADEB4800EFD026 /* FileURLCache.swift in Sources */,
 				654B6AD91D9D25DA00B46F6F /* FilterViewController.swift in Sources */,
 				F28C54B11EA7646300209259 /* PECropView.m in Sources */,
+				F2AD26191F69366200F9D003 /* CEThemeCollectionView.swift in Sources */,
 				F2C4338F1ECED0970038372C /* TabbarHomeController.swift in Sources */,
 				65529C3A1D9E722A00ED3E1C /* CubeMap.c in Sources */,
 				F20F51D61EB97D1800061BBE /* CustomAnimation.swift in Sources */,

@@ -1,9 +1,9 @@
 //
 //  SortView.swift
-//  AllKindsOfSortForiOS
+//  App
 //
-//  Created by Mr.LuDashi on 16/11/14.
-//  Copyright © 2016年 ZeluLi. All rights reserved.
+//  Created by 红军张 on 2017/9/8.
+//  Copyright © 2017年 IndependentRegiment. All rights reserved.
 //
 
 import UIKit

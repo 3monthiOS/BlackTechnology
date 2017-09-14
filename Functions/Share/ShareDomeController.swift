@@ -29,7 +29,7 @@ class ShareDomeController: UIViewController {
         photoImage.addGestureRecognizer(tag)
         
         let photo = SystemPhotoAlbum()
-        photo.albumDeleagte = self as? SystemPhotoAlbumDelegate
+        photo.albumDeleagte = self
     }
     
     func choseImage() {

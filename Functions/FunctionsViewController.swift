@@ -19,7 +19,7 @@ class FunctionsViewController: APPviewcontroller {
     var collectionfoot: CollectionReusableViewFooter!
     var collectionHeader: UICollectionReusableView!
     dynamic var isAinmationStatus = true
-    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","通讯录","上传图片","云相册","视频录制","GIF","TableViewAnimation","LTDemo","放射变换","转场动画","本地通知","UIStackView","分享","原生分享","二维码和条形码","动态球","排序","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
+    var functionTitleData = ["渐变","简单滤镜","复杂滤镜1","地图","听歌","录音","看视频","拍照","相册","通讯录","上传图片","云相册","视频录制","GIF","TableViewAnimation","LTDemo","放射变换","转场动画","本地通知","UIStackView","分享","原生分享","二维码和条形码","动态球","排序","GCD","多栏目展示、标签编辑展示","","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名","未命名"]
     
     var temArray = [QdanCollectionViewCell]()
     
@@ -34,7 +34,6 @@ class FunctionsViewController: APPviewcontroller {
     override func setup() {
         super.setup()
         self.navigationController?.navigationBar.isTranslucent = false
-        
         initcollectionMjrefresh()
         initCollectionview()
         initData()
@@ -220,6 +219,18 @@ extension FunctionsViewController: UICollectionViewDelegate{
         case 24 :
             let vc = UIViewController.loadViewControllerFromStoryboard("Sort", storyboardID: "SortView") as? SotrViewController
             navigationController?.pushViewController(vc!, animated: true)
+        case 25 :
+            let vc = UIViewController.loadViewControllerFromStoryboard("GCDtese", storyboardID: "GCDteseView") as? GCDController
+            navigationController?.pushViewController(vc!, animated: true)
+        case 26 :
+            let dataSource = DataSourceTools.createDataSource()
+            let menuVC = CEMenuScrollController(dataSource: dataSource)
+            navigationController?.pushViewController(menuVC, animated: true)
+        case 27 :
+            Log.info("sdhashdoahsdoho")
+//                let dataSource = DataSourceTools.createDataSource()
+//            let menuVC = CEMenuScrollController(dataSource: dataSource)
+//            self.navigationController?.pushViewController(menuVC, animated: true)
         default:
             break
         }
