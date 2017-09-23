@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZHJAudioPlayertest" customModule="App" customModuleProvider="target">
+            <connections>
+                <outlet property="addMusic" destination="vhk-Nu-yfj" id="s2f-yr-rJo"/>
+                <outlet property="bigsmall" destination="geR-6e-94t" id="j9k-eW-fS4"/>
+                <outlet property="lastMusic" destination="xON-EY-SeG" id="d5P-hF-iji"/>
+                <outlet property="misicIngNumber" destination="vRI-s0-e6h" id="8ep-q4-ofO"/>
+                <outlet property="misucCount" destination="7pV-dM-Ldv" id="6oi-P0-Mrz"/>
+                <outlet property="nextMusic" destination="DTS-BM-FMh" id="Ygg-N9-b1H"/>
+                <outlet property="playButton" destination="poi-H6-AUg" id="MLc-rd-wfW"/>
+                <outlet property="playTime" destination="slR-TW-jU9" id="L9J-Hq-tar"/>
+                <outlet property="playTm" destination="U8T-DG-9TL" id="sif-F9-k8z"/>
+                <outlet property="playbackSlider" destination="hc5-qV-FQz" id="TDa-Uc-bed"/>
+                <outlet property="segmentButton" destination="kCQ-Eg-izc" id="Q0H-Sy-D4O"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slR-TW-jU9">
+                    <rect key="frame" x="309" y="267.5" width="46" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poi-H6-AUg">
+                    <rect key="frame" x="171.5" y="378.5" width="31" height="30"/>
+                    <color key="backgroundColor" red="0.4039215686" green="0.84705882349999995" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="暂停">
+                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="playButtonTapped:" destination="-1" eventType="touchUpInside" id="OwN-n1-3Ty"/>
+                    </connections>
+                </button>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="hc5-qV-FQz">
+                    <rect key="frame" x="14" y="318.5" width="347" height="31"/>
+                    <connections>
+                        <action selector="playbackSliderValueChanged:" destination="-1" eventType="valueChanged" id="hVH-dU-siv"/>
+                    </connections>
+                </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U8T-DG-9TL">
+                    <rect key="frame" x="20" y="267.5" width="46" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="geR-6e-94t">
+                    <rect key="frame" x="125" y="208.5" width="124" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="FCs-3v-xM0"/>
+                        <constraint firstAttribute="height" constant="30" id="IQN-aN-jXy"/>
+                    </constraints>
+                    <connections>
+                        <action selector="changeMusicBigsmall:" destination="-1" eventType="valueChanged" id="oBx-Gg-rr6"/>
+                    </connections>
+                </slider>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="kCQ-Eg-izc">
+                    <rect key="frame" x="85" y="16" width="205" height="29"/>
+                    <segments>
+                        <segment title="AVAudioPlayer"/>
+                        <segment title="AVPlayer"/>
+                    </segments>
+                    <connections>
+                        <action selector="segmentClick:" destination="-1" eventType="valueChanged" id="cg0-pu-j0n"/>
+                    </connections>
+                </segmentedControl>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xON-EY-SeG">
+                    <rect key="frame" x="36" y="378" width="46" height="30"/>
+                    <state key="normal" title="上一首">
+                        <color key="titleColor" red="0.65098039220000004" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="lastMusicPlay:" destination="-1" eventType="touchUpInside" id="heI-03-rwT"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTS-BM-FMh">
+                    <rect key="frame" x="293" y="378" width="46" height="30"/>
+                    <state key="normal" title="下一首">
+                        <color key="titleColor" red="0.65098039220000004" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="nextMusicPlay:" destination="-1" eventType="touchUpInside" id="v96-CI-pTI"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhk-Nu-yfj">
+                    <rect key="frame" x="141" y="434.5" width="92" height="30"/>
+                    <state key="normal" title="添加一首歌曲">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="addMusicItem:" destination="-1" eventType="touchUpInside" id="IXr-kU-KNR"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pV-dM-Ldv">
+                    <rect key="frame" x="183.5" y="490.5" width="8" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="0.51165441127394251" blue="0.26699943967325701" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="歌曲列表歌单数量:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQF-4y-et6">
+                    <rect key="frame" x="36.5" y="491" width="135" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在播放:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sax-CV-okK">
+                    <rect key="frame" x="199.5" y="490" width="74" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRI-s0-e6h">
+                    <rect key="frame" x="285.5" y="491" width="8" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="0.5116544113" blue="0.26699943970000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="hc5-qV-FQz" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="16S-5b-dbJ"/>
+                <constraint firstItem="sax-CV-okK" firstAttribute="centerY" secondItem="7pV-dM-Ldv" secondAttribute="centerY" id="3HF-wK-m26"/>
+                <constraint firstItem="poi-H6-AUg" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3Ne-nB-cgk"/>
+                <constraint firstItem="U8T-DG-9TL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="5UN-JD-ANg"/>
+                <constraint firstItem="7pV-dM-Ldv" firstAttribute="leading" secondItem="pQF-4y-et6" secondAttribute="trailing" constant="12" id="5lF-jH-86u"/>
+                <constraint firstItem="hc5-qV-FQz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="8fc-mj-nGw"/>
+                <constraint firstItem="hc5-qV-FQz" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8zA-1C-EL8"/>
+                <constraint firstItem="kCQ-Eg-izc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9jt-5K-vLb"/>
+                <constraint firstItem="kCQ-Eg-izc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="AGh-dg-kbF"/>
+                <constraint firstItem="poi-H6-AUg" firstAttribute="centerY" secondItem="xON-EY-SeG" secondAttribute="centerY" id="DMl-8u-hSP"/>
+                <constraint firstItem="7pV-dM-Ldv" firstAttribute="top" secondItem="vhk-Nu-yfj" secondAttribute="bottom" constant="26" id="HW5-d5-i9z"/>
+                <constraint firstItem="poi-H6-AUg" firstAttribute="top" secondItem="hc5-qV-FQz" secondAttribute="bottom" constant="30" id="O16-WE-cxl"/>
+                <constraint firstItem="hc5-qV-FQz" firstAttribute="top" secondItem="geR-6e-94t" secondAttribute="bottom" constant="80" id="O2R-Dx-oHJ"/>
+                <constraint firstItem="sax-CV-okK" firstAttribute="leading" secondItem="7pV-dM-Ldv" secondAttribute="trailing" constant="8" id="T3K-GD-8uI"/>
+                <constraint firstItem="xON-EY-SeG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="36" id="TbN-RR-BWI"/>
+                <constraint firstItem="DTS-BM-FMh" firstAttribute="centerY" secondItem="xON-EY-SeG" secondAttribute="centerY" id="TpQ-2P-udM"/>
+                <constraint firstItem="7pV-dM-Ldv" firstAttribute="centerY" secondItem="pQF-4y-et6" secondAttribute="centerY" id="X5m-ly-GMI"/>
+                <constraint firstItem="geR-6e-94t" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Y0S-Ft-Bcj"/>
+                <constraint firstAttribute="trailing" secondItem="DTS-BM-FMh" secondAttribute="trailing" constant="36" id="kgx-gF-CCg"/>
+                <constraint firstItem="slR-TW-jU9" firstAttribute="centerY" secondItem="U8T-DG-9TL" secondAttribute="centerY" id="pdz-pX-ufX"/>
+                <constraint firstItem="vRI-s0-e6h" firstAttribute="leading" secondItem="sax-CV-okK" secondAttribute="trailing" constant="12" id="qXx-MK-TWI"/>
+                <constraint firstItem="7pV-dM-Ldv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rOL-ph-E2U"/>
+                <constraint firstItem="vhk-Nu-yfj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="tGg-t7-tdi"/>
+                <constraint firstAttribute="trailing" secondItem="slR-TW-jU9" secondAttribute="trailing" constant="20" id="wI8-FO-kjV"/>
+                <constraint firstItem="hc5-qV-FQz" firstAttribute="top" secondItem="U8T-DG-9TL" secondAttribute="bottom" constant="30" id="yQx-n9-72w"/>
+                <constraint firstItem="vRI-s0-e6h" firstAttribute="centerY" secondItem="7pV-dM-Ldv" secondAttribute="centerY" id="yTa-BX-19I"/>
+                <constraint firstItem="vhk-Nu-yfj" firstAttribute="top" secondItem="poi-H6-AUg" secondAttribute="bottom" constant="26" id="zrr-95-uaV"/>
+            </constraints>
+            <point key="canvasLocation" x="-977" y="-173"/>
+        </view>
+    </objects>
+</document>

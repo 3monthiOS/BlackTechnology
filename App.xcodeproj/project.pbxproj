@@ -274,6 +274,7 @@
 		F2D6904E1DFE7A200087328B /* QNCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D690481DFE7A200087328B /* QNCollectionViewCell.xib */; };
 		F2D690551DFE87DD0087328B /* QNPhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D690531DFE87DD0087328B /* QNPhotoController.swift */; };
 		F2D690561DFE87DD0087328B /* QNPhotoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D690541DFE87DD0087328B /* QNPhotoController.xib */; };
+		F2D87A9F1F710454003D5A4D /* ZHJAVplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D87A9E1F710454003D5A4D /* ZHJAVplayer.swift */; };
 		F2DFE7D21D82A1B300E5DC71 /* LoginviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DFE7D01D82A1B300E5DC71 /* LoginviewController.swift */; };
 		F2DFE7DA1D82B45900E5DC71 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2DFE7D91D82B45900E5DC71 /* Login.storyboard */; };
 		F2EBCD321EADEB4800EFD026 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EBCD2D1EADEB4800EFD026 /* ApiService.swift */; };
@@ -282,6 +283,10 @@
 		F2EBCD351EADEB4800EFD026 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EBCD301EADEB4800EFD026 /* HttpClient.swift */; };
 		F2EBCD361EADEB4800EFD026 /* JerseyEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EBCD311EADEB4800EFD026 /* JerseyEncoding.swift */; };
 		F2EBCD381EADFD7F00EFD026 /* ApiServiceSeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EBCD371EADFD7F00EFD026 /* ApiServiceSeting.swift */; };
+		F2ECF2981F6B6F0C008B09DD /* ZHJAudioPlayertest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECF2961F6B6F0C008B09DD /* ZHJAudioPlayertest.swift */; };
+		F2ECF2991F6B6F0C008B09DD /* ZHJAudioPlayertest.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2ECF2971F6B6F0C008B09DD /* ZHJAudioPlayertest.xib */; };
+		F2ECF29F1F6BC805008B09DD /* ZHJAVAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECF29E1F6BC805008B09DD /* ZHJAVAudioPlayer.swift */; };
+		F2ECF2A21F6BD8BD008B09DD /* 薛之谦-你还要我怎样.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F2ECF2A11F6BD8BD008B09DD /* 薛之谦-你还要我怎样.mp3 */; };
 		F2ED94611D86AF8E000C2E59 /* ChatListviewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ED94601D86AF8E000C2E59 /* ChatListviewcontroller.swift */; };
 		F2F46F451EEE2B3400480A64 /* RecordingVoiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F46F431EEE2B3400480A64 /* RecordingVoiceController.swift */; };
 		F2F46F461EEE2B3400480A64 /* RecordingVoiceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2F46F441EEE2B3400480A64 /* RecordingVoiceController.xib */; };
@@ -613,6 +618,7 @@
 		F2D690481DFE7A200087328B /* QNCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QNCollectionViewCell.xib; sourceTree = "<group>"; };
 		F2D690531DFE87DD0087328B /* QNPhotoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNPhotoController.swift; sourceTree = "<group>"; };
 		F2D690541DFE87DD0087328B /* QNPhotoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QNPhotoController.xib; sourceTree = "<group>"; };
+		F2D87A9E1F710454003D5A4D /* ZHJAVplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZHJAVplayer.swift; sourceTree = "<group>"; };
 		F2DFE7CF1D8298C900E5DC71 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		F2DFE7D01D82A1B300E5DC71 /* LoginviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginviewController.swift; path = ../App/LoginviewController.swift; sourceTree = "<group>"; };
 		F2DFE7D91D82B45900E5DC71 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -622,6 +628,10 @@
 		F2EBCD301EADEB4800EFD026 /* HttpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		F2EBCD311EADEB4800EFD026 /* JerseyEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JerseyEncoding.swift; sourceTree = "<group>"; };
 		F2EBCD371EADFD7F00EFD026 /* ApiServiceSeting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiServiceSeting.swift; sourceTree = "<group>"; };
+		F2ECF2961F6B6F0C008B09DD /* ZHJAudioPlayertest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZHJAudioPlayertest.swift; sourceTree = "<group>"; };
+		F2ECF2971F6B6F0C008B09DD /* ZHJAudioPlayertest.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHJAudioPlayertest.xib; sourceTree = "<group>"; };
+		F2ECF29E1F6BC805008B09DD /* ZHJAVAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZHJAVAudioPlayer.swift; sourceTree = "<group>"; };
+		F2ECF2A11F6BD8BD008B09DD /* 薛之谦-你还要我怎样.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "薛之谦-你还要我怎样.mp3"; sourceTree = "<group>"; };
 		F2ED94601D86AF8E000C2E59 /* ChatListviewcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListviewcontroller.swift; sourceTree = "<group>"; };
 		F2F46F431EEE2B3400480A64 /* RecordingVoiceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingVoiceController.swift; sourceTree = "<group>"; };
 		F2F46F441EEE2B3400480A64 /* RecordingVoiceController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordingVoiceController.xib; sourceTree = "<group>"; };
@@ -1453,6 +1463,7 @@
 		F2666A8D1D879C6F00B2029E /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				F2ECF2931F6B6E0E008B09DD /* ZHJAudioPlayer */,
 				F2AD25F71F69366100F9D003 /* CEScrollMenue */,
 				F2AD25F01F68D16200F9D003 /* GCD */,
 				F21715831F623E8B00AD33E6 /* Sotr */,
@@ -1874,6 +1885,7 @@
 		F2D652BD1D7E94A90005824D = {
 			isa = PBXGroup;
 			children = (
+				F2ECF2A01F6BD8BD008B09DD /* source */,
 				F20F51691EB97D1800061BBE /* common */,
 				F24240361E9C87B000414B08 /* Swiften */,
 				F24E9A3A1DEEBA0800A45EB8 /* images */,
@@ -1972,6 +1984,25 @@
 				F23127281EAEF62600FA0D74 /* RequestAddress.swift */,
 			);
 			path = HttpClient;
+			sourceTree = "<group>";
+		};
+		F2ECF2931F6B6E0E008B09DD /* ZHJAudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				F2ECF2961F6B6F0C008B09DD /* ZHJAudioPlayertest.swift */,
+				F2ECF2971F6B6F0C008B09DD /* ZHJAudioPlayertest.xib */,
+				F2ECF29E1F6BC805008B09DD /* ZHJAVAudioPlayer.swift */,
+				F2D87A9E1F710454003D5A4D /* ZHJAVplayer.swift */,
+			);
+			path = ZHJAudioPlayer;
+			sourceTree = "<group>";
+		};
+		F2ECF2A01F6BD8BD008B09DD /* source */ = {
+			isa = PBXGroup;
+			children = (
+				F2ECF2A11F6BD8BD008B09DD /* 薛之谦-你还要我怎样.mp3 */,
+			);
+			path = source;
 			sourceTree = "<group>";
 		};
 		F2ED945D1D86AF45000C2E59 /* Chat */ = {
@@ -2074,10 +2105,13 @@
 				TargetAttributes = {
 					F2D652C51D7E94A90005824D = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = N7NUK7WYR6;
+						DevelopmentTeam = 5KGS3CDGJG;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -2131,6 +2165,7 @@
 				F24E9A391DEEB18A00A45EB8 /* uploadPicturesView.xib in Resources */,
 				F2F46F461EEE2B3400480A64 /* RecordingVoiceController.xib in Resources */,
 				F27AE1FE1D928E09000E0509 /* CollectionReusableViewHeadre.xib in Resources */,
+				F2ECF2A21F6BD8BD008B09DD /* 薛之谦-你还要我怎样.mp3 in Resources */,
 				F250A2A81EFA061900F964A5 /* ShareDomeController.xib in Resources */,
 				F25AD7C61ED522A500E475CF /* starwars.storyboard in Resources */,
 				F2BD8A321EB9BD9400AE3F06 /* GifDetailController.xib in Resources */,
@@ -2156,6 +2191,7 @@
 				F2C4F3941F0496770067DBCE /* ShowGroupsMembersController.xib in Resources */,
 				F29BFBF61EBC569D00464D28 /* uploadPicturesTable.geojson in Resources */,
 				F24E9A3C1DEEBA0800A45EB8 /* gif131.gif in Resources */,
+				F2ECF2991F6B6F0C008B09DD /* ZHJAudioPlayertest.xib in Resources */,
 				F2D690561DFE87DD0087328B /* QNPhotoController.xib in Resources */,
 				F28C54B31EA7646300209259 /* PEPhotoCropEditor.bundle in Resources */,
 				F2AD25F41F68D19200F9D003 /* GCDtese.storyboard in Resources */,
@@ -2195,7 +2231,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		32F335A404EDC93686839C60 /* [CP] Copy Pods Resources */ = {
@@ -2315,6 +2351,7 @@
 				F2A81C631EC170C500771776 /* ZYSpreadSubButton.m in Sources */,
 				F234815B1EA5E6EE00CB84F2 /* WebView+EmbedService.swift in Sources */,
 				F2AD26141F69366200F9D003 /* CEMenuScrollController.swift in Sources */,
+				F2ECF2981F6B6F0C008B09DD /* ZHJAudioPlayertest.swift in Sources */,
 				F23481491EA5E6EE00CB84F2 /* Map+valueForKey.swift in Sources */,
 				F24F59171EC00F970077D913 /* FullTitleVisualEffectViewController.swift in Sources */,
 				F20F51D71EB97D1800061BBE /* SwiftLogoLayer.swift in Sources */,
@@ -2342,6 +2379,7 @@
 				F20F51DB1EB97D1800061BBE /* LDNoDataNoticeView.swift in Sources */,
 				F27606021F6A79CB004E78FB /* AYScrollerLabel.m in Sources */,
 				F217158E1F623F9E00AD33E6 /* Sort.swift in Sources */,
+				F2D87A9F1F710454003D5A4D /* ZHJAVplayer.swift in Sources */,
 				F2EBCD361EADEB4800EFD026 /* JerseyEncoding.swift in Sources */,
 				F26381F31ECEDCED00386AC8 /* MyTabbarItem.swift in Sources */,
 				F26BACA11ED42DBC001A4AEC /* UIView+Extension.swift in Sources */,
@@ -2380,6 +2418,7 @@
 				F23481511EA5E6EE00CB84F2 /* CALayer+Extension.swift in Sources */,
 				655707B21F60F7D70083613D /* DynamicBallVC.swift in Sources */,
 				F20F51FD1EB97D1800061BBE /* TYTabButtonPagerController.m in Sources */,
+				F2ECF29F1F6BC805008B09DD /* ZHJAVAudioPlayer.swift in Sources */,
 				F25F52371F134C780091C7E0 /* ALYPhotoController.swift in Sources */,
 				F294B34A1DFFDDB70055C8CB /* UserIphoneNumbercell.swift in Sources */,
 				F21715891F623ED300AD33E6 /* SortView.swift in Sources */,
@@ -2546,6 +2585,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -2594,6 +2634,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -2626,9 +2667,10 @@
 				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = N7NUK7WYR6;
+				DEVELOPMENT_TEAM = 5KGS3CDGJG;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2648,7 +2690,8 @@
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = IndependentRegiment.BT.App;
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = app.BlackTechnology;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2667,8 +2710,9 @@
 				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = N7NUK7WYR6;
+				DEVELOPMENT_TEAM = 5KGS3CDGJG;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2687,7 +2731,8 @@
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = IndependentRegiment.BT.App;
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = app.BlackTechnology;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "App/Bridging-Header.h";

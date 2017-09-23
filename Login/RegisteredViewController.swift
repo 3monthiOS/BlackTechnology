@@ -35,7 +35,14 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //移除 遮罩图
-//        view.layer.mask = nil
+        //        view.layer.mask = nil
+        
+        if #available(iOS 11.0, *) {
+            self.view.insetsLayoutMarginsFromSafeArea = false
+            self.additionalSafeAreaInsets = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
+        } else {
+            // Fallback on earlier versions
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()

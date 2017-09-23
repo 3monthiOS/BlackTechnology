@@ -39,6 +39,7 @@ public class NetworkManager {
             serverTrustPolicyManager: serverTrustPolicyManager
         )
     }
+    
     public static var defaultSessionConfiguration: URLSessionConfiguration {
         var headers = SessionManager.defaultHTTPHeaders
         headers["Cache-Control"] = "private"

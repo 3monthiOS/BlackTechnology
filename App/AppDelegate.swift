@@ -16,6 +16,7 @@ import RealmSwift
 import ObjectMapper
 import UserNotifications
 import AliyunOSSiOS
+import AVFoundation
 
 let locationUser = locationServiceUser.sharedInstance
 let cache = CacheManager(cachable: RealmCache(realm: Realm.sharedRealm))
@@ -33,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     fileprivate var searchingReverseGeoCode = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+        // IndependentRegiment.BT.App identifer ID
         self.debugInformationTest()
         
         let them = ThemeManager.currentTheme()
@@ -72,6 +73,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //MARK: 跳转
         gotoMainViewController()
+        
+        //MARK: 注册音乐后台播放
+        let session = AVAudioSession.sharedInstance()
+        do{
+            try? session.setActive(true)
+            try? session.setCategory(AVAudioSessionCategoryPlayback)
+        } catch {
+            print(error)
+        }
         
         return true
     }

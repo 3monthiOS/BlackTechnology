@@ -40,6 +40,7 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
         self.navigationController?.isNavigationBarHidden = true
         getDBuser()
     }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
        
@@ -53,6 +54,13 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
 //        view.layer.addSublayer(logo)
         
         navigationController?.delegate = self
+        
+        if #available(iOS 11.0, *) {
+            self.view.insetsLayoutMarginsFromSafeArea = false
+            self.additionalSafeAreaInsets = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
+        } else {
+            // Fallback on earlier versions
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -157,6 +157,9 @@ extension FunctionsViewController: UICollectionViewDelegate{
             alert("地图SDK太大暂时取消")
             //        let baidu = BaiduMapViewController()
         //        self.navigationController?.pushViewController(baidu, animated: true)
+        case 4:
+            let vc = ZHJAudioPlayertest()
+            self.navigationController?.pushViewController(vc, animated: true)
         case 5:
             let baidu = RecordingVoiceController()
             self.tabBarController?.hidesBottomBarWhenPushed = true

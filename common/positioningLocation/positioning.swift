@@ -84,7 +84,7 @@ class locationServiceUser {
             let dic = placemarks.first?.addressDictionary
             self?.FormattedAddressLines = (placemarks.first?.addressDictionary?["FormattedAddressLines"] as! [String])[0]  // 详细地址
             self?.Country = dic?["Country"] as! String // 国家
-            self?.State = dic?["State"] as! String // 城市
+            self?.State = dic?["City"] as! String // 城市
             self?.SubLocality = dic?["SubLocality"] as! String // 区县
             self?.Thoroughfare = dic?["Thoroughfare"] as! String // 街道
             self?.SubThoroughfare = dic?["SubThoroughfare"] as! String // 街道牌号

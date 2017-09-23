@@ -52,7 +52,7 @@ class QdanCollectionViewCell: UICollectionViewCell {
                     if let ImgName = str.components(separatedBy: "?").first{
                         str = ImgName// 由于之前图片来源不一样所以这样 操作
                     }
-                    Log.info("根据什么照图片----\(str)")
+//                    Log.info("根据什么照图片----\(str)")
                     locationfileiscache(str, complate: { (callback) in
                         if !callback.isEmpty{
                             guard let imageData = try? Data(contentsOf: URL(fileURLWithPath: callback)) else {return}

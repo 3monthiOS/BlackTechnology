@@ -76,6 +76,15 @@ class CustomViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
+        
+        if #available(iOS 11.0, *) {
+            self.view.insetsLayoutMarginsFromSafeArea = false
+            var newSafeArea = view.safeAreaInsets
+            newSafeArea.top = -20
+            self.additionalSafeAreaInsets = newSafeArea
+        } else {
+            // Fallback on earlier versions
+        }
         print("[➡️] enter to --> '" + String(describing: self.classForCoder) + "'.")
     }
     
