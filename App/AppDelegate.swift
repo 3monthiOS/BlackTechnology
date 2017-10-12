@@ -261,7 +261,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //
     
     //UIDebuggingInformationOverlay
-    
+    // 调试窗口
     func debugInformationTest() {
         let ovwerlayClass = NSClassFromString("UIDebuggingInformationOverlay") as? UIWindow.Type
         

@@ -64,7 +64,8 @@ class QdanCollectionViewCell: UICollectionViewCell {
                                 if Reachability.networkStatus != .notReachable {
                                     fileDownload([imagename], complate: { (isok, callbackData) in
                                         if isok{
-                                            self.btn.setGifImage(UIImage(gifData: callbackData[0], levelOfIntegrity: 1.0))
+                                            let img = UIImage(gifData: callbackData[0])
+                                            self.btn.setGifImage(img)
 //                                            self.btn.stopAnimatingGif()
 //                                            self.btn.image = UIImage.gifWithData(callbackData[0])
                                         }

@@ -76,7 +76,9 @@ class ZHJAudioPlayertest: UIViewController {
         }
         
         misucCount.text = ZHJAudioPlayer.shared.totalMusicCount.string
-//        initAVPlayerFuntion()
+        
+        // 初始化 AVplayer 比较耗时间
+        initAVPlayerFuntion()
         
         if let streamPlayer = self.streamPlayer.player {
             streamPlayer.onStateChange = { (status)  in

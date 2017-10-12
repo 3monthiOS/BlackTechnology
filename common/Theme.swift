@@ -166,11 +166,12 @@ struct ThemeManager {
         UITabBar.appearance().backgroundImage = UIImage()
         UITabBar.appearance().shadowImage = img
         UITabBar.appearance().backgroundColor = UIColor.white
+        
         //导航 下边框
         let nav = UINavigationBar.appearance()
         nav.shadowImage = img
-        nav.setBackgroundImage(UIImage(named: "bar"), for: UIBarMetrics.default)
-        nav.backgroundColor = UIColor.white
+//        nav.setBackgroundImage(UIImage(named: "bar"), for: UIBarMetrics.default)
+        nav.backgroundColor = rgb(190, 190, 190)
 
     }
 }
