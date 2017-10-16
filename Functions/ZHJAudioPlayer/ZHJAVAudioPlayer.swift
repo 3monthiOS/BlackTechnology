@@ -119,37 +119,6 @@ class ZHJAudioPlayer : NSObject {
             streamPlayer.removeItem(at: index)
         }
     }
-    //MARK: --  时间
-    func initPlayerTime(){
-        if let streamPlayer = player  {
-            // 设置时间
-            if let play = streamPlayer.activeStream {
-                if play.currentTimePlayed.playbackTimeInSeconds > 0 {
-                    let minute = play.currentTimePlayed.minute > 10 ? play.currentTimePlayed.minute.description : "0" + play.currentTimePlayed.minute.description
-                    let second = play.currentTimePlayed.second < 10 ? "0" + play.currentTimePlayed.second.description : play.currentTimePlayed.second.description
-                        currentTime = minute + ":" + second
-                }
-                if play.duration.playbackTimeInSeconds > 0 && self.currentTime == "00:00" {
-                    let minute = play.duration.minute > 10 ? play.duration.minute.description : "0" + play.duration.minute.description
-                        totalTime = minute + ":" + play.duration.second.description
-                }
-            }
-            guard self.change != nil else { return }
-            change!(totalTime,currentTime,currentPosion)
-            
-            // 设置当前正在播放第几首歌曲
-            guard let item = streamPlayer.currentPlaylistItem  else {return}
-            for i:Int in 0..<musicUrls.count {
-                let musicName = item.url.absoluteString
-                let url = musicUrls[i]
-                if url == musicName {
-                    if i != self.currentMusicNumber {
-                        self.currentMusicNumber = i
-                    }
-                }
-            }
-        }
-    }
     
     //MARK: --  上一首
     func lastMusicPlay() {
@@ -167,6 +136,41 @@ class ZHJAudioPlayer : NSObject {
             streamPlayer.activeStream.delegate = self
         }
     }
+    
+    //MARK: --  时间
+    func initPlayerTime(){
+        if let streamPlayer = player  {
+            // 设置时间
+            if let play = streamPlayer.activeStream {
+                if play.currentTimePlayed.playbackTimeInSeconds > 0 {
+                    let minute = play.currentTimePlayed.minute > 10 ? play.currentTimePlayed.minute.description : "0" + play.currentTimePlayed.minute.description
+                    let second = play.currentTimePlayed.second < 10 ? "0" + play.currentTimePlayed.second.description : play.currentTimePlayed.second.description
+                    currentTime = minute + ":" + second
+                }
+                if play.duration.playbackTimeInSeconds > 0 && self.currentTime == "00:00" {
+                    let minute = play.duration.minute > 10 ? play.duration.minute.description : "0" + play.duration.minute.description
+                    totalTime = minute + ":" + play.duration.second.description
+                }
+            }
+            guard self.change != nil else { return }
+            if currentPosion <= 1 {
+                change!(totalTime,currentTime,currentPosion)
+            }
+            
+            // 设置当前正在播放第几首歌曲
+            guard let item = streamPlayer.currentPlaylistItem  else {return}
+            for i:Int in 0..<musicUrls.count {
+                let musicName = item.url.absoluteString
+                let url = musicUrls[i]
+                if url == musicName {
+                    if i != self.currentMusicNumber {
+                        self.currentMusicNumber = i
+                    }
+                }
+            }
+        }
+    }
+    
     //MARK: --  歌曲缓存信息 待完善
     func getCacheSize(){
         initPlayerTime()
@@ -210,10 +214,17 @@ extension ZHJAudioPlayer: FSAudioControllerDelegate {
 extension ZHJAudioPlayer: FSPCMAudioStreamDelegate {
     func audioStream(_ audioStream: FSAudioStream!, samplesAvailable samples: UnsafeMutablePointer<AudioBufferList>!, frames: UInt32, description: AudioStreamPacketDescription) {
         DispatchQueue.main.async {
-            self.initPlayerTime()
-            if let streamPlayer = self.player  {
-                if let play = streamPlayer.activeStream {
-                    self.currentPosion = play.currentTimePlayed.position
+            if self.currentPosion != 1 {
+                if let streamPlayer = self.player  {
+                    if let play = streamPlayer.activeStream {
+                        self.currentPosion = play.currentTimePlayed.position
+                    }
+                }
+                self.initPlayerTime()
+            } else {
+                let posion = audioStream?.currentTimePlayed.position ?? 0
+                if posion > 0.0 && posion < 0.001 {
+                    self.currentPosion = posion
                 }
             }
         }

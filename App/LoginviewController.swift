@@ -23,6 +23,10 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
     @IBOutlet weak var imageBG: UIImageView!
     @IBOutlet weak var mainview: UIView!
     
+    @IBOutlet weak var QQ: UIButton!
+    @IBOutlet weak var Wecht: UIButton!
+    @IBOutlet weak var Sina: UIButton!
+    
     var loginDelegate: AppLoginSucessDelegate?
     var txtUser: UITextField?
     var txtPwd: UITextField?
@@ -71,7 +75,20 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
         self.title = "登录"
         addWatermark()
         InitUI()
+        //友盟初始化
+        SocialUtils.initSocial()
+
+        initThirdButton(btn: self.QQ)
+        initThirdButton(btn: self.Wecht)
+        initThirdButton(btn: self.Sina)
     }
+    func initThirdButton(btn: UIButton) {
+        btn.layer.masksToBounds = true
+        btn.layer.borderColor = UIColor.white.cgColor
+        btn.layer.borderWidth = 1
+        btn.layer.cornerRadius = btn.bounds.size.width/2
+    }
+    //MARK: -- 控件 布局
     func InitUI(){
         showType = JxbLoginShowType.jxbLoginShowType_NONE
         
@@ -161,7 +178,7 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
         loginBtn.layer.borderWidth = SIZE_1PX
         vLogin.addSubview(loginBtn)
     }
-    
+    //MARK: -- UITextFieldDelegate
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
         if textField.isEqual(txtUser){
@@ -203,9 +220,7 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
     }
     //MARK: -- 登录注册 事件
     func registeredClick(_ btn: UIButton){
-                
         if btn.tag == 11{// 注册
-            
             self.navigationController?.pushViewController(RegisteredViewController(nibName: "RegisteredViewController", bundle: nil), animated: true)
         }else{// 登录
             if !checkMobileReg((txtUser?.text)!){alert("请输入正确的手机号");return}
@@ -234,16 +249,24 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
             alert("用户不存在")
         }
     }
-    func getDBuser(){
-        if let userkeyArray = session.object(forKey: USERGROUPOBJECTKEY) as? [Dictionary<String,String>] {
-            self.userkeyArray = userkeyArray
+   
+    @IBAction func thirdloginClick(_ sender: UIButton) {
+        switch sender.tag {
+        case 200:
+            SocialUtils.ThirdPartyLoginAction(type: UMSocialPlatformType.QQ, Viewcontroller: self)
+            Log.info("QQ")
+        case 201:
+            SocialUtils.ThirdPartyLoginAction(type: UMSocialPlatformType.wechatSession, Viewcontroller: self)
+            Log.info("Wechat")
+        case 202:
+            SocialUtils.ThirdPartyLoginAction(type: UMSocialPlatformType.sina, Viewcontroller: self)
+            Log.info("sina")
+        default:
+            Log.info("啥玩意")
         }
     }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
     
-    // Mark: -------- UINavigationControllerDelegate
+    // MARK: -------- UINavigationControllerDelegate
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.operation = operation
 
@@ -258,6 +281,17 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
     func addWatermark(){
         imageBG.image = UIImage(named: "LoginBG.jpg")?.waterMarkedImage("要想生活过得去，朋友必须有小军").waterMarkedImage("☀️", corner: .topLeft, margin: CGPoint(x: 24,y: 28), waterMarkTextColor: UIColor.brown, waterMarkTextFont: UIFont.systemFont(ofSize: 45), backgroundColor: UIColor.clear)
     }
+    //MARK:-----获取用户数据
+    func getDBuser(){
+        if let userkeyArray = session.object(forKey: USERGROUPOBJECTKEY) as? [Dictionary<String,String>] {
+            self.userkeyArray = userkeyArray
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

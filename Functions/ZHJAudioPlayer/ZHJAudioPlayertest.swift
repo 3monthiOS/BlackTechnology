@@ -24,15 +24,16 @@ class ZHJAudioPlayertest: UIViewController {
     @IBOutlet weak var misucCount: UILabel!
     @IBOutlet weak var misicIngNumber: UILabel!
     
+    
+    
     //AVPlayer 播放器相关
     var playerItem:AVPlayerItem?
     var player:AVPlayer?
     
     //FSAudioStream
     var streamPlayer = ZHJAudioPlayer.shared
-    
     var chosesPlayer = true
-    
+    var currentPosionbeifen: Float = 0.0
     // 数据源
     var musicUrl = [String]()
     var musicData = [FSPlaylistItem]()
@@ -40,7 +41,7 @@ class ZHJAudioPlayertest: UIViewController {
     //MARK: -- 页面消失时取消歌曲播放结束通知监听
     override func viewWillDisappear(_ animated: Bool) {
         if let streamPlayer = self.streamPlayer.player {
-            streamPlayer.stop()
+            streamPlayer.pause()
         }
     }
     
@@ -63,7 +64,7 @@ class ZHJAudioPlayertest: UIViewController {
         
         segmentButton.selectedSegmentIndex = 0
         
-        self.playbackSlider.isContinuous = false
+//        self.playbackSlider.isContinuous = false
         playbackSlider.minimumValue = 0.0
         playbackSlider.maximumValue = 1.0
         playbackSlider.setValue(0.0, animated: true)
@@ -72,13 +73,16 @@ class ZHJAudioPlayertest: UIViewController {
         ZHJAudioPlayer.shared.change = { (totalTime: String,currentTime: String,currentPosion:Float) in
             self.playTm.text = currentTime
             self.playTime.text = totalTime
-            self.playbackSlider.setValue(currentPosion, animated: true)
+            if fabsf(currentPosion - self.currentPosionbeifen) < 0.001 {
+                self.currentPosionbeifen = currentPosion
+                self.playbackSlider.setValue(currentPosion, animated: true)
+            }
         }
         
         misucCount.text = ZHJAudioPlayer.shared.totalMusicCount.string
         
         // 初始化 AVplayer 比较耗时间
-        initAVPlayerFuntion()
+//        initAVPlayerFuntion()
         
         if let streamPlayer = self.streamPlayer.player {
             streamPlayer.onStateChange = { (status)  in
@@ -119,17 +123,11 @@ class ZHJAudioPlayertest: UIViewController {
     @IBAction func playButtonTapped(_ sender: Any) {
         if chosesPlayer {
             if let streamPlayer = self.streamPlayer.player  {
-                if streamPlayer.isPlaying() {
-                    streamPlayer.pause()
+                streamPlayer.activeStream.pause()
+                if playButton.currentTitle == "暂停" {
                     playButton.setTitle("播放", for: .normal)
                 } else {
-                    streamPlayer.play()
                     playButton.setTitle("暂停", for: .normal)
-                    if !streamPlayer.isPlaying() {
-                        var value = FSStreamPosition()
-                        value.position = ZHJAudioPlayer.shared.currentPosion
-                        streamPlayer.activeStream.seek(to: value)
-                    }
                 }
                 ZHJAudioPlayer.shared.getCacheSize()
             }
@@ -165,6 +163,7 @@ class ZHJAudioPlayertest: UIViewController {
         }else{
             
         }
+        currentPosionbeifen = 0.0
     }
     //MARK: --  下一首
     @IBAction func nextMusicPlay(_ sender: UIButton) {
@@ -174,14 +173,15 @@ class ZHJAudioPlayertest: UIViewController {
         }else{
             
         }
+        currentPosionbeifen = 0.0
     }
     //MARK: --  拖动进度条改变值时触发
     @IBAction func playbackSliderValueChanged(_ sender: UISlider) {
         if chosesPlayer {
             if let streamPlayer = self.streamPlayer.player  {
                 if let play = streamPlayer.activeStream {
+                    self.currentPosionbeifen = sender.value + 0.001
                     var value = FSStreamPosition()
-                    Log.info("滑动条的值--- \(sender.value)")
                     value.position = sender.value
                     play.seek(to: value)
                 }

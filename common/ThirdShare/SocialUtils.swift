@@ -31,8 +31,8 @@ class SocialUtils {
     static let qqAppId : String = "1106159325"
     static let qqAppKey : String = "Om8wkz5p71TOgqBt"
     //新浪 在友盟后台配置使用
-    static let sinaAppId : String = "4115894411"
-    static let sinaAppSecret : String = "f57bb9085f7ba637a40ad62e90a8a8f3" //5680a81ee0f55a739b001164
+    static let sinaAppId : String = "2514846423"
+    static let sinaAppSecret : String = "25a1237841d60a7445d2f944483e0715" //5680a81ee0f55a739b001164
     // 蚂蚁金服
     static let antfinancialId: String = "2017061907522608"
     //新浪微博回调页
@@ -96,6 +96,10 @@ class SocialUtils {
         return attributedStrM
     }
     
+    
+}
+//MARK: ------------------ 分享 --------------
+extension SocialUtils {
     //MARK: 展示分享视图
     static func showUI(Viewcontroller: UIViewController,contentObject :ShareObject){
         setingShareObject(data: contentObject)
@@ -255,5 +259,19 @@ class SocialUtils {
                 return
             }
         }
+    }
+}
+//MARK: ------------- 第三方登录 ------------
+extension SocialUtils {
+    static func ThirdPartyLoginAction(type: UMSocialPlatformType,Viewcontroller: UIViewController) -> User {
+        config?.getUserInfo(with: type, currentViewController: Viewcontroller, completion: { (data, error) in
+            if let obj = data as? UMSocialUserInfoResponse {
+                Log.info("你都返回了些啥啊 --  \(String(describing: obj.name))------\(String(describing: obj.iconurl))-------\(String(describing: obj.unionGender))----\(String(describing: obj.gender))")
+            }
+            if (error != nil) {
+                Log.info("第三方登录出错了？  \(String(describing: error))")
+            }
+        })
+        return User()
     }
 }

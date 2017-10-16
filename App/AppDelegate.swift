@@ -35,11 +35,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // IndependentRegiment.BT.App identifer ID
+        
+        // 调试窗口
         self.debugInformationTest()
         
+        // app主题
         let them = ThemeManager.currentTheme()
         ThemeManager.overrideApplyTheme(them)
-        //        self.window = UIWindow.init(frame: UIScreen.main.bounds)
         
         //MARK: 阿里云初始化各种设置
         ALY = ALYPhotoTool.shared
@@ -61,8 +63,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             LocationManager.sharedInstance.startUpdateLocation()
         }
-        
-        
         
         Log.debug(LocationManager.sharedInstance.address)
         //MARK: IQ 键盘
