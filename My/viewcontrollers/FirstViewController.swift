@@ -28,15 +28,10 @@ class FirstViewController: UIViewController {
         ["滴滴 iOS 动态化方案 DynamicCocoa 的诞生与起航 - CSDN - 微读吧":"http://www.weidu8.net/wx/1008148211323615"]]
     var dataArray = [[articlesOBj]]()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.navigationController?.navigationBarHidden = false
-//        self.navigationController?.navigationBar.translucent = false
-//        self.navigationItem.title = "我的个人信息"
         initdata()
         initZHJtableview()
-//        configureTable()
     }
     func initdata(){
         for atr:[String:String] in articlesData {
@@ -84,18 +79,19 @@ extension FirstViewController : ZHJtableviewDelgate {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? articlesCell
         let articl = dataArray[indexPath.section][indexPath.row]
         cell?.contentText.text = articl.title
+        cell?.readNumber.text = articl.readnumber
         return cell
     }
     func didSelectRowAtIndexPath(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         let articl = dataArray[indexPath.section][indexPath.row]
         let web = ZHJWebViewController()
         web._urlString = articl.url
+        self.tabBarController?.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(web, animated: true)
     }
 }
 //MARK:------- UITableViewDataSource
 extension FirstViewController: ZHJtableviewDataSource {
-    
     func bindHeaderView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view =  UIView()
         view.frame = CGRect(x: 0, y: 0, width: App_width + 25, height: 20)

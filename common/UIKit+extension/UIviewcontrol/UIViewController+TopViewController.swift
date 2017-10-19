@@ -119,9 +119,9 @@ extension UIViewController {
         var buttonTitleEDG: UIEdgeInsets
         switch position {
         case .left:
-            buttonImageEDG = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 20)
+            buttonImageEDG = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -12)
         case .right:
-            buttonImageEDG = UIEdgeInsets(top: 0, left: 13, bottom: 0, right: -13)
+            buttonImageEDG = UIEdgeInsets(top: 0, left: -12, bottom: 0, right: 0)
         case .back:
             buttonImageEDG = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 60)
             buttonTitleEDG = UIEdgeInsets(top: 0, left: -45, bottom: 0, right: -15)

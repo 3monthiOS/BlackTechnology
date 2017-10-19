@@ -34,7 +34,7 @@
         <!--我-->
         <scene sceneID="f2Y-SF-Wbf">
             <objects>
-                <navigationController storyboardIdentifier="Myviewcontrollernavigation" id="21W-O6-20J" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Myviewcontrollernavigation" hidesBottomBarWhenPushed="YES" id="21W-O6-20J" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="2" title="我" image="Settings_00208" id="Q4T-RU-VPt" customClass="RAMAnimatedTabBarItem" customModule="App" customModuleProvider="target">
                         <connections>
                             <outlet property="animation" destination="odq-kd-922" id="dOx-K5-RpK"/>

@@ -33,6 +33,9 @@ class ChatListviewcontroller: RCConversationListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "聊天室"
+        
         let token = RCtokenArray[user.userphone!] ?? RCtokenArray["012345678910"]
         // MARK: -- 用户登录
         RCIM.shared().connect(withToken: token,success: { (userId) -> Void in
@@ -103,6 +106,7 @@ class ChatListviewcontroller: RCConversationListViewController {
     // MARK: -- 单聊
     func privateChat() {
         let RCSeting = RCsetingsController()
+        self.tabBarController?.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(RCSeting, animated: true)
         
 

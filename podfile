@@ -20,12 +20,12 @@ target :App do
     # 定位
     pod 'SwiftLocation'
 #    pod 'BaiduMapKit'
-    pod 'Qiniu', '~> 7.1'
+#    pod 'Qiniu', '~> 7.1'
     pod 'SnapKit', '~> 3.2.0'
     #正则表达式
     #pod 'STRegex', '~> 0.4.0'
     #七彩字符串输出
-    pod 'RainbowSwift', '~> 2.0'
+#    pod 'RainbowSwift', '~> 2.0'
     #GIF图片库
     pod 'SwiftyGif'
     #图片识别文字
@@ -46,7 +46,7 @@ target :App do
     # 阿里解析
     pod 'HandyJSON'
     # 阿里对象存储
-    pod 'AliyunOSSiOS'
+#    pod 'AliyunOSSiOS'
     # 日历
 #    pod 'FSCalendar'
     #音乐框架

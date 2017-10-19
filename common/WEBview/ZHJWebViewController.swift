@@ -14,19 +14,20 @@ import CoreLocation
 import Alamofire
 
 class ZHJWebViewController: UIViewController  {
-    let webView: WebView? = nil
+    var webView: WebView? = nil
     
     var _urlString: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if webView == nil {
-            let web = WebView(frame: self.view.frame)
-            self.view.addSubview(web)
+            webView = WebView(frame: self.view.frame)
+            self.view.addSubview(webView!)
         }
         if let urlString = _urlString {
             let _ = webView?.loadURLString(urlString)
         }
+        self.title = webView?.title
     }
     
     func loadURLString(urlString: String) {
@@ -68,3 +69,4 @@ class ZHJWebViewController: UIViewController  {
         }
     }
 }
+

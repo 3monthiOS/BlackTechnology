@@ -12,7 +12,7 @@ import SnapKit
 
 class Myviewcontroller: APPviewcontroller{
     
-    let conreollerName = ["FirstViewController","RCsetingsController","FirstViewController","FirstViewController","FirstViewController","FirstViewController","FirstViewController","FirstViewController","FirstViewController","FirstViewController"]
+    let conreollerName = ["FirstViewController","FirstViewController","FirstViewController","FirstViewController","FirstViewController","FirstViewController","FirstViewController","FirstViewController","FirstViewController"]
     var controllers = [UIViewController]()
     var pagerController:TYTabButtonPagerController?
     
@@ -20,7 +20,7 @@ class Myviewcontroller: APPviewcontroller{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        delay(1) {
+        delay(UInt64(0.3)) {
             self.tabBarController?.hidesBottomBarWhenPushed = false
         }
     }
@@ -77,7 +77,7 @@ class Myviewcontroller: APPviewcontroller{
     
     // MARK: -- 导航栏 添加用户信息
     func createCurrentNagationBaritem() {
-        let _ = createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.right, Title: "", normalImage: UIImage(named: "iconfont-user"), highlightImage: UIImage(named: "iconfont-user"), action: #selector(userInfoShow))
+        let _ = createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.right, Title: "", normalImage: UIImage(named: "bottom_personal_selected"), highlightImage: UIImage(named: "bottom_personal_selected"), action: #selector(userInfoShow))
     }
     
     @objc private func  userInfoShow() {
@@ -160,7 +160,7 @@ extension Myviewcontroller: TYPagerControllerDataSource{
     }
     
     func pagerController(_ pagerController: TYPagerController!, titleFor index: Int) -> String! {
-        let name = ["第一个","融云","第三个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个"]
+        let name = ["iOS文章","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个","第四个"]
         let titlename = name[index]
         return titlename
     }
