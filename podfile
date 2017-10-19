@@ -15,7 +15,6 @@ target :App do
     # 融云
     pod 'RongCloudIM/IMLib', '~> 2.8.12'
     pod 'RongCloudIM/IMKit', '~> 2.8.12'
-#    pod 'RongCloudIM', '~> 2.8.12'
     pod 'MJRefresh'
     # 定位
     pod 'SwiftLocation'
@@ -46,7 +45,7 @@ target :App do
     # 阿里解析
     pod 'HandyJSON'
     # 阿里对象存储
-#    pod 'AliyunOSSiOS'
+    pod 'AliyunOSSiOS'
     # 日历
 #    pod 'FSCalendar'
     #音乐框架

@@ -143,16 +143,16 @@ extension uploadPicturesView: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,Phot
     
     func getImageSucessful(_ image: UIImage) {
         Log.info("有——图片")
-        let imageSize = CGSize(width: image.size.width,height: image.size.height)
-        let iamgeData = image.af_imageScaled(to: imageSize)
-        guard let
-            data = iamgeData.data,
-            let key = QNUtils.keyForImage(image)
-            else {
-                return
-        }
-        self.avatarData = data as Data
-        self.avatarKey = key
+//        let imageSize = CGSize(width: image.size.width,height: image.size.height)
+//        let iamgeData = image.af_imageScaled(to: imageSize)
+//        guard let
+//            data = iamgeData.data,
+//            let key = QNUtils.keyForImage(image)
+//            else {
+//                return
+//        }
+//        self.avatarData = data as Data
+//        self.avatarKey = key
         showImageview.image = image
     }
     
@@ -198,14 +198,14 @@ extension uploadPicturesView: SystemPhotoAlbumDelegate,PhotoBrowserDelegate,Phot
                 if let image = image{
                     let imageSize = CGSize(width: image.size.width,height: image.size.height)
                     let iamgeData = image.af_imageScaled(to: imageSize)
-                    guard let
-                        data = iamgeData.data,
-                        let key = QNUtils.keyForImage(image)
-                        else {
-                            return
-                    }
-                    self.avatarData = data as Data
-                    self.avatarKey = key
+//                    guard let
+//                        data = iamgeData.data,
+//                        let key = QNUtils.keyForImage(image)
+//                        else {
+//                            return
+//                    }
+//                    self.avatarData = data as Data
+//                    self.avatarKey = key
                     self.showImageview.image = image
                 }
             }else{

@@ -9,8 +9,8 @@
 #import "uploadGetToken.h"
 #import <CommonCrypto/CommonDigest.h>
 #include <CommonCrypto/CommonHMAC.h>
-#import "QNUrlSafeBase64.h"
-#import "QN_GTM_Base64.h"
+//#import "QNUrlSafeBase64.h"
+//#import "QN_GTM_Base64.h"
 
 @implementation uploadGetToken
 

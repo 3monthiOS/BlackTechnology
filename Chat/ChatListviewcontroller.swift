@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import IQKeyboardManagerSwift
 import Alamofire
-import RainbowSwift
+//import RainbowSwift
 //import SwiftOCR
 
 class ChatListviewcontroller: RCConversationListViewController {
@@ -33,9 +33,7 @@ class ChatListviewcontroller: RCConversationListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.title = "聊天室"
-        
+                
         let token = RCtokenArray[user.userphone!] ?? RCtokenArray["012345678910"]
         // MARK: -- 用户登录
         RCIM.shared().connect(withToken: token,success: { (userId) -> Void in
