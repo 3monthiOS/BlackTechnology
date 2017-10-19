@@ -13,16 +13,22 @@ class RCsetingsController: UIViewController {
     @IBOutlet weak var setingTableview: ZHJtableview!
 
     var dataArray = [[],["创建讨论组","清除融云缓存"]]
-    var userarray = [User]()
+    var userArray = [User]()
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+            self.tabBarController?.hidesBottomBarWhenPushed = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "融云"
+        self.title = "设置"
         initZHJtableview()
+        createDiscussionGroupsChat()
     }
     
     func initZHJtableview(){
-        setingTableview.tableveiwData = dataArray
+        setingTableview.tableveiwData = dataArray as [[AnyObject]]
         setingTableview.needRefreshControl = [true,true]
         setingTableview.delgate = self
         setingTableview.dataSources = self
@@ -31,25 +37,45 @@ class RCsetingsController: UIViewController {
     }
     // MARK: -- 创建讨论组
     func createDiscussionGroupsChat(){
-        userarray.removeAll()
+        userArray.removeAll()
         for u in RCtokenArray {
             let userobj = User()
             userobj.userphone = u.key
             userobj.rcToken = u.value
-            userarray.append(userobj)
+            if u.key == "15249685697" {
+                userobj.rcUserId = "cb"
+                userobj.rcName = "常博"
+            } else if u.key == "012345678910" {
+                userobj.rcUserId = "CB0"
+                userobj.rcName = "常六"
+            } else if u.key == "13968034167" {
+                userobj.rcUserId = "ZW"
+                userobj.rcName = "宗伟"
+            } else if u.key == "15225147792" {
+                userobj.rcUserId = "GF"
+                userobj.rcName = "小芳"
+            } else if u.key == "18336093422" {
+                userobj.rcUserId = "zhj1214"
+                userobj.rcName = "小军"
+            } else if u.key == "00000000000" {
+                userobj.rcUserId = "ZW0"
+                userobj.rcName = "单身狗"
+            }
+            userArray.append(userobj)
         }
-        let membervc = ShowGroupsMembersController()
-        membervc.userData = userarray
-        self.navigationController?.present(membervc, animated: false, completion: nil)
     }
     
     func showFriends(){
         if dataArray[0].count>1 {
             dataArray = [[],["创建讨论组","清除融云缓存"]]
         }else{
-            dataArray = [["张三","李四","王麻子","小二","王五","的撒多","单身的"],["创建讨论组","清除融云缓存"]]
+            var nameArray = [String]()
+            for obj in userArray {
+                nameArray.append(obj.rcName!)
+            }
+            dataArray = [nameArray,["创建讨论组","清除融云缓存"]]
         }
-        setingTableview.tableveiwData = dataArray
+        setingTableview.tableveiwData = dataArray as [[AnyObject]]
         setingTableview.reloadData()
 //        self.setingTableview.reloadSections(IndexSet(integersIn: NSMakeRange(0, 1).toRange()!), with: .fade)
     }
@@ -61,6 +87,7 @@ extension RCsetingsController: ZHJtableviewDelgate {
         // 这里是下拉刷新的回调 用于请求数据
         tableView.endRefreshing(num: dataArray.count, count: 1)
     }
+    
     func bindCellData(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell? {
         let identifier = "cellRC"
         var cell = tableView.dequeueReusableCell(withIdentifier: identifier)
@@ -73,11 +100,20 @@ extension RCsetingsController: ZHJtableviewDelgate {
         cell?.textLabel?.text = dataArray[indexPath.section][indexPath.row]
         return cell
     }
+    
     func didSelectRowAtIndexPath(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
-        if indexPath.section != 0 {
+        if indexPath.section == 0 {
+            // 与谁 私聊
+            let chatWithSelf = RCConversationViewController(conversationType: RCConversationType.ConversationType_PRIVATE, targetId: userArray[indexPath.row].rcUserId)
+            chatWithSelf?.title = userArray[indexPath.row].rcName
+            chatWithSelf?.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(chatWithSelf!, animated: true)
+        } else {
             switch indexPath.row {
             case 0:
-                createDiscussionGroupsChat()
+                let membervc = ShowGroupsMembersController()
+                membervc.userData = userArray
+                self.navigationController?.present(membervc, animated: false, completion: nil)
             case 1:
                 RCIM.shared().clearUserInfoCache()
                 RCIM.shared().clearGroupUserInfoCache()

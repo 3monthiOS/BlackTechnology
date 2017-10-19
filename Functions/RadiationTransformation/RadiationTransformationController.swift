@@ -16,9 +16,14 @@ class RadiationTransformationController: UIViewController {
     @IBOutlet var xScaleSlider: UISlider!
     @IBOutlet var yScalerSlider: UISlider!
     @IBOutlet var rotationSlider: UISlider!
+    var isok = false
     override func viewDidLoad(){
         super.viewDidLoad()
         self.title = "放射变换"
+        image.layer.masksToBounds = true
+        image.layer.borderColor = UIColor.white.cgColor
+        image.layer.borderWidth = 1
+        image.layer.cornerRadius = image.frame.size.width/2
         congfigSlider()
     }
     func congfigSlider() {
@@ -44,7 +49,15 @@ class RadiationTransformationController: UIViewController {
     }
     
     @IBAction func changeLeftOrRightSlider(_ sender: UISlider) {
-        
+        if yScalerSlider.value < 0 && !isok {
+            isok = true
+            image.image = UIImage(named: "cat")
+            
+        } else if (yScalerSlider.value > 0 && isok) {
+            isok = false
+            image.image = UIImage(named: "分享缩略图")
+        }
+        print(yScalerSlider.value)
         var transform = CGAffineTransform.identity
         
         //平移

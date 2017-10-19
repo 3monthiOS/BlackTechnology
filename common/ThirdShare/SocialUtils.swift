@@ -264,6 +264,9 @@ extension SocialUtils {
 //MARK: ------------- 第三方登录 ------------
 extension SocialUtils {
     static func ThirdPartyLoginAction(type: UMSocialPlatformType,Viewcontroller: UIViewController) -> User {
+//        config?.cancelAuth(with: type, completion: { (data, error) in
+//            Log.info("取消")
+//        })
         config?.getUserInfo(with: type, currentViewController: Viewcontroller, completion: { (data, error) in
             if let obj = data as? UMSocialUserInfoResponse {
                 Log.info("你都返回了些啥啊 --  \(String(describing: obj.name))------\(String(describing: obj.iconurl))-------\(String(describing: obj.unionGender))----\(String(describing: obj.gender))")

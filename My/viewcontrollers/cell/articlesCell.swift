@@ -1,15 +1,17 @@
 //
-//  TableViewHeaderCell.swift
+//  articlesCell.swift
 //  App
 //
-//  Created by 红军张 on 16/9/22.
-//  Copyright © 2016年 IndependentRegiment. All rights reserved.
+//  Created by 红军张 on 2017/10/18.
+//  Copyright © 2017年 IndependentRegiment. All rights reserved.
 //
 
 import UIKit
 
-class TableViewHeaderCell: UITableViewCell {
+class articlesCell: UITableViewCell {
 
+    @IBOutlet weak var readNumber: UILabel!
+    @IBOutlet weak var contentText: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

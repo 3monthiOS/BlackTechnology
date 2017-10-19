@@ -21,7 +21,7 @@ class ChatListviewcontroller: RCConversationListViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        delay(0) {
+        delay(UInt64(0.3)) {
             self.tabBarController?.hidesBottomBarWhenPushed = false
         }
     }
@@ -53,9 +53,9 @@ class ChatListviewcontroller: RCConversationListViewController {
 //        requestTest()
         
     }
-    // MARK: -- 导航栏 添加讨论组、单聊按钮
+    // MARK: -- 导航栏 添加讨论组、设置界面
     func createCurrentNagationBaritem() {
-        let _ = createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.right, Title: "单聊", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(privateChat))
+        let _ = createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.right, Title: "设置", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(privateChat))
     }
     // MARK: -- 会话类型展示
     func initChatView(){
@@ -102,11 +102,10 @@ class ChatListviewcontroller: RCConversationListViewController {
 
     // MARK: -- 单聊
     func privateChat() {
-        //打开会话界面
-        let chatWithSelf = RCConversationViewController(conversationType: RCConversationType.ConversationType_PRIVATE, targetId: user.rcUserId)
-        chatWithSelf?.title = "私聊"
-        chatWithSelf?.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(chatWithSelf!, animated: true)
+        let RCSeting = RCsetingsController()
+        self.navigationController?.pushViewController(RCSeting, animated: true)
+        
+
     }
     // MARK: -- 断开连接并设置不再接收推送消息
     func logout() {
@@ -127,14 +126,10 @@ class ChatListviewcontroller: RCConversationListViewController {
     }
 }
 
-
 // MARK: -- 请求测试
 extension ChatListviewcontroller{
     
     func requestTest(){
-        
-        
-        
 //        HttpClient.default.adapter = AccessTokenAdapter()
 //        HttpClient.defaultEncoding = JerseyEncoding.default
 //        HttpClient.errorFieldName = "msg"

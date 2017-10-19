@@ -29,7 +29,7 @@ class ZHJtableview: TableViewMjResh {
             }
         }
     }
-    var tableveiwData: [[Any]]?{
+    var tableveiwData: [[AnyObject]]?{
         didSet{
             UnpackData()
         }
@@ -44,6 +44,9 @@ class ZHJtableview: TableViewMjResh {
         super.awakeFromNib()
         self.dataSource = self
         self.delegate = self
+        self.estimatedRowHeight = 100
+        self.rowHeight = UITableViewAutomaticDimension
+        
         self.refreshTableDelegate = self
     }
     func initMjrefresh(_ isok: [Bool]){
@@ -52,7 +55,7 @@ class ZHJtableview: TableViewMjResh {
     }
     func UnpackData(){
         guard let _ = tableveiwData else {
-            self.tableveiwData = [[""]]
+            self.tableveiwData = [[AnyObject]]()
             alert("tableveiwData没有初始化,不能构建页面")
             return
         }

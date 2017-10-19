@@ -10,7 +10,6 @@
 import Foundation
 
 // MARK: Top view controller
-
 extension UIViewController {
     /// 获取当前显示的 View Controller
     public static var topViewController: UIViewController? {
@@ -37,7 +36,6 @@ extension UIViewController {
 }
 
 // MARK: 导航
-
 extension UIViewController {
     /// 显示 view controller（根据当前上下文，自动选择 push 或 present 方式）
     public static func showViewController(_ controller: UIViewController, animated flag: Bool) {

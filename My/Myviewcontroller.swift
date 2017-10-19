@@ -34,8 +34,10 @@ class Myviewcontroller: APPviewcontroller{
         addPagerController()
         self.pagerController!.reloadData()
         self.pagerController?.moveToController(at: 0, animated: false)
+        
+        createCurrentNagationBaritem()
     }
-    
+   
     func addPagerController(){
         
         let  pager = TYTabButtonPagerController()
@@ -71,8 +73,18 @@ class Myviewcontroller: APPviewcontroller{
             make.bottom.equalTo(self.view)
         }
         self.view.updateConstraints()
-        
     }
+    
+    // MARK: -- 导航栏 添加用户信息
+    func createCurrentNagationBaritem() {
+        let _ = createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.right, Title: "", normalImage: UIImage(named: "iconfont-user"), highlightImage: UIImage(named: "iconfont-user"), action: #selector(userInfoShow))
+    }
+    
+    @objc private func  userInfoShow() {
+        let story = UIViewController.loadViewControllerFromStoryboard("User", storyboardID: "UserInfoController")
+        self.navigationController?.pushViewController(story!, animated: true)
+    }
+    
     // 加载不同的页面到 viewcontrollers
     func  loadTabs(){
         for classname in conreollerName {

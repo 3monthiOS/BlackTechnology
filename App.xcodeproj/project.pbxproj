@@ -156,6 +156,7 @@
 		F2749E421EF7C92700B42417 /* SocialUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2749E411EF7C92700B42417 /* SocialUtils.swift */; };
 		F27606021F6A79CB004E78FB /* AYScrollerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F27606001F6A79CB004E78FB /* AYScrollerLabel.m */; };
 		F27606031F6A79CB004E78FB /* ZHJRunningLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27606011F6A79CB004E78FB /* ZHJRunningLight.swift */; };
+		F278DD301F97599700F6DDFF /* ZHJWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F278DD2F1F97599700F6DDFF /* ZHJWebViewController.swift */; };
 		F27AE1FD1D928E09000E0509 /* CollectionReusableViewHeadre.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27AE1F71D928E09000E0509 /* CollectionReusableViewHeadre.swift */; };
 		F27AE1FE1D928E09000E0509 /* CollectionReusableViewHeadre.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27AE1F81D928E09000E0509 /* CollectionReusableViewHeadre.xib */; };
 		F27AE1FF1D928E09000E0509 /* QdanCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27AE1F91D928E09000E0509 /* QdanCollectionViewCell.swift */; };
@@ -166,6 +167,10 @@
 		F283A9501EB9E5BD0012EE0D /* TableviewCoustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F283A94F1EB9E5BD0012EE0D /* TableviewCoustom.swift */; };
 		F284FE2D1F09DD010046CDA0 /* RCsetingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F284FE2B1F09DD010046CDA0 /* RCsetingsController.swift */; };
 		F284FE2E1F09DD010046CDA0 /* RCsetingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F284FE2C1F09DD010046CDA0 /* RCsetingsController.xib */; };
+		F287C86C1F9728120035CAF1 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F287C86B1F9728120035CAF1 /* User.storyboard */; };
+		F287C86E1F9728C00035CAF1 /* UserInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F287C86D1F9728C00035CAF1 /* UserInfoController.swift */; };
+		F287C8721F9744AB0035CAF1 /* articlesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F287C8701F9744AB0035CAF1 /* articlesCell.swift */; };
+		F287C8731F9744AB0035CAF1 /* articlesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F287C8711F9744AB0035CAF1 /* articlesCell.xib */; };
 		F28C54A71EA7646300209259 /* AlbumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54901EA7646300209259 /* AlbumTableViewController.swift */; };
 		F28C54A81EA7646300209259 /* PhotoBrowser+CropperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54911EA7646300209259 /* PhotoBrowser+CropperViewController.swift */; };
 		F28C54A91EA7646300209259 /* PhotoBrowser+GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28C54921EA7646300209259 /* PhotoBrowser+GridViewController.swift */; };
@@ -260,8 +265,6 @@
 		F2D3A3E21E038E0D007DE758 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D3A3E01E038E0D007DE758 /* FirstViewController.xib */; };
 		F2D3A3E51E03A788007DE758 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D3A3E31E03A788007DE758 /* SecondViewController.swift */; };
 		F2D3A3E61E03A788007DE758 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D3A3E41E03A788007DE758 /* SecondViewController.xib */; };
-		F2D54B251D93A692006DE294 /* TableViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D54B231D93A692006DE294 /* TableViewHeaderCell.swift */; };
-		F2D54B261D93A692006DE294 /* TableViewHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D54B241D93A692006DE294 /* TableViewHeaderCell.xib */; };
 		F2D652CA1D7E94A90005824D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D652C91D7E94A90005824D /* AppDelegate.swift */; };
 		F2D652CF1D7E94A90005824D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2D652CD1D7E94A90005824D /* Main.storyboard */; };
 		F2D652D21D7E94A90005824D /* App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F2D652D01D7E94A90005824D /* App.xcdatamodeld */; };
@@ -487,6 +490,7 @@
 		F27605FF1F6A79CB004E78FB /* AYScrollerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYScrollerLabel.h; sourceTree = "<group>"; };
 		F27606001F6A79CB004E78FB /* AYScrollerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYScrollerLabel.m; sourceTree = "<group>"; };
 		F27606011F6A79CB004E78FB /* ZHJRunningLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZHJRunningLight.swift; sourceTree = "<group>"; };
+		F278DD2F1F97599700F6DDFF /* ZHJWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZHJWebViewController.swift; sourceTree = "<group>"; };
 		F27AE1F71D928E09000E0509 /* CollectionReusableViewHeadre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionReusableViewHeadre.swift; sourceTree = "<group>"; };
 		F27AE1F81D928E09000E0509 /* CollectionReusableViewHeadre.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionReusableViewHeadre.xib; sourceTree = "<group>"; };
 		F27AE1F91D928E09000E0509 /* QdanCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QdanCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -497,6 +501,10 @@
 		F283A94F1EB9E5BD0012EE0D /* TableviewCoustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableviewCoustom.swift; sourceTree = "<group>"; };
 		F284FE2B1F09DD010046CDA0 /* RCsetingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCsetingsController.swift; sourceTree = "<group>"; };
 		F284FE2C1F09DD010046CDA0 /* RCsetingsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RCsetingsController.xib; sourceTree = "<group>"; };
+		F287C86B1F9728120035CAF1 /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
+		F287C86D1F9728C00035CAF1 /* UserInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoController.swift; sourceTree = "<group>"; };
+		F287C8701F9744AB0035CAF1 /* articlesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = articlesCell.swift; sourceTree = "<group>"; };
+		F287C8711F9744AB0035CAF1 /* articlesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = articlesCell.xib; sourceTree = "<group>"; };
 		F28C54901EA7646300209259 /* AlbumTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableViewController.swift; sourceTree = "<group>"; };
 		F28C54911EA7646300209259 /* PhotoBrowser+CropperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoBrowser+CropperViewController.swift"; sourceTree = "<group>"; };
 		F28C54921EA7646300209259 /* PhotoBrowser+GridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoBrowser+GridViewController.swift"; sourceTree = "<group>"; };
@@ -598,8 +606,6 @@
 		F2D3A3E01E038E0D007DE758 /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
 		F2D3A3E31E03A788007DE758 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		F2D3A3E41E03A788007DE758 /* SecondViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondViewController.xib; sourceTree = "<group>"; };
-		F2D54B231D93A692006DE294 /* TableViewHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewHeaderCell.swift; sourceTree = "<group>"; };
-		F2D54B241D93A692006DE294 /* TableViewHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewHeaderCell.xib; sourceTree = "<group>"; };
 		F2D652C61D7E94A90005824D /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2D652C91D7E94A90005824D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2D652CE1D7E94A90005824D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -795,6 +801,7 @@
 		F20F51691EB97D1800061BBE /* common */ = {
 			isa = PBXGroup;
 			children = (
+				F278DD311F9759BC00F6DDFF /* WEBview */,
 				F20F51A11EB97D1800061BBE /* Theme.swift */,
 				F20F51811EB97D1800061BBE /* CommonFuntion.swift */,
 				F27605FE1F6A797A004E78FB /* ZHJRunningLight */,
@@ -1151,12 +1158,11 @@
 		F23096921E0298CE001ACE00 /* viewcontrollers */ = {
 			isa = PBXGroup;
 			children = (
+				F287C86F1F9744840035CAF1 /* cell */,
 				F2D3A3DF1E038E0D007DE758 /* FirstViewController.swift */,
 				F2D3A3E01E038E0D007DE758 /* FirstViewController.xib */,
 				F2D3A3E31E03A788007DE758 /* SecondViewController.swift */,
 				F2D3A3E41E03A788007DE758 /* SecondViewController.xib */,
-				F284FE2B1F09DD010046CDA0 /* RCsetingsController.swift */,
-				F284FE2C1F09DD010046CDA0 /* RCsetingsController.xib */,
 			);
 			path = viewcontrollers;
 			sourceTree = "<group>";
@@ -1440,6 +1446,8 @@
 		F25E22E71D9B99ED00A0F0DA /* RC */ = {
 			isa = PBXGroup;
 			children = (
+				F284FE2B1F09DD010046CDA0 /* RCsetingsController.swift */,
+				F284FE2C1F09DD010046CDA0 /* RCsetingsController.xib */,
 				F25E22E81D9B9A1D00A0F0DA /* AppChatScreenViewController.swift */,
 			);
 			path = RC;
@@ -1459,8 +1467,9 @@
 		F2666A8C1D879C6100B2029E /* My */ = {
 			isa = PBXGroup;
 			children = (
+				F287C8661F9724E90035CAF1 /* userInfo */,
 				F23096921E0298CE001ACE00 /* viewcontrollers */,
-				F2D54B221D93A672006DE294 /* tableview */,
+				F2D54B221D93A672006DE294 /* cell */,
 				F2666A8E1D879CCD00B2029E /* Myviewcontroller.swift */,
 			);
 			name = My;
@@ -1531,6 +1540,14 @@
 			path = ZHJRunningLight;
 			sourceTree = "<group>";
 		};
+		F278DD311F9759BC00F6DDFF /* WEBview */ = {
+			isa = PBXGroup;
+			children = (
+				F278DD2F1F97599700F6DDFF /* ZHJWebViewController.swift */,
+			);
+			path = WEBview;
+			sourceTree = "<group>";
+		};
 		F27AE1F61D928E09000E0509 /* collectionCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1554,6 +1571,24 @@
 				F283A94F1EB9E5BD0012EE0D /* TableviewCoustom.swift */,
 			);
 			path = TableviewCoustom;
+			sourceTree = "<group>";
+		};
+		F287C8661F9724E90035CAF1 /* userInfo */ = {
+			isa = PBXGroup;
+			children = (
+				F287C86B1F9728120035CAF1 /* User.storyboard */,
+				F287C86D1F9728C00035CAF1 /* UserInfoController.swift */,
+			);
+			path = userInfo;
+			sourceTree = "<group>";
+		};
+		F287C86F1F9744840035CAF1 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				F287C8701F9744AB0035CAF1 /* articlesCell.swift */,
+				F287C8711F9744AB0035CAF1 /* articlesCell.xib */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		F28C548F1EA7646300209259 /* Photographic */ = {
@@ -1880,13 +1915,11 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
-		F2D54B221D93A672006DE294 /* tableview */ = {
+		F2D54B221D93A672006DE294 /* cell */ = {
 			isa = PBXGroup;
 			children = (
-				F2D54B231D93A692006DE294 /* TableViewHeaderCell.swift */,
-				F2D54B241D93A692006DE294 /* TableViewHeaderCell.xib */,
 			);
-			path = tableview;
+			path = cell;
 			sourceTree = "<group>";
 		};
 		F2D652BD1D7E94A90005824D = {
@@ -2173,6 +2206,7 @@
 				F24E9A391DEEB18A00A45EB8 /* uploadPicturesView.xib in Resources */,
 				F2F46F461EEE2B3400480A64 /* RecordingVoiceController.xib in Resources */,
 				F27AE1FE1D928E09000E0509 /* CollectionReusableViewHeadre.xib in Resources */,
+				F287C86C1F9728120035CAF1 /* User.storyboard in Resources */,
 				F2ECF2A21F6BD8BD008B09DD /* 薛之谦-你还要我怎样.mp3 in Resources */,
 				F250A2A81EFA061900F964A5 /* ShareDomeController.xib in Resources */,
 				F25AD7C61ED522A500E475CF /* starwars.storyboard in Resources */,
@@ -2186,7 +2220,6 @@
 				F2D3A3E61E03A788007DE758 /* SecondViewController.xib in Resources */,
 				F2D6904C1DFE7A200087328B /* CollectionReusableHeadre.xib in Resources */,
 				F284FE2E1F09DD010046CDA0 /* RCsetingsController.xib in Resources */,
-				F2D54B261D93A692006DE294 /* TableViewHeaderCell.xib in Resources */,
 				F2C534481F1467A5009E9045 /* QRcodeSB.storyboard in Resources */,
 				F29BFBFA1EBC693D00464D28 /* ShowtextModelCell.xib in Resources */,
 				F217F20A1D842B74000E3A0D /* RegisteredViewController.xib in Resources */,
@@ -2196,6 +2229,7 @@
 				F294B34B1DFFDDB70055C8CB /* UserIphoneNumbercell.xib in Resources */,
 				F2FA2DA11DE808D000CE0A3C /* DownloadfileView.xib in Resources */,
 				F2BD8A361EB9BDCC00AE3F06 /* GifViewController.xib in Resources */,
+				F287C8731F9744AB0035CAF1 /* articlesCell.xib in Resources */,
 				F2C4F3941F0496770067DBCE /* ShowGroupsMembersController.xib in Resources */,
 				F29BFBF61EBC569D00464D28 /* uploadPicturesTable.geojson in Resources */,
 				F24E9A3C1DEEBA0800A45EB8 /* gif131.gif in Resources */,
@@ -2291,6 +2325,7 @@
 				F2BD8A271EB9885400AE3F06 /* Session+extension.swift in Sources */,
 				F20F51FB1EB97D1800061BBE /* Theme.swift in Sources */,
 				F294B3471DFFDDB70055C8CB /* MobileAddres.swift in Sources */,
+				F278DD301F97599700F6DDFF /* ZHJWebViewController.swift in Sources */,
 				F23481481EA5E6EE00CB84F2 /* String+Extension.swift in Sources */,
 				F2AD26101F69366200F9D003 /* CEContentCollectionView.swift in Sources */,
 				F20F51E01EB97D1800061BBE /* Location.swift in Sources */,
@@ -2366,11 +2401,13 @@
 				F23481521EA5E6EE00CB84F2 /* CGRect+Extension.swift in Sources */,
 				F2AAFB4B1ED3DD6A00A22BB9 /* RAMRotationAnimation.swift in Sources */,
 				F20F52171EB97D1800061BBE /* UIViewController+TopViewController.swift in Sources */,
+				F287C8721F9744AB0035CAF1 /* articlesCell.swift in Sources */,
 				F21715851F623ECB00AD33E6 /* SotrViewController.swift in Sources */,
 				F234813A1EA5E6ED00CB84F2 /* Stringify.swift in Sources */,
 				F20F52141EB97D1800061BBE /* UIView+SetRect.swift in Sources */,
 				F27B9B831F67BC4C00DAA671 /* UIButton+extension.swift in Sources */,
 				F28C54B51EA7646300209259 /* PhotoBrowser+View.swift in Sources */,
+				F287C86E1F9728C00035CAF1 /* UserInfoController.swift in Sources */,
 				F28C54A71EA7646300209259 /* AlbumTableViewController.swift in Sources */,
 				F26BAC921ED4155E001A4AEC /* MainSettingsViewController.swift in Sources */,
 				F28C54A81EA7646300209259 /* PhotoBrowser+CropperViewController.swift in Sources */,
@@ -2400,7 +2437,6 @@
 				F20F52111EB97D1800061BBE /* UIView+Gradient.swift in Sources */,
 				F217F2091D842B74000E3A0D /* RegisteredViewController.swift in Sources */,
 				F2D289AB1D856C420059D289 /* AppSetting.swift in Sources */,
-				F2D54B251D93A692006DE294 /* TableViewHeaderCell.swift in Sources */,
 				F2666A8F1D879CCD00B2029E /* Myviewcontroller.swift in Sources */,
 				F20F520A1EB97D1800061BBE /* ZHJtableview.swift in Sources */,
 				F23481541EA5E6EE00CB84F2 /* UIColor+Extension.swift in Sources */,
