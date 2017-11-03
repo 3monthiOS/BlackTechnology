@@ -45,7 +45,7 @@
                                                     <action selector="thirdloginClick:" destination="Ksx-Tt-Vny" eventType="touchUpInside" id="eex-iz-tx1"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JZs-M3-hAr">
+                                            <button opaque="NO" tag="201" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JZs-M3-hAr">
                                                 <rect key="frame" x="140.5" y="0.0" width="70" height="70"/>
                                                 <color key="backgroundColor" red="0.0" green="0.70980392156862748" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -56,7 +56,7 @@
                                                     <action selector="thirdloginClick:" destination="Ksx-Tt-Vny" eventType="touchUpInside" id="dNh-4A-6AT"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" tag="202" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rqj-qL-eH7">
+                                            <button opaque="NO" tag="202" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rqj-qL-eH7">
                                                 <rect key="frame" x="230.5" y="0.0" width="70" height="70"/>
                                                 <color key="backgroundColor" red="0.86274509803921573" green="0.082352941176470587" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>

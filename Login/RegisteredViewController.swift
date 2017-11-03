@@ -20,7 +20,6 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
     let maskLayer: CAShapeLayer = SwiftLogoLayer.logoLayer()
     
     var phoneNumbertext = ""
-    let user = User()
     var userkeyArray = [Dictionary<String,String>]()
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -75,7 +74,7 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
             // 新用户注册
             user.userphone = text
             user.password = text.substring(3, 11)
-            let userKey = "user" + String(describing: userkeyArray) + "key"
+            let userKey = "user" + String(describing: Date().timeIntervalSince1970) + "key"
             let userdic = ["primaryKey":userKey,"phone":text]
             userkeyArray.append(userdic)
             session.setObject(userkeyArray as AnyObject, forKey: USERGROUPOBJECTKEY)

@@ -229,13 +229,13 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
             }
             for item in userkeyArray {
                 if let primaryKey = item["primaryKey"]{
-                    if let userinfo: User = cache.object(forKey: primaryKey) {
+                    if let userinfo: User = cache.object(forKey: CacheManager.Key.User.rawValue) {
                         if userinfo.userphone == txtUser!.text{
                             if txtPwd?.text == userinfo.password {
                                 userinfo.state = 1
                                 userinfo.one_t = 1
                                 cache.setObject(userinfo, forKey: CacheManager.Key.User.rawValue)
-                                cache.setObject(userinfo, forKey: primaryKey) //更新用户状态
+//                                cache.setObject(userinfo, forKey: primaryKey) //更新用户状态
                                 user = userinfo
                                 self.loginDelegate?.loginSucess(self)
                                 return
@@ -253,13 +253,13 @@ class LoginviewController: UIViewController,UITextFieldDelegate,UINavigationCont
     @IBAction func thirdloginClick(_ sender: UIButton) {
         switch sender.tag {
         case 200:
-            SocialUtils.ThirdPartyLoginAction(type: UMSocialPlatformType.QQ, Viewcontroller: self)
+            let _ = SocialUtils.ThirdPartyLoginAction(type: UMSocialPlatformType.QQ, Viewcontroller: self)
             Log.info("QQ")
         case 201:
-            SocialUtils.ThirdPartyLoginAction(type: UMSocialPlatformType.wechatSession, Viewcontroller: self)
+            let _ = SocialUtils.ThirdPartyLoginAction(type: UMSocialPlatformType.wechatSession, Viewcontroller: self)
             Log.info("Wechat")
         case 202:
-            SocialUtils.ThirdPartyLoginAction(type: UMSocialPlatformType.sina, Viewcontroller: self)
+            let _ = SocialUtils.ThirdPartyLoginAction(type: UMSocialPlatformType.sina, Viewcontroller: self)
             Log.info("sina")
         default:
             Log.info("啥玩意")

@@ -39,7 +39,7 @@ extension ZHJAudioPlayertest {
                     //更新播放时间
                     self.playTm!.text = self.computationsTotalTimeFuntion(time: currentTime)
                     //设置后台播放显示信息
-                    self.setInfoCenterCredentials(playbackState: 1)
+                    self.setInfoCenterCredentials()
                 }
             }
             // 添加 缓存进度监听和播放状态监听

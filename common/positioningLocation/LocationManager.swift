@@ -44,6 +44,7 @@ class LocationManager: NSObject {
             if let userinfos: User = cache.object(forKey: CacheManager.Key.User.rawValue) {
                 user = userinfos
                 user.FormattedAddressLines = address
+                cache.setObject(user, forKey: CacheManager.Key.User.rawValue)
                 Log.info(user.FormattedAddressLines)
             }
         }

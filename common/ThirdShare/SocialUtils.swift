@@ -267,9 +267,16 @@ extension SocialUtils {
 //        config?.cancelAuth(with: type, completion: { (data, error) in
 //            Log.info("取消")
 //        })
+        UMSocialGlobal.shareInstance().isClearCacheWhenGetUserInfo = true
         config?.getUserInfo(with: type, currentViewController: Viewcontroller, completion: { (data, error) in
             if let obj = data as? UMSocialUserInfoResponse {
                 Log.info("你都返回了些啥啊 --  \(String(describing: obj.name))------\(String(describing: obj.iconurl))-------\(String(describing: obj.unionGender))----\(String(describing: obj.gender))")
+//                user = cache.object(forKey: CacheManager.Key.User.rawValue)!
+                user.thirdName = obj.name
+                user.thirdPortrait = obj.iconurl
+                user.sex = obj.gender
+                cache.setObject(user, forKey: CacheManager.Key.User.rawValue)
+                toast("第三方信息获取成功，请用手机号登录")
             }
             if (error != nil) {
                 Log.info("第三方登录出错了？  \(String(describing: error))")

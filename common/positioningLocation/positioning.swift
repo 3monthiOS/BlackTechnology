@@ -38,6 +38,7 @@ class locationServiceUser {
                 user.city = locationUser.State
                 user.SubLocality = locationUser.SubLocality
                 user.Thoroughfare = locationUser.Thoroughfare
+                cache.setObject(user, forKey: CacheManager.Key.User.rawValue)
                 Log.info(user.FormattedAddressLines)
             }
         }
@@ -95,7 +96,7 @@ class locationServiceUser {
                 self?.timeoutNumber = 0
             }
         }) { error in
-            print("未找到此地址\(error)")
+            print("地里编码失败 未找到此地址\(error)")
             self.timeoutNumber += 1
             self.LocationMonitoringUser()
         }

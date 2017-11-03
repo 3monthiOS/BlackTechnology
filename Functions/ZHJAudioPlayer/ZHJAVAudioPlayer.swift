@@ -95,6 +95,9 @@ class ZHJAudioPlayer : NSObject {
     
     func getCurrentMusicUrldata(){
         if musicData.count<1 {return}
+        // 不能重复添加
+        let number0:UInt =  UInt(musicData.count)
+        if number0 == player?.countOfItems() {return}
         for obj in musicData {
             musicUrls.append(obj.url.absoluteString)
         }
@@ -201,7 +204,7 @@ extension ZHJAudioPlayer: FSAudioControllerDelegate {
         let url = audioController.currentPlaylistItem.url
         let originatingUrl = audioController.currentPlaylistItem.originatingUrl
         let size = audioController.currentPlaylistItem.audioDataByteCount/1024
-        Log.info("歌曲信息：\(String(describing: title))/n\(String(describing: url))/n\(String(describing: originatingUrl))/n\(size)")
+        Log.info("歌曲信息：歌名\(String(describing: title)) 歌曲链接 \(String(describing: url)) 歌曲缓存地址：\(String(describing: originatingUrl)) 歌曲大小 \(size)")
     }
     func audioController(_ audioController: FSAudioController!, allowPreloadingFor stream: FSAudioStream!) -> Bool {
         // 添加代理

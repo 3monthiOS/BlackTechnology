@@ -33,7 +33,7 @@ class ChatListviewcontroller: RCConversationListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         let token = RCtokenArray[user.userphone!] ?? RCtokenArray["012345678910"]
         // MARK: -- 用户登录
         RCIM.shared().connect(withToken: token,success: { (userId) -> Void in

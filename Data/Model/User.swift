@@ -52,6 +52,10 @@ class User: Mappable {
     // 注册时间
     var createTime: Double?
     
+    // 第三方 用户信息
+    var thirdName: String?
+    var thirdPortrait: String?
+    
     // 融云 组 id
     var rcGroupid: String?
     // 融云 token
@@ -93,6 +97,8 @@ class User: Mappable {
         rcToken <- map["rcToken"]
         rcName <- map["rcName"]
         rcUserId <- map["rcUserId"]
+        thirdName <- map["thirdName"]
+        thirdPortrait <- map["thirdPortrait"]
         
     }
 

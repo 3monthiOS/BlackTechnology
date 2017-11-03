@@ -1148,13 +1148,6 @@
 			path = sotr;
 			sourceTree = "<group>";
 		};
-		F21899F21F945B2F00EECAF1 /* ThirdPartyLogin */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ThirdPartyLogin;
-			sourceTree = "<group>";
-		};
 		F23096921E0298CE001ACE00 /* viewcontrollers */ = {
 			isa = PBXGroup;
 			children = (
@@ -2003,7 +1996,6 @@
 		F2DFE7D61D82AE9100E5DC71 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				F21899F21F945B2F00EECAF1 /* ThirdPartyLogin */,
 				F2DFE7D01D82A1B300E5DC71 /* LoginviewController.swift */,
 				F2DFE7D91D82B45900E5DC71 /* Login.storyboard */,
 				F217F2071D842B74000E3A0D /* RegisteredViewController.swift */,
