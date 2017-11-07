@@ -25,12 +25,6 @@ class ChatListviewcontroller: RCConversationListViewController {
         bar.hideAndShowCustomIcons(isHidden: false)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        let bar = self.tabBarController as! RAMAnimatedTabBarController
-        bar.hideAndShowCustomIcons(isHidden: true)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -109,8 +103,6 @@ class ChatListviewcontroller: RCConversationListViewController {
         let bar = self.tabBarController as! RAMAnimatedTabBarController
         bar.hideAndShowCustomIcons(isHidden: true)
         self.navigationController?.pushViewController(RCSeting, animated: true)
-        
-
     }
     // MARK: -- 断开连接并设置不再接收推送消息
     func logout() {

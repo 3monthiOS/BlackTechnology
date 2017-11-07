@@ -20,12 +20,6 @@ class RCsetingsController: UIViewController {
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        let bar = self.tabBarController as! RAMAnimatedTabBarController
-        bar.hideAndShowCustomIcons(isHidden: true)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "设置"

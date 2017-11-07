@@ -24,12 +24,6 @@ class Myviewcontroller: APPviewcontroller{
         bar.hideAndShowCustomIcons(isHidden: false)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        let bar = self.tabBarController as! RAMAnimatedTabBarController
-        bar.hideAndShowCustomIcons(isHidden: true)
-    }
-    
     override func setup() {
         super.setup()
          self.navigationController?.isNavigationBarHidden = false
