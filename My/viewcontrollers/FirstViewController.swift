@@ -86,7 +86,8 @@ extension FirstViewController : ZHJtableviewDelgate {
         let articl = dataArray[indexPath.section][indexPath.row]
         let web = ZHJWebViewController()
         web._urlString = articl.url
-        self.tabBarController?.hidesBottomBarWhenPushed = true
+        let bar = self.tabBarController as! RAMAnimatedTabBarController
+        bar.hideAndShowCustomIcons(isHidden: true)
         self.navigationController?.pushViewController(web, animated: true)
     }
 }

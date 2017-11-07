@@ -78,6 +78,7 @@ extension PhotoBrowser {
         }
         
         func cancelAction(_ sender: AnyObject) {
+            Notifications.hidedAndShowTabbaritem.post()
             self.dismiss(animated: true, completion: nil)
         }
         

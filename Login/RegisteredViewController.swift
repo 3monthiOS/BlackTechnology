@@ -78,7 +78,8 @@ class RegisteredViewController: UIViewController,UINavigationControllerDelegate{
             let userdic = ["primaryKey":userKey,"phone":text]
             userkeyArray.append(userdic)
             session.setObject(userkeyArray as AnyObject, forKey: USERGROUPOBJECTKEY)
-            cache.setObject(user, forKey: userKey)
+            cache.setObject(user, forKey: CacheManager.Key.User.rawValue)
+//            cache.setObject(user, forKey: userKey) // 暂无用处
         }else{
             alert("坏淫，手机号不对");return
         }

@@ -21,14 +21,14 @@ class ChatListviewcontroller: RCConversationListViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        delay(UInt64(0.3)) {
-            self.tabBarController?.hidesBottomBarWhenPushed = false
-        }
+        let bar = self.tabBarController as! RAMAnimatedTabBarController
+        bar.hideAndShowCustomIcons(isHidden: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.tabBarController?.hidesBottomBarWhenPushed = true
+        let bar = self.tabBarController as! RAMAnimatedTabBarController
+        bar.hideAndShowCustomIcons(isHidden: true)
     }
     
     override func viewDidLoad() {
@@ -104,7 +104,10 @@ class ChatListviewcontroller: RCConversationListViewController {
     // MARK: -- 单聊
     func privateChat() {
         let RCSeting = RCsetingsController()
-        self.tabBarController?.hidesBottomBarWhenPushed = true
+//        RCSeting.hidesBottomBarWhenPushed = true
+//        self.navigationController?.hidesBottomBarWhenPushed = true
+        let bar = self.tabBarController as! RAMAnimatedTabBarController
+        bar.hideAndShowCustomIcons(isHidden: true)
         self.navigationController?.pushViewController(RCSeting, animated: true)
         
 

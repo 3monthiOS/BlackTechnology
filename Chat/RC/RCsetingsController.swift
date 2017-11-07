@@ -20,6 +20,12 @@ class RCsetingsController: UIViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        let bar = self.tabBarController as! RAMAnimatedTabBarController
+        bar.hideAndShowCustomIcons(isHidden: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "设置"
@@ -106,7 +112,6 @@ extension RCsetingsController: ZHJtableviewDelgate {
             // 与谁 私聊
             let chatWithSelf = RCConversationViewController(conversationType: RCConversationType.ConversationType_PRIVATE, targetId: userArray[indexPath.row].rcUserId)
             chatWithSelf?.title = userArray[indexPath.row].rcName
-            chatWithSelf?.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(chatWithSelf!, animated: true)
         } else {
             switch indexPath.row {

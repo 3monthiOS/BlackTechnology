@@ -28,6 +28,9 @@ struct Notifications {
     // 
     public static let reachabilityChanged: Delegate = Delegate(name: "ReachabilityChanged")
     
+    // 隐藏和显示 tabbar 在模态的时候使用
+    static var hidedAndShowTabbaritem: Delegate = Delegate(name: "hidedAndShowTabbaritem")
+    
 	class Delegate {
 		fileprivate let name: String
 		

@@ -12,7 +12,7 @@ open class RAMBadge: UILabel {
     
     internal var topConstraint: NSLayoutConstraint?
     internal var centerXConstraint: NSLayoutConstraint?
-
+    
     open class func badge() -> RAMBadge {
         return RAMBadge.init(frame: CGRect(x: 0, y: 0, width: 18, height: 18))
     }
@@ -24,12 +24,12 @@ open class RAMBadge: UILabel {
         layer.cornerRadius = frame.size.width / 2;
         
         configureNumberLabel()
-
+        
         translatesAutoresizingMaskIntoConstraints = false
         
         // constraints
         createSizeConstraints(frame.size)
-
+        
     }
     
     override open var intrinsicContentSize: CGSize {
@@ -37,7 +37,7 @@ open class RAMBadge: UILabel {
         contentSize.width += 10.0
         return contentSize
     }
-
+    
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -54,7 +54,7 @@ open class RAMBadge: UILabel {
             multiplier: 1,
             constant: size.width)
         self.addConstraint(widthConstraint)
-
+        
         
         let heightConstraint = NSLayoutConstraint(
             item: self,
@@ -76,26 +76,27 @@ open class RAMBadge: UILabel {
     // PRAGMA: helpers
     
     open func addBadgeOnView(_ onView:UIView) {
-
+        
         onView.addSubview(self)
-
+        
         // create constraints
         topConstraint = NSLayoutConstraint(item: self,
-            attribute: NSLayoutAttribute.top,
-            relatedBy: NSLayoutRelation.equal,
-            toItem: onView,
-            attribute: NSLayoutAttribute.top,
-            multiplier: 1,
-            constant: 3)
+                                           attribute: NSLayoutAttribute.top,
+                                           relatedBy: NSLayoutRelation.equal,
+                                           toItem: onView,
+                                           attribute: NSLayoutAttribute.top,
+                                           multiplier: 1,
+                                           constant: 3)
         onView.addConstraint(topConstraint!)
         
         centerXConstraint = NSLayoutConstraint(item: self,
-            attribute: NSLayoutAttribute.centerX,
-            relatedBy: NSLayoutRelation.equal,
-            toItem: onView,
-            attribute: NSLayoutAttribute.centerX,
-            multiplier: 1,
-            constant: 10)
+                                               attribute: NSLayoutAttribute.centerX,
+                                               relatedBy: NSLayoutRelation.equal,
+                                               toItem: onView,
+                                               attribute: NSLayoutAttribute.centerX,
+                                               multiplier: 1,
+                                               constant: 10)
         onView.addConstraint(centerXConstraint!)
     }
 }
+

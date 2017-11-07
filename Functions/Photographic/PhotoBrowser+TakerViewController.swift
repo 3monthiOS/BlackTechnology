@@ -59,6 +59,7 @@ extension PhotoBrowser {
 			view.backgroundColor = backgroundColor
 		}
 
+        
 		override func viewWillAppear(_ animated: Bool) {
 			let authStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
 			switch (authStatus) {
@@ -80,7 +81,12 @@ extension PhotoBrowser {
 				initView()
 			}
 		}
-
+        
+        override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+            Notifications.hidedAndShowTabbaritem.post()
+        }
+        
 		func initView() {
 			let rect = view.bounds
 

@@ -26,9 +26,8 @@ class FunctionsViewController: APPviewcontroller {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        delay(UInt64(0.3)) {
-            self.tabBarController?.hidesBottomBarWhenPushed = false
-        }
+        let bar = self.tabBarController as! RAMAnimatedTabBarController
+        bar.hideAndShowCustomIcons(isHidden: false)
     }
     
     override func setup() {
@@ -63,7 +62,8 @@ class FunctionsViewController: APPviewcontroller {
     //- openContact
     func call_openContact() {
         let controller = MobileAddressBooks()
-        controller.hidesBottomBarWhenPushed = true
+        let bar = self.tabBarController as! RAMAnimatedTabBarController
+        bar.hideAndShowCustomIcons(isHidden: true)
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -162,7 +162,6 @@ extension FunctionsViewController: UICollectionViewDelegate{
             self.navigationController?.pushViewController(vc, animated: true)
         case 5:
             let baidu = RecordingVoiceController()
-            self.tabBarController?.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(baidu, animated: true)
             
         case 7:
@@ -237,7 +236,8 @@ extension FunctionsViewController: UICollectionViewDelegate{
         default:
             break
         }
-        self.tabBarController?.hidesBottomBarWhenPushed = true
+        let bar = self.tabBarController as! RAMAnimatedTabBarController
+        bar.hideAndShowCustomIcons(isHidden: true)
     }
 }
 

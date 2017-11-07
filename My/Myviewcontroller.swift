@@ -20,9 +20,14 @@ class Myviewcontroller: APPviewcontroller{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        delay(UInt64(0.3)) {
-            self.tabBarController?.hidesBottomBarWhenPushed = false
-        }
+        let bar = self.tabBarController as! RAMAnimatedTabBarController
+        bar.hideAndShowCustomIcons(isHidden: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        let bar = self.tabBarController as! RAMAnimatedTabBarController
+        bar.hideAndShowCustomIcons(isHidden: true)
     }
     
     override func setup() {
