@@ -11,7 +11,7 @@ import UIKit
 class RCcontactPersonController: CustomViewController {
 
     @IBOutlet weak var contactPersonTable: ZHJtableview!
-    var dataArray = [[],["讨论组0","讨论组1"],["王麻子","二狗子"]]
+    var dataArray = [[],[],[]]
     var userArray = [User]()
     
     override func setup() {
@@ -76,7 +76,7 @@ extension RCcontactPersonController: ZHJtableviewDelgate {
         }
         cell?.textLabel?.textColor = UIColor.gray
         cell?.textLabel?.font = UIFont.systemFont(ofSize: 15.0)
-        cell?.textLabel?.text = dataArray[indexPath.section][indexPath.row]
+        cell?.textLabel?.text = dataArray[indexPath.section][indexPath.row] as? String
         return cell
     }
     
@@ -100,13 +100,13 @@ extension RCcontactPersonController: ZHJtableviewDataSource {
         
         let btn = UIButton(type: .custom)
         view.addSubview(btn)
-        btn.frame = CGRect(x: 12, y: 0, width: view.width, height: view.height)
+        btn.frame = CGRect(x: 16, y: 0, width: view.width, height: view.height)
         btn.tag = section
         btn.addTarget(self, action: #selector(showFriends(btn:)), for: .touchUpInside)
         btn.titleLabel?.textAlignment = .left
         btn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
         if section == 0 {
-            btn.setTitle("我的好友", for: .normal)
+            btn.setTitle("我的好友🙈    ↓", for: .normal)
         } else if section == 1 {
             btn.setTitle("讨论组", for: .normal)
         } else {
@@ -117,19 +117,29 @@ extension RCcontactPersonController: ZHJtableviewDataSource {
         return view
     }
     
-    func showFriends(btn: UIButton){
+    func showFriends(btn: UIButton) {
         if btn.tag == 0 {
-            if dataArray[0].count > 1 {
-                dataArray = [[],["讨论组0","讨论组1"],["王麻子","二狗子"]]
-            } else {
+            btn.setTitle("我的好友🙈    ↑", for: .normal)
+        } else if btn.tag == 1 {
+            btn.setTitle("讨论组(＠。ε。＠)", for: .normal)
+        } else {
+            btn.setTitle("陌生人(*￣∇￣*)", for: .normal)
+        }
+        
+        if dataArray[btn.tag].count > 1 {
+            dataArray[btn.tag] = []
+        } else {
+            if btn.tag == 0 {
                 var nameArray = [String]()
                 for obj in userArray {
                     nameArray.append(obj.rcName!)
                 }
-                dataArray = [nameArray,["讨论组0","讨论组1"],["王麻子","二狗子"]]
+                dataArray[0] = nameArray
+            } else {
+                dataArray[btn.tag] = ["王麻子","二狗子"]
             }
-            contactPersonTable.tableveiwData = dataArray as [[AnyObject]]
         }
+        contactPersonTable.tableveiwData = dataArray as [[AnyObject]]
         contactPersonTable.reloadData()
         //        self.setingTableview.reloadSections(IndexSet(integersIn: NSMakeRange(0, 1).toRange()!), with: .fade)
     }

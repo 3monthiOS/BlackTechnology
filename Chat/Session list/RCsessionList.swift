@@ -14,7 +14,6 @@ import Alamofire
 class RCsessionListcontroller: RCConversationListViewController {
     
     var request : ApiService?
-    @IBOutlet weak var chatBGimage: UIImageView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -24,7 +23,7 @@ class RCsessionListcontroller: RCConversationListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let token = RCtokenArray[user.userphone!] ?? RCtokenArray["012345678910"]
         // MARK: -- 用户登录
         RCIM.shared().connect(withToken: token,success: { (userId) -> Void in
@@ -40,17 +39,8 @@ class RCsessionListcontroller: RCConversationListViewController {
             Log.info("token错误")
         })
         initChatView()
-        createCurrentNagationBaritem()
-        // MARK: -- 请求测试
-        //        requestTest()
-        
     }
-    
 
-    // MARK: -- 导航栏 添加讨论组、设置界面
-    func createCurrentNagationBaritem() {
-        let _ = createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.right, Title: "设置", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(privateChat))
-    }
     // MARK: -- 会话类型展示
     func initChatView(){
         IQKeyboardManager.sharedManager().enableAutoToolbar = false
@@ -93,16 +83,7 @@ class RCsessionListcontroller: RCConversationListViewController {
         //            }
         //        }
     }
-    
-    // MARK: -- 单聊
-    func privateChat() {
-//        let RCSeting = RCsetingsController()
-        //        RCSeting.hidesBottomBarWhenPushed = true
-        //        self.navigationController?.hidesBottomBarWhenPushed = true
-//        let bar = self.tabBarController as! RAMAnimatedTabBarController
-//        bar.hideAndShowCustomIcons(isHidden: true)
-//        self.navigationController?.pushViewController(RCSeting, animated: true)
-    }
+
     // MARK: -- 断开连接并设置不再接收推送消息
     func logout() {
         RCIM.shared().disconnect(false)
@@ -120,27 +101,3 @@ class RCsessionListcontroller: RCConversationListViewController {
 }
 
 
-// MARK: -- 请求测试
-extension RCsessionListcontroller{
-    
-    func requestTest(){
-        //        HttpClient.default.adapter = AccessTokenAdapter()
-        //        HttpClient.defaultEncoding = JerseyEncoding.default
-        //        HttpClient.errorFieldName = "msg"
-        //        testParam()
-    }
-    
-    func testParam() {
-        testObject()
-    }
-    
-    func testObject() {
-        Api.testArrayStringBaiDu.call { (response: ApiObjectResponse<MessageBody>) in
-            if let value = response.value {
-                let json = value.toJSONString()
-                Log.info("\(String(describing: json))")
-            }
-        }
-    }
-    
-}

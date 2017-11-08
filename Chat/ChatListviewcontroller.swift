@@ -38,7 +38,6 @@ class ChatListviewcontroller: CustomViewController {
         self.addTabPagerBar()
         self.addPagerController()
         self.loadData()
-        
         createCurrentNagationBaritem()
         // MARK: -- 请求测试
 //        requestTest()
@@ -68,22 +67,16 @@ class ChatListviewcontroller: CustomViewController {
         self.pagerController.reloadData()
     }
     
-    // MARK: -- 导航栏 添加讨论组、设置界面
+    // MARK: -- rc 用户信息
     func createCurrentNagationBaritem() {
-        let _ = createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.right, Title: "设置", normalImage: UIImage(), highlightImage: UIImage(), action: #selector(privateChat))
+        let _ = createBarButtonItemAtPosition(UIViewController.BarButtonItemPosition.left, Title: "", normalImage: UIImage(named: "bottom_personal_selected"), highlightImage: UIImage(), action: #selector(privateChat))
     }
     
-    // MARK: --
     func privateChat() {
 //        let RCSeting = RCsetingsController()
 //        let bar = self.tabBarController as! RAMAnimatedTabBarController
 //        bar.hideAndShowCustomIcons(isHidden: true)
 //        self.navigationController?.pushViewController(RCSeting, animated: true)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 

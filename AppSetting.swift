@@ -9,7 +9,7 @@
 import Foundation
 
 // 适配iPhone x 底栏高度_tabBarView.frame = CGRectMake(0, CurrentScreenHeight - TabbarHeight, CurrentScreenWidth, TabbarHeight);
-let APP_tabbarHeight = UIApplication.shared.statusBarFrame.size.height > 20 ? 83 : 49
+let APP_tabbarHeight = UIApplication.shared.statusBarFrame.size.height > 20 ? 83 : 64
 
 let APP_statusBarHeight = UIApplication.shared.statusBarFrame.size.height
 
