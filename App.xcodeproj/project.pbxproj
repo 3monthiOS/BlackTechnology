@@ -45,10 +45,6 @@
 		F20F51F61EB97D1800061BBE /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F51991EB97D1800061BBE /* Notifications.swift */; };
 		F20F51F71EB97D1800061BBE /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F519C1EB97D1800061BBE /* Math.swift */; };
 		F20F51FB1EB97D1800061BBE /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F51A11EB97D1800061BBE /* Theme.swift */; };
-		F20F51FC1EB97D1800061BBE /* TYPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20F51A41EB97D1800061BBE /* TYPagerController.m */; };
-		F20F51FD1EB97D1800061BBE /* TYTabButtonPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20F51A61EB97D1800061BBE /* TYTabButtonPagerController.m */; };
-		F20F51FE1EB97D1800061BBE /* TYTabPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20F51A81EB97D1800061BBE /* TYTabPagerController.m */; };
-		F20F51FF1EB97D1800061BBE /* TYTabTitleViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F20F51AB1EB97D1800061BBE /* TYTabTitleViewCell.m */; };
 		F20F52001EB97D1800061BBE /* BackgroundLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F51AE1EB97D1800061BBE /* BackgroundLineView.swift */; };
 		F20F52011EB97D1800061BBE /* UIBarItem+Swift.m in Sources */ = {isa = PBXBuildFile; fileRef = F20F51B11EB97D1800061BBE /* UIBarItem+Swift.m */; };
 		F20F52021EB97D1800061BBE /* UIButton+Swift.m in Sources */ = {isa = PBXBuildFile; fileRef = F20F51B41EB97D1800061BBE /* UIButton+Swift.m */; };
@@ -80,6 +76,11 @@
 		F217F2091D842B74000E3A0D /* RegisteredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F217F2071D842B74000E3A0D /* RegisteredViewController.swift */; };
 		F217F20A1D842B74000E3A0D /* RegisteredViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F217F2081D842B74000E3A0D /* RegisteredViewController.xib */; };
 		F21A91191ECEF3D100951673 /* ToolsAnimation.plist in Resources */ = {isa = PBXBuildFile; fileRef = F21A91181ECEF3D100951673 /* ToolsAnimation.plist */; };
+		F22B65EB1FB2D4FC007742A0 /* RCcontactPersonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22B65E91FB2D4FC007742A0 /* RCcontactPersonController.swift */; };
+		F22B65EC1FB2D4FC007742A0 /* RCcontactPersonController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F22B65EA1FB2D4FC007742A0 /* RCcontactPersonController.xib */; };
+		F22B65EF1FB2D618007742A0 /* RCsessionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22B65EE1FB2D618007742A0 /* RCsessionList.swift */; };
+		F22B65F31FB2D787007742A0 /* RCsetingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22B65F11FB2D787007742A0 /* RCsetingController.swift */; };
+		F22B65F41FB2D787007742A0 /* RCsetingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F22B65F21FB2D787007742A0 /* RCsetingController.xib */; };
 		F23127291EAEF62600FA0D74 /* RequestAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23127281EAEF62600FA0D74 /* RequestAddress.swift */; };
 		F231272B1EAEF80900FA0D74 /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F231272A1EAEF80900FA0D74 /* TestModel.swift */; };
 		F23481361EA5E6ED00CB84F2 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23480F81EA5E6ED00CB84F2 /* App.swift */; };
@@ -166,8 +167,6 @@
 		F27AE2021D928E09000E0509 /* QdanCollectionViewzeroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27AE1FC1D928E09000E0509 /* QdanCollectionViewzeroCell.xib */; };
 		F27B9B831F67BC4C00DAA671 /* UIButton+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27B9B821F67BC4C00DAA671 /* UIButton+extension.swift */; };
 		F283A9501EB9E5BD0012EE0D /* TableviewCoustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F283A94F1EB9E5BD0012EE0D /* TableviewCoustom.swift */; };
-		F284FE2D1F09DD010046CDA0 /* RCsetingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F284FE2B1F09DD010046CDA0 /* RCsetingsController.swift */; };
-		F284FE2E1F09DD010046CDA0 /* RCsetingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F284FE2C1F09DD010046CDA0 /* RCsetingsController.xib */; };
 		F287C86C1F9728120035CAF1 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F287C86B1F9728120035CAF1 /* User.storyboard */; };
 		F287C86E1F9728C00035CAF1 /* UserInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F287C86D1F9728C00035CAF1 /* UserInfoController.swift */; };
 		F287C8721F9744AB0035CAF1 /* articlesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F287C8701F9744AB0035CAF1 /* articlesCell.swift */; };
@@ -368,15 +367,6 @@
 		F20F51991EB97D1800061BBE /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		F20F519C1EB97D1800061BBE /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		F20F51A11EB97D1800061BBE /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		F20F51A31EB97D1800061BBE /* TYPagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYPagerController.h; sourceTree = "<group>"; };
-		F20F51A41EB97D1800061BBE /* TYPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYPagerController.m; sourceTree = "<group>"; };
-		F20F51A51EB97D1800061BBE /* TYTabButtonPagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYTabButtonPagerController.h; sourceTree = "<group>"; };
-		F20F51A61EB97D1800061BBE /* TYTabButtonPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYTabButtonPagerController.m; sourceTree = "<group>"; };
-		F20F51A71EB97D1800061BBE /* TYTabPagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYTabPagerController.h; sourceTree = "<group>"; };
-		F20F51A81EB97D1800061BBE /* TYTabPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYTabPagerController.m; sourceTree = "<group>"; };
-		F20F51A91EB97D1800061BBE /* TYTabTitleCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYTabTitleCellProtocol.h; sourceTree = "<group>"; };
-		F20F51AA1EB97D1800061BBE /* TYTabTitleViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYTabTitleViewCell.h; sourceTree = "<group>"; };
-		F20F51AB1EB97D1800061BBE /* TYTabTitleViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYTabTitleViewCell.m; sourceTree = "<group>"; };
 		F20F51AE1EB97D1800061BBE /* BackgroundLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundLineView.swift; sourceTree = "<group>"; };
 		F20F51B01EB97D1800061BBE /* UIBarItem+Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarItem+Swift.h"; sourceTree = "<group>"; };
 		F20F51B11EB97D1800061BBE /* UIBarItem+Swift.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarItem+Swift.m"; sourceTree = "<group>"; };
@@ -412,6 +402,11 @@
 		F217F2081D842B74000E3A0D /* RegisteredViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisteredViewController.xib; sourceTree = "<group>"; };
 		F21A91181ECEF3D100951673 /* ToolsAnimation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ToolsAnimation.plist; sourceTree = "<group>"; };
 		F22127BF1F03D13400A2A75D /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
+		F22B65E91FB2D4FC007742A0 /* RCcontactPersonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCcontactPersonController.swift; sourceTree = "<group>"; };
+		F22B65EA1FB2D4FC007742A0 /* RCcontactPersonController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RCcontactPersonController.xib; sourceTree = "<group>"; };
+		F22B65EE1FB2D618007742A0 /* RCsessionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCsessionList.swift; sourceTree = "<group>"; };
+		F22B65F11FB2D787007742A0 /* RCsetingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCsetingController.swift; sourceTree = "<group>"; };
+		F22B65F21FB2D787007742A0 /* RCsetingController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RCsetingController.xib; sourceTree = "<group>"; };
 		F23127281EAEF62600FA0D74 /* RequestAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestAddress.swift; sourceTree = "<group>"; };
 		F231272A1EAEF80900FA0D74 /* TestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
 		F23480F81EA5E6ED00CB84F2 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -501,8 +496,6 @@
 		F27AE1FC1D928E09000E0509 /* QdanCollectionViewzeroCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QdanCollectionViewzeroCell.xib; sourceTree = "<group>"; };
 		F27B9B821F67BC4C00DAA671 /* UIButton+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+extension.swift"; sourceTree = "<group>"; };
 		F283A94F1EB9E5BD0012EE0D /* TableviewCoustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableviewCoustom.swift; sourceTree = "<group>"; };
-		F284FE2B1F09DD010046CDA0 /* RCsetingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCsetingsController.swift; sourceTree = "<group>"; };
-		F284FE2C1F09DD010046CDA0 /* RCsetingsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RCsetingsController.xib; sourceTree = "<group>"; };
 		F287C86B1F9728120035CAF1 /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		F287C86D1F9728C00035CAF1 /* UserInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoController.swift; sourceTree = "<group>"; };
 		F287C8701F9744AB0035CAF1 /* articlesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = articlesCell.swift; sourceTree = "<group>"; };
@@ -825,7 +818,6 @@
 				F20F51881EB97D1800061BBE /* Easing */,
 				F20F51981EB97D1800061BBE /* Notifications */,
 				F20F519A1EB97D1800061BBE /* NS+extension */,
-				F20F51A21EB97D1800061BBE /* TYPagerController */,
 				F20F51AC1EB97D1800061BBE /* UIKit+extension */,
 			);
 			path = common;
@@ -964,22 +956,6 @@
 				F2BD8A281EB9888500AE3F06 /* commonlyEncryption.swift */,
 			);
 			path = String;
-			sourceTree = "<group>";
-		};
-		F20F51A21EB97D1800061BBE /* TYPagerController */ = {
-			isa = PBXGroup;
-			children = (
-				F20F51A31EB97D1800061BBE /* TYPagerController.h */,
-				F20F51A41EB97D1800061BBE /* TYPagerController.m */,
-				F20F51A51EB97D1800061BBE /* TYTabButtonPagerController.h */,
-				F20F51A61EB97D1800061BBE /* TYTabButtonPagerController.m */,
-				F20F51A71EB97D1800061BBE /* TYTabPagerController.h */,
-				F20F51A81EB97D1800061BBE /* TYTabPagerController.m */,
-				F20F51A91EB97D1800061BBE /* TYTabTitleCellProtocol.h */,
-				F20F51AA1EB97D1800061BBE /* TYTabTitleViewCell.h */,
-				F20F51AB1EB97D1800061BBE /* TYTabTitleViewCell.m */,
-			);
-			path = TYPagerController;
 			sourceTree = "<group>";
 		};
 		F20F51AC1EB97D1800061BBE /* UIKit+extension */ = {
@@ -1148,6 +1124,32 @@
 			);
 			name = Sotr;
 			path = sotr;
+			sourceTree = "<group>";
+		};
+		F22B65E81FB2D4D3007742A0 /* Contact Person */ = {
+			isa = PBXGroup;
+			children = (
+				F22B65E91FB2D4FC007742A0 /* RCcontactPersonController.swift */,
+				F22B65EA1FB2D4FC007742A0 /* RCcontactPersonController.xib */,
+			);
+			path = "Contact Person";
+			sourceTree = "<group>";
+		};
+		F22B65ED1FB2D608007742A0 /* Session list */ = {
+			isa = PBXGroup;
+			children = (
+				F22B65EE1FB2D618007742A0 /* RCsessionList.swift */,
+			);
+			path = "Session list";
+			sourceTree = "<group>";
+		};
+		F22B65F01FB2D775007742A0 /* RCseting */ = {
+			isa = PBXGroup;
+			children = (
+				F22B65F11FB2D787007742A0 /* RCsetingController.swift */,
+				F22B65F21FB2D787007742A0 /* RCsetingController.xib */,
+			);
+			path = RCseting;
 			sourceTree = "<group>";
 		};
 		F23096921E0298CE001ACE00 /* viewcontrollers */ = {
@@ -1441,8 +1443,6 @@
 		F25E22E71D9B99ED00A0F0DA /* RC */ = {
 			isa = PBXGroup;
 			children = (
-				F284FE2B1F09DD010046CDA0 /* RCsetingsController.swift */,
-				F284FE2C1F09DD010046CDA0 /* RCsetingsController.xib */,
 				F25E22E81D9B9A1D00A0F0DA /* AppChatScreenViewController.swift */,
 			);
 			path = RC;
@@ -2044,6 +2044,9 @@
 		F2ED945D1D86AF45000C2E59 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				F22B65ED1FB2D608007742A0 /* Session list */,
+				F22B65E81FB2D4D3007742A0 /* Contact Person */,
+				F22B65F01FB2D775007742A0 /* RCseting */,
 				F2C4F3901F04963B0067DBCE /* DiscussionGroups */,
 				F25E22E71D9B99ED00A0F0DA /* RC */,
 				F2ED94601D86AF8E000C2E59 /* ChatListviewcontroller.swift */,
@@ -2196,11 +2199,13 @@
 				F27AE2021D928E09000E0509 /* QdanCollectionViewzeroCell.xib in Resources */,
 				F20F51DC1EB97D1800061BBE /* LDNoDataNoticeView.xib in Resources */,
 				F2D3A3E21E038E0D007DE758 /* FirstViewController.xib in Resources */,
+				F22B65EC1FB2D4FC007742A0 /* RCcontactPersonController.xib in Resources */,
 				F294B3441DFFDDB70055C8CB /* MobileAddressBooks.xib in Resources */,
 				F2C4F3991F049E640067DBCE /* mebersCell.xib in Resources */,
 				F24E9A391DEEB18A00A45EB8 /* uploadPicturesView.xib in Resources */,
 				F2F46F461EEE2B3400480A64 /* RecordingVoiceController.xib in Resources */,
 				F27AE1FE1D928E09000E0509 /* CollectionReusableViewHeadre.xib in Resources */,
+				F22B65F41FB2D787007742A0 /* RCsetingController.xib in Resources */,
 				F287C86C1F9728120035CAF1 /* User.storyboard in Resources */,
 				F2ECF2A21F6BD8BD008B09DD /* 薛之谦-你还要我怎样.mp3 in Resources */,
 				F250A2A81EFA061900F964A5 /* ShareDomeController.xib in Resources */,
@@ -2214,7 +2219,6 @@
 				F2DFE7DA1D82B45900E5DC71 /* Login.storyboard in Resources */,
 				F2D3A3E61E03A788007DE758 /* SecondViewController.xib in Resources */,
 				F2D6904C1DFE7A200087328B /* CollectionReusableHeadre.xib in Resources */,
-				F284FE2E1F09DD010046CDA0 /* RCsetingsController.xib in Resources */,
 				F2C534481F1467A5009E9045 /* QRcodeSB.storyboard in Resources */,
 				F29BFBFA1EBC693D00464D28 /* ShowtextModelCell.xib in Resources */,
 				F217F20A1D842B74000E3A0D /* RegisteredViewController.xib in Resources */,
@@ -2325,6 +2329,7 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftLocation/SwiftLocation.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyGif/SwiftyGif.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/TYPagerController/TYPagerController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -2348,6 +2353,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftLocation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyGif.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TYPagerController.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2365,7 +2371,7 @@
 				F2AAFB451ED3DD6A00A22BB9 /* RAMAnimatedTabBarController.swift in Sources */,
 				F24F59191EC012A40077D913 /* MoreInfoView.swift in Sources */,
 				F234813B1EA5E6EE00CB84F2 /* Swiften.swift in Sources */,
-				F20F51FE1EB97D1800061BBE /* TYTabPagerController.m in Sources */,
+				F22B65F31FB2D787007742A0 /* RCsetingController.swift in Sources */,
 				F2FDE7EE1EC4280D007C0098 /* waveViewDrawrect.swift in Sources */,
 				F234814E1EA5E6EE00CB84F2 /* RealmCache.swift in Sources */,
 				F2AD261D1F69366200F9D003 /* CECloseButton.swift in Sources */,
@@ -2469,6 +2475,7 @@
 				F2AD26171F69366200F9D003 /* CEMenuView.swift in Sources */,
 				F23481581EA5E6EE00CB84F2 /* ActionSheetController.swift in Sources */,
 				F2AD25F31F68D19200F9D003 /* GCDController.swift in Sources */,
+				F22B65EF1FB2D618007742A0 /* RCsessionList.swift in Sources */,
 				F23481591EA5E6EE00CB84F2 /* UIViewController+Extension.swift in Sources */,
 				F20F51DB1EB97D1800061BBE /* LDNoDataNoticeView.swift in Sources */,
 				F27606021F6A79CB004E78FB /* AYScrollerLabel.m in Sources */,
@@ -2510,9 +2517,9 @@
 				F2BD8A3B1EB9C97500AE3F06 /* GIFCell.swift in Sources */,
 				F23481511EA5E6EE00CB84F2 /* CALayer+Extension.swift in Sources */,
 				655707B21F60F7D70083613D /* DynamicBallVC.swift in Sources */,
-				F20F51FD1EB97D1800061BBE /* TYTabButtonPagerController.m in Sources */,
 				F2ECF29F1F6BC805008B09DD /* ZHJAVAudioPlayer.swift in Sources */,
 				F25F52371F134C780091C7E0 /* ALYPhotoController.swift in Sources */,
+				F22B65EB1FB2D4FC007742A0 /* RCcontactPersonController.swift in Sources */,
 				F294B34A1DFFDDB70055C8CB /* UserIphoneNumbercell.swift in Sources */,
 				F21715891F623ED300AD33E6 /* SortView.swift in Sources */,
 				F234813D1EA5E6EE00CB84F2 /* UDID.swift in Sources */,
@@ -2544,7 +2551,6 @@
 				F234814C1EA5E6EE00CB84F2 /* Cache.swift in Sources */,
 				F26BAC8E1ED4151C001A4AEC /* IntroViewController.swift in Sources */,
 				F2AD26121F69366200F9D003 /* CEThemeDataSourceProtocal.swift in Sources */,
-				F20F51FC1EB97D1800061BBE /* TYPagerController.m in Sources */,
 				F2AAFB4A1ED3DD6A00A22BB9 /* RAMItemAnimationProtocol.swift in Sources */,
 				F29BFBF91EBC693D00464D28 /* ShowtextModelCell.swift in Sources */,
 				F283A9501EB9E5BD0012EE0D /* TableviewCoustom.swift in Sources */,
@@ -2554,12 +2560,10 @@
 				F20F52091EB97D1800061BBE /* UILabel+SizeToFit.swift in Sources */,
 				F2BD8A241EB9882900AE3F06 /* QNUtils.swift in Sources */,
 				F20F52151EB97D1800061BBE /* UIView+Swift.m in Sources */,
-				F284FE2D1F09DD010046CDA0 /* RCsetingsController.swift in Sources */,
 				653A240D1EFD192C001B7CD0 /* NativeShareTestVC.swift in Sources */,
 				F2C4F3931F0496770067DBCE /* ShowGroupsMembersController.swift in Sources */,
 				F2D6904D1DFE7A200087328B /* QNCollectionViewCell.swift in Sources */,
 				F2EBCD321EADEB4800EFD026 /* ApiService.swift in Sources */,
-				F20F51FF1EB97D1800061BBE /* TYTabTitleViewCell.m in Sources */,
 				F248736F1EF8C902006DEAB8 /* ShareObject.swift in Sources */,
 				F28C54AE1EA7646300209259 /* PhotoBrowserExtensions.swift in Sources */,
 				F234814A1EA5E6EE00CB84F2 /* Realm+Manager.swift in Sources */,

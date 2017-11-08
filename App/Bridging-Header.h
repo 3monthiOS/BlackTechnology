@@ -36,9 +36,7 @@
 #endif /* Bridging_Header_h */
 // 加密
 #import <CommonCrypto/CommonCrypto.h>
-// 我
-#import "TYTabButtonPagerController.h"
-#import "TYPagerController.h"
+
 // 跑马灯
 #import "AYScrollerLabel.h"
 // 侧边按钮

@@ -94,6 +94,49 @@ func prompt(_ message: String, title: String! = nil, text: String! = nil, placeh
     }
     UIViewController.topViewController?.present(controller, animated: true, completion: nil)
 }
+//MARK: 根据类名创建 Viewcontroller
+func VCSTRING_TO_VIEWCONTROLLER(_ childControllerName: String) -> UIViewController?{
+    // 1.获取命名空间
+    // 通过字典的键来取值,如果键名不存在,那么取出来的值有可能就为没值.所以通过字典取出的值的类型为AnyObject?
+    guard let clsName = Bundle.main.infoDictionary!["CFBundleExecutable"] else {
+        print("命名空间不存在")
+        return nil
+    }
+    // 2.通过命名空间和类名转换成类
+    let cls : AnyClass? = NSClassFromString((clsName as! String) + "." + childControllerName)
+    
+    // swift 中通过Class创建一个对象,必须告诉系统Class的类型
+    guard let clsType = cls as? UIViewController.Type else {
+        print("无法转换成UIViewController")
+        return nil
+    }
+    // 3.通过Class创建对象
+    let childController = clsType.init()
+    
+    return childController
+}
+
+//MARK: 创建高斯模糊效果的背景
+func createBlurBackground (_ image:UIImage,view:UIView,blurRadius:Float) {
+    //处理原始NSData数据
+    let originImage = CIImage(cgImage: image.cgImage!)
+    //创建高斯模糊滤镜
+    let filter = CIFilter(name: "CIGaussianBlur")
+    filter!.setValue(originImage, forKey: kCIInputImageKey)
+    filter!.setValue(NSNumber(value: blurRadius as Float), forKey: "inputRadius")
+    //生成模糊图片
+    let context = CIContext(options: nil)
+    let result:CIImage = filter!.value(forKey: kCIOutputImageKey) as! CIImage
+    let blurImage = UIImage(cgImage: context.createCGImage(result, from: result.extent)!)
+    //将模糊图片加入背景
+    let blurImageView = UIImageView(frame: view.frame)
+    blurImageView.clipsToBounds = true
+    blurImageView.contentMode = UIViewContentMode.scaleAspectFill
+    //        blurImageView.autoresizingMask = [.FlexibleWidth ,.FlexibleHeight]
+    blurImageView.image = blurImage
+    view.addSubview(blurImageView)
+}
+
 //MARK: 保存图片到本地
 func baocunphotoLocation(data: Data?,img: UIImage?)-> Bool{
     let fileManager = FileManager.default
