@@ -10,14 +10,16 @@ import UIKit
 
 class ShowGroupsMembersController: UIViewController {
 
+    @IBOutlet weak var navigation_height: NSLayoutConstraint!
     @IBOutlet weak var groupsmembersTable: UITableView!
     var userData: [User]?
     var userIDArray = ["zhj1214","CB","CB0","ZW","ZW0","GF"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigation_height.constant = CGFloat(APP_tabbarHeight)
     }
     
-    func quchong(array:[String])-> Array<String>{
+    func quchong(array:[String])-> Array<String> {
 //        let quchong =  ["zhj","CB","CB0","ZW","ZW0","HH","CB","ZW","zhj"]
         let results = array.reduce([String]()) { (result, it) -> [String] in
             return  !result.contains(it) ? result + [it]  : result

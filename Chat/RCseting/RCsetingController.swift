@@ -18,6 +18,7 @@ class RCsetingController: CustomViewController {
         super.setup()
 
         initZHJtableview()
+        createDiscussionGroupsChat()
     }
 
     func initZHJtableview() {
@@ -27,6 +28,36 @@ class RCsetingController: CustomViewController {
         setingTable.dataSources = self
         setingTable.heraerViewheight = 1
         setingTable.footerViewheight = 1
+    }
+    
+    // MARK: -- 用户集合
+    func createDiscussionGroupsChat(){
+        userArray.removeAll()
+        for u in RCtokenArray {
+            let userobj = User()
+            userobj.userphone = u.key
+            userobj.rcToken = u.value
+            if u.key == "15249685697" {
+                userobj.rcUserId = "cb"
+                userobj.rcName = "常博"
+            } else if u.key == "012345678910" {
+                userobj.rcUserId = "CB0"
+                userobj.rcName = "常六"
+            } else if u.key == "13968034167" {
+                userobj.rcUserId = "ZW"
+                userobj.rcName = "宗伟"
+            } else if u.key == "15225147792" {
+                userobj.rcUserId = "GF"
+                userobj.rcName = "小芳"
+            } else if u.key == "18336093422" {
+                userobj.rcUserId = "zhj1214"
+                userobj.rcName = "小军"
+            } else if u.key == "00000000000" {
+                userobj.rcUserId = "ZW0"
+                userobj.rcName = "单身狗"
+            }
+            userArray.append(userobj)
+        }
     }
 }
 //MARK:------- MJ

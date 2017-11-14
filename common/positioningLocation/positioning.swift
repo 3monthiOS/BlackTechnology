@@ -60,7 +60,7 @@ class locationServiceUser {
             self.PositiveGeocoding(location: location)
         }) { (request, last, error) in
             request.cancel() // stop continous location monitoring on error
-            toast("获取地址失败 \(error)-----\(String(describing: last))---\(request)")
+            Log.error("获取地址失败 \(error)-----\(String(describing: last))---\(request)")
         }
         
         x.register(observer: LocObserver.onAuthDidChange(.main, { (request, oldAuth, newAuth) in
@@ -73,9 +73,9 @@ class locationServiceUser {
     //MARK: 反地理编码
     func ReverseGeocoding(address: String){
         Location.getLocation(forAddress: address, timeout: 60, cancelOnError: true, success: { placemark in
-            toast("反地理编码成功-- 纬度：\(String(describing: placemark[0].location?.coordinate.latitude)) 经度：\(String(describing: placemark[0].location?.coordinate.longitude))")
+            Log.info("反地理编码成功-- 纬度：\(String(describing: placemark[0].location?.coordinate.latitude)) 经度：\(String(describing: placemark[0].location?.coordinate.longitude))")
         }) { error in
-            toast("反地理编码失败 \(error)")
+            Log.error("反地理编码失败 \(error)")
         }
     }
     //MARK: 地理编码

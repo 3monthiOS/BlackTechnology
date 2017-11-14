@@ -46,7 +46,7 @@ class LocationManager: NSObject {
                 user.FormattedAddressLines = address
                 cache.setObject(user, forKey: CacheManager.Key.User.rawValue)
                 Log.info(user.FormattedAddressLines)
-            }
+            }            
         }
     }
   var addressHandle: locationAddress?

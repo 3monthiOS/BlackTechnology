@@ -22,6 +22,7 @@ let locationUser = locationServiceUser.sharedInstance
 let cache = CacheManager(cachable: RealmCache(realm: Realm.sharedRealm))
 var user = User()
 var loader: FillableLoader = WavesLoader.showLoader(with: path())
+
 var ALY: ALYPhotoTool?
 
 @UIApplicationMain
@@ -75,13 +76,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         gotoMainViewController()
         
         //MARK: 注册音乐后台播放
-        let session = AVAudioSession.sharedInstance()
-        do{
-            try? session.setActive(true)
-            try? session.setCategory(AVAudioSessionCategoryPlayback)
-        } catch {
-            print(error)
-        }
+        // 音频中断恢复处理
+        let ava = AVAudioSession.sharedInstance()
+        try? ava.setCategory(AVAudioSessionCategoryPlayback)
+        try? ava.setActive(true)
+        
+//        let session = AVAudioSession.sharedInstance()
+//        do{
+//            try? session.setActive(true)
+//            try? session.setCategory(AVAudioSessionCategoryPlayback)
+//        } catch {
+//            print(error)
+//        }
         
         return true
     }
@@ -109,6 +115,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         Log.info("AppDelegate: application will enter foreground");
+        // 音频在其他app播放的问题
+        ZHJAudioPlayer.shared.switchAPPMisuic = true
         
         Notifications.timerChatMessageUpdate.post("star" as AnyObject)
         

@@ -16,6 +16,13 @@ class ShareDomeController: UIViewController {
     @IBOutlet weak var labelSharetype: UILabel!
     @IBOutlet weak var textFild: UITextField!
     var shareData: ShareObject?
+    
+    //   模仿微博分享 的图片
+    var ScreenshotsPictures: UIImage?
+    var QrCodeImage: UIImage?
+    var mergedImagesData: Data?
+    //
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         shareData = ShareObject()
@@ -30,6 +37,79 @@ class ShareDomeController: UIViewController {
         
         let photo = SystemPhotoAlbum()
         photo.albumDeleagte = self
+        
+        // 监听截屏的通知
+        //注册通知
+        NotificationCenter.default.addObserver(self, selector: #selector(userDidTakeScreenshot), name: NSNotification.Name.UIApplicationUserDidTakeScreenshot, object: nil)
+    }
+    ///////////模仿微博截屏分享、、、、、
+    func MergedImages(image0: UIImage,image1: UIImage) -> UIImage? {
+        let size = CGSize(width: App_width, height: image0.size.height + image1.size.height)
+        
+        UIGraphicsBeginImageContext(size)
+        image0.draw(in: CGRect(x: 0, y: 0, width: image0.size.width, height: image0.size.height))
+        image1.draw(in: CGRect(x: 0, y: image0.size.height, width: image1.size.width, height: image1.size.height))
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img
+    }
+    func userDidTakeScreenshot(){
+        Log.info("检测到截屏")
+        self.ScreenshotsPictures = self.screenSnapshot(save: false)
+        self.QrCodeImage = QRcode()
+        if let QR = self.QrCodeImage {
+            mergedImagesData = MergedImages(image0: self.ScreenshotsPictures!, image1: QR)?.data as Data?
+        }
+    }
+    func QRcode() -> UIImage {
+        let  ciimg = generateQRCodeImage("http://www.baidu.com")
+        return resizeCode(image: ciimg,size: CGSize(width: 200, height: 200))
+    }
+    
+    func generateQRCodeImage(_ code: String)-> CIImage {
+        let data = code.data(using: String.Encoding.utf8)
+        let filter: CIFilter? = CIFilter(name: "CIQRCodeGenerator")
+        filter?.setValue(data, forKey: "inputMessage")
+        filter?.setValue("Q", forKey: "inputCorrectionLevel")
+        return filter!.outputImage!
+    }
+    
+    func resizeCode(image: CIImage , size: CGSize)-> UIImage {
+        let extent = image.extent
+        let scaleWidth: CGFloat = size.width / extent.width
+        let scaleHeight: CGFloat = size.height / extent.height
+        let width: size_t = size_t(extent.width * scaleWidth)
+        let height: size_t = size_t(extent.height * scaleHeight)
+        // 拿到 CIContext 将 CIImage 转化成CGImage
+        let content: CIContext  = CIContext()
+        let imageRef: CGImage = content.createCGImage(image, from: extent)!
+        //  拿到 CGContext  将 CGImage 尺寸绘制成 需要尺寸
+        let colorSpaceRef: CGColorSpace = CGColorSpaceCreateDeviceGray()
+        let contentRef: CGContext = CGContext(data: nil, width: width, height: height, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpaceRef, bitmapInfo: CGImageAlphaInfo.none.rawValue)!
+        contentRef.interpolationQuality = .none
+        contentRef.scaleBy(x: scaleWidth, y: scaleHeight)
+        contentRef.draw(imageRef, in: extent)
+        let imageRefResized: CGImage = contentRef.makeImage()!
+        // 将 CGImage 转化成 UIImage
+        return UIImage(cgImage: imageRefResized)
+    }
+    //////、、、、、、、、、、、、、、、、、
+    func screenSnapshot(save: Bool) -> UIImage? {
+        
+        guard let window = UIApplication.shared.keyWindow else { return nil }
+        
+        // 用下面这行而不是UIGraphicsBeginImageContext()，因为前者支持Retina
+        UIGraphicsBeginImageContextWithOptions(window.bounds.size, false, 0.0)
+        
+        window.layer.render(in: UIGraphicsGetCurrentContext()!)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        if save { UIImageWriteToSavedPhotosAlbum(image!, self, nil, nil) }
+        
+        return image
     }
     
     func choseImage() {
@@ -41,7 +121,11 @@ class ShareDomeController: UIViewController {
     @IBAction func btnClick() {
         if contenttext.text.isEmpty || (textFild.text?.isEmpty)!{alert("没有分享内容无法分享");return}
         // 确定分享类型 在赋值
-        shareData?.img = photoImage?.image?.data as Data?
+        if (QrCodeImage != nil) {
+            shareData?.img = mergedImagesData
+        } else {
+            shareData?.img = photoImage?.image?.data as Data?
+        }
         shareData?.thumbnailImg = UIImage(named: "分享缩略图")?.data as Data? // 根据友盟api缩略图必填
         if !(labelSharetype.text?.isEmpty)! {
             shareData?.ContentObject = labelSharetype.text

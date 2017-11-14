@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShowGroupsMembersController" customModule="App" customModuleProvider="target">
             <connections>
                 <outlet property="groupsmembersTable" destination="PZk-p5-OWe" id="AB9-JN-Yg0"/>
+                <outlet property="navigation_height" destination="bUX-Mx-iyH" id="xdx-3Q-BEV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -32,7 +33,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sza-Ty-nSv">
-                            <rect key="frame" x="8" y="27" width="53" height="34"/>
+                            <rect key="frame" x="8" y="29" width="53" height="34"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <state key="normal" title="&lt; 返回">
                                 <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -44,9 +45,9 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Sza-Ty-nSv" secondAttribute="bottom" constant="1" id="JQf-9r-Mu3"/>
                         <constraint firstItem="Sza-Ty-nSv" firstAttribute="leading" secondItem="oBE-ra-7Em" secondAttribute="leading" constant="8" id="YaA-fP-9cU"/>
                         <constraint firstAttribute="height" constant="64" id="bUX-Mx-iyH"/>
-                        <constraint firstItem="Sza-Ty-nSv" firstAttribute="centerY" secondItem="oBE-ra-7Em" secondAttribute="centerY" constant="12" id="uH1-mS-IVZ"/>
                     </constraints>
                 </view>
             </subviews>

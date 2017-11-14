@@ -34,6 +34,8 @@ class ZHJAudioPlayer : NSObject {
     var currentPosion: Float = 0.0
     // 音量控制
     var volume: Float?
+    // 是不是切换到了后台
+    var switchAPPMisuic = false
     // 数据源
     var musicData = [FSPlaylistItem](){
         didSet{
@@ -91,6 +93,7 @@ class ZHJAudioPlayer : NSObject {
         streamPlayer.enableDebugOutput = true
         // 自动处理音频会话的属性
         streamPlayer.automaticAudioSessionHandlingEnabled = true
+        
     }
     
     func getCurrentMusicUrldata(){
@@ -126,17 +129,13 @@ class ZHJAudioPlayer : NSObject {
     //MARK: --  上一首
     func lastMusicPlay() {
         if let streamPlayer = self.player  {
-//            streamPlayer.hasNextItem() ? streamPlayer.playPreviousItem() : streamPlayer.playNextItem()
             streamPlayer.playPreviousItem()
-            streamPlayer.activeStream.delegate = self
         }
     }
     //MARK: --  下一首
     func nextMusicPlay() {
         if let streamPlayer = self.player  {
-//            streamPlayer.hasPreviousItem() ? streamPlayer.playNextItem() : streamPlayer.playPreviousItem()
             streamPlayer.playNextItem()
-            streamPlayer.activeStream.delegate = self
         }
     }
     
@@ -152,7 +151,7 @@ class ZHJAudioPlayer : NSObject {
                 }
                 if play.duration.playbackTimeInSeconds > 0 && self.currentTime == "00:00" {
                     let minute = play.duration.minute > 10 ? play.duration.minute.description : "0" + play.duration.minute.description
-                    totalTime = minute + ":" + play.duration.second.description
+                    totalTime = minute + ":" + (play.duration.second.description.int < 10 ? "0" + play.duration.second.description : play.duration.second.description)
                 }
             }
             guard self.change != nil else { return }
@@ -186,16 +185,30 @@ class ZHJAudioPlayer : NSObject {
                 Log.error(error)
             }
             for str: String in array {
-                Log.info("目录下面都是啥\(str)")
+                Log.info(" \(audioStream.configuration.cacheDirectory) 目录下面都是啥 \(str)")
             }
         }
     }
-    //MARK: --  清理缓存
-    func cleanLocationMusicData(){
+    //MARK: --  缓存
+    
+    func cleanLocationMusicData(){ // 缓存清理
         if let audioStream = player {
             audioStream.activeStream.expungeCache()
         }
     }
+    
+//    func sdasadfffas(){
+//        FSStreamPosition cur = self.audioStream.currentTimePlayed;
+//        self.playbackTime =cur.playbackTimeInSeconds/1;
+//        self.ProgressView.progress = cur.position;//播放进度
+//        self.progress = cur.position;
+//        float  prebuffer = (float)self.audioStream.prebufferedByteCount;
+//        float contentlength = (float)self.audioStream.contentLength;
+//
+//        if (contentlength>0) {
+//            self.ProgressView.cacheProgress = prebuffer /contentlength;//缓存进度
+//        }
+//    }
 }
 
 extension ZHJAudioPlayer: FSAudioControllerDelegate {
@@ -207,7 +220,7 @@ extension ZHJAudioPlayer: FSAudioControllerDelegate {
         Log.info("歌曲信息：歌名\(String(describing: title)) 歌曲链接 \(String(describing: url)) 歌曲缓存地址：\(String(describing: originatingUrl)) 歌曲大小 \(size)")
     }
     func audioController(_ audioController: FSAudioController!, allowPreloadingFor stream: FSAudioStream!) -> Bool {
-        // 添加代理
+        // 每次切换歌曲的时候 都要给当前歌曲添加代理
         if let play = audioController.activeStream  {
             play.delegate = self
         }
@@ -233,3 +246,8 @@ extension ZHJAudioPlayer: FSPCMAudioStreamDelegate {
         }
     }
 }
+/**
+    还有那些问题没有解决
+ 1. 播放下一首的同事点击暂停按钮 导致歌曲在播放但是进度条和时间不变化，代理方法也没有走
+ 解决思路（每次音乐开始播放的时候 设置一个bool值 当代理方法进去第一次的时候就是true 没有进入代理方法的时候就是 false， 只有当值是true的时候点击暂停才会暂停否则就return）
+*/

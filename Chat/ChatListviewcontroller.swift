@@ -73,10 +73,11 @@ class ChatListviewcontroller: CustomViewController {
     }
     
     func privateChat() {
-//        let RCSeting = RCsetingsController()
-//        let bar = self.tabBarController as! RAMAnimatedTabBarController
-//        bar.hideAndShowCustomIcons(isHidden: true)
-//        self.navigationController?.pushViewController(RCSeting, animated: true)
+        // 用户信息
+        let story = UIViewController.loadViewControllerFromStoryboard("User", storyboardID: "UserInfoController")
+        let bar = self.tabBarController as! RAMAnimatedTabBarController
+        bar.hideAndShowCustomIcons(isHidden: true)
+        self.navigationController?.pushViewController(story!, animated: true)
     }
 }
 

@@ -13,6 +13,7 @@ import FreeStreamer
 import Dispatch
 
 class ZHJAudioPlayertest: UIViewController {
+    // UI
     @IBOutlet weak var playTime: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var playTm: UILabel!
@@ -29,23 +30,26 @@ class ZHJAudioPlayertest: UIViewController {
     var playerItem:AVPlayerItem?
     var player:AVPlayer?
     
-    //FSAudioStream
+    //FSAudioStream 框架
     var streamPlayer = ZHJAudioPlayer.shared
+    var isSliding = false               // 决定是谁来控制slider
+    var totalSecond: Float = 0.0
+    var endChange: Float = 0.0
+    var firstChange: Float = 0.0
+    
+    // 默认是 true  使用的是 FSAudioStream 播放器，因为家在AVPlayer 它比较耗时
     var chosesPlayer = true
-    var currentPosionbeifen: Float = 0.0
+    
     // 数据源
     var musicUrl = [String]()
     var musicData = [FSPlaylistItem]()
-    var totalSecond: Float = 0 {
-        didSet{
-            intervalValue = Float((1 - 0.1)/totalSecond * 2)
-        }
-    }
-    var intervalValue: Float = 0.0
+   
     //MARK: -- 页面消失时取消歌曲播放结束通知监听
     override func viewWillDisappear(_ animated: Bool) {
         if let streamPlayer = self.streamPlayer.player {
-            streamPlayer.pause()
+            if !streamPlayer.isPlaying() {
+                streamPlayer.pause()
+            }
         }
     }
     
@@ -73,13 +77,40 @@ class ZHJAudioPlayertest: UIViewController {
         
         ZHJAudioPlayer.shared.musicData = musicData
         ZHJAudioPlayer.shared.change = { (totalTime: String,currentTime: String,currentPosion:Float) in
+            if currentPosion == 0.0 &&  self.streamPlayer.switchAPPMisuic {
+                self.streamPlayer.switchAPPMisuic = false;
+                delay(UInt64(1.0), task: {
+                    var fsstream = FSStreamPosition()
+                    fsstream.position = self.playbackSlider.value
+                    ZHJAudioPlayer.shared.player?.activeStream.seek(to: fsstream)
+                })
+                return;
+            }
             self.playTm.text = currentTime
             self.playTime.text = totalTime
-            if fabsf(currentPosion - self.currentPosionbeifen) < (1 - 0.1)/self.totalSecond || self.currentPosionbeifen == 0.0 || currentPosion == 0.0 {
-                self.currentPosionbeifen = currentPosion
+            
+            if !self.isSliding {
+                // 防止滑动 闪烁  播放新歌曲的时候滑动条 归零
+                if (self.firstChange - self.endChange) <= 0 {
+                    // 快进
+                    if self.endChange == 1 {
+                        self.playTm.text = totalTime;return
+                    }
+                    if currentPosion < self.endChange { return}
+                } else {
+                    // 快退
+                    if self.endChange == 1 {
+                        self.playTm.text = totalTime;return
+                    }
+                    if currentPosion > self.firstChange {return}
+                }
                 self.playbackSlider.setValue(currentPosion, animated: true)
+                Log.info("代理 控制 ==\(currentPosion)-------\(self.endChange)")
+            } else {
+//                Log.info("不是代理控制滑动的 ==\(currentPosion) --------\(self.endChange)")
             }
-            if self.totalSecond == 0 && currentPosion == 0.0 {
+
+            if currentPosion == 0.0 {
                 self.totalSecond = Float(Int((self.playTime.text?.substring(0, 2)?.int)! * 60) + Int((self.playTime.text?.substring(3, (self.playTime.text?.length)!)?.integer)!))
                 Log.info("这首歌曲 总共 \(self.totalSecond) 秒")
             }
@@ -89,46 +120,58 @@ class ZHJAudioPlayertest: UIViewController {
         
         // 初始化 AVplayer 比较耗时间
 //        initAVPlayerFuntion()
-        
-        
+
         if let streamPlayer = self.streamPlayer.player {
             streamPlayer.onStateChange = { (status)  in
                 switch status {
                 case .fsAudioStreamStopped:
-                    Log.info("停止 播放音乐")
+                    Log.info("停止 播放音乐 不管是手动下一曲还是自动下一曲都会走这个")
+                    self.endChange = 0.0
+                    self.firstChange = 0.0
+                    self.playButton.setTitle("播放", for: .normal)
                 case .fsAudioStreamBuffering:
                     Log.info("开始 缓冲音乐")
                 case .fsAudioStreamPlaying:
-                    self.totalSecond = 0
-                    self.currentPosionbeifen = 0.0
-                    Log.info("开始 播放音乐   此时我把 值重置")
+                    Log.info("开始 播放音乐  此时我把 值重置")
+                    if self.playButton.currentTitle == "播放" {
+                        self.playButton.setTitle("暂停", for: .normal)
+                    }
+                    self.setInfoCenterCredentials(isStop: false)
+                    self.isSliding = false
                 case .fsAudioStreamPaused:
-                    self.setInfoCenterProgress()
+                    //只给锁屏界面的进度条 赋值
+                    self.setInfoCenterProgress(isStop: true)
                     Log.info("暂停 暂停音乐")
                 case .fsAudioStreamSeeking:
                     Log.info("搜索 搜索音乐")
+                    self.isSliding = true
                 case .fsAudioStreamEndOfFile:
-                    self.setInfoCenterCredentials()
+                    if !(streamPlayer.isPlaying()) { // 暂停的情况下 快进 快退
+                        streamPlayer.pause()
+                    }
                     Log.info("缓冲结束 当前歌曲缓冲完毕 初始化 锁屏界面")
+                    self.isSliding = false
                 case .fsAudioStreamFailed:
                     Log.info("失败 播放失败")
+                    self.isSliding = true
                 case .fsAudioStreamRetryingStarted:
                     Log.info("重试 开始重试")
                 case .fsAudioStreamRetryingSucceeded:
                     Log.info("重试 成功")
+                    self.isSliding = false
                 case .fsAudioStreamRetryingFailed:
                     Log.info("重试 失败")
+                    self.isSliding = true
                 case .fsAudioStreamPlaybackCompleted:
-                    Log.info("结束 播放完成 ")
+                    Log.info("结束 播放完成 代表着自动播放完成 手动滑动到最后不会走这个 点击下一首也不会走这个")
+                    self.isSliding = false
+                    self.nextMusicPlay(UIButton())
                 case .fsAudioStreamUnknownState:
                     Log.info("歌曲 未知状态")
                 default:
                     Log.info(" 歌曲状态 枚举")
                 }
-                // 添加代理
-                if let play = streamPlayer.activeStream  {
-                    play.delegate = ZHJAudioPlayer.shared
-                }
+                
             }
         }
     }
@@ -167,6 +210,18 @@ class ZHJAudioPlayertest: UIViewController {
                     playButton.setTitle("播放", for: .normal)
                 } else {
                     playButton.setTitle("暂停", for: .normal)
+                    var fsstream = FSStreamPosition()
+                    fsstream.position = self.playbackSlider.value
+                    if  self.streamPlayer.switchAPPMisuic {
+                        var offset = FSSeekByteOffset()
+                        offset.position = self.playbackSlider.value
+                        streamPlayer.activeStream?.play(from: offset)
+//                        streamPlayer.activeStream?.play()
+                    } else {
+                        streamPlayer.activeStream.seek(to: fsstream)
+                    }
+                    
+                    print("我将要从这里开始播放-----\(self.firstChange) ---- \(self.endChange)  --- \(String(describing: streamPlayer.activeStream.currentTimePlayed.position))     \(self.playbackSlider.value)")
                 }
                 ZHJAudioPlayer.shared.getCacheSize()
             }
@@ -176,11 +231,12 @@ class ZHJAudioPlayertest: UIViewController {
                 if player.rate == 0 {
                     player.play()
                     playButton.setTitle("暂停", for: .normal)
+                    setInfoCenterCredentials(isStop: false)
                 } else {
                     player.pause()
                     playButton.setTitle("播放", for: .normal)
                     //后台播放显示信息进度停止
-                    setInfoCenterCredentials()
+                    setInfoCenterCredentials(isStop: true)
                 }
             }
         }
@@ -202,7 +258,6 @@ class ZHJAudioPlayertest: UIViewController {
         }else{
             
         }
-        currentPosionbeifen = 0.0
     }
     //MARK: --  下一首
     @IBAction func nextMusicPlay(_ sender: UIButton) {
@@ -212,17 +267,26 @@ class ZHJAudioPlayertest: UIViewController {
         }else{
             
         }
-        currentPosionbeifen = 0.0
     }
-    //MARK: --  拖动进度条改变值时触发
+    //MARK: --  时间进度条 slider
+  
+    @IBAction func playnakSliderTuochdown(_ sender: UISlider) {
+        firstChange = sender.value
+        self.isSliding = true
+    }
     @IBAction func playbackSliderValueChanged(_ sender: UISlider) {
         if chosesPlayer {
             if let streamPlayer = self.streamPlayer.player  {
                 if let play = streamPlayer.activeStream {
-                    self.currentPosionbeifen = sender.value + self.intervalValue
-                    var value = FSStreamPosition()
-                    value.position = sender.value
-                    play.seek(to: value)
+                    self.isSliding = false
+                    self.endChange = sender.value
+                    if sender.value == 1.0 { // 手动下一首
+                        nextMusicPlay(UIButton())
+                    } else {
+                        var value = FSStreamPosition()
+                        value.position = sender.value
+                        play.seek(to: value)
+                    }
                 }
             }
         } else {
@@ -281,7 +345,7 @@ class ZHJAudioPlayertest: UIViewController {
     }
     
     //MARK: --  设置后台播放显示信息
-    func setInfoCenterCredentials() {
+    func setInfoCenterCredentials(isStop: Bool) {
         let mpic = MPNowPlayingInfoCenter.default()
         
         //专辑封面
@@ -303,18 +367,18 @@ class ZHJAudioPlayertest: UIViewController {
                                MPMediaItemPropertyArtwork: albumArt ?? MPMediaItemArtwork(image: UIImage(named: "1")!),
                                MPNowPlayingInfoPropertyElapsedPlaybackTime: currentSecondS,// 已经播放的时间
                                MPMediaItemPropertyPlaybackDuration: total,
-                               MPNowPlayingInfoPropertyPlaybackRate: 1.0]// 默认就是正常速率
+                               MPNowPlayingInfoPropertyPlaybackRate: isStop ? 0.0 : 1.0]// 默认就是正常速率
         
     }
     
     //MARK: --  快进的时候 设置后台播放 进度
-    func setInfoCenterProgress() {
+    func setInfoCenterProgress(isStop: Bool) {
         var mpic = MPNowPlayingInfoCenter.default().nowPlayingInfo
         let total = (self.playTime.text?.substring(0, 2)?.integer)! * 60 + (self.playTime.text?.substring(3, (self.playTime.text?.length)!)?.integer)!
         let currentSecondS = (self.playTm.text?.substring(0, 2)?.integer)! * 60 + (self.playTm.text?.substring(3, (self.playTm.text?.length)!)?.integer)!
-        mpic = [MPNowPlayingInfoPropertyElapsedPlaybackTime: currentSecondS,// 已经播放的时间
-            MPMediaItemPropertyPlaybackDuration: total,
-            MPNowPlayingInfoPropertyPlaybackRate: 1.0]// 默认就是正常速率
+        mpic![MPNowPlayingInfoPropertyElapsedPlaybackTime] = currentSecondS
+        mpic![MPMediaItemPropertyPlaybackDuration] = total
+        mpic![MPNowPlayingInfoPropertyPlaybackRate] = isStop ? 0.0 : 1.0
         MPNowPlayingInfoCenter.default().nowPlayingInfo = mpic
     }
     
@@ -368,4 +432,5 @@ class ZHJAudioPlayertest: UIViewController {
     }
     
 }
+
 
