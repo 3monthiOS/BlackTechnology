@@ -83,11 +83,11 @@ class DynamicBallVC: UIViewController {
       itemBehavior.addItem(Ball)
     }
   }
-  private func run() { 
-  manager.deviceMotionUpdateInterval = 0.2
-    manager.startDeviceMotionUpdates(to: OperationQueue.main) { [weak self] (motion, error) in
-      self?.gravity.gravityDirection = CGVector(dx: motion!.gravity.x, dy: motion!.gravity.y)
-    }
+    private func run() { 
+        manager.deviceMotionUpdateInterval = 0.2
+        manager.startDeviceMotionUpdates(to: OperationQueue.main) { [weak self] (motion, error) in
+            self?.gravity.gravityDirection = CGVector(dx: motion!.gravity.x, dy: -motion!.gravity.y)
+        }
   }
   private func stop() {
     if manager.isDeviceMotionActive {

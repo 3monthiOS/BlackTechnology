@@ -8,7 +8,6 @@
 
 import Foundation
 import CoreLocation
-
 open class Session: LocalStorage {
     /* Tick */
     open var tick: Int {
